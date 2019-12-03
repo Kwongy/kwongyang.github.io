@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          内部排序总结 - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2018/05/12/sortSummary/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                            
+                              <a class="tag" href="/tags/#DataStruct" title="DataStruct">DataStruct</a>
+                            
+                              <a class="tag" href="/tags/#InternalSort" title="InternalSort">InternalSort</a>
+                            
+                        </div>
+                        <h1>内部排序总结</h1>
+                        <h2 class="subheading">Summary of internal sort</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2018-05-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <div align="center">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=20023503&auto=1&height=66"></iframe>
+</div>
+
+<hr>
+<h1><span id="内部排序介绍">内部排序介绍</span></h1><hr>
+<p>算法的稳定性：如果待排序中有两个元素$R_i$、$R_j$，并且它们相等。且在排序前$R_i$在$R_j$前面。如果使用某种排序算法后$R_i$仍在$R_j$前面，则称这种算法是稳定的，否则就是不稳定的。</p>
+<p>排序算法一般考虑两种操作：<strong>比较 移动</strong></p>
+<hr>
+<h2><span id="插入排序">插入排序</span></h2><hr>
+<h3><span id="直接插入排序">直接插入排序</span></h3><hr>
+<p>如图所示</p>
+<p><img src="1.png" alt=""><br>每次从无序表中取出第一个元素，可以看作是每次将两个有序表合并，即$L[1{\cdots}i-1]$和L[i] (即将单个元素当作有序表)将其使用插入法合并，最终只有一个有序表则为所得结果。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void InsertSort(int A[], int n) &#123;</span><br><span class="line">	int i, j;</span><br><span class="line">	for (i = 2; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (A[i]&lt;A[i - 1])</span><br><span class="line">		&#123;</span><br><span class="line">			A[0] = A[i];				//A[0]为辅助元素</span><br><span class="line">			for (j = i - 1; A[0] &lt; A[j]; j--)	//向后移动</span><br><span class="line">			&#123;</span><br><span class="line">				A[j + 1] = A[j];</span><br><span class="line">			&#125;</span><br><span class="line">			A[j + 1] = A[0];					//插入</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>最好情况下，表中元素已经有序，只需要一次比较无需移动，时间复杂度为$O(n)$</p>
+<p>最坏情况下,表中元素与所得结果为逆序，总得比较次数为$\sum_{i=2}^n{i}$，总的移动次数为$\sum_{i=2}^n{(i+1)}$.</p>
+<p>平均情况下移动次数与比较次数均为${n^2}/4$。因此直接插入排序的时间复杂度为$O(n^2)$，空间复杂度为$O(1)$。</p>
+<p>直接插入排序为<strong>稳定</strong>的排序算法。</p>
+<p>比较与移动都取决于待排序表的初始状态。</p>
+<hr>
+<h3><span id="折半插入排序">折半插入排序</span></h3><hr>
+<p>折半插入排序是在直接插入排序的基础上进行了改进。<br>在查找操作中使用了折半查找的思想，但是移动没有改进。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void BinaryInsertSort(int A[], int n) &#123;</span><br><span class="line">	int i, j, low, high, mid;</span><br><span class="line">	for ( i = 2; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		A[0] = A[i];					//A[0]为辅助元素</span><br><span class="line">		low = 1;</span><br><span class="line">		high = i-1;</span><br><span class="line">		while (low&lt;=high)				//折半查找</span><br><span class="line">		&#123;</span><br><span class="line">			mid = (low + high) / 2;</span><br><span class="line">			if (A[mid]&lt;A[0])</span><br><span class="line">			&#123;</span><br><span class="line">				low = mid + 1;</span><br><span class="line">			&#125;</span><br><span class="line">			else high = mid - 1;</span><br><span class="line">		&#125;</span><br><span class="line">		for ( j = i-1; j &gt;= high+1; j--)		//移动</span><br><span class="line">		&#123;</span><br><span class="line">			A[j + 1] = A[j];</span><br><span class="line">		&#125;</span><br><span class="line">		A[high + 1] = A[0];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>折半查找的时间复杂度为$O(nlog_2n)$折半插入排序的时间复杂度为$O(n^2)$，空间复杂度为$O(1)$。</p>
+<p>折半插入排序为<strong>稳定</strong>的排序算法。</p>
+<p>移动取决于待排序表的初始状态，而比较的次数与初始状态无关。</p>
+<hr>
+<h3><span id="希尔排序">希尔排序</span></h3><hr>
+<p>希尔排序也叫缩小增量排序，它的思想就是将待排序序列按照相等间隔抽象出来一个子表，将子表进行插入排序，当间隔缩小为1时，则全体均有序了。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void shellSort(int A[], int n) &#123;</span><br><span class="line">	int dk;			//dk为增量</span><br><span class="line">	int i, j;</span><br><span class="line">	for ( dk = n/2; dk &gt;= 1; dk=dk/2)&#123;		//缩小增量直至为1</span><br><span class="line">		for (i = dk + 1; i &lt;= n; i++) &#123;			//对子集进行插入排序</span><br><span class="line">			if (A[i]&lt;A[i-dk])&#123;</span><br><span class="line">				A[0] = A[i];</span><br><span class="line">				for (j  = i-dk;  j&gt;0&amp;&amp;A[i]&lt;A[i-dk] ; j-=dk)&#123;</span><br><span class="line">					A[j + dk] = A[j];</span><br><span class="line">				&#125;</span><br><span class="line">				A[j + dk] = A[0];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>希尔排序的空间复杂度为$O(1)$，最坏情况下时间复杂度为$O(n^2)$。</p>
+<p>希尔排序是<strong>不稳定</strong>的排序算法。</p>
+<p>希尔排序仅适用于顺序存储的线性表。</p>
+<hr>
+<h2><span id="交换排序">交换排序</span></h2><hr>
+<h3><span id="冒泡排序">冒泡排序</span></h3><hr>
+<p>冒泡排序的基本思想是从后向前两两相邻元素进行比较，若它们逆序则交换它们，直至整个列表有序。<br>冒泡排序每次循环最少会使一个元素(最小元素)归位，这样最多仅需要进行n-1趟冒泡就可以将所有元素排序。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void BubbleSort(int A[], int n) &#123;</span><br><span class="line">	int i, j;</span><br><span class="line">	bool flag;</span><br><span class="line">	for (i = 1; i &lt; n; i++) &#123;			//冒泡趟数</span><br><span class="line">		flag = false;</span><br><span class="line">		for (j = n; j &gt; i; j--) &#123;		//一趟过程</span><br><span class="line">			if (A[j] &lt; A[j - 1]) &#123;</span><br><span class="line">				A[0] = A[j];</span><br><span class="line">				A[j] = A[j - 1];</span><br><span class="line">				A[j - 1] = A[0];</span><br><span class="line">				flag = true;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (!flag)&#123;				//若一趟下来没有发生交换说明数列已经有序，结束算法</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>冒泡排序的空间复杂度为$O(1)$，最好情况下，数列已经有序，比较次数为n-1，交换次数为n。最坏情况下时间复杂度为$O(n^2)$。平均时间复杂度也为$O(n^2)$。</p>
+<p>冒泡排序是<strong>稳定</strong>的排序算法。</p>
+<p>冒泡排序移动与比较都依赖于数列的初始状态。</p>
+<hr>
+<h3><span id="快速排序">快速排序</span></h3><hr>
+<p>快速排序是冒泡排序的改进，采用分治的思想。在待排序的数列中(随机)找到一个基准数pivot，将所有小于它的数放在它的左边，所有大于它的数放在它的右边，那么此时pivot就在它的位置上了(说明已经归位)。重复递归左右两个子表，最终整个数列有序。</p>
+<p>冒泡排序每次归位一个最小数，而快速排序每次归位一个基准位。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int partition(int A[], int low, int high) &#123;</span><br><span class="line">	int pivot = A[low];						//选取第一个数作为基数</span><br><span class="line">	while (low &lt; high) &#123;</span><br><span class="line">		while (low &lt; high&amp;&amp;A[high] &gt;= pivot) &#123; high--; &#125;			//先从后往前找一个比基数大的数</span><br><span class="line">		A[low] = A[high];</span><br><span class="line">		while (low &lt; high&amp;&amp;A[low] &lt;= pivot) &#123; low++; &#125;		//再从前往后找一个比基数小的数</span><br><span class="line">		A[high] = A[low];</span><br><span class="line">	&#125;</span><br><span class="line">	A[low] = pivot;				//基准值归位，此时high=low</span><br><span class="line">	return high;				//返回基准值所应该在的位置</span><br><span class="line">&#125;</span><br><span class="line">void quickSort(int A[], int low,int high) &#123;</span><br><span class="line">	if (low &lt; high) &#123;</span><br><span class="line">		int pivot = partition(A, low, high);</span><br><span class="line">		quickSort(A, low, pivot-1);</span><br><span class="line">		quickSort(A, pivot + 1, high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>快速排序基于递归实现，因此需要借助递归工作栈，空间复杂度最好情况下为$\lceil log_2(n+1) \rceil$，最坏情况下要进行n-1次递归调用，空间复杂度为$O(n)$。平均空间复杂度为$O(log_2n)$，时间复杂度，最好的情况下，partition()函数可以做到平衡划分，即得到左右两个大小相近的子集，在这种情况下时间复杂度为$O(nlog_2n)$。最坏的情况下时间复杂度为$O(n^2)$。平均时间复杂度为$O(nlog_2n)$。</p>
+<p>快速排序是<strong>不稳定</strong>的排序算法。</p>
+<p>快速排序移动与比较都依赖于数列的初始状态。</p>
+<p>提高快速排序的效率一种方法是当递归得到的子集规模比较小时不再使用快速排序，而使用插入排序等算法。第二种就是在选取基准元素的时候，随机选取三个不同元素然后选取它们中间的那个作为基准元素，这样几乎不会发生最坏情况。</p>
+<p>快速排序是所有内部排序算法中平均性能最优的算法。</p>
+<hr>
+<h2><span id="选择排序">选择排序</span></h2><hr>
+<h3><span id="堆排序">堆排序</span></h3><hr>
+<p>堆排序是树形选择算法。<br>大根堆：双亲结点大于孩子结点。<br>小根堆：双亲结点小于孩子结点。</p>
+<p>堆排序基于完全二叉树。已知数组$L[1{\cdots}n]$我们知道完全二叉树的性质有，对于结点L[i]它的孩子结点分别为$L[2i]$和$L[2i+1]$,且这颗树中共有n/2棵子树。因此一个n个结点的堆中也有n/2个子堆。对于大根堆，堆的第一个值一定是最大值，因此不断的拿走第一个值再重新建堆即得到堆排序的序列了。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">void adjust(int A[], int k, int len) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	A[0] = A[k];</span><br><span class="line">	for (i = 2 * k; i &lt;= len; i *= 2) &#123;</span><br><span class="line">		if (i&lt;len&amp;&amp;A[i]&lt;A[i + 1]) &#123;		//找孩子结点中较大的一个</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		if (A[0] &gt;= A[i]) break;		</span><br><span class="line">		else&#123;</span><br><span class="line">			A[k] = A[i];				//如果比双亲结点还大，则与双亲结点交换</span><br><span class="line">			k = i;</span><br><span class="line">		&#125;</span><br><span class="line">		A[k] = A[0];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void heapmaxSort(int A[], int len) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	for (i = len/2; i &gt; 0; i--)&#123;</span><br><span class="line">		adjust(A, i, len);			//调整以A[i]为双亲结点的子堆</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void heapSort(int A[], int len) &#123;</span><br><span class="line">	heapmaxSort(A,len);</span><br><span class="line">	int i;</span><br><span class="line">	for ( i = len; i &gt; 1; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		A[0] = A[i];</span><br><span class="line">		A[i] = A[1];</span><br><span class="line">		A[1] = A[0];	//将最后一个结点与堆顶元素互换。</span><br><span class="line">		adjust(A, 1, i - 1);	//重新调整堆</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong></p>
+<p>堆排序的空间复杂度为$O(1)$，每次建堆的时间复杂度为$O(n)$，每次调整的时间复杂度为$O(h)$，h为堆的深度。因此在最好、最坏和平均的情况下堆排序的时间复杂度为$O(nlog_2n)$</p>
+<p>堆排序是<strong>不稳定</strong>的排序算法</p>
+<p>堆排序的建堆和调整都不依赖于数列的初始状态。</p>
+<hr>
+<h2><span id="归并排序">归并排序</span></h2><hr>
+<p>归并排序是建立于合并的思想。将n个元素分成各包含n/2个元素的子表，再采用归并算法对两两子表递归合并。最终有序。</p>
+<p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int B[100];					//辅助数组</span><br><span class="line">void merge(int A[], int low, int mid, int high) &#123;</span><br><span class="line">	int i, j, k;</span><br><span class="line">	for (i = low; i &lt;= high; i++)&#123;</span><br><span class="line">		B[i] = A[i];				//复制到辅助数组里</span><br><span class="line">	&#125;</span><br><span class="line">	for (i = low, j = mid + 1, k = i; i &lt;= mid &amp;&amp; j &lt;= high; k++) &#123;</span><br><span class="line">		if (B[i] &lt;= B[j]) A[k] = B[i++];		//将B[low到mid]和B[mid+1到high]排序后合并至A[low到high]</span><br><span class="line">		else A[k] = B[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	while (i &lt;= mid) A[k++] = B[i++];			//如果B[low到mid]还有剩余则全部插入</span><br><span class="line">	while (j &lt;= high) A[k++] = B[j++];			//如果B[mid+1到high]还有剩余则全部插入</span><br><span class="line">&#125;</span><br><span class="line">void mergeSort(int A[], int low, int high) &#123;</span><br><span class="line">	if(low&lt;high)&#123;</span><br><span class="line">		int mid = (low + high) / 2;</span><br><span class="line">		mergeSort(A, low, mid);			//递归划分区间</span><br><span class="line">		mergeSort(A, mid + 1, high);</span><br><span class="line">		merge(A, low, mid, high);		//两两合并</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>merge()函数中最后两个while只有一个会执行</p>
+<p><strong>分析</strong></p>
+<p>归并排序需要借助n个辅助空间，因此空间复杂度为$O(n)$，每一次归并的时间复杂度为$O(n)$，共需进行$\lceil log_2n \rceil$次，所以总的时间复杂度为$O(nlog_2n)$。</p>
+<p>归并排序是<strong>稳定</strong>的排序算法</p>
+<p>归并排序查找和移动都不依赖于数列的初始状态。</p>
+<blockquote>
+<p>对于N个元素的k-路归并排序，排序趟数m满足$k^m=N$，因此$m=log_kN$。因此m的值为$\lceil log_kN \rceil$。</p>
+</blockquote>
+<hr>
+<h2><span id="基数排序">基数排序</span></h2><hr>
+<p>基数排序不基于关键字的比较，而是按照关键字各个位上的数的大小进行排序。借助n个队列完成分配操作。然后将n个队列链接，完成收集操作。</p>
+<p><strong>分析</strong></p>
+<p>基数排序所需r个辅助队列，因此空间复杂度为$O(r)$。时间复杂度，一趟分配需要$O(n)$，一趟收集需要$O(r)$。共需要d趟(d为最大关键字的位数)。因此总的时间复杂度为$O(d(n+r))$</p>
+<p>基数排序的分配与收集操作与数列的初始状态无关。</p>
+<p>基数排序也是<strong>稳定</strong>的排序算法。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/05/15/pyUseDatabase/" data-toggle="tooltip" data-placement="top" title="数据库交互">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/05/09/distributedStore/" data-toggle="tooltip" data-placement="top" title="Distributed storage">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">内部排序介绍</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">插入排序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">直接插入排序</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">折半插入排序</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">希尔排序</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">交换排序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">冒泡排序</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">快速排序</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">选择排序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">堆排序</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">归并排序</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">基数排序</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#DataStruct" title="DataStruct">DataStruct</a>
+                        
+                          <a class="tag" href="/tags/#InternalSort" title="InternalSort">InternalSort</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2018/05/12/sortSummary/";
+    var disqus_url = "http://kwongyang.com/2018/05/12/sortSummary/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          教学管理系统数据库设计 - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2018/04/26/teachManagement/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Database" title="Database">Database</a>
+                            
+                        </div>
+                        <h1>教学管理系统数据库设计</h1>
+                        <h2 class="subheading">Implementation of the database design process.</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2018-04-26
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <div align="center">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=22201018&auto=1&height=66"></iframe>
+</div>
+
+<p>数据库学习半学期了，今天就简单的实现一下整个数据库设计流程，同时练习一下各种语法。</p>
+<h2><span id="系统用户分析">系统用户分析</span></h2><p><img src="1.png" alt="图片"><br>本数据库系统设计的用户有:</p>
+<ul>
+<li>数据库系统管理人员:维护和管理数据库系统，并拥有系统所有权限。</li>
+<li>教学管理人员:负责管理教学教师和学生的相关信息，可以对教学教师与学生信息进行更改，同时负责课程的安排。</li>
+<li>教学教师:可对选择本教师课程的学生的学习成绩进行修改，同时可以查询学生的成绩信息和个人的任教情况。</li>
+<li>学生:本数据库中用户最多但是权限最低的人群，仅允许修改自己的个人信息、选修选修课情况和查询个人成绩信息。</li>
+</ul>
+<h2><span id="系统需求分析">系统需求分析</span></h2><ol>
+<li><p>学生对系统功能的需求<br>学生需要查询自己的学科成绩和课程安排，能够更改个人基本信息并能对自由选修选修课等。</p>
+</li>
+<li><p>教师对系统功能的需求<br>教学教师可以查询自己所教学生的个人成绩、全班成绩、所教的课程安排等，并能修改个人基本信息，添加学生的课程成绩等。</p>
+</li>
+<li><p>教学管理人员对系统功能的需求<br>教学管理人员可以查询和修改所有学生和教师的信息，但只能修改个人的信息。需要安排教师和学生上课时间和上课地点等。</p>
+</li>
+<li><p>成绩管理对系统功能的需求<br>任课教师可以录入本门课程的学生成绩，录入成绩后系统需要提供不及格学生的名单，反馈给教师各个班的平均成绩和个人的成绩等。</p>
+</li>
+<li><p>课程安排对系统功能的需求<br>教学管理人员根据任课教师所任教的课程安排相应的上课时间和上课地点，之后系统要反馈给任课教师和学生。</p>
+</li>
+<li><p>学生选修课对系统功能的需求<br>学生根据个人课表、选修课目录和选修课剩余容量自由选取一些选修课。</p>
+</li>
+</ol>
+<h2><span id="系统功能模块设计">系统功能模块设计</span></h2><p><img src="2.png" alt="图片"></p>
+<ol>
+<li>系统管理模块</li>
+</ol>
+<p><img src="3.png" alt="图片"></p>
+<ul>
+<li>用户管理模块<br>管理员拥有所有权限，对所有老师，学生的信息进行更改，同时为不同的用户(老师、学生)设置不同的权限。<br>该模块的功能是管理员可以查看所有用户、修改用户、增加用户、删除用户。</li>
+</ul>
+<p>(1)    查看用户：查询与用户有关的所有信息。<br>(2)    添加用户：添加用户信息、用户类型(学生，任课教师，教学管理人员)、用户登陆账号密码等，并为他们设置相应的权限。<br>(3)    修改用户：通过查询查找需要修改的信息，再做相关更改。<br>(4)    删除用户：把要删除的用户所有信息从数据库中删除。</p>
+<ul>
+<li><p>学生信息管理模块<br>(1)    查询学生信息：拥有查询学生信息权限的用户可以查询学生的相关信息。学生的信息包括：姓名、性别、学号、出生年月、年龄、所属院系、班级、家庭住址、联系方式、民族、爱好、课程和成绩。<br>(2)    修改学生记录：拥有相关权限的用户可以修改学生信息的部分字段。</p>
+</li>
+<li><p>教师信息管理模块<br>(1)查询教师信息：拥有查询教师信息权限的用户可以查询教师的相关信息。教师的信息包括：姓名、性别、工号、出生年月、年龄、学历、所属院系、家庭住址、联系方式、民族、授课情况、工资。<br>(2)修改教师信息：拥有相关权限的用户可以修改教师信息的部分字段</p>
+</li>
+<li><p>教室信息管理模块<br>(1)查询教室使用信息：用户可以查询教室的使用情况，教室使用情况包括：是否占用、所上课程、上课时间。<br>(2)修改教室信息：拥有相关权限的用户可以修改教室信息的部分字段</p>
+</li>
+</ul>
+<ol>
+<li>教学管理模块</li>
+</ol>
+<p><img src="4.png" alt="图片"></p>
+<ul>
+<li>教学情况管理模块<br>教学管理人员可以以多种方式查询学生考试成绩来统计任课教师的教学情况。统计不及格的学生、班级平均分，以此来选出优秀班级。同时可以调整课程的教学教师。</li>
+</ul>
+<ul>
+<li><p>课程管理模块<br>教学管理人员和任课老师可以查询公共课和专业课的上课情况。教学管理人员可以排课，对教室的使用情况进行更改。课程包括<br>(1)    公共选修课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、可选人数。<br>(2)    专业课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、班级。</p>
+</li>
+<li><p>成绩管理模块<br>不同用户拥有不同权限。<br>(1)    学生查询成绩：学生可以查询自己所修课程的成绩信息。<br>(2)    任课教师和教学管理人员查询成绩：老师可以查询个人或者集体的成绩。<br>(3)    任课教师录入学生成绩：任课教师可以录入所授课程学生的期中、期末和平时成绩。<br>(4)    教学管理人员录入补考成绩：教学管理人员可以录入挂科学生的补考成绩。</p>
+</li>
+<li><p>选课管理模块<br>教学管理人员可以设置学生专业课程，任课教师可以开设新的选修课程。学生可以选修公共课</p>
+</li>
+</ul>
+<h2><span id="数据库设计">数据库设计</span></h2><ol>
+<li>E-R图</li>
+</ol>
+<p><img src="5.png" alt="图片"><br><img src="6.png" alt="图片"></p>
+<ol>
+<li>数据表结构设计</li>
+</ol>
+<p>(1)    学院表 AcademyTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Academy_id</td>
+<td style="text-align:center">学院编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Academy_name</td>
+<td style="text-align:center">学院名称</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(2)    学生表    StudentTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Student_id</td>
+<td style="text-align:center">学号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Student_name</td>
+<td style="text-align:center">姓名</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">10</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Interest</td>
+<td style="text-align:center">爱好</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">30</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Birthday</td>
+<td style="text-align:center">出生日期</td>
+<td style="text-align:right">DATETIME</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Degree</td>
+<td style="text-align:center">年级</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Class_id</td>
+<td style="text-align:center">班级编号</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+<tr>
+<td style="text-align:left">Sex</td>
+<td style="text-align:center">性别</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">2</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Nationality</td>
+<td style="text-align:center">民族</td>
+<td style="text-align:right">VARCAHR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Address</td>
+<td style="text-align:center">住址</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">30</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Tel</td>
+<td style="text-align:center">联系电话</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">13</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(3)    教师表    TeacherTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Teacher_id</td>
+<td style="text-align:center">教师工号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Teacher_name</td>
+<td style="text-align:center">姓名</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Sex</td>
+<td style="text-align:center">性别</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">2</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Birthday</td>
+<td style="text-align:center">出生日期</td>
+<td style="text-align:right">DATETIME</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Entry_time</td>
+<td style="text-align:center">入职时间</td>
+<td style="text-align:right">DATETIME</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Nationality</td>
+<td style="text-align:center">民族</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Address</td>
+<td style="text-align:center">住址</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">30</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Tel</td>
+<td style="text-align:center">电话</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">13</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Academy_id</td>
+<td style="text-align:center">所属院系编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(4)    班级表    ClassTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Class_id</td>
+<td style="text-align:center">班级编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Class_name</td>
+<td style="text-align:center">班级名称</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Student_num</td>
+<td style="text-align:center">学生人数</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Academy_id</td>
+<td style="text-align:center">所属院系编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+<tr>
+<td style="text-align:left">Class_major</td>
+<td style="text-align:center">班级专业</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Guide_teacher</td>
+<td style="text-align:center">指导教师</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+<tr>
+<td style="text-align:left">Study_time</td>
+<td style="text-align:center">学制</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(5)    课程信息表    CourseInfo</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Course_id</td>
+<td style="text-align:center">课程编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_name</td>
+<td style="text-align:center">课程名称</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Academy_id</td>
+<td style="text-align:center">所属院系编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_type</td>
+<td style="text-align:center">课程类型</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(6)    课程表    CourseTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Course_id</td>
+<td style="text-align:center">课程编号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_time</td>
+<td style="text-align:center">上课时间</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_address</td>
+<td style="text-align:center">上课地点</td>
+<td style="text-align:right">VARCHAR</td>
+<td style="text-align:left">20</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_teacher</td>
+<td style="text-align:center">任课教师</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_class</td>
+<td style="text-align:center">上课班级</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">外键</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(7)    成绩表    ScoreTable</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名</th>
+<th style="text-align:center">实际意义</th>
+<th style="text-align:right">数据类型</th>
+<th style="text-align:left">长度</th>
+<th style="text-align:center">是否为空</th>
+<th style="text-align:right">参照关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Student_id</td>
+<td style="text-align:center">学生学号</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">12</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_id</td>
+<td style="text-align:center">所选课程</td>
+<td style="text-align:right">CHAR</td>
+<td style="text-align:left">8</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">Course_term</td>
+<td style="text-align:center">学期</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Usual_score</td>
+<td style="text-align:center">平时成绩</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Midterm_score</td>
+<td style="text-align:center">期中成绩</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">End_score</td>
+<td style="text-align:center">期末成绩</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+<tr>
+<td style="text-align:left">Score</td>
+<td style="text-align:center">总成绩</td>
+<td style="text-align:right">INT</td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="数据库实现">数据库实现</span></h2><ul>
+<li>创建数据库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE EducationManagementSys</span><br><span class="line">ON</span><br><span class="line">(NAME = Datab ,FILENAME = &apos;C:\Users\Public\db\EducationManagementSys.MDF&apos;</span><br><span class="line">,MAXSIZE = 100 , FILEGROWTH = 5)</span><br><span class="line">LOG ON</span><br><span class="line">(NAME = DatabLog , FILENAME = &apos;C:\Users\Public\db\EducationManagementSyslog.LDF&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建数据表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">USE EducationManagementSys</span><br><span class="line"></span><br><span class="line">CREATE TABLE AcademyTable</span><br><span class="line">(</span><br><span class="line">	Academy_id CHAR(8) NOT NULL,	--学院编号</span><br><span class="line">	Academy_name VARCHAR(20) NOT NULL,		--学院名称</span><br><span class="line">	CONSTRAINT PK_AcademyTable PRIMARY KEY(Academy_id)</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE TeacherTable</span><br><span class="line">(</span><br><span class="line">	Teacher_id CHAR(12) NOT NULL CONSTRAINT PK_TeacherTable PRIMARY KEY(Teacher_id),	--工号</span><br><span class="line">	Teacher_name VARCHAR(20) NOT NULL,	--姓名</span><br><span class="line">	Sex CHAR(2),	--性别</span><br><span class="line">	Birthday DATETIME,	--生日</span><br><span class="line">	Entry_time DATETIME,	--入职时间</span><br><span class="line">	Nationality VARCHAR(20),	--民族</span><br><span class="line">	Address VARCHAR(30),	--地址</span><br><span class="line">	Tel CHAR(13),		--电话</span><br><span class="line">	Academy_id CHAR(8) NOT NULL CONSTRAINT FK_T_A FOREIGN KEY REFERENCES AcademyTable(Academy_id)	--所属院系</span><br><span class="line">	</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE ClassTable</span><br><span class="line">(</span><br><span class="line">	Class_id CHAR(12) NOT NULL CONSTRAINT PK_ClassTable PRIMARY KEY(Class_id),		--班级编号</span><br><span class="line">	Class_name VARCHAR(20) NOT NULL,	--班级名称</span><br><span class="line">	Student_num	INT,				--学生人数</span><br><span class="line">	Academy_id	CHAR(8) NOT NULL CONSTRAINT FK_CS_A FOREIGN KEY REFERENCES AcademyTable(Academy_id),--所属学院</span><br><span class="line">	Class_major VARCHAR(20),		--班级专业</span><br><span class="line">	Guide_teacher CHAR(12) NOT NULL CONSTRAINT FK_C_T FOREIGN KEY REFERENCES TeacherTable(Teacher_id),	--指导老师</span><br><span class="line">	Study_time INT			--学制</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE CourseInfo</span><br><span class="line">(</span><br><span class="line">	Course_id CHAR(8) NOT NULL,		--课程编号</span><br><span class="line">	Course_name	VARCHAR(20) NOT NULL,	--课程名称</span><br><span class="line">	Academy_id	CHAR(8) NOT NULL CONSTRAINT FK_CI_A FOREIGN KEY REFERENCES AcademyTable(Academy_id),--所属学院</span><br><span class="line">	Course_type VARCHAR(20) NOT NULL ,	--课程类型</span><br><span class="line">	CONSTRAINT PK_CourseInfo PRIMARY KEY(Course_id)</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE CourseTable</span><br><span class="line">(</span><br><span class="line">	Course_id CHAR(8) NOT NULL, --课程编号</span><br><span class="line">	Course_time VARCHAR(20) NOT NULL,--上课时间</span><br><span class="line">	Course_address VARCHAR(20) , --上课地点</span><br><span class="line">	Course_teacher	CHAR(12) NOT NULL CONSTRAINT FK_CT_T FOREIGN KEY REFERENCES TeacherTable(Teacher_id),--任课教师</span><br><span class="line">	Course_class CHAR(12) NOT NULL CONSTRAINT FK_CI_CS FOREIGN KEY REFERENCES ClassTable(Class_id),</span><br><span class="line">	CONSTRAINT PK_CourseTable PRIMARY KEY(Course_id,Course_time)</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE StudentTable</span><br><span class="line">(</span><br><span class="line">	Student_id CHAR(12) NOT NULL, --学号</span><br><span class="line">	Student_name VARCHAR(10) NOT NULL,--姓名</span><br><span class="line">	Interest VARCHAR(30) , -- 爱好</span><br><span class="line">	Birthday DATETIME ,--生日</span><br><span class="line">	Degree INT NOT NULL, --年级</span><br><span class="line">	Class_id CHAR(12) NOT NULL  CONSTRAINT FK_ST_CS FOREIGN KEY REFERENCES ClassTable(Class_id) ,--班级编号</span><br><span class="line">	Sex CHAR(2),--性别</span><br><span class="line">	Nationality VARCHAR(20),--民族</span><br><span class="line">	Address VARCHAR(30), --地址</span><br><span class="line">	Tel CHAR(13) , --电话</span><br><span class="line">	CONSTRAINT PK_StudentTable PRIMARY KEY(Student_id)</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE ScoreTable</span><br><span class="line">(</span><br><span class="line">	Student_id CHAR(12) NOT NULL CONSTRAINT FK_Sc_ST FOREIGN KEY REFERENCES StudentTable(Student_id),--学号</span><br><span class="line">	Course_id CHAR(8) NOT NULL CONSTRAINT FK_Sc_CI FOREIGN KEY REFERENCES CourseInfo(Course_id),--课程号</span><br><span class="line">	Course_term INT ,--学期</span><br><span class="line">	Usual_score INT , --平时成绩</span><br><span class="line">	Midterm_score INT,--期中成绩</span><br><span class="line">	End_score INT,--期末成绩</span><br><span class="line">	Score INT,-- 总成绩</span><br><span class="line">	CONSTRAINT PK_ScoreTable PRIMARY KEY(Student_id,Course_id)</span><br><span class="line">)</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建数据库关系图</li>
+</ul>
+<p><img src="8.png" alt="图片"></p>
+<ul>
+<li>创建视图</li>
+</ul>
+<ol>
+<li>学生成绩视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW student_Score</span><br><span class="line">AS</span><br><span class="line">SELECT A.Student_id 学号,A.Student_name 姓名,C.Course_name 课程名称,</span><br><span class="line">	B.Usual_score 平时成绩,B.Midterm_score 期中成绩,B.End_score 期末成绩,B.Score 总成绩</span><br><span class="line">FROM StudentTable A,ScoreTable B,CourseInfo C</span><br><span class="line">WHERE A.Student_id=B.Student_id AND B.Course_id=C.Course_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ol>
+<li>班级不及格人数与平均分视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW class_Summarizing</span><br><span class="line">AS</span><br><span class="line">SELECT A.Class_id 班级编号,C.Course_name 课程名称,</span><br><span class="line">AVG(B.Score) 班级平均分,SUM(CASE WHEN B.Score&lt;60 THEN 1 ELSE 0 END) 不及格人数</span><br><span class="line">FROM ClassTable A,ScoreTable B,CourseInfo C,StudentTable D</span><br><span class="line">GROUP BY A.Class_id,D.Class_id,D.Student_id,B.Student_id,c.Course_name</span><br><span class="line">HAVING D.Class_id=A.Class_id AND D.Student_id = B.Student_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ol>
+<li>教师授课信息视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW teacher_Course</span><br><span class="line">AS</span><br><span class="line">SELECT A.Teacher_id 教师工号,A.Teacher_name 姓名,B.Course_class 上课班级,</span><br><span class="line">	B.Course_time 上课时间,B.Course_address 上课地点,C.Course_name 课程名称</span><br><span class="line">FROM TeacherTable A JOIN CourseTable B ON A.Teacher_id=B.Course_teacher</span><br><span class="line">	JOIN CourseInfo C ON B.Course_id=C.Course_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建存储过程</li>
+</ul>
+<ol>
+<li>根据班级编号查询班级内所有学生信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE classid_studentInfo</span><br><span class="line">@classid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT StudentTable.* FROM StudentTable</span><br><span class="line">WHERE Student_id=@classid</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ol>
+<li>根据学生编号查询学生选修课程信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_Course</span><br><span class="line">@studentid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT B.Student_name 姓名,C.Course_name 课程名称,A.Usual_score 平时成绩,</span><br><span class="line">	A.Midterm_score 期中成绩,A.End_score 期末成绩, A.Score 总成绩</span><br><span class="line">FROM ScoreTable A,StudentTable B,CourseInfo C</span><br><span class="line">WHERE @studentid=B.Student_id AND B.Student_id=A.Student_id AND A.Course_id = C.Course_id</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ol>
+<li>根据教师编号查询教师教授课程及平均成绩、最高最低分和不及格人数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE teacher_Summary</span><br><span class="line">@teacherid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT D.Teacher_name 姓名,B.Course_name 课程名称,AVG(C.Score) 平均分,MAX(C.Score),</span><br><span class="line">	MIN(C.score),SUM(CASE WHEN C.Score&lt;60 THEN 1 ELSE 0 END) 不及格人数</span><br><span class="line">FROM CourseTable A,CourseInfo B,ScoreTable C,TeacherTable D</span><br><span class="line">GROUP BY A.Course_teacher,D.Teacher_name,B.Course_name,A.Course_id,B.Course_id,C.Course_id,D.Teacher_id</span><br><span class="line">HAVING A.Course_teacher=@teacherid AND A.Course_id = B.Course_id AND</span><br><span class="line">	B.Course_id=C.Course_id AND A.Course_teacher=D.Teacher_id</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建触发器</li>
+</ul>
+<ol>
+<li>根据输入的学生平时、期中和期末成绩按照20%、20%和60%自动计算学生总成绩</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER calculate_Score </span><br><span class="line">ON ScoreTable FOR INSERT</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">	UPDATE ScoreTable</span><br><span class="line">	SET Score = Usual_score*0.2+Midterm_score*0.2+End_score*0.6</span><br><span class="line">	WHERE Student_id IN (SELECT Student_id FROM inserted)</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/04/27/crawl/" data-toggle="tooltip" data-placement="top" title="Crawl——urllib">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/04/25/Dijkstra/" data-toggle="tooltip" data-placement="top" title="Dijkstra">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">系统用户分析</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">系统需求分析</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">系统功能模块设计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">数据库设计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">数据库实现</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Database" title="Database">Database</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2018/04/26/teachManagement/";
+    var disqus_url = "http://kwongyang.com/2018/04/26/teachManagement/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

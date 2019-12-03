@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Reducing the Dimensionality of Data with Neural Networks - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2019/05/30/paper-ReducingtheDimensionality-GEH/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+                            
+                              <a class="tag" href="/tags/#Paper" title="Paper">Paper</a>
+                            
+                        </div>
+                        <h1>Reducing the Dimensionality of Data with Neural Networks</h1>
+                        <h2 class="subheading">G. E. Hinton* and R. R. Salakhutdinov</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2019-05-30
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>本篇论文是加拿大多伦多大学计算机科学部的G. E. Hinton*, R. R. Salakhutdinov所作的<a href="http://www.cs.toronto.edu/~hinton/science.pdf" target="_blank" rel="noopener">用神经网络降低数据维度</a></p>
+<h2><span id="abstract">Abstract</span></h2><p>通过训练具有小中心的多层神经网络重构高维输入向量，可以将高维数据转换为低维。梯度下降可以用来微调这些“自动编码器”网络中的权值，但只有当初始权值接近一个最优值时，这种方法才非常有效。我们描述了一种有效的初始化权值的方法，它允许深度自动编码网络学习低维代码，作为一种降低数据维数的工具，这种低维代码比主成分分析工作得更好。</p>
+<h2><span id="content">Content</span></h2><p>降维有助于高维数据的分类、可视化、通信和存储。主成分分析(PCA)是一种简单而广泛使用的方法，它可以找出数据集中方差最大的方向，并通过每个方向上的坐标表示每个数据点。我们描述了PCA的非线性泛化，它使用一个自适应的多层“编码器”网络将高维数据转换为低维代码，并使用一个类似的“解码器”网络从代码中恢复数据。从两个网络的随机权值开始，通过最小化原始数据与重构数据之间的差异，可以对它们进行联合训练.利用链式法则先通过解码器网络再通过编码器网络(1)反向传播误差导数。可以很容易地得到所需的梯度。整个系统称为“自动编码器”，如图1所示。</p>
+<p>在具有多个隐层的非线性自编码器中，权值的优化是一个难点。当初始权值较大时，自动编码器通常会找到较差的局部极小值;由于初始权值较小，早期层的梯度很小，因此无法训练具有许多隐藏层的自动编码器。如果初始权值接近一个好的解，梯度下降法就可以很好地工作，但是找到这样的初始权值需要一种非常不同的算法，它一次只学习一层特征。我们介绍了二值数据的“预训练”过程，并将其推广到实值数据中，结果表明该方法适用于多种数据集。</p>
+<p>一个二进制向量的组合（比如 一个图片）可以使用 ”受限玻尔兹曼机RBM“ 建模，使用对称加权连接  随机二进制特征到随机二进制特征探测器。像素点值对应于RBM的“可见”元，因为 他们是可见的；特征探测子/描述子 对应”隐藏“单元。一个 可见和隐藏单元 生成 联合分布/配置（v,h）能量：</p>
+<script type="math/tex; mode=display">E(v,h) = - \sum_{i\in{pixels} }{b_i}{v_i} - sum_{j\in{features} }{b_j}{h_j} - \sum_{i,j}{v_i}{h_j}{w_{ij}}</script><p>其中vi和hj为像素i的二进制状态，特征j和bj偏差，wij为它们之间的权重。网络通过这个方程 分配一个概率到每一个可能的图像，正如（8）解释的。这个训练图像的概率 可以 通过调整权值和基 以降低图片的能量 产生，并生成相似的、”虚构/构建“ 的图片（更偏向于真实数据的网络）能量。特征探测子 j 的二进制状态 Hj 设定为1以 F(bj +Add(Vi<em>Wij))的概率，在此F()是逻辑斯特函数（1/(1+exp(-x))),bj是j的偏差，Vi是i的状态，Wij是i和j之间的权值。一旦二进制状态被选定到隐藏元，一个 虚构/构建 产生 通过设定每一个Vi为1以F(bj + sigma(Vi</em>Wij))的概率，此时bi为i的偏差。隐藏元的权值被更新 以使他们可以 表示”虚构/构建” 的特征，权值更新通过公式：</p>
+<script type="math/tex; mode=display">\Delta w_{ij} = \epsilon(<v_ih_j>_{data} - <v_ih_j>_{recon})</script><p>这里epsilon是学习率，<vihj>data为分裂的次数（点i和特征检测子j）当特征检测子受数据驱动，<vihi>recon为”虚拟/构建“ 的响应速率。同样的简化版本的学习规则可用于偏差。这个学习过程工作良好即使它并不事实沿着训练数据(6)的逻辑概率的梯度方向。</vihi></vihj></p>
+<p>一个单层二进制特征提取层并非是 为一个图像集合 建立模型最好的方法。训练完一层网络之后，我们可以使它激活，当这一层被数据驱动——进而生成数据作为学习第二层特征的输入。第一层的特征探测子成为第二层RBM的可见元。这种一层接一层/逐层的学习 当必要时可以重复多次/反复进行。</p>
+<p>可以看出：增加一个额外的层一般可以促进更低的 （这个模型指定给训练数据的）逻辑概率边界，此时应假定每层特征检测子的数目不减少并且他们的初始权值被正确初始化(9)。这个约束不能应用于当一个更高的层具有更少的特征探测子的情况，但 即使如此 逐层学习算法 依然是一个有效去预训练深度编码器的权值的方法。每一层的特征捕获 底层网络单元中  更稳定/强 的更高阶的联系。对于更广泛的数据集，这是渐进地揭示低维数据结构的 有效结构 的一个有效方法。</p>
+<p>预训练多层网络之后，模型 对于产生（使用相同权值初始化的）编码和解码器 网络 是 ”开放“的（图表1）。全局参数调整过程随后  用确定性的实值概率和 使用 通过对整个自编码器反传 调整权值 取代（stochastic activities）随机激活去优化结构。</p>
+<p>对于连续数据，第一层RBM隐藏元保持二进制，但是可见元使用高斯噪音处理过的线性单元取代(10)。若噪音单元变量，隐藏元的随机更新规则 保持相同，这个可见元i的更新规则来自于 使用 单元方差和均值(bj + Add(Hj + Wij))。</p>
+<p>在我们的试验中，每一个RBM和实值激活 的可见元，逻辑元变化范围为[0,1]。当训练更高层的RBM，可见元内设定为激活概率（来自于前一层的 隐藏元——除了顶层RBM的随机二进制值）。顶层的隐藏元的权值 为随机实数值 从 一个单变量高斯 提取（其均值 由RBM的 逻辑可见元 决定 ）。这 就使得 低维编码 可以更好地利用连续数据 并且 方便与PCA  对比。预训练和参数调整 可以参考（8）。</p>
+<p>为证实我们的预训练算法可以使我们有效地调节参数，我们训练一个特定的深度编码器在一个合成的数据集上（数据集 包含由两个维度的三个随机选择点 生成的 ”曲线“ 图片  ）。对于这个数据集，这个本质/真实 维度是已知的，这个映射从 点的强度到 六个参数 是高度非线性的。点强度范围为[0,1] 并且是非高斯的，因此我们使用逻辑斯特输出单元在自编码器，学习的 参数微调阶段使用 最小化 交叉熵损失[- Add(Pi<em>  log M(Pi)  ) - Add( (1-Pi )</em> log(1-Pi )  )  ] , Pi 为点i的强度，M(Pi)    为  此点的重建。</p>
+<p>自编码器包含了一个尺寸为（28* 28）的编码器400-200-100-50-25-6和一个合成解码器。这 在编码层的六个单元是线性的，且所有的其他单元是 Logistic。此网络由20000个图片训练并使用10000个测试。这个自编码器 发现 如何转化784个点图像 到6个实数（图表2.A : 可实现完美重建），PCA给出的效果坏的多（有损压缩？）。若没有预训练过程，特定的自编码器 即使 延长 参数微调(8)，也只能恢复出平均数据。只有一层的浅层自编码器 可以不经预训练学习，但是经过预训练可以很大地降低训练时间(8)。当参数相同时，深度自编码器 可以比浅层模型 产生更低的重建误差，但是这种 优势会随着参数增长而递减。</p>
+<p>下一步，我们使用一个 784-1000-500-250-30 自编码器 提取所有的MINIST训练集的 编码。我们使用的训练和调参Matlab代码在[8] 。然后，除编码层的30个线性单元之外，所有单元是 Logistic单元。 在训练600000 个样本之后，模型在10000个样本上测试，取得了比PCA更好的重建结果（图表2.B）。一个二维自编码器可视化效果超过PCA两主元分析(图表3)。</p>
+<p>我们使用 一个625-2000-1000-500-30自编码器  利用线性输入元 为灰度图像块（Olivetti face data set） 产生30维编码。自编码器 明确显示出PCA(图表2C).</p>
+<p>当训练用于文档，自编码器产生允许快速检索的编码。我们把804414个每个新闻故事作为一个向量(13)每个向量对应 文档特定概率——2000个通用词根之中的。我们训练一个2000-500-250-125-10 自编码器，使用一半的故事，使用多类交叉熵[- Add(Pi*  log M(Pi))] 用于参数微调。10个码为线性，其余的隐藏元为Logistic。两个编码的 余弦用于相似性度量，自编码器(8)依然 效果好于 局部线性嵌入LLE，一个最近 发现的非线性降维方法。</p>
+<p>逐层/一层又一层预训练也可以用于分类和回归。在广泛使用的MNIST手写数字识别任务上，随机初始化的BP网络最好的错误率为1.6% ,支持向量机最好为1.4%。在逐层预训练 的784-500-500-2000-10 网络，使用梯度下降法和小学习速率 的反传网络达到了1.2%。预处理 帮助/促进泛化 是因为权值产生的大多数信息来自于图像本身的建模。只有特定的受限制的带标签的训练信息用于调整权值。</p>
+<p>从1980年之后，已证明若在计算速度较快、数据集足够大，初始权值接近最优权值，反传算法用于深度自编码将是一个非常有效的方法。现在所有三个条件都已经满足。不像非参数模型（15,16）,自编码器给出了方向和范围两方面的映射，并且可以用于大数据集合 ，因为 预处理和参数微调都在线性时间和空间内执行。</p>
+<h2><span id="主要思想">主要思想</span></h2><p>模型分为三部分：Pretraining、Unrolling、Fine-tuning。利用多层神经网络构建encoder，通过优化重构后的数据和原输入数据之间的cross-entropy函数，实现自动encode的目的。模型可以有效地初始化权重并对数据进行降维，且效果比PCA(principal compenent analysis，主成分分析)更好。</p>
+<h2><span id="疑问">疑问</span></h2><ol>
+<li>什么是RBM(restricted Boltzmann machine,受限玻尔兹曼机)</li>
+<li>PCA是怎样降维的？</li>
+<li>预训练中Enegy Function怎样推出的？</li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/06/03/paper-ImageNetClassificationCNN/" data-toggle="tooltip" data-placement="top" title="ImageNet Classification with Deep Convolutional Neural Networks">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/05/29/paper-BuildingextractionviaCNN-jsp/" data-toggle="tooltip" data-placement="top" title="遥感影像建筑物提取的卷积神经元网络与开源数据集方法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Abstract</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Content</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">主要思想</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">疑问</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+                        
+                          <a class="tag" href="/tags/#Paper" title="Paper">Paper</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2019/05/30/paper-ReducingtheDimensionality-GEH/";
+    var disqus_url = "http://kwongyang.com/2019/05/30/paper-ReducingtheDimensionality-GEH/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

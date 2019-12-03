@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Dijkstra - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2018/04/25/Dijkstra/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                            
+                              <a class="tag" href="/tags/#Dijkstra" title="Dijkstra">Dijkstra</a>
+                            
+                              <a class="tag" href="/tags/#DataStruct" title="DataStruct">DataStruct</a>
+                            
+                              <a class="tag" href="/tags/#MinPath" title="MinPath">MinPath</a>
+                            
+                              <a class="tag" href="/tags/#Graph" title="Graph">Graph</a>
+                            
+                        </div>
+                        <h1>Dijkstra</h1>
+                        <h2 class="subheading">Understand and implement Dijkstra</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2018-04-25
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <div align="center">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=468490456&auto=1&height=66"></iframe>
+</div>
+
+
+
+<p>看了好几天书才把Dijkstra算法看明白，今天就记录一下整个过程，顺便给出C语言实现代码。</p>
+<hr>
+<h2><span id="dijkstra算法介绍">Dijkstra算法介绍</span></h2><hr>
+<p>Dijkstra算法是解决有权(权不能为负数)有向图最短路径问题的算法。<br>它基于贪心和广度优先搜素的思想。<br>(感觉还有一点动态规划的意味~)</p>
+<hr>
+<h2><span id="dijkstra算法思想">Dijkstra算法思想</span></h2><hr>
+<p>书中原文为“假设S为以求得最短路径的终点的集合，下一条最短路径(设其终点为x)或者是弧(v,x)或者是中间只经过S中的顶点而最后到达顶点x的路径”<br>翻译一下。假设有三个点A(起点),B(已知A-&gt;B存在最短路径，忽略其是怎样到达的)，C(未知)。则A-&gt;C的最短路径要么是A-&gt;C要么是A-&gt;B-&gt;C。这里我们隐藏了无法到达的情况(如果无法到达那么最短路径就为无穷大，即把所有路都看成通路)。<br>所有顶点组成集合V，集合S为求出最短路径的顶点所组成的集合。刚开始时S集合只有起点$v_0$<br>首先从起点开始向外层遍历。从V-S集合中找出权值最小的顶点加入到S里(贪心，只要局部最优)，并更新最短路径值(我们需要看看新加入的顶点是否可以到达其他顶点并且看看通过该顶点到达其他点的路径长度是否比源点直接到达短，如果是就执行更新操作)，重复操作直至S中有V的全部元素(广度搜索)。此时S-V为空集。</p>
+<hr>
+<h2><span id="实例理解">实例理解</span></h2><hr>
+<p>本题是清华大学教材严蔚敏数据结构$P_{188}$页例题<br>我一直没搞懂她伪代码里最短路径P[v]的意义<br>今天查了很多资料，又实现了一遍终于弄懂了<br><img src="1.png" alt="图片"><br>邻接矩阵为</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+{\infty}&{\infty}&{10}&{\infty}&{30}&{100}\\
+{\infty}&{\infty}&{5}&{\infty}&{\infty}&{\infty}\\
+{\infty}&{\infty}&{\infty}&{50}&{\infty}&{\infty}\\
+{\infty}&{\infty}&{\infty}&{\infty}&{\infty}&{10}\\
+{\infty}&{\infty}&{\infty}&{20}&{\infty}&{60}\\
+{\infty}&{\infty}&{\infty}&{\infty}&{\infty}&{\infty}\\
+\end{bmatrix}</script><p>第一次遍历我们找出各点距离原点的距离(直接到达)分别是</p>
+<script type="math/tex; mode=display">[\infty\ 10\ \infty\ 30\ 100]</script><p>于是我们可以发现直达的情况下，只有v2距离原点最近，因此v2与原点直达为最短路径，将v2加入S集。<br>第二次遍历我们找出各点距离原点的距离(直达或者通过v2)分别是</p>
+<script type="math/tex; mode=display">[\infty\ 10\ 60\  30\  100]</script><p>(60小于$\infty$,做更新操作)原点到v3经过v2更短，因此v3与原点的最短路径为通过v2，将v3加入S集<br>于是照着这个规律，将所有的顶点都加入S集，就可以得到原点到各顶点的最短路径了。</p>
+<blockquote>
+<p>再解释一下path[v]是什么意思。</p>
+</blockquote>
+<p>path[v]存储的数据为顶点的位置比如path[3]=2,它的意思就是顶点v0到v3的最后一步为v2-&gt;v3，通过递推(path[2]=-1代表v0,v2直达)就可以得到整个完整路径。所以仅需要一个一维数组就能记录下整个图的完整最短路径。</p>
+<hr>
+<h2><span id="代码实现">代码实现</span></h2><hr>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1&lt;&lt;29		<span class="comment">//2倍的1&lt;&lt;30会越界，所以就用1&lt;&lt;29代表无穷大</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 6			<span class="comment">//图的顶点个数</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Graph[MAX][MAX];	<span class="comment">//图的邻接矩阵</span></span><br><span class="line"><span class="keyword">int</span> path[MAX];			<span class="comment">//储存到达顶点的路径</span></span><br><span class="line"><span class="keyword">int</span> vis[MAX];			<span class="comment">//1代表在S集内，0代表在V-S集内</span></span><br><span class="line"><span class="keyword">int</span> spend[MAX];			<span class="comment">//到达每个顶点的花费</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> border)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">int</span> a,b,c;						<span class="comment">//a,b,c代表a点到b点所花费的代价c</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;MAX;i++)&#123;	</span><br><span class="line">		path[i]=<span class="number">-1</span>;					<span class="comment">//将路径初始化为-1，-1代表直接可以到达该顶点。</span></span><br><span class="line">		vis[i] = <span class="number">0</span>;					<span class="comment">//开始时S集内无顶点。 </span></span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;MAX;j++)&#123;</span><br><span class="line">			Graph[i][j] = INF;		<span class="comment">//将邻接矩阵初始化为无穷大，代表都无法到达。 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;border;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		Graph[a][b]=c;				<span class="comment">//读入边的信息 </span></span><br><span class="line">	&#125; 	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="keyword">int</span> vertex)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> min;</span><br><span class="line">	<span class="keyword">int</span> i,j,k;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;MAX;i++)&#123;	</span><br><span class="line">		spend[i]=Graph[vertex][i];			<span class="comment">//将最短路径代价spend初始化 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;MAX;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==vertex) <span class="keyword">continue</span>;</span><br><span class="line">		min = INF;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;MAX;j++)&#123;					<span class="comment">//本层for循环的作用是为了找到一个vertex到达该顶点权值最短的顶点</span></span><br><span class="line">			<span class="keyword">if</span>(!vis[j]&amp;&amp;spend[j]&lt;min)&#123;</span><br><span class="line">				k = j;						<span class="comment">//用k来记录该顶点 </span></span><br><span class="line">				min = spend[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		vis[k] = <span class="number">1</span>;							<span class="comment">//将k顶点加入S集内</span></span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;MAX;j++)&#123;					<span class="comment">//最重要的地方 </span></span><br><span class="line">			<span class="keyword">if</span>(!vis[j]&amp;&amp;(min+Graph[k][j]&lt;spend[j]))&#123;	<span class="comment">//如果通过j点花费的代价更小则更新 </span></span><br><span class="line">				spend[j] = min+Graph[k][j];</span><br><span class="line">				path[j] = k;							<span class="comment">//vertex到达j的最后一步为 k到j </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> vertex)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,count;</span><br><span class="line">	<span class="keyword">int</span> output[MAX];		<span class="comment">//路径需要逆序输出，而我们用的是C，没有栈，因此用数组做替代 </span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;MAX;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==vertex) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(spend[i]!=INF)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d到达%d所花费的代价是%d	"</span>,vertex,i,spend[i]);</span><br><span class="line">			count = <span class="number">0</span> ;</span><br><span class="line">			j = i;								<span class="comment">//以下为模拟栈求逆序 </span></span><br><span class="line">			<span class="keyword">while</span>(path[j]!=<span class="number">-1</span>)&#123;</span><br><span class="line">				output[count] = path[j];</span><br><span class="line">				j = path[j];</span><br><span class="line">				count++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"路径为: %d "</span>,vertex);</span><br><span class="line">			<span class="keyword">for</span>(j = <span class="number">0</span>;j&lt;count;j++)&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d "</span>,output[j]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Sorry!无法到达\n"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("aa.txt","r",stdin); </span></span><br><span class="line">	<span class="keyword">int</span> border;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;border);		<span class="comment">//读入边的个数 </span></span><br><span class="line">	init(border);</span><br><span class="line">	<span class="keyword">int</span> vertex;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;vertex);		<span class="comment">//读入顶点</span></span><br><span class="line">	vis[vertex]=<span class="number">1</span>;</span><br><span class="line">	Dijkstra(vertex);</span><br><span class="line">	print(vertex); </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">0 2 10</span><br><span class="line">0 4 30</span><br><span class="line">0 5 100</span><br><span class="line">1 2 5</span><br><span class="line">2 3 50</span><br><span class="line">3 5 10</span><br><span class="line">4 3 20</span><br><span class="line">4 5 60</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sorry!无法到达</span><br><span class="line">0到达2所花费的代价是10	路径为: 0 2</span><br><span class="line">0到达3所花费的代价是50	路径为: 0 4 3</span><br><span class="line">0到达4所花费的代价是30	路径为: 0 4</span><br><span class="line">0到达5所花费的代价是60	路径为: 0 3 4 5</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/04/26/teachManagement/" data-toggle="tooltip" data-placement="top" title="教学管理系统数据库设计">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/04/23/markdown/" data-toggle="tooltip" data-placement="top" title="MarkDown的简单用法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Dijkstra算法介绍</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Dijkstra算法思想</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">实例理解</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">代码实现</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Dijkstra" title="Dijkstra">Dijkstra</a>
+                        
+                          <a class="tag" href="/tags/#DataStruct" title="DataStruct">DataStruct</a>
+                        
+                          <a class="tag" href="/tags/#MinPath" title="MinPath">MinPath</a>
+                        
+                          <a class="tag" href="/tags/#Graph" title="Graph">Graph</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2018/04/25/Dijkstra/";
+    var disqus_url = "http://kwongyang.com/2018/04/25/Dijkstra/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/archives/6/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/header_img/timg.png') 
+            /*config*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>To find you</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">记录生活记录美</span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2019/06/13/semanticSegmentation/">
+        <h2 class="post-title">
+            语义分割
+        </h2>
+        <h3 class="post-subtitle">
+            Semantic Segmentation Introduction
+        </h3>
+        <div class="post-content-preview">
+            语义分割语意分割是对图像中的每一个像素进行分类
+语义分割中的难点
+数据问题：分割需要精确的像素级标注，包括每一个目标的轮廓等信息；
+计算资源问题：分割预测了每一个像素，这就要求feature map的分辨率尽可能的高。
+精细分割：很多算法的像道路、建筑物等类别，分割精度很高，能达到98%，而对于细小的类别，像行人、交通等等，由于其轮廓太小，而无法精确的定位轮廓，造成精度较低；
+上下文信息：分......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/13/paper-GoingDeeperwithConvolutions/">
+        <h2 class="post-title">
+            Going Deeper with Convolutions
+        </h2>
+        <h3 class="post-subtitle">
+            Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed,Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, Andrew Rabinovich
+        </h3>
+        <div class="post-content-preview">
+            本篇论文是由Google公司、Magic Leap公司、北卡罗来纳大学和密歇根大学的Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed,Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, Andrew Rabinovich等人所作关于GoogLeNet......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/11/paper-jianzhuwushibieyubianhuajiance/">
+        <h2 class="post-title">
+            遥感图像中建筑物识别与变化检测
+        </h2>
+        <h3 class="post-subtitle">
+            陈光 — 南京理工大学
+        </h3>
+        <div class="post-content-preview">
+            本篇论文是由陈光所作的南京理工大学硕士学位论文。下载地址所发表的年份是2006，当时深度学习刚刚出现苗头。因此本篇论文所使用的方法没有使用CNN，而是基于以前的经典算法。
+论文主要内容
+研究了基于线段分析的方法及其在建筑物提取方面的应用。详细介绍了边缘提取算法、轮廓跟踪算法、提取直线、提取平行线对、生成假设屋顶的算法和对假设屋顶进行选择检验的规则，实现了遥感图像中建筑物屋顶的提取。
+研究了变......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+              <a href="/tags/#RemoteSensing" title="RemoteSensing">RemoteSensing</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/10/convolutionNN/">
+        <h2 class="post-title">
+            卷积神经网络
+        </h2>
+        <h3 class="post-subtitle">
+            Convolution Nerual Network
+        </h3>
+        <div class="post-content-preview">
+            卷积神经网络的层级结构• 数据输入层/ Input layer• 卷积层/ CONV layer• ReLU激励层 / ReLU layer• 池化层 / Pooling layer• 全连接层 / FC layer
+Input layer主要对输入的数据进行预处理，包括：
+
+去均值化：对每个数据减去整体的均值。
+归一化：常用的归一化策略有BN(Batch Normalization)， W......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/07/paper-VeryDeepCNN-karen-andrew/">
+        <h2 class="post-title">
+            Very Deep Convolutional Networks For Large-Scale Image Recognition
+        </h2>
+        <h3 class="post-subtitle">
+            Karen Simonyan* & Andrew Zisserman*
+        </h3>
+        <div class="post-content-preview">
+            本篇文章是来自牛津大学工程科学系视觉几何组Karen Simonyan &amp; Andrew Zisserman所作的Very Deep Convolutional Networks For Large-Scale Image Recognition
+Abstract在本文中，我们研究了卷积网络的深度对其在大规模图像识别设置中的精度的影响。我们的主要贡献是使用一个非常小(3×3)卷积滤波......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/06/restricted-boltzmann-machines/">
+        <h2 class="post-title">
+            受限波尔兹曼机
+        </h2>
+        <h3 class="post-subtitle">
+            深度学习 — RBM
+        </h3>
+        <div class="post-content-preview">
+            RBM是什么波尔兹曼机(Boltzmann Machine,BM)是Hinton和Sejnowski于1986年提出的一种根植于统计力学的随机神经网络。这种网络中的神经元是随机神经元，神经元的输出只有两种状态（未激活、激活）。从功能上讲，BM是由随机神经元全连接组成的反馈神经网络，且对称连接，无自反馈。
+受限波尔兹曼机(Restricted Boltzmann Machines，RBM)是一......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-06
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/05/pca/">
+        <h2 class="post-title">
+            主成分分析
+        </h2>
+        <h3 class="post-subtitle">
+            PCA
+        </h3>
+        <div class="post-content-preview">
+            什么是主成分分析主成分分析是一种通过降维技术把多个变量化为少数几个主成分（综合变量）的统计分析方法。这些主成分能够反映原始变量的绝大部分信息，它们通常表示为原始变量的某种线性组合。 
+目标：将一组$N$维向量降为$K$维（$K$大于0，小于$N$），其目标是选择$K$个单位（模为1）正交基，使得原始数据变换到这组基上后，各字段两两间协方差为0，而字段的方差则尽可能大（在正交的约束下，取最大的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/03/paper-ImageNetClassificationCNN/">
+        <h2 class="post-title">
+            ImageNet Classification with Deep Convolutional Neural Networks
+        </h2>
+        <h3 class="post-subtitle">
+            Alex Krizhevsky,Ilya Sutskever,Geoffrey E. Hinton
+        </h3>
+        <div class="post-content-preview">
+            本篇论文是加拿大多伦多大学Hinton小组所作的ImageNet Classification with Deep Convolutional Neural Networks
+Abstract我们训练了一个大型的深度卷积神经网络，将ImageNet lsvprc -2010竞赛中的120万幅高分辨率图像分成1000个不同的类。测试数据上，我们实现了前1名和前5名的错误率分别为37.5%和17......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-06-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/30/paper-ReducingtheDimensionality-GEH/">
+        <h2 class="post-title">
+            Reducing the Dimensionality of Data with Neural Networks
+        </h2>
+        <h3 class="post-subtitle">
+            G. E. Hinton* and R. R. Salakhutdinov
+        </h3>
+        <div class="post-content-preview">
+            本篇论文是加拿大多伦多大学计算机科学部的G. E. Hinton*, R. R. Salakhutdinov所作的用神经网络降低数据维度
+Abstract通过训练具有小中心的多层神经网络重构高维输入向量，可以将高维数据转换为低维。梯度下降可以用来微调这些“自动编码器”网络中的权值，但只有当初始权值接近一个最优值时，这种方法才非常有效。我们描述了一种有效的初始化权值的方法，它允许深度自动编码网......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-05-30
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/29/paper-BuildingextractionviaCNN-jsp/">
+        <h2 class="post-title">
+            遥感影像建筑物提取的卷积神经元网络与开源数据集方法
+        </h2>
+        <h3 class="post-subtitle">
+            季顺平,魏世清
+        </h3>
+        <div class="post-content-preview">
+            中文论文果然比英文论文好读..哈哈~~虽然也没读懂。
+论文下载
+本篇论文的研究方法为
+
+分析目前的研究现状，总结前人所做的工作，有什么提升，有什么不足。
+就建筑物提取在深度学习时代下的问题和瓶颈,提出相应的解决方法
+创建一个目前最优的开源建筑物数据库
+在U-Net的基础上进行改进，提出SU-Net
+提出了一种用于建筑物提取的Mask R-CNN改进方法，实现目标实例分割
+
+
+分别对本文中提出......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-05-29
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+              <a href="/tags/#RemoteSensing" title="RemoteSensing">RemoteSensing</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/archives/5/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/archives/7/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="70">DeepLearning</a>
+            
+        
+            
+            <a href="/tags/#Algorithm" title="Algorithm" rel="15">Algorithm</a>
+            
+        
+            
+            <a href="/tags/#Dijkstra" title="Dijkstra" rel="1">Dijkstra</a>
+            
+        
+            
+            <a href="/tags/#DataStruct" title="DataStruct" rel="8">DataStruct</a>
+            
+        
+            
+            <a href="/tags/#MinPath" title="MinPath" rel="2">MinPath</a>
+            
+        
+            
+            <a href="/tags/#Graph" title="Graph" rel="5">Graph</a>
+            
+        
+            
+            <a href="/tags/#Python" title="Python" rel="21">Python</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
+            <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
+            
+        
+            
+            <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
+            
+        
+            
+            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
+            
+        
+            
+            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
+            
+        
+            
+            <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
+            
+        
+            
+            <a href="/tags/#DistributedStorage" title="DistributedStorage" rel="1">DistributedStorage</a>
+            
+        
+            
+            <a href="/tags/#Hadoop" title="Hadoop" rel="1">Hadoop</a>
+            
+        
+            
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            
+        
+            
+            <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
+            
+        
+            
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            
+        
+            
+            <a href="/tags/#Mathjax" title="Mathjax" rel="1">Mathjax</a>
+            
+        
+            
+            <a href="/tags/#LaTex" title="LaTex" rel="1">LaTex</a>
+            
+        
+            
+            <a href="/tags/#Paper" title="Paper" rel="52">Paper</a>
+            
+        
+            
+            <a href="/tags/#RemoteSensing" title="RemoteSensing" rel="4">RemoteSensing</a>
+            
+        
+            
+            <a href="/tags/#SemanticSegmentation" title="SemanticSegmentation" rel="12">SemanticSegmentation</a>
+            
+        
+            
+            <a href="/tags/#EdgeDetection" title="EdgeDetection" rel="1">EdgeDetection</a>
+            
+        
+            
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            
+        
+            
+            <a href="/tags/#MST" title="MST" rel="1">MST</a>
+            
+        
+            
+            <a href="/tags/#Prim" title="Prim" rel="1">Prim</a>
+            
+        
+            
+            <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
+            <a href="/tags/#InternalSort" title="InternalSort" rel="1">InternalSort</a>
+            
+        
+            
+            <a href="/tags/#Tree" title="Tree" rel="1">Tree</a>
+            
+        
+            
+            <a href="/tags/#MergeFindSet" title="MergeFindSet" rel="1">MergeFindSet</a>
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+            <img id = "avatar_pic" src="/img/headimage.jpg" />
+        
+
+        
+            <p>Master student, Machine intelligence and vision lab, ECNU </p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+                <li>
+                    <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+
+            
+                <li>
+                    <a target="_blank" href="http://weibo.com/5044608147">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+
+            
+
+            
+                <li>
+                    <a target="_blank"  href="https://github.com/Kwongy">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2019/12/03/paper-dpc/">Searching for Efficient Multi-Scale Architectures for Dense Image Prediction</a>
+        </li>
+      
+        <li>
+          <a href="/2019/12/02/paper-ecaNet/">ECA-Net - Efficient Channel Attention for Deep Convolutional Neural Networks</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/29/CrossEntropy/">Cross Entropy in Pytorch</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/26/paper-LookCloser2SeeBetter/">Look Closer to See Better - Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/25/paper-InshoreShipDetection/">Fully Convolutional Network With Task Partitioning for Inshore Ship Detection in Optical Remote Sensing Images</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+    
+</ul>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

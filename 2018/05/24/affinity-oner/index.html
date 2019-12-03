@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          亲和性分析&amp;OneR - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2018/05/24/affinity-oner/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                            
+                              <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                            
+                              <a class="tag" href="/tags/#DataMining" title="DataMining">DataMining</a>
+                            
+                        </div>
+                        <h1>亲和性分析&amp;OneR</h1>
+                        <h2 class="subheading">Affinity analyze &amp; One rule algorithm</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2018-05-24
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <div align="center">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28557134&auto=1&height=66"></iframe>
+</div>
+
+<p>入门数据挖掘。实现亲和性分析算法和OneR算法。</p>
+<p>老实说这两个算法没有什么逻辑上的难度，但是要实现确实需要一些Python语言功底。</p>
+<hr>
+<h1><span id="亲和性分析">亲和性分析</span></h1><hr>
+<h2><span id="亲和性分析介绍">亲和性分析介绍</span></h2><hr>
+<p>亲和性分析主要是用于分析样品与样品间的相关性。<br>比如我们买了物品a，那么又会买物品b这样的规则(一条规则有前提和结论两个部分组成)。我们怎样衡量这样的规则是优势劣呢？可以使用置信度(confidence)和支持度(support)，置信度和支持度越高说明规则越好。</p>
+<p>支持度是指规则应验的次数(即同时买了a和b的人数)<br>置信度是指支持度除以发生了条件的次数(即支持度除以买了物品a的人数)</p>
+<blockquote>
+<p>严格来说亲和性分析并不是一个计算机算法，而是数学上的<strong>统计</strong></p>
+</blockquote>
+<hr>
+<h2><span id="代码实现">代码实现</span></h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">#coding = utf-8</span><br><span class="line">import numpy as np</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">class source(object):</span><br><span class="line">    def create_data(self,filename):</span><br><span class="line">        data=np.random.randint(0,2,size=[10000,5])          #随机生成1W条数据</span><br><span class="line">        np.savetxt(filename,data,fmt=&quot;%d&quot;)      #保存数据</span><br><span class="line">    pass    #create_data</span><br><span class="line"></span><br><span class="line">    def get_data(self,filename):            #重新读取数据。</span><br><span class="line">        if os.path.exists(filename):</span><br><span class="line">            data = np.loadtxt(filename)</span><br><span class="line">            return data</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;The file is not exist!&quot;)</span><br><span class="line">            os._exit()</span><br><span class="line">    pass    #get_data</span><br><span class="line">pass</span><br><span class="line"></span><br><span class="line">class affinity(object):</span><br><span class="line">    def compute_affinity(self,source):      #分析亲和度</span><br><span class="line">        result=&#123;&#125;                           #需要返回的结果集</span><br><span class="line">        shape_x,shape_y=source.shape        #取出数据维度</span><br><span class="line">        support=np.zeros(shape=(shape_y,shape_y))       #任两项的支持度，用矩阵储存</span><br><span class="line">        #矩阵中x,y代表买了第x个商品也买了第y个商品的人数。(x,x)则代表买了该商品的人数</span><br><span class="line"></span><br><span class="line">        for x in range(shape_x):                #统计买了一个商品也买另一个商品的支持度</span><br><span class="line">            for y1 in range(shape_y):</span><br><span class="line">                for y2 in range(shape_y):</span><br><span class="line">                    if y1!=y2 and source[x][y1]==1 and source[x][y2]==1:</span><br><span class="line">                        support[y1][y2] += 1</span><br><span class="line">                    elif y1==y2 and source[x][y1]==1:</span><br><span class="line">                        support[y1][y1] += 1</span><br><span class="line">                    pass    #if</span><br><span class="line">                pass    #for y2</span><br><span class="line">            pass    #for y1</span><br><span class="line">        pass    #for x</span><br><span class="line"></span><br><span class="line">        for premise in range(shape_y):              #计算置信度</span><br><span class="line">            for conclusion in range(shape_y):</span><br><span class="line">                if premise != conclusion:</span><br><span class="line">                    confidence = float(int((support[premise][conclusion]/support[premise][premise])*1000))/1000     #保留三位小数</span><br><span class="line">                    result[(premise,conclusion)]=(confidence,int(support[premise][premise]))</span><br><span class="line">                pass    #if</span><br><span class="line">            pass    #for y2</span><br><span class="line">        pass    #for y1</span><br><span class="line">        return result</span><br><span class="line">    pass    #compute_affinity</span><br><span class="line"></span><br><span class="line">    def summary_print(self,result):</span><br><span class="line">        result = sorted(result.items(),key=lambda item:item[1][0],reverse= 1)       #将结果按置信度大小由大至小排序</span><br><span class="line">        goods = [&quot;apples&quot;,&quot;bananas&quot;,&quot;milk&quot;,&quot;cheese&quot;,&quot;bread&quot;]</span><br><span class="line">        for key,value in result:</span><br><span class="line">            print(&quot;If a person buys %s and he also buys %s&quot; %(goods[key[0]],goods[key[1]]))</span><br><span class="line">            print(&quot; - Confidence : %lf&quot; % value[0])</span><br><span class="line">            print(&quot; - Support : %d&quot; % value[1])</span><br><span class="line">            print()</span><br><span class="line">        pass    #for</span><br><span class="line">    pass    #summary_print</span><br><span class="line">pass</span><br><span class="line"></span><br><span class="line">if __name__== &quot;__main__&quot;:</span><br><span class="line">    sc=source()</span><br><span class="line">    filename = &quot;affinity_data.txt&quot;</span><br><span class="line">    sc.create_data(filename)        #生成数据</span><br><span class="line">    data = sc.get_data(filename)    #取出数据</span><br><span class="line">    ay=affinity()</span><br><span class="line">    result=ay.compute_affinity(data)        #进行分析，得到亲和度分析后的结果</span><br><span class="line">    ay.summary_print(result)            #进行打印</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
+<p>由于分析数据为随机生成，因此你得到的结果可能不同</p>
+<p>结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">If a person buys bananas and he also buys milk</span><br><span class="line"> - Confidence : 0.518000</span><br><span class="line"> - Support : 5055</span><br><span class="line"></span><br><span class="line">If a person buys milk and he also buys bananas</span><br><span class="line"> - Confidence : 0.515000</span><br><span class="line"> - Support : 5081</span><br><span class="line"></span><br><span class="line">If a person buys apples and he also buys milk</span><br><span class="line"> - Confidence : 0.512000</span><br><span class="line"> - Support : 4987</span><br><span class="line"></span><br><span class="line">If a person buys cheese and he also buys milk</span><br><span class="line"> - Confidence : 0.512000</span><br><span class="line"> - Support : 5037</span><br><span class="line"></span><br><span class="line">If a person buys apples and he also buys bread</span><br><span class="line"> - Confidence : 0.509000</span><br><span class="line"> - Support : 4987</span><br><span class="line"></span><br><span class="line">If a person buys cheese and he also buys bananas</span><br><span class="line"> - Confidence : 0.509000</span><br><span class="line"> - Support : 5037</span><br><span class="line"></span><br><span class="line">If a person buys bread and he also buys bananas</span><br><span class="line"> - Confidence : 0.509000</span><br><span class="line"> - Support : 5043</span><br><span class="line"></span><br><span class="line">If a person buys bananas and he also buys bread</span><br><span class="line"> - Confidence : 0.508000</span><br><span class="line"> - Support : 5055</span><br><span class="line"></span><br><span class="line">If a person buys bananas and he also buys cheese</span><br><span class="line"> - Confidence : 0.507000</span><br><span class="line"> - Support : 5055</span><br><span class="line"></span><br><span class="line">If a person buys milk and he also buys cheese</span><br><span class="line"> - Confidence : 0.507000</span><br><span class="line"> - Support : 5081</span><br><span class="line"></span><br><span class="line">If a person buys bread and he also buys milk</span><br><span class="line"> - Confidence : 0.507000</span><br><span class="line"> - Support : 5043</span><br><span class="line"></span><br><span class="line">If a person buys cheese and he also buys bread</span><br><span class="line"> - Confidence : 0.506000</span><br><span class="line"> - Support : 5037</span><br><span class="line"></span><br><span class="line">If a person buys bread and he also buys cheese</span><br><span class="line"> - Confidence : 0.505000</span><br><span class="line"> - Support : 5043</span><br><span class="line"></span><br><span class="line">If a person buys milk and he also buys apples</span><br><span class="line"> - Confidence : 0.503000</span><br><span class="line"> - Support : 5081</span><br><span class="line"></span><br><span class="line">If a person buys milk and he also buys bread</span><br><span class="line"> - Confidence : 0.503000</span><br><span class="line"> - Support : 5081</span><br><span class="line"></span><br><span class="line">If a person buys bread and he also buys apples</span><br><span class="line"> - Confidence : 0.503000</span><br><span class="line"> - Support : 5043</span><br><span class="line"></span><br><span class="line">If a person buys apples and he also buys cheese</span><br><span class="line"> - Confidence : 0.501000</span><br><span class="line"> - Support : 4987</span><br><span class="line"></span><br><span class="line">If a person buys cheese and he also buys apples</span><br><span class="line"> - Confidence : 0.496000</span><br><span class="line"> - Support : 5037</span><br><span class="line"></span><br><span class="line">If a person buys apples and he also buys bananas</span><br><span class="line"> - Confidence : 0.493000</span><br><span class="line"> - Support : 4987</span><br><span class="line"></span><br><span class="line">If a person buys bananas and he also buys apples</span><br><span class="line"> - Confidence : 0.486000</span><br><span class="line"> - Support : 5055</span><br></pre></td></tr></table></figure>
+<hr>
+<h1><span id="oner">OneR</span></h1><hr>
+<h2><span id="oner算法介绍">OneR算法介绍</span></h2><hr>
+<p>OneR算法算是一个真正的算法，它是用已有数据集来对未知数据进行预测的<strong>分类</strong>算法。</p>
+<p>OneR是One rule的简称，顾名思义就是一条规则的算法。也就是说我们最终仅仅根据训练集中的一个特征就能够实现对数据的分类。</p>
+<p>举个小例子，假如我们认为一个人165cm(规则)以上就认定他是一个男生，现在我们知道一个人(女生)，身高168cm、体重60kg、三围90/60/90，在OneR算法下，我们就认定他是一个男生，这时我们可以发现预测错误了。假设另一个人(男生)，身高177cm、体重72kg、三围100/80/110，在OneR算法下，我们也认定他是一个男生，预测正确。</p>
+<p>在上面的小例子中身高，体重和三围称为样本特征，而165cm、60kg则称为特征值。男生/女生则称为要分的类别。我们找到一条规则后，仅看一个特征值的好坏就可以判断它属于什么类别。</p>
+<p>OneR算法的核心就是<strong>找到这样一条正确率最高的分类规则</strong></p>
+<blockquote>
+<p>OneR算法是预测的<strong>分类</strong>算法。</p>
+</blockquote>
+<hr>
+<h2><span id="代码实现">代码实现</span></h2><hr>
+<p>数据集使用了sklearn库中的load_iris数据集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#coding = utf-8</span><br><span class="line">import numpy as np</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from collections import defaultdict</span><br><span class="line"></span><br><span class="line">class source(object):</span><br><span class="line">    def get_data(self):</span><br><span class="line">        data=load_iris().data           #读取数据部分</span><br><span class="line">        target=load_iris().target          #读取类别部分</span><br><span class="line">        return (data,target)</span><br><span class="line">    pass    #get_data</span><br><span class="line">    def data_partitioning(self):</span><br><span class="line">        result=self.get_data()</span><br><span class="line">        att_mean=result[0].mean(axis=0)             #计算列的平均值，作为阈值</span><br><span class="line">        data = [np.array(result[0] &gt;= att_mean ,dtype= &apos;int&apos;),result[1]]        #用阈值划分数据集。</span><br><span class="line">        #此时得到data[0]的是一个150行4列的0、1矩阵</span><br><span class="line">        return data</span><br><span class="line">    pass    #data_partitioning</span><br><span class="line">pass    #source</span><br><span class="line"></span><br><span class="line">class oneR(object):</span><br><span class="line">    x_train=[]</span><br><span class="line">    x_test=[]</span><br><span class="line">    y_train=[]</span><br><span class="line">    y_test=[]</span><br><span class="line">    def deal_data(self,data):       #划分数据集</span><br><span class="line">        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(data[0], data[1], random_state=14)      #分别获得训练集和测试集</span><br><span class="line">    pass    #deal_data</span><br><span class="line">#统计一列中，某个特征值下数量最多的分类并返回。</span><br><span class="line">    def train_feature_value(self,feature_index, value):</span><br><span class="line">        class_counts = defaultdict(int)</span><br><span class="line">        for sample, y in zip(self.x_train,self.y_train):</span><br><span class="line">            if sample[feature_index] == value:</span><br><span class="line">                class_counts[y] += 1                #记录在该值下各个分类的数量</span><br><span class="line">            pass</span><br><span class="line">        pass</span><br><span class="line">        #对分类结果按照各个分类的数量降序排列，取最大的值</span><br><span class="line">        #比如对于特征值为0的时候0、1、2类别的数量分别为13，25，23.那么我们就返回(1，25)</span><br><span class="line">        #0情况下(1,25)的意思是，对于这一列，特征值为0的情况下认为它是类别1，其正确结果有25个</span><br><span class="line">        best_result= sorted(class_counts.items(), key=lambda item:item[1], reverse=True)[0]</span><br><span class="line">        return best_result</span><br><span class="line">    pass            #train_feature_value</span><br><span class="line">#分别计算每一列的分类结果，选取最优结果作为预测规则</span><br><span class="line">#由于训练集的值只有0和1，因此只能预测两个类别</span><br><span class="line">#比如以某一列为标准，它为0时认为它是a，它是1时认为它是b，只有这两个结果，无论是否为c都无法预测。</span><br><span class="line">    def train_model(self,feature_index):    #feature_index代表列序号</span><br><span class="line">        values = set(self.x_train[:, feature_index])    #把某一列可能的取值找出来(本例中仅有0，1)</span><br><span class="line">        predictors = dict()</span><br><span class="line">        right_count = 0</span><br><span class="line">        for current_value in values:</span><br><span class="line">            most_frequent_class, right = self.train_feature_value( feature_index, current_value) #计算这一列的分类结果</span><br><span class="line">            predictors[current_value] = most_frequent_class</span><br><span class="line">            right_count += right        #统计判断正确的数量</span><br><span class="line">        pass</span><br><span class="line">        return predictors, right_count</span><br><span class="line">    pass    #train_model</span><br><span class="line">    def predicted(self,data):</span><br><span class="line">        self.deal_data(data)</span><br><span class="line">        all_predictors = &#123;variable:self.train_model(variable) for variable in range(self.x_train.shape[1])&#125; #预测分析</span><br><span class="line">        best_predictor = sorted(all_predictors.items(),key=lambda item:str(item[1][1]),reverse=True)[0]#对结果排序，选取最优的</span><br><span class="line">        #所有预测的排序结果[(2, (&#123;0: 0, 1: 2&#125;, 75)), (3, (&#123;0: 0, 1: 2&#125;, 75)), (0, (&#123;0: 0, 1: 2&#125;, 71)), (1, (&#123;0: 1, 1: 0&#125;, 54))]</span><br><span class="line">        feature = best_predictor[0]</span><br><span class="line">        predictor = best_predictor[1][0]</span><br><span class="line">        y_predicted = np.array([predictor[int(sample[feature])] for sample in self.x_test])     #对测试集进行预测</span><br><span class="line">        accuracy = np.mean(y_predicted == self.y_test) * 100            #与测试集结果经行对比</span><br><span class="line">        print(u&quot;模型正确率为:&#123;:.1f&#125;%&quot;.format(accuracy))  # 65.8%</span><br><span class="line">    pass    #predicted</span><br><span class="line">pass    #oneR</span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    sc = source()</span><br><span class="line">    data = sc.data_partitioning()</span><br><span class="line">    one = oneR()</span><br><span class="line">    one.predicted(data)</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
+<p>将train_test_split函数中random_state参数设为14你可以得到和我一样的答案。(如果不设置random_state，那么它将按25%随机划分)</p>
+<p>结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模型正确率为:65.8%</span><br></pre></td></tr></table></figure>
+<hr>
+<h1><span id="总结">总结</span></h1><hr>
+<p>和我一开始所说一样，这两个算法其实并没有逻辑上的难度，但是确实在写的遇到很多阻碍，下面简单记录一下。</p>
+<ul>
+<li>numpy库随机生成矩阵</li>
+<li>numpy库对于数字集的读入输出</li>
+<li>小数截断(一开始使用了round函数，但是结果是x.999循环，并没有截断，不知道问题在哪先留个坑)，我用了先转换成int再转换成float的方法截断小数。</li>
+<li>sorted函数重写比较函数，使用lambda匿名函数<blockquote>
+<p> 对于字典的sorted可使用.item()方法对value排序，但是value必须转换成可迭代对象</p>
+</blockquote>
+</li>
+<li>zip函数可将维度相同的不同类型容器按维度合并成元组(也可以用来转置矩阵)</li>
+<li>defaultdict(int)的默认值为0，对于计数非常方便。</li>
+</ul>
+<hr>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/05/27/logistic-regression/" data-toggle="tooltip" data-placement="top" title="吴恩达深度学习Part 1,Week 2">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/05/22/hashtable/" data-toggle="tooltip" data-placement="top" title="HashTable">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">亲和性分析</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">亲和性分析介绍</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">代码实现</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">OneR</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">OneR算法介绍</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">代码实现</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">总结</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#DataMining" title="DataMining">DataMining</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2018/05/24/affinity-oner/";
+    var disqus_url = "http://kwongyang.com/2018/05/24/affinity-oner/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

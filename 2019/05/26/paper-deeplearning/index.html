@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Deep Learning - kwongyangBiog
+        
+    </title>
+
+    <link rel="canonical" href="http://kwongyang.com/2019/05/26/paper-deeplearning/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('background.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/nameSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+                            
+                              <a class="tag" href="/tags/#Paper" title="Paper">Paper</a>
+                            
+                        </div>
+                        <h1>Deep Learning</h1>
+                        <h2 class="subheading">LeCun Yann, Yoshua Bengio, and Geoffrey Hinton</h2>
+                        <span class="meta">
+                            Posted by Kwong on
+                            2019-05-26
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KwongyangBiog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>开始阅读论文，并尝试翻译</p>
+<p>第一篇是三巨头LeCun Yann, Yoshua Bengio和Geoffrey Hinton做的有关Deep Learning的调查。</p>
+<p><a href="http://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf" target="_blank" rel="noopener">Deep learning</a> <strong>(Three Giants’ Survey)</strong></p>
+<h1><span id="deep-learning">Deep Learning</span></h1><h2><span id="abstract">Abstract</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Deep learning allows computational models that are composed of multiple processing layers to learn representations of</span><br><span class="line">data with multiple levels of abstraction. These methods have dramatically improved the state-of-the-art in speech recognition,</span><br><span class="line">visual object recognition, object detection and many other domains such as drug discovery and genomics. Deep</span><br><span class="line">learning discovers intricate structure in large data sets by using the backpropagation algorithm to indicate how a machine</span><br><span class="line">should change its internal parameters that are used to compute the representation in each layer from the representation in</span><br><span class="line">the previous layer. Deep convolutional nets have brought about breakthroughs in processing images, video, speech and</span><br><span class="line">audio, whereas recurrent nets have shone light on sequential data such as text and speech.</span><br></pre></td></tr></table></figure>
+<p>深度学习允许用多个处理层组成的计算模型去学习多个抽象级别的数据表示。这些方法极大地提高了语音识别、目标识别、目标探测以及药物发现和基因学等许多领域的技术水平。深度学习通过使用反向传播算法指出机器怎样改变内部参数从而发现在大数据中错综复杂的结构，这些参数被用于计算从上一层到下一层的表示。深度卷积网络在图像、视频、语音和音频处理方面取得了突破性进展，而递归网络则为文本和语音等序列数据带来了光明。</p>
+<h2><span id="review">Review</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Machine-learning technology powers many aspects of modern</span><br><span class="line">society: from web searches to content filtering on social networks</span><br><span class="line">to recommendations on e-commerce websites, and</span><br><span class="line">it is increasingly present in consumer products such as cameras and</span><br><span class="line">smartphones. Machine-learning systems are used to identify objects</span><br><span class="line">in images, transcribe speech into text, match news items, posts or</span><br><span class="line">products with users’ interests, and select relevant results of search.</span><br><span class="line">Increasingly, these applications make use of a class of techniques called</span><br><span class="line">deep learning.</span><br></pre></td></tr></table></figure>
+<p>机器学习技术为现代社会的许多方面提供了动力:从网络搜索到社交网络上的内容过滤，再到推荐电子商务网站，它越来越多的出现在像照相机和手机等消费品中。机器学习系统被用于在图片中辨认目标，把语言转换为文本，将新闻的项目、文章和产品与用户兴趣相匹配，选择相关的搜索结果。越来越多地，这些应用被称作深度学习。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Conventional machine-learning techniques were limited in their</span><br><span class="line">ability to process natural data in their raw form. For decades, constructing</span><br><span class="line">a pattern-recognition or machine-learning system required</span><br><span class="line">careful engineering and considerable domain expertise to design a feature</span><br><span class="line">extractor that transformed the raw data (such as the pixel values</span><br><span class="line">of an image) into a suitable internal representation or feature vector</span><br><span class="line">from which the learning subsystem, often a classifier, could detect or</span><br><span class="line">classify patterns in the input.</span><br></pre></td></tr></table></figure>
+<p>传统地机器学习技术用原始的方式处理自然数据的能力有限。过去几十年间，构建一个模式识别或机器学习系统需要仔细的工程设计和相当专业的领域知识去设计一个特征提取器，将原始数据(例如图像的像素值)转换成合适的内部表示形式或特征向量，学习子系统(通常是一个分类器)可以从输入中检测和分类模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Representation learning is a set of methods that allows a machine to</span><br><span class="line">be fed with raw data and to automatically discover the representations</span><br><span class="line">needed for detection or classification. Deep-learning methods are</span><br><span class="line">representation-learning methods with multiple levels of representation,</span><br><span class="line">obtained by composing simple but non-linear modules that each</span><br><span class="line">transform the representation at one level (starting with the raw input)</span><br><span class="line">into a representation at a higher, slightly more abstract level. With the</span><br><span class="line">composition of enough such transformations, very complex functions</span><br><span class="line">can be learned. For classification tasks, higher layers of representation</span><br><span class="line">amplify aspects of the input that are important for discrimination and</span><br><span class="line">suppress irrelevant variations. An image, for example, comes in the</span><br><span class="line">form of an array of pixel values, and the learned features in the first</span><br><span class="line">layer of representation typically represent the presence or absence of</span><br><span class="line">edges at particular orientations and locations in the image. The second</span><br><span class="line">layer typically detects motifs by spotting particular arrangements of</span><br><span class="line">edges, regardless of small variations in the edge positions. The third</span><br><span class="line">layer may assemble motifs into larger combinations that correspond</span><br><span class="line">to parts of familiar objects, and subsequent layers would detect objects</span><br><span class="line">as combinations of these parts. The key aspect of deep learning is that</span><br><span class="line">these layers of features are not designed by human engineers: they</span><br><span class="line">are learned from data using a general-purpose learning procedure.</span><br></pre></td></tr></table></figure>
+<p>表示学习是一组方法，它允许向机器输入原始数据，并自动发现检测或分类所需的表示。深度学习方法是具有多层表示的表示学习方法，通过组合简单但非线性的模块来获得，每一个转化都将一个层次上的表示(从原始输入开始)转换为一个更高、更抽象的层次上的表示。有了足够多这样的变换组合，就可以学习非常复杂的函数。对于分类任务，更高层次的表示将放大输入的某些方面，这对于区分和抑制不相关的变异非常重要。例如，图像以像素值数组地形式出现，在第一个表示层通常表示特定方向的边和图片中位置存在或不存在。第二层通常通过发现边缘的特定排列来检测图案，而不考虑边缘位置的微小变化。第三层可以将图形组合成更大的图案，这些图案对应于相似对象的部分，随后的层将作为这些部分的组合检测对象。深度学习的关键方面是，这些特性层不是由人类工程师设计的:它们是使用通用的学习过程从数据中学习的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Deep learning is making major advances in solving problems that</span><br><span class="line">have resisted the best attempts of the artificial intelligence community</span><br><span class="line">for many years. It has turned out to be very good at discovering intricate structures </span><br><span class="line">in high-dimensional data and is therefore applicable</span><br><span class="line">to many domains of science, business and government. In addition</span><br><span class="line">to beating records in image recognition and speech recognition, it</span><br><span class="line">has beaten other machine-learning techniques at predicting the activity</span><br><span class="line">of potential drug molecules, analysing particle accelerator data,</span><br><span class="line">reconstructing brain circuits, and predicting the effects of mutations</span><br><span class="line">in non-coding DNA on gene expression and disease. Perhaps more</span><br><span class="line">surprisingly, deep learning has produced extremely promising results</span><br><span class="line">for various tasks in natural language understanding, particularly</span><br><span class="line">topic classification, sentiment analysis, question answering and language</span><br><span class="line">translation</span><br></pre></td></tr></table></figure>
+<p>深度学习在解决多年来一直阻碍人工智能领域最佳尝试的问题方面取得了重大进展。事实证明，它非常善于发现高维数据的复杂结构，因此适用于科学、商业和政府的许多领域。此外，它打破了图像识别、语音识别的记录，它还在预测潜在药物分子的活性、分析粒子加速器数据、重构大脑回路和预测非编码DNA突变对基因表达和疾病的影响等领域中打败了其他机器学习技术。也许更令人惊讶的是，在自然语言理解的各种任务中，尤其是主题分类、情感分析、问题回答和语言翻译方面，深度学习已经产生了非常有希望的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">We think that deep learning will have many more successes in the</span><br><span class="line">near future because it requires very little engineering by hand, so it</span><br><span class="line">can easily take advantage of increases in the amount of available computation</span><br><span class="line">and data. New learning algorithms and architectures that are</span><br><span class="line">currently being developed for deep neural networks will only accelerate</span><br><span class="line">this progress.</span><br></pre></td></tr></table></figure>
+<p>我们相信深度学习在不久的将来会取得更大的成功，因为它只需要很少的手工工程，所以可以很容易地增加可用计算和数据量。目前正在为深度神经网络开发的新的学习算法和体系结构只会加速这一进程。</p>
+<h2><span id="supervised-learning">Supervised learning</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">The most common form of machine learning, deep or not, is supervised</span><br><span class="line">learning. Imagine that we want to build a system that can classify</span><br><span class="line">images as containing, say, a house, a car, a person or a pet. We first</span><br><span class="line">collect a large data set of images of houses, cars, people and pets, each</span><br><span class="line">labelled with its category. During training, the machine is shown an</span><br><span class="line">image and produces an output in the form of a vector of scores, one</span><br><span class="line">for each category. We want the desired category to have the highest</span><br><span class="line">score of all categories, but this is unlikely to happen before training.</span><br><span class="line">We compute an objective function that measures the error (or distance)</span><br><span class="line">between the output scores and the desired pattern of scores. The</span><br><span class="line">machine then modifies its internal adjustable parameters to reduce</span><br><span class="line">this error. These adjustable parameters, often called weights, are real</span><br><span class="line">numbers that can be seen as ‘knobs’ that define the input–output function</span><br><span class="line">of the machine. In a typical deep-learning system, there may be</span><br><span class="line">hundreds of millions of these adjustable weights, and hundreds of</span><br><span class="line">millions of labelled examples with which to train the machine.</span><br></pre></td></tr></table></figure>
+<p>不管是否是深度学习，机器学习最常见的形式是监督学习。假设我们要构建一个系统，该系统可以将图像分类为包括一所房子、一辆汽车、一个人或一只宠物的图片。首先，我们收集了大量的房屋、汽车、人和宠物的图片，每个图片都有自己的分类。通过训练，机器会显示一幅图像，并以分数向量的形式输出，每个类别对应一个分数。我们希望需要的类别在所有的类别中获得最高的分数，但是这不太可能在训练之前发生。我们计算一个目标函数，它度量输出分数和期望模式的分数之间的误差（或距离）。然后，机器修改其内部可调参数，以减少这种误差。这些可调参数通常被称为权重，它们是实数，可以被视为定义机器输入-输出功能的“开关”。在一个典型的深度学习系统中，可能有数亿个这样的可调权重，以及数亿个用于训练机器的带标签的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">To properly adjust the weight vector, the learning algorithm computes</span><br><span class="line">a gradient vector that, for each weight, indicates by what amount</span><br><span class="line">the error would increase or decrease if the weight were increased by a</span><br><span class="line">tiny amount. The weight vector is then adjusted in the opposite direction</span><br><span class="line">to the gradient vector.</span><br></pre></td></tr></table></figure>
+<p>为了正确调整权值向量，学习算法计算一个梯度向量，对于每个权值，梯度向量表示如果权值增加一点点，误差将增加或减少多少。然后按照梯度向量相反的方向调整权重向量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The objective function, averaged over all the training examples, </span><br><span class="line">can be seen as a kind of hilly landscape in the high-dimensional space of</span><br><span class="line">weight values. The negative gradient vector indicates the direction</span><br><span class="line">of steepest descent in this landscape, taking it closer to a minimum,</span><br><span class="line">where the output error is low on average.</span><br></pre></td></tr></table></figure>
+<p>对所有训练样本取平均值的目标函数被视为一种山地景观在高维空间中的权重值。负梯度向量表示该景观中最陡下降的方向，使其接近最小值，此时平均输出误差较低。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In practice, most practitioners use a procedure called stochastic</span><br><span class="line">gradient descent (SGD). This consists of showing the input vector</span><br><span class="line">for a few examples, computing the outputs and the errors, computing</span><br><span class="line">the average gradient for those examples, and adjusting the weights</span><br><span class="line">accordingly. The process is repeated for many small sets of examples</span><br><span class="line">from the training set until the average of the objective function stops</span><br><span class="line">decreasing. It is called stochastic because each small set of examples</span><br><span class="line">gives a noisy estimate of the average gradient over all examples. This</span><br><span class="line">simple procedure usually finds a good set of weights surprisingly</span><br><span class="line">quickly when compared with far more elaborate optimization techniques.</span><br><span class="line">After training, the performance of the system is measured</span><br><span class="line">on a different set of examples called a test set. This serves to test the</span><br><span class="line">generalization ability of the machine — its ability to produce sensible</span><br><span class="line">answers on new inputs that it has never seen during training.</span><br></pre></td></tr></table></figure>
+<p>在实践中，大多数人使用一种称为随机梯度下降(SGD)的方法。这包括显示几个示例的输入向量，计算输出和错误，计算这些示例的平均梯度，并相应地调整权重。，对许多小样本集重复这个过直到目标函数的平均值停止下降。它之所以被称为随机，是因为每个小样本集都给出了所有样本平均梯度的噪声估计。与复杂得多的优化技术相比，这个简单的过程通常能以惊人的速度找到一组好的权重。在训练之后，系统的性能将在另一组称为测试集的示例上进行测量。这是为了测试机器的泛化能力——它能够对训练中从未见过的新输入产生合理的答案。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Many of the current practical applications of machine learning use</span><br><span class="line">linear classifiers on top of hand-engineered features. A two-class linear</span><br><span class="line">classifier computes a weighted sum of the feature vector components.</span><br><span class="line">If the weighted sum is above a threshold, the input is classified as</span><br><span class="line">belonging to a particular category.</span><br></pre></td></tr></table></figure>
+<p>目前机器学习的许多实际应用都是在手工设计的特征之上使用线性分类器。二分类线性分类器计算特征向量分量的加权和。如果加权和高于阈值，则将输入分类划分为特定类别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Since the 1960s we have known that linear classifiers can only carve</span><br><span class="line">their input space into very simple regions, namely half-spaces separated</span><br><span class="line">by a hyperplane. But problems such as image and speech recognition</span><br><span class="line">require the input–output function to be insensitive to irrelevant</span><br><span class="line">variations of the input, such as variations in position, orientation or</span><br><span class="line">illumination of an object, or variations in the pitch or accent of speech,</span><br><span class="line">while being very sensitive to particular minute variations (for example,</span><br><span class="line">the difference between a white wolf and a breed of wolf-like white</span><br><span class="line">dog called a Samoyed). At the pixel level, images of two Samoyeds in</span><br><span class="line">different poses and in different environments may be very different</span><br><span class="line">from each other, whereas two images of a Samoyed and a wolf in the</span><br><span class="line">same position and on similar backgrounds may be very similar to each</span><br><span class="line">other. A linear classifier, or any other ‘shallow’ classifier operating </span><br><span class="line">on raw pixels could not possibly distinguish the latter two, while putting</span><br><span class="line">the former two in the same category. This is why shallow classifiers</span><br><span class="line">require a good feature extractor that solves the selectivity–invariance</span><br><span class="line">dilemma — one that produces representations that are selective to</span><br><span class="line">the aspects of the image that are important for discrimination, but</span><br><span class="line">that are invariant to irrelevant aspects such as the pose of the animal.</span><br><span class="line">To make classifiers more powerful, one can use generic non-linear</span><br><span class="line">features, as with kernel methods, but generic features such as those</span><br><span class="line">arising with the Gaussian kernel do not allow the learner to generalize</span><br><span class="line">well far from the training examples. The conventional option is</span><br><span class="line">to hand design good feature extractors, which requires a considerable</span><br><span class="line">amount of engineering skill and domain expertise. But this can</span><br><span class="line">all be avoided if good features can be learned automatically using a</span><br><span class="line">general-purpose learning procedure. This is the key advantage of</span><br><span class="line">deep learning.</span><br></pre></td></tr></table></figure>
+<p>自20世纪60年代以来，我们已经知道线性分类器只能将其输入空间分割成非常简单的区域，即由超平面分隔的半空间.但是，像图像和语音识别这样的问题要求输入-输出函数对像物体的位置、方向或光照的变化，或者语音的音调或重音的变化之类的输入的无关变量不敏感，同时对细微的变化特别敏感（例如，白狼和一种叫萨摩耶的类似狼的白狗的区别）。在像素水平上，两个萨摩耶在不同的姿势和环境下的图像可能会有很大的不同，而处于相同位置和背景相似的萨摩耶和狼的图像可能非常相似。当把前两者归为一类，线性分类器或任何其他“浅层”分类器操作原始像素不可能区分后两者。这就是为什么浅层分类器需要一个好的特征提取器来解决选择不变的困境——一种对图像的某些方面有选择性的表现，这些方面对辨别很重要，但对不相关的方面，如动物的姿势，是不变的。为了使分类器更强大，我们可以使用一般的非线性特征，就像使用内核方法一样，但是一般的特征，比如高斯内核产生的那些特征，不允许学习者在远离训练样例的场景很好地泛化。传统的选择是手工设计好的特征提取器，这需要相当数量的工程技能和领域专业知识。但是，如果可以使用通用的学习过程自动学习好的特性，那么这一切都可以避免。这是深度学习的关键优势</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A deep-learning architecture is a multilayer stack of simple modules,</span><br><span class="line">all (or most) of which are subject to learning, and many of which</span><br><span class="line">compute non-linear input–output mappings. Each module in the</span><br><span class="line">stack transforms its input to increase both the selectivity and the</span><br><span class="line">invariance of the representation. With multiple non-linear layers, say</span><br><span class="line">a depth of 5 to 20, a system can implement extremely intricate functions</span><br><span class="line">of its inputs that are simultaneously sensitive to minute details</span><br><span class="line">— distinguishing Samoyeds from white wolves — and insensitive to</span><br><span class="line">large irrelevant variations such as the background, pose, lighting and</span><br><span class="line">surrounding objects.</span><br></pre></td></tr></table></figure>
+<p>深度学习体系结构是由简单模块组成的多层堆栈，所有(或大部分)模块都需要学习，其中许多模块计算非线性输入-输出映射。栈中的每个模块都转换其输入，以提高表示的选择性和不变性。通过多个非线性层，例如有5-20层，一个系统可以实现其输入的极其复杂的函数，这些函数同时对细微的细节非常敏感——区分萨摩耶德和白狼，对大的无关变化，如背景，姿势，灯光和周围的物体不敏感。</p>
+<h2><span id="backpropagation-to-train-multilayer-architectures">Backpropagation to train multilayer architectures</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">From the earliest days of pattern recognition, the aim of researchers</span><br><span class="line">has been to replace hand-engineered features with trainable</span><br><span class="line">multilayer networks, but despite its simplicity, the solution was not</span><br><span class="line">widely understood until the mid 1980s. As it turns out, multilayer</span><br><span class="line">architectures can be trained by simple stochastic gradient descent.</span><br><span class="line">As long as the modules are relatively smooth functions of their inputs</span><br><span class="line">and of their internal weights, one can compute gradients using the</span><br><span class="line">backpropagation procedure. The idea that this could be done, and</span><br><span class="line">that it worked, was discovered independently by several different</span><br><span class="line">groups during the 1970s and 1980s.</span><br><span class="line">The backpropagation procedure to compute the gradient of an</span><br><span class="line">objective function with respect to the weights of a multilayer stack</span><br><span class="line">of modules is nothing more than a practical application of the chain</span><br></pre></td></tr></table></figure>
+<p>从最早的模式识别开始,研究人员的目标是用可训练的多层网络取代手工设计的功能，尽管它很简单，但是直到20世纪80年代中期才被广泛理解。结果表明，多层结构可以通过简单的随机梯度下降训练，只要模块的输入和内部权重是相对平滑的函数，就可以使用反向传播过程计算梯度。在20世纪70年代和80年代，一些不同的研究小组独立地发现了这种方法是可行的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">The backpropagation procedure to compute the gradient of an</span><br><span class="line">objective function with respect to the weights of a multilayer stack</span><br><span class="line">of modules is nothing more than a practical application of the chain rule </span><br><span class="line">for derivatives. The key insight is that the derivative (or gradient)</span><br><span class="line">of the objective with respect to the input of a module can be</span><br><span class="line">computed by working backwards from the gradient with respect to</span><br><span class="line">the output of that module (or the input of the subsequent module)</span><br><span class="line">(Fig. 1). The backpropagation equation can be applied repeatedly to</span><br><span class="line">propagate gradients through all modules, starting from the output</span><br><span class="line">at the top (where the network produces its prediction) all the way to</span><br><span class="line">the bottom (where the external input is fed). Once these gradients</span><br><span class="line">have been computed, it is straightforward to compute the gradients</span><br><span class="line">with respect to the weights of each module.</span><br></pre></td></tr></table></figure>
+<p>计算目标函数相对于多层模块堆栈权重的梯度的反向传播过程只不过是导数链式法则的一个实际应用。关键的观点是，目标对模块输入的导数(或梯度)可以通过对该模块输出(或后续模块的输入)的梯度进行反向计算来计算。<br>(图1)。反向传播方程可以重复地应用于传播梯度到所有模块，从顶部(网络产生预测的地方)的输出一直到底部(外部输入的地方)。一旦计算了这些梯度，就可以直接计算出与每个模块权重相关的梯度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Many applications of deep learning use feedforward neural network</span><br><span class="line">architectures (Fig. 1), which learn to map a fixed-size input</span><br><span class="line">(for example, an image) to a fixed-size output (for example, a probability</span><br><span class="line">for each of several categories). To go from one layer to the</span><br><span class="line">next, a set of units compute a weighted sum of their inputs from the</span><br><span class="line">previous layer and pass the result through a non-linear function. At</span><br><span class="line">present, the most popular non-linear function is the rectified linear</span><br><span class="line">unit (ReLU), which is simply the half-wave rectifier f(z) = max(z, 0).</span><br><span class="line">In past decades, neural nets used smoother non-linearities, such as</span><br><span class="line">tanh(z) or 1/(1 + exp(−z)), but the ReLU typically learns much faster</span><br><span class="line">in networks with many layers, allowing training of a deep supervised</span><br><span class="line">network without unsupervised pre-training. Units that are not in</span><br><span class="line">the input or output layer are conventionally called hidden units. The</span><br><span class="line">hidden layers can be seen as distorting the input in a non-linear way</span><br><span class="line">so that categories become linearly separable by the last layer (Fig. 1).</span><br></pre></td></tr></table></figure>
+<p>深度学习的许多应用都使用了前馈神经网络架构(图1)。它学习映射固定大小的输入(例如，一幅图像)到一个固定大小的输出(例如，每种类别的概率)。为了从一层到另一层，一组单元计算上一层输入的加权和，并将结果传递给一个非线性函数。目前最常用的非线性函数是线性整流函数(ReLU)，即半波整流f(z) = max(z, 0)。在过去的几十年里，神经网络使用更平滑的非线性，如tanh(z)或1/(1 + exp(- z))，但ReLU通常在多层网络中学习得更快，这使得深度监督网络的训练无需非监督的预训练。不在输入或输出层中的单位通常称为隐藏单位。隐层可以看作是非线性的扭曲输入，使得类别可以被最后一层线性分离(图1)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In the late 1990s, neural nets and backpropagation were largely</span><br><span class="line">forsaken by the machine-learning community and ignored by the</span><br><span class="line">computer-vision and speech-recognition communities. It was widely</span><br><span class="line">thought that learning useful, multistage, feature extractors with little</span><br><span class="line">prior knowledge was infeasible. In particular, it was commonly</span><br><span class="line">thought that simple gradient descent would get trapped in poor local</span><br><span class="line">minima — weight configurations for which no small change would</span><br><span class="line">reduce the average error.</span><br></pre></td></tr></table></figure>
+<p>在20世纪90年代末，神经网络和反向传播在很大程度上被机器学习社区所抛弃，从而被计算机视觉和语音识别社区所忽视。人们普遍认为，学习有用的、多阶段的、几乎没有先验知识的特征提取器是不可行的。特别是，人们普遍认为，简单的梯度下降会陷入局部极小值，此时权重配置很差，在这种情况下，任何微小的变化都不能减少平均误差。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">In practice, poor local minima are rarely a problem with large networks.</span><br><span class="line">Regardless of the initial conditions, the system nearly always</span><br><span class="line">reaches solutions of very similar quality. Recent theoretical and</span><br><span class="line">empirical results strongly suggest that local minima are not a serious</span><br><span class="line">issue in general. Instead, the landscape is packed with a combinatorially</span><br><span class="line">large number of saddle points where the gradient is zero, and</span><br><span class="line">the surface curves up in most dimensions and curves down in the remainder. </span><br><span class="line">The analysis seems to show that saddle points with</span><br><span class="line">only a few downward curving directions are present in very large</span><br><span class="line">numbers, but almost all of them have very similar values of the objective</span><br><span class="line">function. Hence, it does not much matter which of these saddle</span><br><span class="line">points the algorithm gets stuck at.</span><br></pre></td></tr></table></figure>
+<p>在实践中，在大型网络中，较差的极小值很少是一个问题。无论初始条件如何，系统几乎总是能得到非常相似质量的解。最近的理论和实证结果表明，局部极小值在一般情况下不是一个严重的问题。相反，景观是由大量的鞍点组合而成的，这些鞍点的梯度为零，在大多数维度的表面上向上弯曲，在其余维度上向下弯曲。分析似乎表明，只有少数向下弯曲方向的鞍点数量非常大，但几乎所有鞍点的目标函数值都非常相似。因此，在这些鞍点中，算法被卡在哪个鞍点并不重要。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Interest in deep feedforward networks was revived around 2006</span><br><span class="line">by a group of researchers brought together by the Canadian</span><br><span class="line">Institute for Advanced Research (CIFAR). The researchers introduced</span><br><span class="line">unsupervised learning procedures that could create layers of</span><br><span class="line">feature detectors without requiring labelled data. The objective in</span><br><span class="line">learning each layer of feature detectors was to be able to reconstruct</span><br><span class="line">or model the activities of feature detectors (or raw inputs) in the layer</span><br><span class="line">below. By ‘pre-training’ several layers of progressively more complex</span><br><span class="line">feature detectors using this reconstruction objective, the weights of a</span><br><span class="line">deep network could be initialized to sensible values. A final layer of</span><br><span class="line">output units could then be added to the top of the network and the</span><br><span class="line">whole deep system could be fine-tuned using standard backpropagation33–</span><br><span class="line">. This worked remarkably well for recognizing handwritten</span><br><span class="line">digits or for detecting pedestrians, especially when the amount of</span><br><span class="line">labelled data was very limited</span><br></pre></td></tr></table></figure>
+<p>大约在2006年，由加拿大人召集的一组研究人员所组成的先进研究院重新唤起了人们对深度前馈网络的兴趣。研究人员引入了无监督学习过程，可以在不需要标记数据的情况下创建多层特征检测器。学习每一层特征检测器的目的是能够重构或模拟下一层特征检测器(或原始输入)的活动。通过使用这个重建目标“预训练”几层越来越复杂的特征检测器，可以将深度网络的权值初始化为可合理的值。最后一层输出单元可以添加到网络的顶部，并且可以使用标准的反向传播对整个深层系统进行微调。这对于识别手写数字或检测行人非常有效，尤其是在标签数据非常有限的情况下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">The first major application of this pre-training approach was in</span><br><span class="line">speech recognition, and it was made possible by the advent of fast</span><br><span class="line">graphics processing units (GPUs) that were convenient to program</span><br><span class="line">and allowed researchers to train networks 10 or 20 times faster. In</span><br><span class="line">2009, the approach was used to map short temporal windows of coefficients</span><br><span class="line">extracted from a sound wave to a set of probabilities for the</span><br><span class="line">various fragments of speech that might be represented by the frame</span><br><span class="line">in the centre of the window. It achieved record-breaking results on a</span><br><span class="line">standard speech recognition benchmark that used a small vocabulary</span><br><span class="line">and was quickly developed to give record-breaking results on</span><br><span class="line">a large vocabulary task. By 2012, versions of the deep net from 2009</span><br><span class="line">were being developed by many of the major speech groups and were</span><br><span class="line">already being deployed in Android phones. For smaller data sets,</span><br><span class="line">unsupervised pre-training helps to prevent overfitting, leading to</span><br><span class="line">significantly better generalization when the number of labelled examples</span><br><span class="line">is small, or in a transfer setting where we have lots of examples</span><br><span class="line">for some ‘source’ tasks but very few for some ‘target’ tasks. Once deep</span><br><span class="line">learning had been rehabilitated, it turned out that the pre-training</span><br><span class="line">stage was only needed for small data sets.</span><br></pre></td></tr></table></figure>
+<p>这种预训练方法的第一个主要应用是语音识别，它是由于快速图形处理单元(gpus)的出现而成为可能，gpu便于编程，并且允许研究人员以10或20倍的速度训练网络。在2009年，该方法被用于将从声波中提取的系数的瞬时窗口映射到一组可能由窗口中心的帧表示的各种语音片段的概率。它在一个使用小词汇量的标准语音识别基准测试中取得了破纪录的成绩，并迅速被开发出来打破了大词汇量的任务中纪录。到2012年，2009年的深度网络版本已经被许多主要的演讲小组开发出来，并且已经部署在Android手机上。对于较小的数据集，无监督的预训练有助于防止过度拟合，当标记的示例数量较少时，或在传输设置中，对于某些“源”任务我们有很多示例，而对于某些“目标”任务我们只有很少的示例时，可以显著提高泛化效果。它证明了只需要对小数据集进行预训练，深度学习得以恢复作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">There was, however, one particular type of deep, feedforward network</span><br><span class="line">that was much easier to train and generalized much better than</span><br><span class="line">networks with full connectivity between adjacent layers. This was</span><br><span class="line">the convolutional neural network (ConvNet). It achieved many</span><br><span class="line">practical successes during the period when neural networks were out</span><br><span class="line">of favour and it has recently been widely adopted by the computervision</span><br><span class="line">community.</span><br></pre></td></tr></table></figure>
+<p>然而，有一种特殊类型的深度前馈网络比相邻层之间完全连接的网络更容易训练和推广。这就是卷积神经网络(ConvNet)。它在神经网络失宠的时期取得了许多实际的成功，最近被计算机视觉界广泛采用。</p>
+<h2><span id="convolutional-neural-networks">Convolutional neural networks</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ConvNets are designed to process data that come in the form of</span><br><span class="line">multiple arrays, for example a colour image composed of three 2D</span><br><span class="line">arrays containing pixel intensities in the three colour channels. Many</span><br><span class="line">data modalities are in the form of multiple arrays: 1D for signals and</span><br><span class="line">sequences, including language; 2D for images or audio spectrograms;</span><br><span class="line">and 3D for video or volumetric images. There are four key ideas</span><br><span class="line">behind ConvNets that take advantage of the properties of natural</span><br><span class="line">signals: local connections, shared weights, pooling and the use of</span><br><span class="line">many layers.</span><br></pre></td></tr></table></figure>
+<p>卷积神经网络用于处理多个阵列形式的数据，例如由三个二维阵列组成的彩色图像，其中包含三个彩色通道中的像素强度。许多数据模式包括语言，都是多阵列的形式:一维表示信号和序列;二维图像或声频图;和3D的视频或体积图像。利用自然信号特性的卷积神经网络背后有四个关键思想:全连接、共享权重、池化和使用多层。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">The architecture of a typical ConvNet (Fig. 2) is structured as a</span><br><span class="line">series of stages. The first few stages are composed of two types of</span><br><span class="line">layers: convolutional layers and pooling layers. Units in a convolutional</span><br><span class="line">layer are organized in feature maps, within which each unit</span><br><span class="line">is connected to local patches in the feature maps of the previous</span><br><span class="line">layer through a set of weights called a filter bank. The result of this</span><br><span class="line">local weighted sum is then passed through a non-linearity such as a</span><br><span class="line">ReLU. All units in a feature map share the same filter bank. Different</span><br><span class="line">feature maps in a layer use different filter banks. The reason for this architecture </span><br><span class="line">is twofold. First, in array data such as images, local</span><br><span class="line">groups of values are often highly correlated, forming distinctive local</span><br><span class="line">motifs that are easily detected. Second, the local statistics of images</span><br><span class="line">and other signals are invariant to location. In other words, if a motif</span><br><span class="line">can appear in one part of the image, it could appear anywhere, hence</span><br><span class="line">the idea of units at different locations sharing the same weights and</span><br><span class="line">detecting the same pattern in different parts of the array. Mathematically,</span><br><span class="line">the filtering operation performed by a feature map is a discrete</span><br><span class="line">convolution, hence the name.</span><br></pre></td></tr></table></figure>
+<p>典型的卷积神经网络(图2)的体系结构是由一系列阶段构成的。前几个阶段由两种类型的层组成:卷积层和池化层。卷积层中的单元组织在特征映射中，每个单元通过一组称为滤波器组的权重连接到上一层的特征映射中的局部小块。这个局部加权和的结果然后通过一个非线性，像线性整流函数。特征映射中的所有单元共享相同的滤波器组。每层中不同的特征映射使用不同的滤波器组。这样构建的原因有两个：首先，在像图像这样的数组数据中，局部值组通常高度相关，形成易于检测的独特的局部基序。其次，图像和其他信号的局部统计不受位置的影响。换句话说，如果一个图形可以出现在图像的一个部分，它可以出现在任何地方，因此不同位置的单元共享相同的权重，并在数组的不同部分检测相同的模式。从数学上讲，特征图的过滤操作是一个离散的卷积，因此得名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Although the role of the convolutional layer is to detect local conjunctions</span><br><span class="line">of features from the previous layer, the role of the pooling</span><br><span class="line">layer is to merge semantically similar features into one. Because the</span><br><span class="line">relative positions of the features forming a motif can vary somewhat,</span><br><span class="line">reliably detecting the motif can be done by coarse-graining the position</span><br><span class="line">of each feature. A typical pooling unit computes the maximum</span><br><span class="line">of a local patch of units in one feature map (or in a few feature maps).</span><br><span class="line">Neighbouring pooling units take input from patches that are shifted</span><br><span class="line">by more than one row or column, thereby reducing the dimension of</span><br><span class="line">the representation and creating an invariance to small shifts and distortions.</span><br><span class="line">Two or three stages of convolution, non-linearity and pooling</span><br><span class="line">are stacked, followed by more convolutional and fully-connected</span><br><span class="line">layers. Backpropagating gradients through a ConvNet is as simple as</span><br><span class="line">through a regular deep network, allowing all the weights in all the</span><br><span class="line">filter banks to be trained.</span><br></pre></td></tr></table></figure>
+<p>虽然卷积层的作用是检测前一层特征的局部连接，但池化层的作用是将语义上相似的特征合并为一个。由于构成图新的特征的相对位置可能有所不同，因此可以通过粗粒化每个特征的位置来可靠地检测图形。一个典型的池单元计算一个特征映射(或几个特征映射)中单元的局部小块的最大值。相邻的池化单元从移动了不止一行或一列的小块中获取输入，从而减少了表示的维数，并为小的变换和扭曲创建了不变性。两个或三个阶段的卷积，非线性和池堆叠，然后是更多的卷积和全连接层。通过卷积网络反向传播梯度与通过常规深度网络一样简单，允许训练所有过滤器组中的所有权重。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Deep neural networks exploit the property that many natural signals</span><br><span class="line">are compositional hierarchies, in which higher-level features</span><br><span class="line">are obtained by composing lower-level ones. In images, local combinations</span><br><span class="line">of edges form motifs, motifs assemble into parts, and parts</span><br><span class="line">form objects. Similar hierarchies exist in speech and text from sounds</span><br><span class="line">to phones, phonemes, syllables, words and sentences. The pooling</span><br><span class="line">allows representations to vary very little when elements in the previous</span><br><span class="line">layer vary in position and appearance.</span><br></pre></td></tr></table></figure>
+<p>深层神经网络利用了许多自然信号是组成层次结构的特性，在这种结构中，通过组成较低层次的特征来获得较高层次的特征。在图像中，边缘的局部组合形成图形，图形组合成部分，部分形成目标。从声音到电话、音素、音节、单词和句子，在语音和文本中也存在类似的层次结构。当前一层中的元素在位置和外观上发生变化时，池化层允许表示发生非常小的变化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">The convolutional and pooling layers in ConvNets are directly</span><br><span class="line">inspired by the classic notions of simple cells and complex cells in</span><br><span class="line">visual neuroscience, and the overall architecture is reminiscent of</span><br><span class="line">the LGN–V1–V2–V4–IT hierarchy in the visual cortex ventral pathway.</span><br><span class="line">When ConvNet models and monkeys are shown the same picture,</span><br><span class="line">the activations of high-level units in the ConvNet explains half</span><br><span class="line">of the variance of random sets of 160 neurons in the monkey’s inferotemporal</span><br><span class="line">cortex. ConvNets have their roots in the neocognitron,</span><br><span class="line">the architecture of which was somewhat similar, but did not have an</span><br><span class="line">end-to-end supervised-learning algorithm such as backpropagation.</span><br><span class="line">A primitive 1D ConvNet called a time-delay neural net was used for</span><br><span class="line">the recognition of phonemes and simple words</span><br></pre></td></tr></table></figure>
+<p>卷积网络中的卷积和池化层视觉神经科学中简单细胞和复杂细胞的经典概念的启发，整体架构让人联想到视觉皮质腹侧通路中的LGN–V1–V2–V4–IT层次结构。当卷积网络模型和猴子被展示相同的图片时，卷积网络中高层次单元的激活解释了猴子颞下皮层160个随机神经元组的一半方差。卷积网络起源于新认知机，它的架构有点类似，但没有像反向传播一样的端到端的监控学习算法。利用一种称为延时神经网络的一维卷积神经网络对音素和简单单词进行识别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">There have been numerous applications of convolutional networks</span><br><span class="line">going back to the early 1990s, starting with time-delay neural</span><br><span class="line">networks for speech recognition and document reading. The</span><br><span class="line">document reading system used a ConvNet trained jointly with a</span><br><span class="line">probabilistic model that implemented language constraints. By the</span><br><span class="line">late 1990s this system was reading over 10% of all the cheques in the</span><br><span class="line">United States. A number of ConvNet-based optical character recognition</span><br><span class="line">and handwriting recognition systems were later deployed by</span><br><span class="line">Microsoft. ConvNets were also experimented with in the early 1990s</span><br><span class="line">for object detection in natural images, including faces and hands,</span><br><span class="line">and for face recognition.</span><br></pre></td></tr></table></figure>
+<p>卷积网络的应用可以追溯到20世纪90年代初，最早是用于语音识别和文档阅读的延时神经网络。该文档读取系统使用了一个与实现语言约束的概率模型联合训练的卷积网络。到20世纪90年代末，在美国，这一系统已经阅读了超过10%的支票。随后，一些基于卷积神经网络的光学字符识别和手写识别系统被微软部署。20世纪90年代初，卷积神经网络也进行了实验，用于自然图像(包括人脸和手)中的目标检测，以及人脸识别。</p>
+<h2><span id="image-understanding-with-deep-convolutional-networks">Image understanding with deep convolutional networks</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Since the early 2000s, ConvNets have been applied with great success to</span><br><span class="line">the detection, segmentation and recognition of objects and regions in</span><br><span class="line">images. These were all tasks in which labelled data was relatively abundant,</span><br><span class="line">such as traffic sign recognition, the segmentation of biological</span><br><span class="line">images particularly for connectomics, and the detection of faces,</span><br><span class="line">text, pedestrians and human bodies in natural images. A major</span><br><span class="line">recent practical success of ConvNets is face recognition</span><br></pre></td></tr></table></figure>
+<p>自21世纪初以来，卷积神经网络在图像中对目标和区域的检测、分割和识别方面取得了很大的成功。这些都是标记数据相对丰富的任务，如交通标志识别、生物图像的分割，特别是连接体的分割，以及在自然图像3中对人脸、文本、行人和人体的检测。最近卷积网络的一个主要的实例成功是人脸识别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Importantly, images can be labelled at the pixel level, which will have</span><br><span class="line">applications in technology, including autonomous mobile robots and self-driving cars.</span><br><span class="line">Companies such as Mobileye and NVIDIA are</span><br><span class="line">using such ConvNet-based methods in their upcoming vision systems</span><br><span class="line">for cars. Other applications gaining importance involve natural</span><br><span class="line">language understanding and speech recognition</span><br></pre></td></tr></table></figure>
+<p>重要的是，图像可以在像素级别上进行标记，这将在包括自动移动机器人和自动驾驶汽车等技术上得到应用。Mobileye和英伟达(NVIDIA)等公司正在即将推出的汽车视觉系统中使用这种基于卷积神经网络的方法。其他越来越重要的应用包括自然语言理解和语音识别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Despite these successes, ConvNets were largely forsaken by the</span><br><span class="line">mainstream computer-vision and machine-learning communities</span><br><span class="line">until the ImageNet competition in 2012. When deep convolutional</span><br><span class="line">networks were applied to a data set of about a million images from</span><br><span class="line">the web that contained 1,000 different classes, they achieved spectacular</span><br><span class="line">results, almost halving the error rates of the best competing</span><br><span class="line">approaches. This success came from the efficient use of GPUs,</span><br><span class="line">ReLUs, a new regularization technique called dropout, and techniques</span><br><span class="line">to generate more training examples by deforming the existing</span><br><span class="line">ones. This success has brought about a revolution in computer vision;</span><br><span class="line">ConvNets are now the dominant approach for almost all recognition</span><br><span class="line">and detection tasks4 and approach human performance on</span><br><span class="line">some tasks. A recent stunning demonstration combines ConvNets</span><br><span class="line">and recurrent net modules for the generation of image captions</span><br><span class="line">(Fig. 3)</span><br></pre></td></tr></table></figure>
+<p>尽管取得了这些成功，但直到2012年ImageNet大赛之前，卷积网络在很大程度上都被主流的计算机视觉和机器学习社区所抛弃。当深度卷积网络应用于包含1000个不同类别的约100万幅网络图像的数据集时，它们取得了惊人的效果，几乎是最佳竞争方法的错误率的一半。这种成功来自于对gpu的高效使用、ReLUs和一种称为dropout的新的正则化技术，它通过对现有的训练实例进行变形来生成更多的训练实例。这一成功带来了计算机视觉的革命;卷积神经网络现在几乎是所有识别和检测任务的主导方法，并且在某些任务中的表现接近人类。最近一个令人震惊的演示结合了卷积网络和循环网络模块，用于生成图像标题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Recent ConvNet architectures have 10 to 20 layers of ReLUs, hundreds</span><br><span class="line">of millions of weights, and billions of connections between</span><br><span class="line">units. Whereas training such large networks could have taken weeks</span><br><span class="line">only two years ago, progress in hardware, software and algorithm</span><br><span class="line">parallelization have reduced training times to a few hours.</span><br></pre></td></tr></table></figure>
+<p>最近的卷积网络架构有10到20层ReLUs、数亿个权重和数十亿个单元之间的连接。两年前，训练这样的大型网络可能只需要几周的时间，但硬件、软件和算法并行化的进展已将训练时间缩短至几个小时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The performance of ConvNet-based vision systems has caused</span><br><span class="line">most major technology companies, including Google, Facebook,</span><br><span class="line">Microsoft, IBM, Yahoo!, Twitter and Adobe, as well as a quickly</span><br><span class="line">growing number of start-ups to initiate research and development</span><br><span class="line">projects and to deploy ConvNet-based image understanding products</span><br><span class="line">and services.</span><br></pre></td></tr></table></figure>
+<p>基于卷积网络的视觉系统的性能已经引起了包括谷歌、Facebook、Microsoft、IBM、Yahoo!， Twitter和Adobe，以及越来越多的初创企业，来启动研究和开发项目，并部署基于卷积网络的图像理解产品和服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ConvNets are easily amenable to efficient hardware implementations</span><br><span class="line">in chips or field-programmable gate arrays. A number</span><br><span class="line">of companies such as NVIDIA, Mobileye, Intel, Qualcomm and</span><br><span class="line">Samsung are developing ConvNet chips to enable real-time vision</span><br><span class="line">applications in smartphones, cameras, robots and self-driving cars</span><br></pre></td></tr></table></figure>
+<p>卷积网络很容易适应芯片或现场可编程门阵列中的高效硬件实现。英伟达(NVIDIA)、移动眼(Mobileye)、英特尔(Intel)、高通(Qualcomm)和三星(Samsung)等多家公司正在开发ConvNet芯片，使实时视觉应用能够应用于智能手机、相机、机器人和自动驾驶。</p>
+<h2><span id="distributed-representations-and-language-processing">Distributed representations and language processing</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Deep-learning theory shows that deep nets have two different exponential advantages </span><br><span class="line">over classic learning algorithms that do not use</span><br><span class="line">distributed representations. Both of these advantages arise from the</span><br><span class="line">power of composition and depend on the underlying data-generating</span><br><span class="line">distribution having an appropriate componential structure. First,</span><br><span class="line">learning distributed representations enable generalization to new</span><br><span class="line">combinations of the values of learned features beyond those seen</span><br><span class="line">during training (for example, 2^n combinations are possible with n</span><br><span class="line">binary features). Second, composing layers of representation in</span><br><span class="line">a deep net brings the potential for another exponential advantage</span><br><span class="line">(exponential in the depth).</span><br></pre></td></tr></table></figure>
+<p>深度学习理论表明，与不使用分布式表示的经典学习算法相比，深度网络具有两种不同的指数优势。这两个优点都源于组合的强大功能，并且依赖于具有适当组成结构的底层数据生成分布。首先，学习分布式表示使泛化成为学习特征值的新组合，它超出了在训练中看到的值(例如，二元特征的组合有2^n个可能)。其次，在深层网络中构成表示法层可能带来另一个指数级的优势(深度指数)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">The hidden layers of a multilayer neural network learn to represent</span><br><span class="line">the network’s inputs in a way that makes it easy to predict the</span><br><span class="line">target outputs. This is nicely demonstrated by training a multilayer</span><br><span class="line">neural network to predict the next word in a sequence from a local context </span><br><span class="line">of earlier words. Each word in the context is presented to</span><br><span class="line">the network as a one-of-N vector, that is, one component has a value</span><br><span class="line">of 1 and the rest are 0. In the first layer, each word creates a different</span><br><span class="line">pattern of activations, or word vectors (Fig. 4). In a language model,</span><br><span class="line">the other layers of the network learn to convert the input word vectors</span><br><span class="line">into an output word vector for the predicted next word, which</span><br><span class="line">can be used to predict the probability for any word in the vocabulary</span><br><span class="line">to appear as the next word. The network learns word vectors that</span><br><span class="line">contain many active components each of which can be interpreted</span><br><span class="line">as a separate feature of the word, as was first demonstrated in the</span><br><span class="line">context of learning distributed representations for symbols. These</span><br><span class="line">semantic features were not explicitly present in the input. They were</span><br><span class="line">discovered by the learning procedure as a good way of factorizing</span><br><span class="line">the structured relationships between the input and output symbols</span><br><span class="line">into multiple ‘micro-rules’. Learning word vectors turned out to also</span><br><span class="line">work very well when the word sequences come from a large corpus</span><br><span class="line">of real text and the individual micro-rules are unreliable. When</span><br><span class="line">trained to predict the next word in a news story, for example, the</span><br><span class="line">learned word vectors for Tuesday and Wednesday are very similar, as</span><br><span class="line">are the word vectors for Sweden and Norway. Such representations</span><br><span class="line">are called distributed representations because their elements (the</span><br><span class="line">features) are not mutually exclusive and their many configurations</span><br><span class="line">correspond to the variations seen in the observed data. These word</span><br><span class="line">vectors are composed of learned features that were not determined</span><br><span class="line">ahead of time by experts, but automatically discovered by the neural</span><br><span class="line">network. Vector representations of words learned from text are now</span><br><span class="line">very widely used in natural language applications.</span><br></pre></td></tr></table></figure>
+<p>多层神经网络的隐含层学习以一种易于预测目标输出的方式表示网络的输入。通过训练多层神经网络从上文中预测序列的下一个单词，可以很好地证明这一点。上下文中的每个单词都以1 / n向量的形式呈现给网络，也就是说，一个组件的值为1，其余的值为0。在第一层，每个单词创建一个不同的激活模式，或单词向量。在语言模型中，网络的其他层学习将输入的单词向量转换为预测的下一个单词的输出单词向量，该向量可用于预测词汇表中任何单词作为下一个单词出现的概率。网络学习包含许多活动部件的单词向量，每一个活动部件都可以被解释为单词的一个单独特征，这一点在学习符号的分布式表示内容中首次得到了证明。这些语义特征在输入中没有显式地显示出来。这些语义特征在输入中没有显式地显示出来。它们是通过学习过程发现的，是将输入和输出符号之间的结构化关系分解为多个“微规则”。当单词序列来自真实文本的大型语料库且单个的微规则不可靠时，学习单词向量的效果也很好。例如，当被训练预测新闻故事中的下一个单词时，周二和周三所学的单词向量非常相似，瑞典和挪威的单词向量也是如此。这种表示被称为分布式表示，因为它们的元素(特性)不是相互排斥的，而且它们的许多配置对应于观察到的数据中的变化。这些词向量由习得的特征组成，这些特征不是预先由专家确定的，而是由神经网络自动发现的。从文本中学习单词的向量表示现在在自然语言应用中得到了广泛的应用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">The issue of representation lies at the heart of the debate between</span><br><span class="line">the logic-inspired and the neural-network-inspired paradigms for</span><br><span class="line">cognition. In the logic-inspired paradigm, an instance of a symbol is</span><br><span class="line">something for which the only property is that it is either identical or</span><br><span class="line">non-identical to other symbol instances. It has no internal structure</span><br><span class="line">that is relevant to its use; and to reason with symbols, they must be</span><br><span class="line">bound to the variables in judiciously chosen rules of inference. By</span><br><span class="line">contrast, neural networks just use big activity vectors, big weight</span><br><span class="line">matrices and scalar non-linearities to perform the type of fast ‘intuitive’</span><br><span class="line">inference that underpins effortless commonsense reasoning</span><br></pre></td></tr></table></figure>
+<p>表征问题是认知的逻辑启发范式和神经网络启发范式之间争论的核心。在逻辑启发范式中，符号实例的唯一属性是它与其他符号实例相同或不相同。没有与其使用有关的内部结构;而要用符号进行推理，就必须将它们绑定到经过审慎选择的推理规则中的变量上。相比之下，神经网络只使用大的活动向量、大的权重矩阵和非线性标量来执行快速的“直觉”推理，而这种推理是毫不费力的常识推理的基础。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Before the introduction of neural language models, the standard</span><br><span class="line">approach to statistical modelling of language did not exploit distributed</span><br><span class="line">representations: it was based on counting frequencies of occurrences</span><br><span class="line">of short symbol sequences of length up to N (called N-grams).</span><br><span class="line">The number of possible N-grams is on the order of V^N, where V is</span><br><span class="line">the vocabulary size, so taking into account a context of more than a handful of words</span><br><span class="line">would require very large training corpora. N-grams</span><br><span class="line">treat each word as an atomic unit, so they cannot generalize across</span><br><span class="line">semantically related sequences of words, whereas neural language</span><br><span class="line">models can because they associate each word with a vector of real</span><br><span class="line">valued features, and semantically related words end up close to each</span><br><span class="line">other in that vector space (Fig. 4).</span><br></pre></td></tr></table></figure>
+<p>在引入神经语言模型之前，语言统计建模的标准方法并没有利用分布式表示:它是基于长度为N(叫做N-grams)的短符号序列出现频率。N-gram的可能性大约是V^N，其中V是词汇量，因此考虑到超过几个单词的上下文需要非常大的训练样本库.N-gram将每个单词视为一个原子单位，因此它们不能泛化到语义相关的单词序列上，而神经语言模型可以，因为它们将每个单词与一个实值特征向量相关联，而语义相关的单词在这个向量空间中彼此接近。</p>
+<h2><span id="recurrent-neural-networks">Recurrent neural networks</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">When backpropagation was first introduced, its most exciting use was</span><br><span class="line">for training recurrent neural networks (RNNs). For tasks that involve</span><br><span class="line">sequential inputs, such as speech and language, it is often better to</span><br><span class="line">use RNNs (Fig. 5). RNNs process an input sequence one element at a</span><br><span class="line">time, maintaining in their hidden units a ‘state vector’ that implicitly</span><br><span class="line">contains information about the history of all the past elements of</span><br><span class="line">the sequence. When we consider the outputs of the hidden units at</span><br><span class="line">different discrete time steps as if they were the outputs of different</span><br><span class="line">neurons in a deep multilayer network (Fig. 5, right), it becomes clear</span><br><span class="line">how we can apply backpropagation to train RNNs</span><br></pre></td></tr></table></figure>
+<p>当反向传播首次被引入时，它最令人兴奋的用途是训练循环神经网络(RNNs)。包括顺序输入,语音和语言等任务,通常最好使用RNNs(图5)。RNNs每次处理一个输入序列中的一个元素，在它们的隐藏单元中维护一个“状态向量”，该“状态向量”隐式地包含序列中所有过去元素的历史信息。当我们把隐藏单元在不同离散时间的输出看作是深层多层网络中不同神经元的输出时(图5，右)，我们就清楚了如何应用反向传播来训练RNNs。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RNNs are very powerful dynamic systems, but training them has</span><br><span class="line">proved to be problematic because the backpropagated gradients</span><br><span class="line">either grow or shrink at each time step, so over many time steps they</span><br><span class="line">typically explode or vanish</span><br></pre></td></tr></table></figure>
+<p>RNNs是非常强大的动态系统，但事实证明对它们进行训练是有问题的，因为反向传播的梯度在每次迭代时要么增长要么收缩，所以在多次迭代后，它们通常会爆炸或消失。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Thanks to advances in their architecture and ways of training</span><br><span class="line">them, RNNs have been found to be very good at predicting the</span><br><span class="line">next character in the text or the next word in a sequence, but they</span><br><span class="line">can also be used for more complex tasks. For example, after reading</span><br><span class="line">an English sentence one word at a time, an English ‘encoder’ network</span><br><span class="line">can be trained so that the final state vector of its hidden units is a good</span><br><span class="line">representation of the thought expressed by the sentence. This thought</span><br><span class="line">vector can then be used as the initial hidden state of (or as extra input</span><br><span class="line">to) a jointly trained French ‘decoder’ network, which outputs a probability</span><br><span class="line">distribution for the first word of the French translation. If a</span><br><span class="line">particular first word is chosen from this distribution and provided</span><br><span class="line">as input to the decoder network it will then output a probability distribution</span><br><span class="line">for the second word of the translation and so on until a</span><br><span class="line">full stop is chosen. Overall, this process generates sequences of</span><br><span class="line">French words according to a probability distribution that depends on</span><br><span class="line">the English sentence. This rather naive way of performing machine</span><br><span class="line">translation has quickly become competitive with the state-of-the-art,</span><br><span class="line">and this raises serious doubts about whether understanding a sentence</span><br><span class="line">requires anything like the internal symbolic expressions that are</span><br><span class="line">manipulated by using inference rules. It is more compatible with the</span><br><span class="line">view that everyday reasoning involves many simultaneous analogies that each contribute</span><br><span class="line">plausibility to a conclusion</span><br></pre></td></tr></table></figure>
+<p>由于它们在结构上的进步以及训练它们的方法，人们发现RNNs非常善于预测文本中的下一个字符或序列中的下一个单词，并且它们也可以用于更复杂的任务。例如，在一次阅读一个英语句子中的一个单词之后，可以训练一个英语“编码器”网络，使其隐藏单元的最终状态向量能够很好地表示句子所表达的思想。然后，这个思维向量可以用作联合训练的法语“解码器”网络的初始隐藏状态(或作为额外输入)，该网络输出法语翻译的第一个单词的概率分布。如果从这个分布中选择一个特定的第一个单词，并将其作为输入提供给解码器网络，那么它将输出翻译的第二个单词的概率分布，以此类推，直到选择了一个句号。总的来说，这个过程生成法语单词序列的概率分布取决于英语句子。这种相当简单的机器翻译方式很快就与最先进的机器翻译方式展开了竞争，这引发了人们对理解一个句子是否需要像使用推理规则操纵的内部符号表达式这样的东西的严重质疑。它更符合这样一种观点，即日常推理包括许多同时进行的类比，每一个类比都有助于得出一个结论的合理性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Instead of translating the meaning of a French sentence into an</span><br><span class="line">English sentence, one can learn to ‘translate’ the meaning of an image</span><br><span class="line">into an English sentence (Fig. 3). The encoder here is a deep ConvNet</span><br><span class="line">that converts the pixels into an activity vector in its last hidden</span><br><span class="line">layer. The decoder is an RNN similar to the ones used for machine</span><br><span class="line">translation and neural language modelling. There has been a surge of</span><br><span class="line">interest in such systems recently (see examples mentioned in ref. 86)</span><br></pre></td></tr></table></figure>
+<p>相比较把法语句子的意思翻译成英语句子，一个人可以学会把一个图像的意思“翻译”成英语句子。这里的编码器是一个深卷积网络，它将像素转换成最后一个隐藏层中的活动向量。解码器是一个类似于用于机器翻译和神经语言建模的RNN。最近人们对这类系统的兴趣激增。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RNNs, once unfolded in time (Fig. 5), can be seen as very deep</span><br><span class="line">feedforward networks in which all the layers share the same weights.</span><br><span class="line">Although their main purpose is to learn long-term dependencies,</span><br><span class="line">theoretical and empirical evidence shows that it is difficult to learn</span><br><span class="line">to store information for very long.</span><br></pre></td></tr></table></figure>
+<p>RNNs一旦在时间上展开(图5)，可以看作是一个非常深的前馈网络，其中所有层的权值相同。虽然它们的主要目的是学习长期依赖关系，但理论和经验证据表明，学习长时间存储信息是困难的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">To correct for that, one idea is to augment the network with an</span><br><span class="line">explicit memory. The first proposal of this kind is the long short-term</span><br><span class="line">memory (LSTM) networks that use special hidden units, the natural</span><br><span class="line">behaviour of which is to remember inputs for a long time79. A special</span><br><span class="line">unit called the memory cell acts like an accumulator or a gated leaky</span><br><span class="line">neuron: it has a connection to itself at the next time step that has a</span><br><span class="line">weight of one, so it copies its own real-valued state and accumulates</span><br><span class="line">the external signal, but this self-connection is multiplicatively gated</span><br><span class="line">by another unit that learns to decide when to clear the content of the</span><br><span class="line">memory</span><br></pre></td></tr></table></figure>
+<p>为了改正这种情况，一种方法是用显式内存来扩充网络。第一个提议是长短期记忆网络(LSTM)，它使用特殊的隐藏单元，其自然行为是长时间记住输入。一个称为存储器单元的特殊单元就像一个累加器或门控泄漏神经元：它在下一个重量为1的步骤与自身连接，因此它复制自己的实值状态并累积外部信号， 但是这种自我连接是由另一个学会决定何时清除记忆内容的单位的乘法门控。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LSTM networks have subsequently proved to be more effective</span><br><span class="line">than conventional RNNs, especially when they have several layers for</span><br><span class="line">each time step, enabling an entire speech recognition system that</span><br><span class="line">goes all the way from acoustics to the sequence of characters in the</span><br><span class="line">transcription. LSTM networks or related forms of gated units are also</span><br><span class="line">currently used for the encoder and decoder networks that perform</span><br><span class="line">so well at machine translation.</span><br></pre></td></tr></table></figure>
+<p>LSTM网络后来被证明比传统的RNNs更有效，特别是当它们在每个时间步长都有多个层时，使得整个语音识别系统能够从声学一直到转录中的字符序列。LSTM网络或相关形式的门控单元目前也用于在机器翻译方面表现良好的编码器和解码器网络。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Over the past year, several authors have made different proposals to</span><br><span class="line">augment RNNs with a memory module. Proposals include the Neural</span><br><span class="line">Turing Machine in which the network is augmented by a ‘tape-like’</span><br><span class="line">memory that the RNN can choose to read from or write to, and</span><br><span class="line">memory networks, in which a regular network is augmented by a kind of associative memory. </span><br><span class="line">Memory networks have yielded excellent performance on standard question-answering</span><br><span class="line">benchmarks. The memory is used to remember the story about </span><br><span class="line">which the network is later asked to answer questions.</span><br></pre></td></tr></table></figure>
+<p>在过去的一年中，一些作者提出了不同的建议，以增加内存模块的RNN。 建议包括神经图灵机，其中网络由RNN可以选择读取或写入的“类似磁带”的存储器和存储器网络增强，其中常规网络由一种关联存储器增强。内存网络在标准的问答基准测试中取得了优异的性能。记忆用于记住以后要求网络回答的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Beyond simple memorization, neural Turing machines and memory</span><br><span class="line">networks are being used for tasks that would normally require</span><br><span class="line">reasoning and symbol manipulation. Neural Turing machines can</span><br><span class="line">be taught ‘algorithms’. Among other things, they can learn to output</span><br><span class="line">a sorted list of symbols when their input consists of an unsorted</span><br><span class="line">sequence in which each symbol is accompanied by a real value that</span><br><span class="line">indicates its priority in the list. Memory networks can be trained</span><br><span class="line">to keep track of the state of the world in a setting similar to a text</span><br><span class="line">adventure game and after reading a story, they can answer questions</span><br><span class="line">that require complex inference. In one test example, the network is</span><br><span class="line">shown a 15-sentence version of the The Lord of the Rings and correctly</span><br><span class="line">answers questions such as “where is Frodo now?”</span><br></pre></td></tr></table></figure>
+<p>除了简单的记忆，神经图灵机和记忆网络被用于通常需要推理和符号操作的任务。神经图灵机器可以学习“算法”。此外，当输入由一个未排序的序列组成时，它们可以学习输出一个排序的符号列表，其中每个符号都伴有一个表示其在列表中的优先级的实值。记忆网络可以被训练在类似文本冒险游戏的环境中跟踪世界的状态，在阅读一个故事后，它们可以回答需要复杂推理的问题。在一个测试示例中，网络显示了一个15句话的《指环王》版本，并正确地回答了诸如“佛罗多现在在哪里?”</p>
+<h2><span id="the-future-of-deep-learning">The future of deep learning</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Unsupervised learning had a catalytic effect in reviving interest in</span><br><span class="line">deep learning, but has since been overshadowed by the successes of</span><br><span class="line">purely supervised learning. Although we have not focused on it in this</span><br><span class="line">Review, we expect unsupervised learning to become far more important</span><br><span class="line">in the longer term. Human and animal learning is largely unsupervised:</span><br><span class="line">we discover the structure of the world by observing it, not by being told</span><br><span class="line">the name of every object</span><br></pre></td></tr></table></figure>
+<p>无监督学习在激发人们对深度学习的兴趣方面起到了催化作用，但自那以后，它就被纯监督学习的成功所掩盖。虽然我们没有在这篇综述中关注它，但我们预计从长远来看，无监督学习将变得更加重要。人类和动物的学习在很大程度上是不受监督的:我们通过观察世界来发现世界的结构，而不是通过被告知每个物体的名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Human vision is an active process that sequentially samples the optic</span><br><span class="line">array in an intelligent, task-specific way using a small, high-resolution</span><br><span class="line">fovea with a large, low-resolution surround. We expect much of the</span><br><span class="line">future progress in vision to come from systems that are trained end-toend</span><br><span class="line">and combine ConvNets with RNNs that use reinforcement learning</span><br><span class="line">to decide where to look. Systems combining deep learning and reinforcement</span><br><span class="line">learning are in their infancy, but they already outperform</span><br><span class="line">passive vision systems at classification tasks and produce impressive</span><br><span class="line">results in learning to play many different video games.</span><br></pre></td></tr></table></figure>
+<p>人类视觉是一个主动的过程，它使用一个小的高分辨率中央凹和一个大的低分辨率环绕物，以一种智能的、特定于任务的方式对光学阵列进行连续采样。我们预计未来的视觉方面进展将来自受过端到端训练的系统，并将ConvNets与使用强化学习的RNN结合起来决定在哪里寻找。深度学习和强化学习相结合的系统还处于起步阶段，但它们在分类任务上已经超过了被动视觉系统，并在学习玩许多不同的视频游戏方面产生了令人印象深刻的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Natural language understanding is another area in which deep learning</span><br><span class="line">is poised to make a large impact over the next few years. We expect</span><br><span class="line">systems that use RNNs to understand sentences or whole documents</span><br><span class="line">will become much better when they learn strategies for selectively</span><br><span class="line">attending to one part at a time.</span><br></pre></td></tr></table></figure>
+<p>自然语言理解是深度学习在未来几年内产生巨大影响的另一个领域。 我们期望使用RNN来理解句子或整个文档的系统在学习有选择地一次参与一个部分的策略时会变得更好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Ultimately, major progress in artificial intelligence will come about</span><br><span class="line">through systems that combine representation learning with complex</span><br><span class="line">reasoning. Although deep learning and simple reasoning have been</span><br><span class="line">used for speech and handwriting recognition for a long time, new</span><br><span class="line">paradigms are needed to replace rule-based manipulation of symbolic</span><br><span class="line">expressions by operations on large vectors.</span><br></pre></td></tr></table></figure>
+<p>最终，人工智能的重大进展将通过将表示学习与复杂推理相结合的系统实现。尽管深度学习和简单推理已经被用于语音和手写识别很长一段时间，但是需要新的范例来通过对大向量的操作来替换基于规则的符号表达式操作。</p>
+<h1><span id="summary">Summary</span></h1><p>本文主要讲了深度学习发展过程，深度学习应用的场景。<br>在监督学习中，相对于传统的人工设置特征值，深度学习用通用的学习过程自动学习好的特征。并且使用随机梯度下降法(SGD)可以快速找到一组权重。<br>在大型网络中，较差的极小值很少是一个问题。</p>
+<h2><span id="cnn">CNN</span></h2><p>卷积神经网络(CNN)主要应用在图像中对目标和区域的检测、分割和识别。它是一种深度前馈网络，主要用于于处理多维形式的数据。一维表示信号和序列;二维图像或声频图;和3D的视频或体积图像。使用CNN有四个关键思想：local connections, shared weights, pooling and the use of many layers。卷积层的作用是检测前一层特征的局部连接，池化层的作用是将语义上相似的特征合并为一个。</p>
+<h2><span id="rnn">RNN</span></h2><p>循环神经网络(RNNs)是一种非常深的前馈网络，非常善于预测文本中的下一个字符或序列中的下一个单词，并且它们也可以用于更复杂的任务。但是RNN不擅长学习长时间存储信息，可以使用长短期记忆网络(LSTM)来代替。</p>
+<h2><span id="未来展望">未来展望</span></h2><p>深度学习中无监督学习将变得更重要，预计未来的视觉方面进展将来自受过端到端训练的系统，深度学习和强化学习相结合的系统还处于起步阶段，但它们在分类任务上已经超过了被动视觉系统。RNN将在自然语言理解领域内发挥更大的作用。最终，人工智能的重大进展将通过将表示学习与复杂推理相结合的系统实现。</p>
+<h1><span id="question">Question</span></h1><ol>
+<li>为什么在大型网络中，较差的局部极小值很少是一个问题？</li>
+<li>无监督的预训练为什么有效(提高泛化效果、防止过拟合)？</li>
+<li>CNN中卷积层、池化层和全连接层是什么，有什么作用？</li>
+<li>池化层为什么可以减少数据维度，并保持数据不变性？</li>
+<li>正则化(droput)有什么作用？</li>
+<li>什么是分布式表示(Distributed representations)?</li>
+<li>梯度消失和梯度爆炸如何解决？</li>
+<li>长短期记忆网络(LSTM)是什么，为什么比RNN更有效？</li>
+<li>强化学习是什么，怎样和深度学习相结合？</li>
+</ol>
+<p>目前知识储备较少，因此先不着急解决上述问题，计划将在接下来的阅读文献和书籍的过程中慢慢搞懂它们。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/29/paper-BuildingextractionviaCNN-jsp/" data-toggle="tooltip" data-placement="top" title="遥感影像建筑物提取的卷积神经元网络与开源数据集方法">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/05/24/plan/" data-toggle="tooltip" data-placement="top" title="Plan">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!--PC版
+                <!--  畅言
+    				<div id="SOHUCS" ></div>
+    				<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    				<script type="text/javascript">
+    				window.changyan.api.config({
+    				appid: 'cytA3uKz2',
+    				conf: 'prod_ec34338db0725ff75fc0186d53e47702'
+    				});
+				</script>
+                -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Deep Learning</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Abstract</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Review</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">Supervised learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">Backpropagation to train multilayer architectures</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">Convolutional neural networks</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">Image understanding with deep convolutional networks</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">Distributed representations and language processing</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">Recurrent neural networks</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">The future of deep learning</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Summary</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">CNN</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">RNN</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">未来展望</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Question</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+                        
+                          <a class="tag" href="/tags/#Paper" title="Paper">Paper</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://godweiyang.com/" target="_blank">Wei yang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://kwongyang.com/2019/05/26/paper-deeplearning/";
+    var disqus_url = "http://kwongyang.com/2019/05/26/paper-deeplearning/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<script type="text/javascript" src="source/js/zooming.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://user.qzone.qq.com/760030764">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5044608147">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kwongy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kwong 2019 
+                    <br>
+                     To my beloved lover
+                </p>
+                <p class="copyright text-muted">
+                    <!-- hitwebcounter Code START -->
+                    <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
+					visitors since 2018/04/20,
+					<span class="post-count">172.6k words altogether</span>
+				</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kwongyang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>
