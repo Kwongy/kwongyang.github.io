@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,9 +219,15 @@
                 post-container">
 
                 <p>本篇论文是由法国航空航天实验室和南布列塔尼大学的Nicolas Audebert, Bertrand Le Saux, Sébastien Lefèvre所作的<a href="https://arxiv.org/abs/1711.08681" target="_blank" rel="noopener">Beyond RGB - Very High Resolution Urban Remote Sensing With Multimodal Deep Networks</a>,发表在2017年的ISPRS Journal of Photogrammetry and Remote Sensing上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>这篇文章主要研究了语义分割模型应用于遥感影像的可行性和有效性.主要贡献是1.提出了一种有效的多尺度方法来利用上下文和高分辨率数据改进SegNet模型用于遥感图像. 2.  提出了利用激光雷达数据与多光谱数据的后期融合来增强模型性能. </p>
-<p>作者提出了两种融合方法<br>第一种是前期融合, 即在encoder部分将原RGB数据和激光雷达数据做融合.<br><img src="1.png" alt=""><br>作者使用了两种backbone网络,一种是SegNet,一种是ResNet,同时应用Fuse结构在增强特征融合的效果.</p>
-<p>第二种是后期融合, 即在decoder部分将原RGB数据和激光雷达数据做融合.<br><img src="2.png" alt=""><br>作者同样使用了两种backbone网络做对比.同时,也是应用Fuse结构来做特征融合.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>这篇文章主要研究了语义分割模型应用于遥感影像的可行性和有效性.主要贡献是1.提出了一种有效的多尺度方法来利用上下文和高分辨率数据改进SegNet模型用于遥感图像. 2.  提出了利用激光雷达数据与多光谱数据的后期融合来增强模型性能.</p>
+<p>作者提出了两种融合方法<br>
+第一种是前期融合, 即在encoder部分将原RGB数据和激光雷达数据做融合.<br>
+<img src="1.png" alt=""><br>
+作者使用了两种backbone网络,一种是SegNet,一种是ResNet,同时应用Fuse结构在增强特征融合的效果.</p>
+<p>第二种是后期融合, 即在decoder部分将原RGB数据和激光雷达数据做融合.<br>
+<img src="2.png" alt=""><br>
+作者同样使用了两种backbone网络做对比.同时,也是应用Fuse结构来做特征融合.</p>
 <p>通过对比作者发现</p>
 <ol>
 <li>早期融合通过允许网络共同学习更强的多模态特征，显著地改善了语义分割，但同时也提高了对缺失或噪声数据的敏感性.</li>
@@ -441,7 +447,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

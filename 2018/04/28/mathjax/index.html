@@ -90,11 +90,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#Note" title="Note">Note</a>
-                            
                               <a class="tag" href="/tags/#Mathjax" title="Mathjax">Mathjax</a>
                             
                               <a class="tag" href="/tags/#LaTex" title="LaTex">LaTex</a>
+                            
+                              <a class="tag" href="/tags/#Note" title="Note">Note</a>
                             
                         </div>
                         <h1>Mathjax的使用方法</h1>
@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -221,24 +221,28 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=29709783&auto=1&height=66"></iframe>
 </div>
-
 <blockquote>
 <p>这首歌原唱Ed Sheeran的比较好听，但是网易云没有版权，建议用软件听。</p>
 </blockquote>
-<p>由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式<br>本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式</p>
+<p>由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式<br>
+本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式</p>
 <hr>
-<h1><span id="latex语法">LaTeX语法</span></h1><hr>
-<h2><span id="公式类型">公式类型</span></h2><hr>
+<h1><span id="latex语法">LaTeX语法</span></h1>
+<hr>
+<h2><span id="公式类型">公式类型</span></h2>
+<hr>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">行内公式： $f(x)=x+3$</span><br><span class="line"></span><br><span class="line">行间公式： $$f(x)=x+3$$</span><br></pre></td></tr></table></figure>
 <p>$f(x)=x+3$是行内公式，而下面的是行间公式</p>
-<script type="math/tex; mode=display">f(x)=x+3</script><hr>
-<h2><span id="上下标">上下标</span></h2><hr>
+<p>$$f(x)=x+3$$</p>
+<hr>
+<h2><span id="上下标">上下标</span></h2>
+<hr>
 <p>上标用^，下标用_</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$log_2 x^5$</span><br></pre></td></tr></table></figure>
 <p>显示为： $log_2 x^5$</p>
 <hr>
-<h2><span id="希腊字母">希腊字母</span></h2><hr>
-<div class="table-container">
+<h2><span id="希腊字母">希腊字母</span></h2>
+<hr>
 <table>
 <thead>
 <tr>
@@ -315,19 +319,29 @@
 </tr>
 </tbody>
 </table>
-</div>
 <hr>
-<h2><span id="括号">括号</span></h2><hr>
-<p>小括号和中括号可以直接使用 ()  []<br>大括号需要用反斜杠转义 <code>\{  \}</code><br>在Mathjax中大括号是用来分组的直接使用大括号表示分组<code>x^{10}</code>表示$x^{10}$<br>括号的伸缩使用<code>\left和\right</code>，<code>\left(\frac{\sqrt x}{y^3}\right)</code>表示$\left(\frac{\sqrt x}{y^3}\right)$<br>绝对值符号<code>\vert x \vert</code>，表示为$\vert x \vert$<br>范数符号<code>\Vert x \Vert</code>，表示为$\Vert x \Vert$<br>尖括号<code>\langle x \rangle</code>，表示为$\langle x \rangle$<br>向上取整符号<code>\lceil x \rceil</code>,表示为$\lceil x \rceil$<br>向下取整符号<code>\lfloor x \rfloor</code>，表示为$\lfloor \rfloor$</p>
+<h2><span id="括号">括号</span></h2>
 <hr>
-<h2><span id="求和-极限与积分">求和、极限与积分</span></h2><hr>
+<p>小括号和中括号可以直接使用 ()  []<br>
+大括号需要用反斜杠转义 <code>\{ \}</code><br>
+在Mathjax中大括号是用来分组的直接使用大括号表示分组<code>x^{10}</code>表示$x^{10}$<br>
+括号的伸缩使用<code>\left和\right</code>，<code>\left(\frac{\sqrt x}{y^3}\right)</code>表示$\left(\frac{\sqrt x}{y^3}\right)$<br>
+绝对值符号<code>\vert x \vert</code>，表示为$\vert x \vert$<br>
+范数符号<code>\Vert x \Vert</code>，表示为$\Vert x \Vert$<br>
+尖括号<code>\langle x \rangle</code>，表示为$\langle x \rangle$<br>
+向上取整符号<code>\lceil x \rceil</code>,表示为$\lceil x \rceil$<br>
+向下取整符号<code>\lfloor x \rfloor</code>，表示为$\lfloor \rfloor$</p>
+<hr>
+<h2><span id="求和-极限与积分">求和、极限与积分</span></h2>
+<hr>
 <ul>
 <li>求和<code>\sum_{i=1}^n{a_i}</code>，表示为$\sum_{i=1}^n{a_i}$</li>
 <li>极限<code>\lim_{x\to 0}</code>，表示为$\lim_{x\to 0}$</li>
 <li>积分<code>\int_0^\infty{fxdx}</code>，表示为$\int_0^\infty{fxdx}$</li>
 </ul>
 <hr>
-<h2><span id="向量-重音符和变音符">向量、重音符和变音符</span></h2><hr>
+<h2><span id="向量-重音符和变音符">向量、重音符和变音符</span></h2>
+<hr>
 <ul>
 <li>向量<code>\vec x</code>，表示$\vec x$。<code>\overrightarrow {xy}</code>，表示$\overrightarrow {xy}$</li>
 <li>横线<code>\bar x</code>，表示$\bar x$。<code>\overline {xyz}</code>，表示$\overline {xyz}$</li>
@@ -335,17 +349,21 @@
 <li>变音符<code>\widehat {xy}</code>，表示$\widehat {xy}$</li>
 </ul>
 <hr>
-<h2><span id="分式与根式">分式与根式</span></h2><hr>
+<h2><span id="分式与根式">分式与根式</span></h2>
+<hr>
 <ul>
 <li>分式<code>\frac{xy}{z}</code>，表示为$\frac{xy}{z}$</li>
 <li>根式<code>\sqrt[x]{y}</code>，表示$\sqrt[x]{y}$</li>
 </ul>
 <hr>
-<h2><span id="空格">空格</span></h2><hr>
-<p>Mathjax在渲染时会忽略空格。<br>小空格<code>a\ b</code>，表示为$a\ b$<br>4个空格(Tab键)<code>a\quad b</code>，表示为$a\quad b$</p>
+<h2><span id="空格">空格</span></h2>
 <hr>
-<h2><span id="特殊符号">特殊符号</span></h2><hr>
-<div class="table-container">
+<p>Mathjax在渲染时会忽略空格。<br>
+小空格<code>a\ b</code>，表示为$a\ b$<br>
+4个空格(Tab键)<code>a\quad b</code>，表示为$a\quad b$</p>
+<hr>
+<h2><span id="特殊符号">特殊符号</span></h2>
+<hr>
 <table>
 <thead>
 <tr>
@@ -392,9 +410,9 @@
 </tr>
 </tbody>
 </table>
-</div>
 <hr>
-<h2><span id="特殊函数">特殊函数</span></h2><hr>
+<h2><span id="特殊函数">特殊函数</span></h2>
+<hr>
 <p>直接使用<code>\函数名即可</code>例如</p>
 <ul>
 <li><code>\ln</code>，表示为$\ln$</li>
@@ -402,15 +420,17 @@
 <li><code>\sin</code>，表示为$\sin$</li>
 </ul>
 <hr>
-<h2><span id="矩阵">矩阵</span></h2><hr>
+<h2><span id="矩阵">矩阵</span></h2>
+<hr>
 <p>起始标记<code>\begin{matrix}</code>，结束标记<code>\end{matrix}</code>，每一行末尾<code>\\</code>，行间元素用<code>&amp;</code>分隔。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;matrix&#125;</span><br><span class="line">1&amp;0&amp;0\\</span><br><span class="line">0&amp;1&amp;0\\</span><br><span class="line">0&amp;0&amp;1\\</span><br><span class="line">\end&#123;matrix&#125;$$</span><br></pre></td></tr></table></figure>
-<p>表示为</p>
-<script type="math/tex; mode=display">\begin{matrix}
-1&0&0\\
-0&1&0\\
-0&0&1\\
-\end{matrix}</script><p>可以将<code>{matrix}</code>内元素替换为下列之一</p>
+<p>表示为<br>
+$$\begin{matrix}<br>
+1&amp;0&amp;0\<br>
+0&amp;1&amp;0\<br>
+0&amp;0&amp;1\<br>
+\end{matrix}$$</p>
+<p>可以将<code>{matrix}</code>内元素替换为下列之一</p>
 <ul>
 <li>pmatrix：小括号边框</li>
 <li>bmatrix：中括号边框</li>
@@ -425,23 +445,29 @@
 <li>斜省略号：<code>\ddots</code></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;bmatrix&#125;</span><br><span class="line">&#123;a_&#123;11&#125;&#125;&amp;&#123;a_&#123;12&#125;&#125;&amp;&#123;\cdots&#125;&amp;&#123;a_&#123;1n&#125;&#125;\\</span><br><span class="line">&#123;a_&#123;21&#125;&#125;&amp;&#123;a_&#123;22&#125;&#125;&amp;&#123;\cdots&#125;&amp;&#123;a_&#123;2n&#125;&#125;\\</span><br><span class="line">&#123;\vdots&#125;&amp;&#123;\vdots&#125;&amp;&#123;\ddots&#125;&amp;&#123;\vdots&#125;\\</span><br><span class="line">&#123;a_&#123;m1&#125;&#125;&amp;&#123;a_&#123;m2&#125;&#125;&amp;&#123;\cdots&#125;&amp;&#123;a_&#123;mn&#125;&#125;\\</span><br><span class="line">\end&#123;bmatrix&#125;$$</span><br></pre></td></tr></table></figure>
-<p>表示为</p>
-<script type="math/tex; mode=display">\begin{bmatrix}
-{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}}\\
-{a_{21}}&{a_{22}}&{\cdots}&{a_{2n}}\\
-{\vdots}&{\vdots}&{\ddots}&{\vdots}\\
-{a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}}\\
-\end{bmatrix}</script><hr>
-<h2><span id="方程组">方程组</span></h2><hr>
+<p>表示为<br>
+$$\begin{bmatrix}<br>
+{a_{11}}&amp;{a_{12}}&amp;{\cdots}&amp;{a_{1n}}\<br>
+{a_{21}}&amp;{a_{22}}&amp;{\cdots}&amp;{a_{2n}}\<br>
+{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\<br>
+{a_{m1}}&amp;{a_{m2}}&amp;{\cdots}&amp;{a_{mn}}\<br>
+\end{bmatrix}$$</p>
+<hr>
+<h2><span id="方程组">方程组</span></h2>
+<hr>
 <p>类似矩阵，用cases表示</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;cases&#125;</span><br><span class="line">a_1x+b_1y+c_1z=d_1\\</span><br><span class="line">a_2x+b_2y+c_2z=d_2\\</span><br><span class="line">a_3x+b_3y+c_3z=d_3\\</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>表示为</p>
-<script type="math/tex; mode=display">\begin{cases}
-a_1x+b_1y+c_1z=d_1\\
-a_2x+b_2y+c_2z=d_2\\
-a_3x+b_3y+c_3z=d_3\\
-\end{cases}</script><hr>
-<p>参考文献:<br><a href="https://blog.csdn.net/ethmery/article/details/50670297" target="_blank" rel="noopener">基本数学公式语法(of MathJax)</a><br><a href="https://blog.csdn.net/mage_ee/article/details/75309174" target="_blank" rel="noopener">MathJax 基础 (1)：基础语法</a></p>
+<p>表示为<br>
+$$\begin{cases}<br>
+a_1x+b_1y+c_1z=d_1\<br>
+a_2x+b_2y+c_2z=d_2\<br>
+a_3x+b_3y+c_3z=d_3\<br>
+\end{cases}<br>
+$$</p>
+<hr>
+<p>参考文献:<br>
+<a href="https://blog.csdn.net/ethmery/article/details/50670297" target="_blank" rel="noopener">基本数学公式语法(of MathJax)</a><br>
+<a href="https://blog.csdn.net/mage_ee/article/details/75309174" target="_blank" rel="noopener">MathJax 基础 (1)：基础语法</a></p>
 
                 
 
@@ -515,11 +541,11 @@ a_3x+b_3y+c_3z=d_3\\
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Note" title="Note">Note</a>
-                        
                           <a class="tag" href="/tags/#Mathjax" title="Mathjax">Mathjax</a>
                         
                           <a class="tag" href="/tags/#LaTex" title="LaTex">LaTex</a>
+                        
+                          <a class="tag" href="/tags/#Note" title="Note">Note</a>
                         
                     </div>
                 </section>
@@ -656,7 +682,7 @@ a_3x+b_3y+c_3z=d_3\\
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

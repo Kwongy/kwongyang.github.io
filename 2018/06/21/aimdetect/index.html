@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -216,53 +216,74 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="object-localization">Object localization</span></h2><hr>
+                <h2><span id="object-localization">Object localization</span></h2>
+<hr>
 <p>Classification with localization which means not only do you have to label this,but the algorithm also is responsible for putting a bounding box or drawing a red rectangle around the position of the car in the image.</p>
 <p>The term localization refers to figuring out where in the picture is the car you’ve detected.</p>
 <p>In order to output the border,you should output for parameters $b_x,b_y,b_h,b_w$</p>
 <p><img src="1.png" alt=""></p>
 <hr>
-<h2><span id="landmark-detection">Landmark detection</span></h2><hr>
+<h2><span id="landmark-detection">Landmark detection</span></h2>
+<hr>
 <p>You can define a few key positions and just have a neural network you know annotate key positions and by having a neural network output all of those points down annotating.</p>
 <p><img src="2.png" alt=""></p>
 <hr>
-<h2><span id="object-detect">object detect</span></h2><hr>
-<p><img src="3.png" alt=""><br>For out purposes in this training set,you can start off with I’m going to call closely cropped images meaning that x is you know pretty much only the car.So you can take a picture and crop out and just cut out anything else there’s not part of a car,so you end up with the car centered and in pretty much the entire image.<br>Given this labeled trainging set,you can train a ConvNet,once you’ve trained up this ConvNet,you can use it in sliding windows detection.</p>
-<p><img src="4.png" alt=""><br>So the way you do that is if you have a test image like this what you do is you start by picking a certain window  and then you would input into this ConvNet a small rectangular region,so take just this little red square input that into the ConvNet,and have a ConvNet make a prediction.In the sliding windows detection algorithm what you do is you then process input a second image.it’s feeding just the region of the image in the red square to the ConvNet then you do that and so on until you’ve slid the window across every position in the image.</p>
+<h2><span id="object-detect">object detect</span></h2>
 <hr>
-<h2><span id="convolutional-implementation-of-sliding-windows">Convolutional implementation of sliding windows</span></h2><hr>
+<p><img src="3.png" alt=""><br>
+For out purposes in this training set,you can start off with I’m going to call closely cropped images meaning that x is you know pretty much only the <a href="http://car.So" target="_blank" rel="noopener">car.So</a> you can take a picture and crop out and just cut out anything else there’s not part of a car,so you end up with the car centered and in pretty much the entire image.<br>
+Given this labeled trainging set,you can train a ConvNet,once you’ve trained up this ConvNet,you can use it in sliding windows detection.</p>
+<p><img src="4.png" alt=""><br>
+So the way you do that is if you have a test image like this what you do is you start by picking a certain window  and then you would input into this ConvNet a small rectangular region,so take just this little red square input that into the ConvNet,and have a ConvNet make a <a href="http://prediction.In" target="_blank" rel="noopener">prediction.In</a> the sliding windows detection algorithm what you do is you then process input a second <a href="http://image.it" target="_blank" rel="noopener">image.it</a>’s feeding just the region of the image in the red square to the ConvNet then you do that and so on until you’ve slid the window across every position in the image.</p>
+<hr>
+<h2><span id="convolutional-implementation-of-sliding-windows">Convolutional implementation of sliding windows</span></h2>
+<hr>
 <p>Turning FC layer into convolutional layers</p>
 <p><img src="5.png" alt=""></p>
 <p>Convolution implementation of sliding windows</p>
 <p><img src="6.png" alt=""></p>
 <p><img src="7.png" alt=""></p>
 <hr>
-<h2><span id="bounding-box-predictions">Bounding box predictions</span></h2><hr>
+<h2><span id="bounding-box-predictions">Bounding box predictions</span></h2>
+<hr>
 <p>A good way to get this output more accurate bounding boxes is with the YOLO algorithm.YOLO stands for you only look once.</p>
 <p>The basic idea is you’re going to take the image classification and localization algorithm and apply it to grids</p>
 <p><img src="8.png" alt=""></p>
 <hr>
-<h2><span id="intersection-over-union">Intersection over union</span></h2><hr>
+<h2><span id="intersection-over-union">Intersection over union</span></h2>
+<hr>
 <p>What the intersectin over union function does or loU does is it computes the intersection over union of these two bounding boxes.</p>
 <p><img src="9.png" alt=""></p>
 <p>what the intersection over union does is it computes the size of the intersecion and divided by the size of the union which is green.</p>
 <hr>
-<h2><span id="non-max-suppression">Non-max suppression</span></h2><hr>
+<h2><span id="non-max-suppression">Non-max suppression</span></h2>
+<hr>
 <p>Non-max suppression is a way for you to make sure that your algorithm detect each object only once.</p>
-<p>The car has just one midpoint.so technically only one of those grid cells should predict that there is a car<br><img src="10.png" alt=""><br>So what non-max suppression does is it cleans up these detection so that you end up with just one detection per car rather than multiple detections per car.<br>So concretely what it does is it first looks at the probabilites associated with each of these detections count on the $P_c$ and it first takes the largest one.and says that’s my most confident detection.the non-max suppression part then looks at all of the remaining rectangles and all the ones with a high overlap with a high loU with this one that you’ve just output will get suppressed<br><img src="11.png" alt=""><br>Non-max means that you’re going to output your maximal probabilities classifications but suppress it close by ones that are non-maximal</p>
+<p>The car has just one <a href="http://midpoint.so" target="_blank" rel="noopener">midpoint.so</a> technically only one of those grid cells should predict that there is a car<br>
+<img src="10.png" alt=""><br>
+So what non-max suppression does is it cleans up these detection so that you end up with just one detection per car rather than multiple detections per car.<br>
+So concretely what it does is it first looks at the probabilites associated with each of these detections count on the $P_c$ and it first takes the largest one.and says that’s my most confident detection.the non-max suppression part then looks at all of the remaining rectangles and all the ones with a high overlap with a high loU with this one that you’ve just output will get suppressed<br>
+<img src="11.png" alt=""><br>
+Non-max means that you’re going to output your maximal probabilities classifications but suppress it close by ones that are non-maximal</p>
 <p>Algorithm:</p>
 <p><img src="12.png" alt=""></p>
 <hr>
-<h2><span id="anchor-boxes">Anchor boxes</span></h2><hr>
-<p><img src="13.png" alt=""><br>With the idea of anchor boxes what you’re going to do is predefined two different shapes call anchor boxes or anchor boxes shapes and what you’re going to do is now be able to associate two predictions with the two anchor boxes.So what you do is you define the cost label to be instead of this vector on the left you basically repeat this twice<br><img src="14.png" alt=""></p>
+<h2><span id="anchor-boxes">Anchor boxes</span></h2>
+<hr>
+<p><img src="13.png" alt=""><br>
+With the idea of anchor boxes what you’re going to do is predefined two different shapes call anchor boxes or anchor boxes shapes and what you’re going to do is now be able to associate two predictions with the two anchor <a href="http://boxes.So" target="_blank" rel="noopener">boxes.So</a> what you do is you define the cost label to be instead of this vector on the left you basically repeat this twice<br>
+<img src="14.png" alt=""></p>
 <p>Anchor boxes as a way to deal with what happens if two objects appear in the same grid cell in practice that happens quite rarely.</p>
 <hr>
-<h2><span id="yolo-algorithm">YOLO algorithm</span></h2><hr>
+<h2><span id="yolo-algorithm">YOLO algorithm</span></h2>
+<hr>
 <p><img src="15.png" alt=""></p>
 <p><img src="20.png" alt=""></p>
 <hr>
-<h2><span id="region-proposals">Region proposals</span></h2><hr>
-<p><img src="16.png" alt=""><br>You instead select just a few windows and run your convNet classifier on just a few windos.The way that they perform the region proposals is to run an algorithm called a segmentation algorithm.In order to figure out what could be objects.</p>
+<h2><span id="region-proposals">Region proposals</span></h2>
+<hr>
+<p><img src="16.png" alt=""><br>
+You instead select just a few windows and run your convNet classifier on just a few windos.The way that they perform the region proposals is to run an algorithm called a segmentation <a href="http://algorithm.In" target="_blank" rel="noopener">algorithm.In</a> order to figure out what could be objects.</p>
 <p><img src="17.png" alt=""></p>
 
                 
@@ -476,7 +497,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

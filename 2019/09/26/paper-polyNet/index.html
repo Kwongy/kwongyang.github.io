@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,13 +217,19 @@
                 post-container">
 
                 <p>本篇论文是由香港中文大学的Xingcheng Zhang, Zhizhong Li, Chen Change Loy Dahua Lin所作的<a href="https://arxiv.org/pdf/1611.05725.pdf" target="_blank" rel="noopener">PolyNet - A Pursuit of Structural Diversity in Very Deep Networks</a>, 发表于2016年.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>深度神经网络通常的提升是由宽度或者深度的增加来提升模型效果, 随着网络深度的增加, 模型的参数和消耗的资源不断扩大, 但是模型的效果逐渐趋于瓶颈, 于是作者希望从其他方面改进模型. 从Inception的模块化中得到灵感, 作者希望能通过增加结构多样性来提升网络性能.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>深度神经网络通常的提升是由宽度或者深度的增加来提升模型效果, 随着网络深度的增加, 模型的参数和消耗的资源不断扩大, 但是模型的效果逐渐趋于瓶颈, 于是作者希望从其他方面改进模型. 从Inception的模块化中得到灵感, 作者希望能通过增加结构多样性来提升网络性能.</p>
 <p>本篇论文主要贡献在于1. 对结构多样性进行系统性研究, 提供一种除了拓展深度和宽度之外的方法. 2. 使用Poly module继续增加网络深度. 3. PolyNet在ILSVRC上取得了最佳单网络性能.</p>
 <p>PolyInception模块，它通过多项式组合的方式扩展了Inception残差单元。这种新的设计不仅促进了结构多样性，同时提升了残差成分的表现能力.</p>
-<p><img src="1.jpg" alt=""><br>将普通的差分模块抽象化, 抽象成最右边的Abstract .</p>
-<p>PolyNet 的核心概念就是将Inception模块按照多项式的形式进行组合, 同时对低阶的多项式共享系数, 来减少参数.<br><img src="2.jpg" alt=""><br>一阶残差单元表示为:</p>
-<script type="math/tex; mode=display">(I+F)\cdot x=x+F\cdot x :=x + F(x)</script><p>二阶残差单元表示为:</p>
-<script type="math/tex; mode=display">(I+F+F^2)\cdot x=x+F\cdot x +F^2\cdot x:=x + F(x) + F(F(x))</script><p>整个PolyNet就是根据Inception-ResNet-V2进行修改, 将其中的Inception模块更改为PolyInception模块.</p>
+<p><img src="1.jpg" alt=""><br>
+将普通的差分模块抽象化, 抽象成最右边的Abstract .</p>
+<p>PolyNet 的核心概念就是将Inception模块按照多项式的形式进行组合, 同时对低阶的多项式共享系数, 来减少参数.<br>
+<img src="2.jpg" alt=""><br>
+一阶残差单元表示为:<br>
+$$(I+F)\cdot x=x+F\cdot x :=x + F(x)$$<br>
+二阶残差单元表示为:<br>
+$$(I+F+F^2)\cdot x=x+F\cdot x +F^2\cdot x:=x + F(x) + F(F(x))$$</p>
+<p>整个PolyNet就是根据Inception-ResNet-V2进行修改, 将其中的Inception模块更改为PolyInception模块.</p>
 <p><img src="3.png" alt=""></p>
 <p>深度的PolyNet取得了the state-of-the-art的水平</p>
 
@@ -438,7 +444,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

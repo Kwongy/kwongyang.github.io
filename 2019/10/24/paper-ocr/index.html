@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由中科院的Yuhui Yuan, Xilin Chen, Jingdong Wang 所作的<a href="https://arxiv.org/pdf/1909.11065v1.pdf" target="_blank" rel="noopener">Object-Contextual Representations for Semantic Segmentation</a>, 在2019年9月24日挂在arxiv上. 目前是 Cityscapes, ADE20K, LIP, PASCAL VOC 2012, PASCAL-Context and COCO-Stuff六个语义分割数据集中state-of-the-art.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文的基础是同样是他们写的<a href="https://arxiv.org/pdf/1809.00916.pdf" target="_blank" rel="noopener">OCNet: Object Context Network for Scene Parsing</a>, OCNet在2018年9月4日挂在arXiv上, DANet在2018年9月9日挂在arXiv上,  他们两个都使用了双注意力机制. 即Spatial Attention和Channel Attention.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文的基础是同样是他们写的<a href="https://arxiv.org/pdf/1809.00916.pdf" target="_blank" rel="noopener">OCNet: Object Context Network for Scene Parsing</a>, OCNet在2018年9月4日挂在arXiv上, DANet在2018年9月9日挂在arXiv上,  他们两个都使用了双注意力机制. 即Spatial Attention和Channel Attention.</p>
 <p>本文不同于DANet的地方在于, DANet的双注意力机制是并行的, 然后再作融合. 而本文提出的OCR的双注意力机制是串行的. 然后再作并行融合.  作者的灵感来源于通过对象区域的表达来实现对象上下文的表达.使用注意力机制的好处是可以更加着重的把主要信息提取出来.同时, 注意力也可以对神经网络进行一定意义上的解释. 作者就通过注意力来解释对象上下文的表达.</p>
 <p><img src="1.png" alt=""></p>
 <p>紫色区域内的为对象区域表达的提取, 橙色区域内的为对象上下文的表达. 在图中, 无论是Spatial Softmax, 还是Channel Softmax都是Attention的权重提取方法. 输出图像$\bar X$的最终表示将更新为两个部分(1)原始表示$X$和(2)对象上下文表示的聚合, 图中的聚合方式(图中圆圈中有个叉的图形))使用的方法是[1x1 conv -&gt; BN -&gt; ReLU].</p>
@@ -434,7 +435,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

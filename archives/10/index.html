@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -213,6 +213,51 @@
 
 <div class="post-preview">
 
+    <a href="/2018/05/03/criticalpath/">
+        <h2 class="post-title">
+            CriticalPath
+        </h2>
+        <h3 class="post-subtitle">
+            Implement CriticalPath
+        </h3>
+        <div class="post-content-preview">
+            
+
+
+
+关键路径
+
+AOE网
+
+AOE网：Activity on edge network
+若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2018-05-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+            
+              <a href="/tags/#DataStruct" title="DataStruct">DataStruct</a>
+            
+              <a href="/tags/#Graph" title="Graph">Graph</a>
+            
+              <a href="/tags/#CriticalPath" title="CriticalPath">CriticalPath</a>
+            
+              <a href="/tags/#Topological" title="Topological">Topological</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2018/04/30/topo/">
         <h2 class="post-title">
             拓扑排序
@@ -224,12 +269,15 @@
             
 
 
-
 看以前写的博客，感觉没图好像光说并不是很能让人明白。但作图确实很花时间。(其实是做的图好丑不想做了QAQ)，以后会多做一些图。
 
 邻接链表
-邻接链表的介绍邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
-C语言结构代码为123456789typedef struct v_node&#123;		//头结点 ......
+
+邻接链表的介绍
+邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
+
+C语言结构代码为
+123456789typedef struct v_node&#123;		//头......
         </div>
     </a>
     
@@ -266,11 +314,11 @@ C语言结构代码为123456789typedef struct v_node&#123;		//头结点 ......
             
 
 
-
 今天看了考研真题，感觉看了书跟没看一样。考的非常细，所以以后更加需要注重细节。要补充各种情况。
 
 Floyd算法介绍
-Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决”负权回路”的图。比如下面这个图A-&gt;C就不存在最短路，因为产生......
+
+Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决&quot;负权回路&quot;的图。比如下面这个图A-&gt;C就不......
         </div>
     </a>
     
@@ -310,16 +358,18 @@ Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一
 
 
 
-
 这首歌原唱Ed Sheeran的比较好听，但是网易云没有版权，建议用软件听。
 
-由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式
+由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式
+本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式
 
 LaTeX语法
+
 公式类型
+
 123行内公式： $f(x)=x+3$行间公式： $$f(x)=x+3$$
 $f(x)=x+3$是行内公式，而下面的是行间公式
-f(x)=......
+$$f......
         </div>
     </a>
     
@@ -329,11 +379,11 @@ f(x)=......
         </p>
         <div class="tags">
             
-              <a href="/tags/#Note" title="Note">Note</a>
-            
               <a href="/tags/#Mathjax" title="Mathjax">Mathjax</a>
             
               <a href="/tags/#LaTex" title="LaTex">LaTex</a>
+            
+              <a href="/tags/#Note" title="Note">Note</a>
             
         </div>
     
@@ -354,16 +404,18 @@ f(x)=......
             
 
 
-
 近期老师教了Python爬虫的一些知识，在此总结复习一下，同时如果你对爬虫也感兴趣，可以将这篇文章作为参考。
 
-Python版本3.7.0b2(基于Anaconda的Python编译器)IDE用的是PyCharm 2017.3.3Win10系统 
+Python版本3.7.0b2(基于Anaconda的Python编译器)
+IDE用的是PyCharm 2017.3.3
+Win10系统
 
 
 爬虫概述
+
 爬虫是什么?
 
-网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则，......
+网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则......
         </div>
     </a>
     
@@ -398,13 +450,14 @@ Python版本3.7.0b2(基于Anaconda的Python编译器)IDE用的是PyCharm 2017.3.
             
 
 
-
 数据库学习半学期了，今天就简单的实现一下整个数据库设计流程，同时练习一下各种语法。
-系统用户分析本数据库系统设计的用户有:
+系统用户分析
+
+本数据库系统设计的用户有:
 
 数据库系统管理人员:维护和管理数据库系统，并拥有系统所有权限。
 教学管理人员:负责管理教学教师和学生的相关信息，可以对教学教师与学生信息进行更改，同时负责课程的安排。
-教学教师:可对选择本教师课程的学生的学习成绩进行修改，同时可以查询学生的成绩信息和个人的任教......
+教学教师:可对选择本教师课程的学生的学习成绩进行修改，同时可以查询学生的成绩信息和个人的任......
         </div>
     </a>
     
@@ -435,16 +488,17 @@ Python版本3.7.0b2(基于Anaconda的Python编译器)IDE用的是PyCharm 2017.3.
             
 
 
-
-
-
 看了好几天书才把Dijkstra算法看明白，今天就记录一下整个过程，顺便给出C语言实现代码。
 
 Dijkstra算法介绍
-Dijkstra算法是解决有权(权不能为负数)有向图最短路径问题的算法。它基于贪心和广度优先搜素的思想。(感觉还有一点动态规划的意味~)
+
+Dijkstra算法是解决有权(权不能为负数)有向图最短路径问题的算法。
+它基于贪心和广度优先搜素的思想。
+(感觉还有一点动态规划的意味~)
 
 Dijkstra算法思想
-书中原文为“假设S为以求得最短路径的终点的集合，下一条最短路径(设其终点为x)或者是弧(v,x......
+
+书中原文为“假设S为以求得最短路径的终点的集合，下一条最短路径(设其终点为x)或者是弧(v,......
         </div>
     </a>
     
@@ -484,17 +538,22 @@ Dijkstra算法思想
 
 
 
-
-
-引言本博客内容通过Markdown语法来撰写，作为一个刚入坑的萌新现在熟悉和总结一下语法结构，方便以后查询。
-正文标题123# 一级标题## 二级标题### 三级标题
+引言
+本博客内容通过Markdown语法来撰写，作为一个刚入坑的萌新现在熟悉和总结一下语法结构，方便以后查询。
+正文
+标题
+123# 一级标题## 二级标题### 三级标题
 这里为了页面美观就不都列出来了，Markdown是会被解析成Html的，而Html中只有h1-h6六个标题，想用几级标题就加几个#就可以了
 效果如下:
-一级标题二级标题三级标题
+一级标题
+二级标题
+三级标题
+
 列表
+
 无序列表
 
-12+ Red		......
+12+ ......
         </div>
     </a>
     
@@ -504,9 +563,9 @@ Dijkstra算法思想
         </p>
         <div class="tags">
             
-              <a href="/tags/#MarkDown" title="MarkDown">MarkDown</a>
-            
               <a href="/tags/#Note" title="Note">Note</a>
+            
+              <a href="/tags/#MarkDown" title="MarkDown">MarkDown</a>
             
         </div>
     
@@ -550,10 +609,6 @@ Dijkstra算法思想
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="70">DeepLearning</a>
-            
-        
-            
             <a href="/tags/#Algorithm" title="Algorithm" rel="15">Algorithm</a>
             
         
@@ -571,6 +626,10 @@ Dijkstra算法思想
         
             
             <a href="/tags/#Graph" title="Graph" rel="5">Graph</a>
+            
+        
+            
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="71">DeepLearning</a>
             
         
             
@@ -610,19 +669,7 @@ Dijkstra算法思想
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
-            
-        
-            
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
@@ -634,7 +681,19 @@ Dijkstra算法思想
             
         
             
-            <a href="/tags/#Paper" title="Paper" rel="52">Paper</a>
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            
+        
+            
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            
+        
+            
+            <a href="/tags/#Paper" title="Paper" rel="53">Paper</a>
             
         
             
@@ -654,6 +713,10 @@ Dijkstra算法思想
             
         
             
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -663,10 +726,6 @@ Dijkstra算法思想
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
-            
-        
-            
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -752,6 +811,10 @@ Dijkstra算法思想
     <ul>
       
         <li>
+          <a href="/2019/12/09/paper-acnet/">Adaptive Context Network for Scene Parsing</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/03/paper-dpc/">Searching for Efficient Multi-Scale Architectures for Dense Image Prediction</a>
         </li>
       
@@ -765,10 +828,6 @@ Dijkstra算法思想
       
         <li>
           <a href="/2019/11/26/paper-LookCloser2SeeBetter/">Look Closer to See Better - Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition</a>
-        </li>
-      
-        <li>
-          <a href="/2019/11/25/paper-InshoreShipDetection/">Fully Convolutional Network With Task Partitioning for Inshore Ship Detection in Optical Remote Sensing Images</a>
         </li>
       
     </ul>
@@ -851,7 +910,7 @@ Dijkstra算法思想
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

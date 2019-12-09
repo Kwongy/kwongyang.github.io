@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,9 +214,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="什么是主成分分析">什么是主成分分析</span></h2><p>主成分分析是一种通过降维技术把多个变量化为少数几个主成分（综合变量）的统计分析方法。这些主成分能够反映原始变量的绝大部分信息，它们通常表示为原始变量的某种线性组合。 </p>
+                <h2><span id="什么是主成分分析">什么是主成分分析</span></h2>
+<p>主成分分析是一种通过降维技术把多个变量化为少数几个主成分（综合变量）的统计分析方法。这些主成分能够反映原始变量的绝大部分信息，它们通常表示为原始变量的某种线性组合。</p>
 <p>目标：将一组$N$维向量降为$K$维（$K$大于0，小于$N$），其目标是选择$K$个单位（模为1）正交基，使得原始数据变换到这组基上后，各字段两两间协方差为0，而字段的方差则尽可能大（在正交的约束下，取最大的$K$个方差）。</p>
-<h2><span id="做法">做法</span></h2><p>设我们有$m$个$n$维数据记录</p>
+<h2><span id="做法">做法</span></h2>
+<p>设我们有$m$个$n$维数据记录</p>
 <ol>
 <li>将其按列排成$n$乘$m$的矩阵$X$。</li>
 <li>将$X$的每一行（代表一个属性字段）进行零均值化，即减去这一行的均值。</li>
@@ -225,7 +227,8 @@
 <li>将特征向量按对应特征值大小从上到下按行排列成矩阵，取前$k$行组成矩阵$P$。</li>
 <li>$Y=PX$即为降维到$k$维后的数据。</li>
 </ol>
-<h2><span id="优缺点">优缺点</span></h2><p>PCA本质上是将方差最大的方向作为主要特征，并且在各个正交方向上将数据“离相关”，也就是让它们在不同正交方向上没有相关性。</p>
+<h2><span id="优缺点">优缺点</span></h2>
+<p>PCA本质上是将方差最大的方向作为主要特征，并且在各个正交方向上将数据“离相关”，也就是让它们在不同正交方向上没有相关性。</p>
 <p>PCA也存在一些限制，例如它可以很好的解除线性相关，但是对于高阶相关性就没有办法了。</p>
 <p>使用PCA减少过拟合可能会造成信息丢失。</p>
 
@@ -438,7 +441,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>

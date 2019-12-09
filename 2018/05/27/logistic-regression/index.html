@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,7 +219,6 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=17217944&auto=1&height=66"></iframe>
 </div>
-
 <hr>
 <p>开始入门深度学习，接下来的深度学习博客中，我将尝试使用全英文撰写博客，由于本人英语极差…难免错误，请大家通过邮箱与我联系。多多指正，互相学习。</p>
 <p>The resources needed for this course all are following:</p>
@@ -227,43 +226,52 @@
 <ul>
 <li><strong>homework</strong> download link:<a href="https://github.com/stormstone/deeplearning.ai" target="_blank" rel="noopener">https://github.com/stormstone/deeplearning.ai</a></li>
 <li><strong>Netease Cloud</strong> watching link：<a href="https://163.lu/nPtn42" target="_blank" rel="noopener">https://163.lu/nPtn42</a></li>
-<li><strong>deeplearning.ai</strong> address link：<a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">https://www.deeplearning.ai</a></li>
+<li><strong><a href="http://deeplearning.ai" target="_blank" rel="noopener">deeplearning.ai</a></strong> address link：<a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">https://www.deeplearning.ai</a></li>
 <li><strong>coursera</strong> watching link：<a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">https://www.coursera.org/specializations/deep-learning</a></li>
 </ul>
 <hr>
-<h1><span id="logistic-regression">Logistic Regression</span></h1><hr>
-<h1><span id="logistic-regression-introduce">Logistic Regression introduce</span></h1><hr>
+<h1><span id="logistic-regression">Logistic Regression</span></h1>
+<hr>
+<h1><span id="logistic-regression-introduce">Logistic Regression introduce</span></h1>
+<hr>
 <p>This is a learning algorithm use for binary classification problems,result is usually one or zero.Assuming that you have a graph that you want to recognize as either a cat picture or not a cat picture.You want an algorithm that can get a prediction whether it’s a cat.</p>
 <p>Logistic regression’s task is for a given X,you want to get what is the chance that result is “yes”.So given an input X and the parameters w and b,you can output (w*X+b),but it’s not a good way.because you want Y to be the chance that Y is equal to one,so result should be between zero and one,other value doesn’t make sense.We hope the result are between 0 and 1,we only apply the sigmoid function to this quantity.</p>
-<script type="math/tex; mode=display">\hat y = \sigma (w^tx + b)</script><p>The Sigmoid Function $\sigma(z) = \frac{1}{1+e^{-z}}$ Graph</p>
+<p>$$ \hat y = \sigma (w^tx + b)$$</p>
+<p>The Sigmoid Function $\sigma(z) = \frac{1}{1+e^{-z}}$ Graph</p>
 <p><img src="2.png" alt=""></p>
 <p>To train the parameters W and B of the logistic regression model,you should caculate a cost function.</p>
 <p><img src="1.png" alt=""></p>
 <p>The cost function is</p>
-<script type="math/tex; mode=display">J(w,b) = -\frac{1}{m} \sum_{i=1}^m{[y^i\log\hat y^i +(1-y^i)\log(1-\hat y^i)]}</script><p>Merge 1 and 2,then on both sides of the equation simultaneously take the logarithm.</p>
+<p>$$J(w,b) = -\frac{1}{m} \sum_{i=1}^m{[y^i\log\hat y^i +(1-y^i)\log(1-\hat y^i)]}$$</p>
+<p>Merge 1 and 2,then on both sides of the equation simultaneously take the logarithm.</p>
 <p><img src="3.png" alt=""></p>
 <hr>
-<h2><span id="gradient-descent-algorithm">Gradient Descent Algorithm</span></h2><hr>
+<h2><span id="gradient-descent-algorithm">Gradient Descent Algorithm</span></h2>
+<hr>
 <p>This algorithm is also used to train or learn the parameters W and B on your training set.</p>
 <p>To make the result right as possible as we can,we should make the cost function J(w,b) as small as possible.</p>
 <p>Gradient descent does is it starts at that initial point and then takes a step in the steepest downhill direction,so that’s one iteration of gradient descent,we can get right result after many iterations.</p>
 <p>The image of this algorithm is roughly as follows</p>
 <p><img src="4.png" alt=""></p>
 <hr>
-<h2><span id="summary">Summary</span></h2><hr>
+<h2><span id="summary">Summary</span></h2>
+<hr>
 <p>Propagation steps</p>
 <p><img src="5.png" alt=""></p>
 <p>Go backwards propagation steps to compute the derivatives</p>
 <p><img src="6.png" alt=""></p>
 <hr>
-<h1><span id="numpy">Numpy</span></h1><hr>
-<h2><span id="vectorization-introduce">Vectorization introduce</span></h2><hr>
+<h1><span id="numpy">Numpy</span></h1>
+<hr>
+<h2><span id="vectorization-introduce">Vectorization introduce</span></h2>
+<hr>
 <p>Vectorization is useful approach to reduce loops in your code.</p>
 <p>According to using NumPy library instead of container,you can speed up the caculation of compute.</p>
 <p>The use of numpy will be three hundred times faster than the use of it by multiplying a million Numbers.</p>
 <p><img src="7.png" alt=""></p>
 <hr>
-<h2><span id="broadcasting">Broadcasting</span></h2><hr>
+<h2><span id="broadcasting">Broadcasting</span></h2>
+<hr>
 <p>The ability of python to allow you to use broadcasting operations.You can use NumPy library more easily.</p>
 <p>What is python’s broadcasting.For example</p>
 <ul>
@@ -489,7 +497,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">172.6k words altogether</span>
+					<span class="post-count">174.6k words altogether</span>
 				</p>
             </div>
         </div>
