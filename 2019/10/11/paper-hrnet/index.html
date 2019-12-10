@@ -217,22 +217,15 @@
                 post-container">
 
                 <p>本篇论文是由微软亚洲研究院和中科大的Jingdong Wang, Ke Sun, Tianheng Cheng, Borui Jiang, Chaorui Deng, Yang Zhao, Dong Liu, Yadong Mu, Mingkui Tan, Xinggang Wang, Wenyu Liu, Bin Xiao所作的<a href="https://arxiv.org/pdf/1908.07919v1.pdf" target="_blank" rel="noopener">Deep High-Resolution Representation Learning for Visual Recognition</a>, 发表在2019年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇文章提出的HRNet主要有两个优势</p>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇文章提出的HRNet主要有两个优势</p>
 <ol>
 <li>整个网络流中保持图片的高分辨率.</li>
-<li>对于不同分辨率的图像反复交换信息.<br>
-根据上述两个优势, HRNet可以使结果在语义上更加丰富, 并且在空间上更加精准, 适合处理对于位置敏感的问题, 例如人体姿态分析, 语义分割和目标识别.</li>
+<li>对于不同分辨率的图像反复交换信息.<br>根据上述两个优势, HRNet可以使结果在语义上更加丰富, 并且在空间上更加精准, 适合处理对于位置敏感的问题, 例如人体姿态分析, 语义分割和目标识别.</li>
 </ol>
 <p><img src="1.png" alt=""></p>
 <p>HRNet采用并行的卷积流, 整个过程保持图片的高分辨率, 并多次融合得到可靠的高分辨率图片.其中, 每个模块融合的方式为</p>
 <p><img src="2.png" alt=""></p>
-<p>绿色代表下采样, 蓝色代表上采样.,<br>
-对于最后输出的多流结果.<br>
-<img src="3.png" alt=""><br>
-(a)称为HRNetV1, 它只从高分辨流中获取最后的信息. 这个模型用于人体姿态估计.<br>
-(b)称为HRNetV2, 它将低分辨率流上采样后concat, 这个模型用于语义分割.<br>
-©称为HRNetV2p, 它将HRNetV2的结果下采样多个级别来构建多级表示, 这个模型用于目标检测.</p>
+<p>绿色代表下采样, 蓝色代表上采样.,<br>对于最后输出的多流结果.<br><img src="3.png" alt=""><br>(a)称为HRNetV1, 它只从高分辨流中获取最后的信息. 这个模型用于人体姿态估计.<br>(b)称为HRNetV2, 它将低分辨率流上采样后concat, 这个模型用于语义分割.<br>(c)称为HRNetV2p, 它将HRNetV2的结果下采样多个级别来构建多级表示, 这个模型用于目标检测.</p>
 
                 
 
@@ -445,7 +438,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">174.6k words altogether</span>
+					<span class="post-count">173.6k words altogether</span>
 				</p>
             </div>
         </div>

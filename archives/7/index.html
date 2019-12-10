@@ -213,6 +213,37 @@
 
 <div class="post-preview">
 
+    <a href="/2019/05/30/paper-ReducingtheDimensionality-GEH/">
+        <h2 class="post-title">
+            Reducing the Dimensionality of Data with Neural Networks
+        </h2>
+        <h3 class="post-subtitle">
+            G. E. Hinton* and R. R. Salakhutdinov
+        </h3>
+        <div class="post-content-preview">
+            本篇论文是加拿大多伦多大学计算机科学部的G. E. Hinton*, R. R. Salakhutdinov所作的用神经网络降低数据维度
+Abstract通过训练具有小中心的多层神经网络重构高维输入向量，可以将高维数据转换为低维。梯度下降可以用来微调这些“自动编码器”网络中的权值，但只有当初始权值接近一个最优值时，这种方法才非常有效。我们描述了一种有效的初始化权值的方法，它允许深度自动编码网......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-05-30
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/05/29/paper-BuildingextractionviaCNN-jsp/">
         <h2 class="post-title">
             遥感影像建筑物提取的卷积神经元网络与开源数据集方法
@@ -221,13 +252,12 @@
             季顺平,魏世清
         </h3>
         <div class="post-content-preview">
-            中文论文果然比英文论文好读…哈哈~~虽然也没读懂。
+            中文论文果然比英文论文好读..哈哈~~虽然也没读懂。
 论文下载
 本篇论文的研究方法为
 
 分析目前的研究现状，总结前人所做的工作，有什么提升，有什么不足。
 就建筑物提取在深度学习时代下的问题和瓶颈,提出相应的解决方法
-
 创建一个目前最优的开源建筑物数据库
 在U-Net的基础上进行改进，提出SU-Net
 提出了一种用于建筑物提取的Mask R-CNN改进方法，实现目标实例分割
@@ -268,9 +298,7 @@
             开始阅读论文，并尝试翻译
 第一篇是三巨头LeCun Yann, Yoshua Bengio和Geoffrey Hinton做的有关Deep Learning的调查。
 Deep learning (Three Giants’ Survey)
-Deep Learning
-Abstract
-1234567Deep learning allows computational models that ......
+Deep LearningAbstract1234567Deep learning allows computational models that ar......
         </div>
     </a>
     
@@ -302,15 +330,13 @@ Abstract
         <div class="post-content-preview">
             写在前面
 目前已经确定，研究生阶段我的研究方向为遥感图像处理
-现在我还不太懂什么是遥感，从网上查了查，大概是测绘、勘探，类似卫星图像处理之类的？
-不管怎样，计算机专业都应该把图像处理这个大类学好。
-因此扩展的计算机视觉、计算机图形学、数字信号分析都需要深入了解。
+现在我还不太懂什么是遥感，从网上查了查，大概是测绘、勘探，类似卫星图像处理之类的？不管怎样，计算机专业都应该把图像处理这个大类学好。因此扩展的计算机视觉、计算机图形学、数字信号分析都需要深入了解。
 为了增强个人能力，防止延毕（我太菜了2333）.提前做一下计划安排。
 学习主要包括以下几个部分:
 
 语言精通
 基本知识的学习
-理论......
+理论基础......
         </div>
     </a>
     
@@ -338,13 +364,11 @@ Abstract
             博弈论——巴什博弈、威佐夫博弈、尼姆博弈
         </h3>
         <div class="post-content-preview">
-            博弈论是二人在平等的对局中各自利用对方的策略变换自己的对抗策略，达到取胜的目的。
-个人观点：博弈论的本质就是思考哪些是必胜或者必败的状态，其他不定的状态如何向这两种状态转化。
-巴什博弈
-只有一堆n个物品，两个人轮流从这堆物品中取物， 规定每次至少取一个，最多取m个。最后取光者得胜。
+            博弈论是二人在平等的对局中各自利用对方的策略变换自己的对抗策略，达到取胜的目的。个人观点：博弈论的本质就是思考哪些是必胜或者必败的状态，其他不定的状态如何向这两种状态转化。
+巴什博弈只有一堆n个物品，两个人轮流从这堆物品中取物， 规定每次至少取一个，最多取m个。最后取光者得胜。
 
 当 $m\geq n$ 时，显然先手获胜
-当$m&lt; n$ 时，不难发现 $(m+1)k，k=0,1,…......
+当$m&lt; n$ 时，不难发现 $(m+1)k，k=0,1,..$......
         </div>
     </a>
     
@@ -374,13 +398,12 @@ Abstract
         <div class="post-content-preview">
             
 快速幂基础
-
 首先对于取模运算有
 1(a * b) % c= (a % c) * (b % c) % c
 这个是快速幂的基础
 对于幂次比较高的幂运算，如果使用朴素幂运算会占用大量的计算机资源，因此我们需要将幂次做处理。
 对于任何数，都可以将其分解成二进制形式，即1、0形式。
-123eg: 678 = 512 + 128 + 32 + 4 + 2		= 2^9 + 2^7 + 2^5 + 2......
+123eg: 678 = 512 + 128 + 32 + 4 + 2		= 2^9 + 2^7 + 2^5 + 2^......
         </div>
     </a>
     
@@ -409,7 +432,6 @@ Abstract
         </h3>
         <div class="post-content-preview">
             二叉树的遍历
-
 先序(先根)遍历：即先访问根节点，再访问左子树和右子树
 中序遍历：先访问左子树，再访问根节点，再访问右子树
 后序遍历：先访问左子树和右子树，再访问根节点
@@ -418,7 +440,7 @@ Abstract
 注：其中层次遍历需要借助队列
 假设有以下数据结构
 1234struct node&#123;	struct node *left,*right;	int value;&#125;
-那么......
+那么它......
         </div>
     </a>
     
@@ -451,10 +473,8 @@ Abstract
             Basic models
 
 
-
 Picking the most likely sentence
-
-The decoder network looks pretty much identical to the language model.So what the machine translation model is very similar to the language model e......
+The decoder network looks pretty much identical to the language model.So what the machine translation model is very similar to the language model exc......
         </div>
     </a>
     
@@ -485,8 +505,7 @@ The decoder network looks pretty much identical to the language model.So what th
         </h3>
         <div class="post-content-preview">
             Word representation
-
-One of the key ideas you learn about is word embeddings, which is a way of representing words that let your algorithms automatically understand analogies like that,man is to wo......
+One of the key ideas you learn about is word embeddings, which is a way of representing words that let your algorithms automatically understand analogies like that,man is to wom......
         </div>
     </a>
     
@@ -517,52 +536,13 @@ One of the key ideas you learn about is word embeddings, which is a way of repre
         </h3>
         <div class="post-content-preview">
             Recurrent Netural Networks
-
-The recurrent neural network scans through the data from left to right And the parameters it uses for each time step are shared.
-One weakness of this RNN is that it only......
+The recurrent neural network scans through the data from left to right And the parameters it uses for each time step are shared.One weakness of this RNN is that it only u......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Kwong on
             2018-06-26
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
-            
-              <a href="/tags/#Python" title="Python">Python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/06/23/faceRecognition/">
-        <h2 class="post-title">
-            吴恩达深度学习Part 4,Week 4
-        </h2>
-        <h3 class="post-subtitle">
-            Face recognition
-        </h3>
-        <div class="post-content-preview">
-            
-Verification
-Recognition
-
-
-One-shot learning
-
-The one-shot learning problem what that means is that,for most face recognition applications you need to recognize a person or given just one single i......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2018-06-23
         </p>
         <div class="tags">
             
@@ -636,15 +616,11 @@ The one-shot learning problem what that means is that,for most face recognition 
             
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="71">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="72">DeepLearning</a>
             
         
             
             <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -656,11 +632,23 @@ The one-shot learning problem what that means is that,for most face recognition 
             
         
             
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
             <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
             
         
             
             <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
+            
+        
+            
+            <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
+            
+        
+            
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
             
@@ -676,7 +664,11 @@ The one-shot learning problem what that means is that,for most face recognition 
             
         
             
-            <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
@@ -688,19 +680,7 @@ The one-shot learning problem what that means is that,for most face recognition 
             
         
             
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
-            
-        
-            
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="53">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="54">Paper</a>
             
         
             
@@ -716,14 +696,6 @@ The one-shot learning problem what that means is that,for most face recognition 
             
         
             
-            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
-            
-        
-            
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -733,6 +705,14 @@ The one-shot learning problem what that means is that,for most face recognition 
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -818,6 +798,10 @@ The one-shot learning problem what that means is that,for most face recognition 
     <ul>
       
         <li>
+          <a href="/2019/12/10/paper-datadecoder/">Decoders Matter for Semantic Segmentation, Data-Dependent Decoding Enables Flexible Feature Aggregation</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/09/paper-acnet/">Adaptive Context Network for Scene Parsing</a>
         </li>
       
@@ -831,10 +815,6 @@ The one-shot learning problem what that means is that,for most face recognition 
       
         <li>
           <a href="/2019/11/29/CrossEntropy/">Cross Entropy in Pytorch</a>
-        </li>
-      
-        <li>
-          <a href="/2019/11/26/paper-LookCloser2SeeBetter/">Look Closer to See Better - Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition</a>
         </li>
       
     </ul>
@@ -917,7 +897,7 @@ The one-shot learning problem what that means is that,for most face recognition 
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">174.6k words altogether</span>
+					<span class="post-count">173.6k words altogether</span>
 				</p>
             </div>
         </div>

@@ -216,49 +216,32 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="deep-neural-network">Deep neural network</span></h2>
-<hr>
-<p>You are able to implement your own deep neural network by combining the preivous knowledge,such as one layer neural network and logistic regression and so on.</p>
-<p>Look at the picture<br>
-<img src="1.png" alt=""></p>
+                <h2><span id="deep-neural-network">Deep neural network</span></h2><hr>
+<p>You are able to implement your own deep neural network by combining the preivous knowledge,such as one layer neural network and logistic regression and so on. </p>
+<p>Look at the picture<br><img src="1.png" alt=""></p>
 <p>You should remember when we count layers in neural network we don’t count the input layer we just count the hidden layers as well as the output layer.</p>
 <p>To get better result,you could try a variety of values of hyper-parameter and evaluate on hold-out cross validation data</p>
 <hr>
-<h2><span id="building-blocks-of-deep-neural-networks">Building blocks of deep neural networks</span></h2>
-<hr>
-<h3><span id="forward-propagation-for-layer-l">Forward propagation for layer l</span></h3>
-<hr>
-<p>Input $a^{[l-1]}$<br>
-$$z^{[l]} = w^{[l]}a^{[l-1]} + b^{[l]}$$<br>
-$$a^{[l]} = g^{[l]}(z^{[l]})$$</p>
-<p>Explanation:<br>
-	w、b is parameter<br>
-	g() is activation function</p>
+<h2><span id="building-blocks-of-deep-neural-networks">Building blocks of deep neural networks</span></h2><hr>
+<h3><span id="forward-propagation-for-layer-l">Forward propagation for layer l</span></h3><hr>
+<p>Input $a^{[l-1]}$</p>
+<script type="math/tex; mode=display">z^{[l]} = w^{[l]}a^{[l-1]} + b^{[l]}</script><script type="math/tex; mode=display">a^{[l]} = g^{[l]}(z^{[l]})</script><p>Explanation:<br>    w、b is parameter<br>    g() is activation function</p>
 <p><img src="2.png" alt=""></p>
 <hr>
-<h3><span id="backward-propagation-for-layer-l">Backward propagation for layer l</span></h3>
-<hr>
-<p>Input $da^{[l]}$<br>
-$$z^{[l]} = da^{[l]}g^{[l]’}$$<br>
-$$dw^{[l]} = dz^{[l]}a^{[l]}$$<br>
-$$db^{[l]} = dz^{[l]}$$<br>
-$$da^{[l-1]} = {w^{[l]}}^Tdz^{[l]}$$</p>
-<p>Explanation:<br>
-	dX is the derivative of X</p>
+<h3><span id="backward-propagation-for-layer-l">Backward propagation for layer l</span></h3><hr>
+<p>Input $da^{[l]}$</p>
+<script type="math/tex; mode=display">z^{[l]} = da^{[l]}g^{[l]'}</script><script type="math/tex; mode=display">dw^{[l]} = dz^{[l]}a^{[l]}</script><script type="math/tex; mode=display">db^{[l]} = dz^{[l]}</script><script type="math/tex; mode=display">da^{[l-1]} = {w^{[l]}}^Tdz^{[l]}</script><p>Explanation:<br>    dX is the derivative of X</p>
 <p><img src="3.png" alt=""></p>
 <hr>
-<h3><span id="summary">Summary</span></h3>
-<hr>
+<h3><span id="summary">Summary</span></h3><hr>
 <p>Flow chart</p>
 <p><img src="4.png" alt=""></p>
 <hr>
-<h2><span id="parameters-vs-hyper-parameters">Parameters VS Hyper-parameters</span></h2>
-<hr>
+<h2><span id="parameters-vs-hyper-parameters">Parameters VS Hyper-parameters</span></h2><hr>
 <p>If you want your model more effective in developing your deep neural nets requires that you not only organize your parameters well but also your hyper-parameters</p>
 <p><strong>Hyper-parameters</strong>:There are other parameters that they are able to control parameters.Because this hyper-parameters determine the final value of parameters that you end up with.</p>
 <p>How to select hyper-parameters?</p>
-<p>What often happen is you just have to try out many different values and go around this cycle your trial some value that see if it works and then iterate.<br>
-<img src="5.png" alt=""></p>
+<p>What often happen is you just have to try out many different values and go around this cycle your trial some value that see if it works and then iterate.<br><img src="5.png" alt=""></p>
 <p>You just have to try a lot of things and see what works</p>
 <hr>
 
@@ -473,7 +456,7 @@ $$da^{[l-1]} = {w^{[l]}}^Tdz^{[l]}$$</p>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">174.6k words altogether</span>
+					<span class="post-count">173.6k words altogether</span>
 				</p>
             </div>
         </div>

@@ -217,8 +217,7 @@
                 post-container">
 
                 <p>本篇论文是由谷歌大脑的Barret Zoph, Vijay Vasudevan, Jonathon Shlens, Quoc V. Le所作的<a href="https://arxiv.org/pdf/1707.07012.pdf" target="_blank" rel="noopener">Learning Transferable Architectures for Scalable Image Recognition</a>, 发表在2018年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>Neural Architecture Search(NAS)是一种强化学习搜索优化结构的方法,作者受到NAS的启发, 发现在大型数据集上训练搜索模型结构代价太. 于是作者提供了一种NASNet search space的搜索方法, 直接用RNN把Hyperparameter计算出来，这样就实现了AI自动学习, 可以在小数据集上训练后迁移到大数据集上, 大大减少训练成本.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>Neural Architecture Search(NAS)是一种强化学习搜索优化结构的方法,作者受到NAS的启发, 发现在大型数据集上训练搜索模型结构代价太. 于是作者提供了一种NASNet search space的搜索方法, 直接用RNN把Hyperparameter计算出来，这样就实现了AI自动学习, 可以在小数据集上训练后迁移到大数据集上, 大大减少训练成本. </p>
 <p>作者所提出的NASNet,首先给出两个初始的隐含状态, 使用NAS搜索剩下的结构来构成一个cell, 然后基于单个cell多次叠加整合, 整个网络由多个cell叠加而成, 它们的结构相同, 但是权重各不相同.</p>
 <p><img src="1.png" alt=""></p>
 <ol>
@@ -230,19 +229,19 @@
 </ol>
 <p>RNN选择器可选择的隐藏层结构包括:</p>
 <ul>
-<li>identity</li>
+<li>identity </li>
 <li>1x3 then 3x1 convolution</li>
-<li>1x7 then 7x1 convolution</li>
+<li>1x7 then 7x1 convolution </li>
 <li>3x3 dilated convolution</li>
-<li>3x3 average pooling</li>
+<li>3x3 average pooling </li>
 <li>3x3 max pooling</li>
-<li>5x5 max pooling</li>
+<li>5x5 max pooling </li>
 <li>7x7 max pooling</li>
-<li>1x1 convolution</li>
-<li>3x3 convolution</li>
-<li>3x3 depthwise-separable conv</li>
+<li>1x1 convolution </li>
+<li>3x3 convolution </li>
+<li>3x3 depthwise-separable conv </li>
 <li>5x5 depthwise-seperable conv</li>
-<li>7x7 depthwise-separable conv</li>
+<li>7x7 depthwise-separable conv </li>
 </ul>
 <p>第五步combine的操作包括: element-wise addition和concatenation.</p>
 <p>作者基于实践,B=5的情况下,在CIFAR-10数据集上搜索得到的最优结果为</p>
@@ -461,7 +460,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">174.6k words altogether</span>
+					<span class="post-count">173.6k words altogether</span>
 				</p>
             </div>
         </div>

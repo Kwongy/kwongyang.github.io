@@ -217,15 +217,11 @@
                 post-container">
 
                 <p>本篇论文是由伦敦大学的Carole H Sudre, Wenqi Li, Tom Vercauteren, Sébastien Ourselin, M. Jorge Cardoso所作的<a href="https://arxiv.org/pdf/1707.03237.pdf" target="_blank" rel="noopener">Generalised Dice overlap as a deep learning loss function for highly unbalanced segmentations</a>, 发表在Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support. DLMIA 2017上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>介绍本篇论文之前, 先介绍一下dice coefficient 和 dice loss. dice coefficient 源于二分类，本质上是衡量两个样本的重叠部分.假设有两个集合$A$和$B$,dice coefficient的计算公式如下:<br>
-$$Dice = \frac{2|A \cap B|}{|A| + |B|}$$<br>
-Dice系数的差异函数(Dice loss)为:<br>
-$$d = 1 - \frac{2|A \cap B|}{|A| + |B|}$$<br>
-Dice loss和Cross-entropy都是衡量两个集合差异性的损失函数,那么为什么我们一般都会使用Cross-entropy呢?Cross-entropy的梯度是这样的$p - t$, $p$是 softmax的输出,$t$是target.dice coefficient的形式为: $\frac{2pt}{p^2+t^2}$ or $\frac{2pt}{p+t}$, 它的梯度为: $\frac{2t^2}{(p+t)^2}$ and $\frac{2t(t^2-p^2)}{(p^2+t^2)^2}$. 如果$p$ 和$t$的数值都很小. 那么他们的梯度就会很大, 这就造成了模型不稳定.训练模型的实际目标是这些指标的最大化，而交叉熵只是一个代理，更容易最大化并且更方便使用反向传播。而Dice loss通常在类别不均匀的情况下表现更好.</p>
-<p>回过头来看本篇论文.本篇论文是针对医学图像的,它根据Dice loss进行了改进,提出了Generalized Dice Loss(GDL):<br>
-$$GDL=1-2\frac{\sum_{l=1}^{2}w_l\sum_{n=1}^{N}r_{ln}p_{ln}}{\sum_{l=1}^{2}w_l\sum_{n=1}^{N}r_{ln}+p_{ln}}$$<br>
-其中$l$代表目标类数, 二分类中$l=2$,$w_l=1/(\sum_{n=1}^{N}r_{ln})^2$,可以看作是标准化.$n$代表样本个数.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>介绍本篇论文之前, 先介绍一下dice coefficient 和 dice loss. dice coefficient 源于二分类，本质上是衡量两个样本的重叠部分.假设有两个集合$A$和$B$,dice coefficient的计算公式如下:</p>
+<script type="math/tex; mode=display">Dice = \frac{2|A \cap B|}{|A| + |B|}</script><p>Dice系数的差异函数(Dice loss)为:</p>
+<script type="math/tex; mode=display">d = 1 - \frac{2|A \cap B|}{|A| + |B|}</script><p>Dice loss和Cross-entropy都是衡量两个集合差异性的损失函数,那么为什么我们一般都会使用Cross-entropy呢?Cross-entropy的梯度是这样的$p - t$, $p$是 softmax的输出,$t$是target.dice coefficient的形式为: $\frac{2pt}{p^2+t^2}$ or $\frac{2pt}{p+t}$, 它的梯度为: $\frac{2t^2}{(p+t)^2}$ and $\frac{2t(t^2-p^2)}{(p^2+t^2)^2}$. 如果$p$ 和$t$的数值都很小. 那么他们的梯度就会很大, 这就造成了模型不稳定.训练模型的实际目标是这些指标的最大化，而交叉熵只是一个代理，更容易最大化并且更方便使用反向传播。而Dice loss通常在类别不均匀的情况下表现更好.</p>
+<p>回过头来看本篇论文.本篇论文是针对医学图像的,它根据Dice loss进行了改进,提出了Generalized Dice Loss(GDL):</p>
+<script type="math/tex; mode=display">GDL=1-2\frac{\sum_{l=1}^{2}w_l\sum_{n=1}^{N}r_{ln}p_{ln}}{\sum_{l=1}^{2}w_l\sum_{n=1}^{N}r_{ln}+p_{ln}}</script><p>其中$l$代表目标类数, 二分类中$l=2$,$w_l=1/(\sum_{n=1}^{N}r_{ln})^2$,可以看作是标准化.$n$代表样本个数.</p>
 <p>通过实验证明, 对于3D数据集,样本更加不均衡,使用Cross-entropy几乎不能训练,使用GDL效果更好.同时, 使用GDL更加鲁棒.</p>
 
                 
@@ -439,7 +435,7 @@ $$GDL=1-2\frac{\sum_{l=1}^{2}w_l\sum_{n=1}^{N}r_{ln}p_{ln}}{\sum_{l=1}^{2}w_l\su
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">174.6k words altogether</span>
+					<span class="post-count">173.6k words altogether</span>
 				</p>
             </div>
         </div>
