@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,12 +217,19 @@
                 post-container">
 
                 <p>本篇论文是由比利时KU Leuven大学的Maxim Berman, Amal Rannen Triki, Matthew B. Blaschko所作的<a href="https://arxiv.org/abs/1705.08790" target="_blank" rel="noopener">The Lovász-Softmax loss: A tractable surrogate for the optimization of the intersection-over-union measure in neural networks</a>, 发表在2018年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>Intersection-over-union(IoU)交并集是语义分割领域常用的评价指标.一种自然而然的想法就是能否直接使用IoU作为损失函数来训练模型.很显然,答案是否定的.</p>
-<p>给定一个真实向量$y^*$和一个预测向量$y’$,第$c$类的Jaccard index定义为:</p>
-<script type="math/tex; mode=display">J_c(y^*, y')=\frac{|\{y^*=c\} \cap \{y'=c\}|}{|\{y^*=c\} \cup \{y'=c\}|}</script><p>则loss function定义为:</p>
-<script type="math/tex; mode=display">\Delta J_c(y^*, y')=1-J_c(y^*, y')</script><p>其中, $y^<em>, y’ \in \{0, 1\}$,它们是离散的值.而在训练过程中 $ y^</em> \in \{0, 1\} ,y’ \in [0, 1] $,$y’$是连续的值, 但是作为损失函数, 它必须是可导连续的.但IoU不能直接求导.将上式改写</p>
-<script type="math/tex; mode=display">\Delta J_c(y^*, y'):M_c \in \{0, 1\}^p, \frac{|M_c|}{[y^*=c] \cup M_c}</script><p>其中$M_c(y^<em>, y’)=\{y^</em>=c,y’\neq c \} \cup \{ y^* \neq c ,y’=c \}$<br>作者发现上式submodular函数, 可以使用lovasz extension来做光滑延拓(延拓可以看作是一种映射, 将原函数进行变换).并且延拓后的函数是凸函数. 可以更方便的进行优化. 最终的损失函数定义为:</p>
-<script type="math/tex; mode=display">\Delta': m \in \mathbb{R}^p, \sum_{i=1}^{p}m_ig_i(m)</script><script type="math/tex; mode=display">g_i(m) = \Delta(\{\pi_1, ..,\pi_i\}) - \Delta(\{\pi_1, ..,\pi_{i-1}\})</script><p>其中$\pi$为关于向量$m$的降序排列.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>Intersection-over-union(IoU)交并集是语义分割领域常用的评价指标.一种自然而然的想法就是能否直接使用IoU作为损失函数来训练模型.很显然,答案是否定的.</p>
+<p>给定一个真实向量$y^<em>$和一个预测向量$y’$,第$c$类的Jaccard index定义为:<br>
+$$J_c(y^</em>, y’)=\frac{|{y^<em>=c} \cap {y’=c}|}{|{y^</em>=c} \cup {y’=c}|}$$<br>
+则loss function定义为:<br>
+$$\Delta J_c(y^<em>, y’)=1-J_c(y^</em>, y’)$$</p>
+<p>其中, $y^<em>, y’ \in {0, 1}$,它们是离散的值.而在训练过程中 $ y^</em> \in {0, 1} ,y’ \in [0, 1] $,$y’$是连续的值, 但是作为损失函数, 它必须是可导连续的.但IoU不能直接求导.将上式改写<br>
+$$\Delta J_c(y^<em>, y’):M_c \in {0, 1}^p, \frac{|M_c|}{[y^</em>=c] \cup M_c}$$<br>
+其中$M_c(y^<em>, y’)={y^</em>=c,y’\neq c } \cup { y^* \neq c ,y’=c }$<br>
+作者发现上式submodular函数, 可以使用lovasz extension来做光滑延拓(延拓可以看作是一种映射, 将原函数进行变换).并且延拓后的函数是凸函数. 可以更方便的进行优化. 最终的损失函数定义为:<br>
+$$\Delta’: m \in \mathbb{R}^p, \sum_{i=1}^{p}m_ig_i(m)$$<br>
+$$g_i(m) = \Delta({\pi_1, …,\pi_i}) - \Delta({\pi_1, …,\pi_{i-1}})$$<br>
+其中$\pi$为关于向量$m$的降序排列.</p>
 <p>简单来说, 作者就是将一般离散化计算的IoU进行延拓, 使其光滑连续可导, 可以在训练中直接使用来优化模型.</p>
 <p>作者通过实验发现使用Cross-entropy进行预训练后, 使用lovasz loss进行fine-tune效果更好. 且lovasz loss是计算image的IoU来近似估计datsets的IoU的, 因此, 训练时Batch需要调的大一点, Batch过小会造成效果不好.</p>
 
@@ -437,7 +444,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

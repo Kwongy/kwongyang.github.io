@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -214,9 +214,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="regularization">Regularization</span></h2><p>深度学习中的正则化：对目标函数增加惩罚和约束项，以偏差的增加降低方差，从而提升训练模型的泛化能力。</p>
-<p>bias偏差就是衡量训练集和真实数据之间的误差，反应模型的拟合能力。<br>variance方差是指验证集和训练集的效果的差别，反应预测的准确性。</p>
-<p>低偏差高方差：表示模型准确但是稳定性差，对验证数据&amp;测试数据的拟合能力差，即是模型的泛化能力差，产生了过拟合。<br>高偏差低方差：表示模型的准确度差，对数据的拟合能力弱，产生了欠拟合。</p>
+                <h2><span id="regularization">Regularization</span></h2>
+<p>深度学习中的正则化：对目标函数增加惩罚和约束项，以偏差的增加降低方差，从而提升训练模型的泛化能力。</p>
+<p>bias偏差就是衡量训练集和真实数据之间的误差，反应模型的拟合能力。<br>
+variance方差是指验证集和训练集的效果的差别，反应预测的准确性。</p>
+<p>低偏差高方差：表示模型准确但是稳定性差，对验证数据&amp;测试数据的拟合能力差，即是模型的泛化能力差，产生了过拟合。<br>
+高偏差低方差：表示模型的准确度差，对数据的拟合能力弱，产生了欠拟合。</p>
 <p>正则化主要用于解决低偏差，高方差的模型，增强其泛化能力。常用的正则化技术有：</p>
 <ol>
 <li>参数范数惩罚：$L^1 / L^2$参数正则化。</li>
@@ -226,13 +229,22 @@
 <li>Bagging和其他集成方法。</li>
 <li>Dropout</li>
 </ol>
-<p>深度学习中正则化有如下形式：</p>
-<script type="math/tex; mode=display">\hat{L}(\theta,\alpha) = L(\theta) + \alpha{\Omega(\theta)}</script><p>其中$L(\theta)$是损失函数，$\alpha$是超参数，$\Omega(\theta)$是正则化项。</p>
-<h2><span id="参数范数惩罚">参数范数惩罚</span></h2><h3><span id="l2参数正则化">$L^2$参数正则化</span></h3><p>对模型参数$\omega$的$L^2$正则化被定义为</p>
-<script type="math/tex; mode=display">\Omega = \frac{1}{2}\Vert{\omega}{\Vert}^2_2</script><p>由于正则化的加入，只有在显著减小目标函数方向上的参数会保留的相对完好，在无助于目标函数减小的方向上对应的分量会在训练过程中因正则化而衰减掉。$L^2$正则化能让学习算法对具有高方差的输入值敏感，因此与输出目标的协方差较小的特征的权重会收缩。</p>
-<h3><span id="l1参数正则化">$L^1$参数正则化</span></h3><p>对模型参数$\omega$的$L^1$正则化被定义为</p>
-<script type="math/tex; mode=display">\Omega = \Vert{\omega}{\Vert}_1 = \sum_i{ {\omega}_i}</script><p>相比于$L^2，L^1$正则化会产生更稀疏的解(解的构成中一些参数的值为0)。<br>可以使用$L^1$正则化进行特征选择，选择特征子集中有意义的特征。</p>
-<h2><span id="dropout">Dropout</span></h2><p>Dropout是一种廉价的Bagging集成近似，它减少了模型的有效容量，增大了模型规模。<br>Dropout在每次训练中，每个神经元以$p$的概率被抑制，不被激活。具体做法是：生成一个概率为$p$的伯努利分布，每一个神经元乘以其中一项。训练完成后还需对所有神经元的参数进行缩放。</p>
+<p>深度学习中正则化有如下形式：<br>
+$$\hat{L}(\theta,\alpha) = L(\theta) + \alpha{\Omega(\theta)}$$<br>
+其中$L(\theta)$是损失函数，$\alpha$是超参数，$\Omega(\theta)$是正则化项。</p>
+<h2><span id="参数范数惩罚">参数范数惩罚</span></h2>
+<h3><span id="l2参数正则化">$L^2$参数正则化</span></h3>
+<p>对模型参数$\omega$的$L^2$正则化被定义为<br>
+$$\Omega = \frac{1}{2}\Vert{\omega}{\Vert}^2_2$$</p>
+<p>由于正则化的加入，只有在显著减小目标函数方向上的参数会保留的相对完好，在无助于目标函数减小的方向上对应的分量会在训练过程中因正则化而衰减掉。$L^2$正则化能让学习算法对具有高方差的输入值敏感，因此与输出目标的协方差较小的特征的权重会收缩。</p>
+<h3><span id="l1参数正则化">$L^1$参数正则化</span></h3>
+<p>对模型参数$\omega$的$L^1$正则化被定义为<br>
+$$\Omega = \Vert{\omega}{\Vert}_1 = \sum_i{ {\omega}_i}$$</p>
+<p>相比于$L^2，L^1$正则化会产生更稀疏的解(解的构成中一些参数的值为0)。<br>
+可以使用$L^1$正则化进行特征选择，选择特征子集中有意义的特征。</p>
+<h2><span id="dropout">Dropout</span></h2>
+<p>Dropout是一种廉价的Bagging集成近似，它减少了模型的有效容量，增大了模型规模。<br>
+Dropout在每次训练中，每个神经元以$p$的概率被抑制，不被激活。具体做法是：生成一个概率为$p$的伯努利分布，每一个神经元乘以其中一项。训练完成后还需对所有神经元的参数进行缩放。</p>
 <p>缩放的作用：训练的时候会随机的丢弃一些神经元，但是预测的时候就没办法随机丢弃了。如果丢弃一些神经元，这会带来结果不稳定的问题，也就是给定一个测试数据，有时候输出$a$，有时候输出$b$，结果不稳定，这是实际系统不能接受的，用户可能认为模型预测不准。那么一种”补偿“的方案就是每个神经元的权重都乘以一个$p$，这样在“总体上”使得测试数据和训练数据是大致一样的。例如一个神经元的输出是$x$，那么在训练的时候它有$p$的概率参与训练，$(1-p)$的概率丢弃，那么它输出的期望是$px+(1-p)0=px$。因此测试的时候把这个神经元的权重乘以$p$可以得到同样的期望。</p>
 
                 
@@ -444,7 +456,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

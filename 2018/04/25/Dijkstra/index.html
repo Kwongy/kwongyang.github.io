@@ -152,14 +152,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -225,35 +225,50 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=468490456&auto=1&height=66"></iframe>
 </div>
-
-
-
 <p>看了好几天书才把Dijkstra算法看明白，今天就记录一下整个过程，顺便给出C语言实现代码。</p>
 <hr>
-<h2><span id="dijkstra算法介绍">Dijkstra算法介绍</span></h2><hr>
-<p>Dijkstra算法是解决有权(权不能为负数)有向图最短路径问题的算法。<br>它基于贪心和广度优先搜素的思想。<br>(感觉还有一点动态规划的意味~)</p>
+<h2><span id="dijkstra算法介绍">Dijkstra算法介绍</span></h2>
 <hr>
-<h2><span id="dijkstra算法思想">Dijkstra算法思想</span></h2><hr>
-<p>书中原文为“假设S为以求得最短路径的终点的集合，下一条最短路径(设其终点为x)或者是弧(v,x)或者是中间只经过S中的顶点而最后到达顶点x的路径”<br>翻译一下。假设有三个点A(起点),B(已知A-&gt;B存在最短路径，忽略其是怎样到达的)，C(未知)。则A-&gt;C的最短路径要么是A-&gt;C要么是A-&gt;B-&gt;C。这里我们隐藏了无法到达的情况(如果无法到达那么最短路径就为无穷大，即把所有路都看成通路)。<br>所有顶点组成集合V，集合S为求出最短路径的顶点所组成的集合。刚开始时S集合只有起点$v_0$<br>首先从起点开始向外层遍历。从V-S集合中找出权值最小的顶点加入到S里(贪心，只要局部最优)，并更新最短路径值(我们需要看看新加入的顶点是否可以到达其他顶点并且看看通过该顶点到达其他点的路径长度是否比源点直接到达短，如果是就执行更新操作)，重复操作直至S中有V的全部元素(广度搜索)。此时S-V为空集。</p>
+<p>Dijkstra算法是解决有权(权不能为负数)有向图最短路径问题的算法。<br>
+它基于贪心和广度优先搜素的思想。<br>
+(感觉还有一点动态规划的意味~)</p>
 <hr>
-<h2><span id="实例理解">实例理解</span></h2><hr>
-<p>本题是清华大学教材严蔚敏数据结构$P_{188}$页例题<br>我一直没搞懂她伪代码里最短路径P[v]的意义<br>今天查了很多资料，又实现了一遍终于弄懂了<br><img src="1.png" alt="图片"><br>邻接矩阵为</p>
-<script type="math/tex; mode=display">\begin{bmatrix}
-{\infty}&{\infty}&{10}&{\infty}&{30}&{100}\\
-{\infty}&{\infty}&{5}&{\infty}&{\infty}&{\infty}\\
-{\infty}&{\infty}&{\infty}&{50}&{\infty}&{\infty}\\
-{\infty}&{\infty}&{\infty}&{\infty}&{\infty}&{10}\\
-{\infty}&{\infty}&{\infty}&{20}&{\infty}&{60}\\
-{\infty}&{\infty}&{\infty}&{\infty}&{\infty}&{\infty}\\
-\end{bmatrix}</script><p>第一次遍历我们找出各点距离原点的距离(直接到达)分别是</p>
-<script type="math/tex; mode=display">[\infty\ 10\ \infty\ 30\ 100]</script><p>于是我们可以发现直达的情况下，只有v2距离原点最近，因此v2与原点直达为最短路径，将v2加入S集。<br>第二次遍历我们找出各点距离原点的距离(直达或者通过v2)分别是</p>
-<script type="math/tex; mode=display">[\infty\ 10\ 60\  30\  100]</script><p>(60小于$\infty$,做更新操作)原点到v3经过v2更短，因此v3与原点的最短路径为通过v2，将v3加入S集<br>于是照着这个规律，将所有的顶点都加入S集，就可以得到原点到各顶点的最短路径了。</p>
+<h2><span id="dijkstra算法思想">Dijkstra算法思想</span></h2>
+<hr>
+<p>书中原文为“假设S为以求得最短路径的终点的集合，下一条最短路径(设其终点为x)或者是弧(v,x)或者是中间只经过S中的顶点而最后到达顶点x的路径”<br>
+翻译一下。假设有三个点A(起点),B(已知A-&gt;B存在最短路径，忽略其是怎样到达的)，C(未知)。则A-&gt;C的最短路径要么是A-&gt;C要么是A-&gt;B-&gt;C。这里我们隐藏了无法到达的情况(如果无法到达那么最短路径就为无穷大，即把所有路都看成通路)。<br>
+所有顶点组成集合V，集合S为求出最短路径的顶点所组成的集合。刚开始时S集合只有起点$v_0$<br>
+首先从起点开始向外层遍历。从V-S集合中找出权值最小的顶点加入到S里(贪心，只要局部最优)，并更新最短路径值(我们需要看看新加入的顶点是否可以到达其他顶点并且看看通过该顶点到达其他点的路径长度是否比源点直接到达短，如果是就执行更新操作)，重复操作直至S中有V的全部元素(广度搜索)。此时S-V为空集。</p>
+<hr>
+<h2><span id="实例理解">实例理解</span></h2>
+<hr>
+<p>本题是清华大学教材严蔚敏数据结构$P_{188}$页例题<br>
+我一直没搞懂她伪代码里最短路径P[v]的意义<br>
+今天查了很多资料，又实现了一遍终于弄懂了<br>
+<img src="1.png" alt="图片"><br>
+邻接矩阵为</p>
+<p>$$\begin{bmatrix}<br>
+{\infty}&amp;{\infty}&amp;{10}&amp;{\infty}&amp;{30}&amp;{100}\<br>
+{\infty}&amp;{\infty}&amp;{5}&amp;{\infty}&amp;{\infty}&amp;{\infty}\<br>
+{\infty}&amp;{\infty}&amp;{\infty}&amp;{50}&amp;{\infty}&amp;{\infty}\<br>
+{\infty}&amp;{\infty}&amp;{\infty}&amp;{\infty}&amp;{\infty}&amp;{10}\<br>
+{\infty}&amp;{\infty}&amp;{\infty}&amp;{20}&amp;{\infty}&amp;{60}\<br>
+{\infty}&amp;{\infty}&amp;{\infty}&amp;{\infty}&amp;{\infty}&amp;{\infty}\<br>
+\end{bmatrix}$$<br>
+第一次遍历我们找出各点距离原点的距离(直接到达)分别是</p>
+<p>$$[\infty\ 10\ \infty\ 30\ 100]$$<br>
+于是我们可以发现直达的情况下，只有v2距离原点最近，因此v2与原点直达为最短路径，将v2加入S集。<br>
+第二次遍历我们找出各点距离原点的距离(直达或者通过v2)分别是</p>
+<p>$$[\infty\ 10\ 60\  30\  100]$$<br>
+(60小于$\infty$,做更新操作)原点到v3经过v2更短，因此v3与原点的最短路径为通过v2，将v3加入S集<br>
+于是照着这个规律，将所有的顶点都加入S集，就可以得到原点到各顶点的最短路径了。</p>
 <blockquote>
 <p>再解释一下path[v]是什么意思。</p>
 </blockquote>
 <p>path[v]存储的数据为顶点的位置比如path[3]=2,它的意思就是顶点v0到v3的最后一步为v2-&gt;v3，通过递推(path[2]=-1代表v0,v2直达)就可以得到整个完整路径。所以仅需要一个一维数组就能记录下整个图的完整最短路径。</p>
 <hr>
-<h2><span id="代码实现">代码实现</span></h2><hr>
+<h2><span id="代码实现">代码实现</span></h2>
+<hr>
 <ul>
 <li>代码</li>
 </ul>
@@ -483,7 +498,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

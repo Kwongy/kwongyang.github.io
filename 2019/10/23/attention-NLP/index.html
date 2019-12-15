@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -212,42 +212,64 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="1-attention-mechanism原理">1. Attention Mechanism原理</span></h2><h3><span id="11-为什么使用attention-mechanism">1.1 为什么使用Attention Mechanism</span></h3><ol>
+                <h2><span id="1-attention-mechanism原理">1. Attention Mechanism原理</span></h2>
+<h3><span id="11-为什么使用attention-mechanism">1.1 为什么使用Attention Mechanism</span></h3>
+<ol>
 <li>当输入序列非常长时，模型难以学到合理的向量表示</li>
 <li>输入序列不论长短都会被编码成一个固定长度的向量表示，而解码则受限于该固定长度的向量表示。</li>
 <li>编解码器的结构无法解释，也就导致了其无法设计。</li>
 </ol>
 <p><a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">Neural Machine Translation by Jointly Learning to Align and Translate</a></p>
-<h3><span id="12-attention-based-model">1.2 Attention based model</span></h3><p>Attention仍然理解为从大量信息中有选择地筛选出少量重要信息并聚焦到这些重要信息上，忽略大多不重要的信息</p>
+<h3><span id="12-attention-based-model">1.2 Attention based model</span></h3>
+<p>Attention仍然理解为从大量信息中有选择地筛选出少量重要信息并聚焦到这些重要信息上，忽略大多不重要的信息</p>
 <p>Attention machanism主要包含两个部分:</p>
 <ol>
 <li>注意力机制需要决定整段输入的哪个部分需要更加关注；</li>
 <li>从关键的部分进行特征提取，得到重要的信息。</li>
 </ol>
-<p><img src="1.jpg" alt=""><br>首先给予一组输入序列$Source = <x_1, x_2,="" x_3,="" ..,="" x_m="">$和输出序列$Target = <y_1, y_2,="" y_3,="" ..,="" y_n="">$, 经过Encoder部分, 最终生成了一个编码$C$来表示前面所有信息,<br>对于解码器Decoder来说, 它的任务就是根据$C$和已经解码的部分来继续解下一个码. 即$y_i = G(C, y_1, y_2, .., y_{i-1})$</y_1,></x_1,></p>
-<p>简单来说可以看成</p>
-<script type="math/tex; mode=display">y_1 = G(C)</script><script type="math/tex; mode=display">y_2 = G(C, y_1)</script><script type="math/tex; mode=display">y_3 = G(C, y_1, y_2)</script><p>从这里可以看出，在生成目标句子的单词时，不论生成哪个单词，它们使用的输入句子Source的语义编码C都是一样的，没有任何区别。但实际上对于不同的$y_i$编码器生成的向量$C$对其影响应该是不同的.</p>
-<p><img src="2.jpg" alt=""><br>这就是Attention.</p>
+<p><img src="1.jpg" alt=""><br>
+首先给予一组输入序列$Source = &lt;x_1, x_2, x_3, …, x_m&gt;$和输出序列$Target = &lt;y_1, y_2, y_3, …, y_n&gt;$, 经过Encoder部分, 最终生成了一个编码$C$来表示前面所有信息,<br>
+对于解码器Decoder来说, 它的任务就是根据$C$和已经解码的部分来继续解下一个码. 即$y_i = G(C, y_1, y_2, …, y_{i-1})$</p>
+<p>简单来说可以看成<br>
+$$y_1 = G©$$<br>
+$$y_2 = G(C, y_1)$$<br>
+$$y_3 = G(C, y_1, y_2)$$<br>
+从这里可以看出，在生成目标句子的单词时，不论生成哪个单词，它们使用的输入句子Source的语义编码C都是一样的，没有任何区别。但实际上对于不同的$y_i$编码器生成的向量$C$对其影响应该是不同的.</p>
+<p><img src="2.jpg" alt=""><br>
+这就是Attention.</p>
 <p><img src="3.png" alt=""></p>
-<h2><span id="2-attention-mechanism种类">2. Attention Mechanism种类</span></h2><h3><span id="21-soft-attention-与-hard-attention">2.1 Soft Attention 与 Hard Attention</span></h3><p><a href="https://arxiv.org/abs/1502.03044" target="_blank" rel="noopener">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a></p>
-<p>我们之前所描述的传统的Attention Mechanism就是Soft Attention。Soft Attention是参数化的（Parameterization），因此可导，可以被嵌入到模型中去，直接训练。梯度可以经过Attention Mechanism模块，反向传播到模型其他部分。<br>相反，Hard Attention是一个随机的过程。Hard Attention不会选择整个encoder的输出做为其输入，Hard Attention会依概率Si来采样输入端的隐状态一部分来进行计算，而不是整个encoder的隐状态。为了实现梯度的反向传播，需要采用蒙特卡洛采样的方法来估计模块的梯度。<br>两种Attention Mechanism都有各自的优势，但目前更多的研究和应用还是更倾向于使用Soft Attention，因为其可以直接求导，进行梯度反向传播。</p>
-<h3><span id="22-global-attention-和-local-attention">2.2 Global Attention 和 Local Attention</span></h3><p><a href="https://www.aclweb.org/anthology/D15-1166/" target="_blank" rel="noopener">Effective Approaches to Attention-based Neural Machine Translation</a></p>
-<p><img src="4.jpg" alt=""><br><img src="5.jpg" alt=""></p>
+<h2><span id="2-attention-mechanism种类">2. Attention Mechanism种类</span></h2>
+<h3><span id="21-soft-attention-与-hard-attention">2.1 Soft Attention 与 Hard Attention</span></h3>
+<p><a href="https://arxiv.org/abs/1502.03044" target="_blank" rel="noopener">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a></p>
+<p>我们之前所描述的传统的Attention Mechanism就是Soft Attention。Soft Attention是参数化的（Parameterization），因此可导，可以被嵌入到模型中去，直接训练。梯度可以经过Attention Mechanism模块，反向传播到模型其他部分。<br>
+相反，Hard Attention是一个随机的过程。Hard Attention不会选择整个encoder的输出做为其输入，Hard Attention会依概率Si来采样输入端的隐状态一部分来进行计算，而不是整个encoder的隐状态。为了实现梯度的反向传播，需要采用蒙特卡洛采样的方法来估计模块的梯度。<br>
+两种Attention Mechanism都有各自的优势，但目前更多的研究和应用还是更倾向于使用Soft Attention，因为其可以直接求导，进行梯度反向传播。</p>
+<h3><span id="22-global-attention-和-local-attention">2.2 Global Attention 和 Local Attention</span></h3>
+<p><a href="https://www.aclweb.org/anthology/D15-1166/" target="_blank" rel="noopener">Effective Approaches to Attention-based Neural Machine Translation</a></p>
+<p><img src="4.jpg" alt=""><br>
+<img src="5.jpg" alt=""></p>
 <p>local attention 可以视为 hard attention 和 soft attention 的混合体（优势上的混合），因为它的计算复杂度要低于 global attention、soft attention，而且与 hard attention 不同的是，local attention 几乎处处可微，易与训练. global attention 和 local attention 的主要区别在于 attention 所 forcus 的 source positions 数目的不同：如果 attention forcus 全部的 position，则是 global attention，反之，若只 focus 一部分 position，则为 local attention。</p>
-<h3><span id="23-self-attention">2.3 Self-Attention</span></h3><p><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a></p>
+<h3><span id="23-self-attention">2.3 Self-Attention</span></h3>
+<p><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a></p>
 <p><img src="6.png" alt=""></p>
 <p>模型共包含三个 attention 成分，分别是 encoder 的 self-attention，decoder 的 self-attention，以及连接 encoder 和 decoder 的 attention。</p>
-<h3><span id="24-hierarchical-attention">2.4 Hierarchical Attention</span></h3><p><a href="https://www.researchgate.net/publication/305334401_Hierarchical_Attention_Networks_for_Document_Classification" target="_blank" rel="noopener">Hierarchical Attention Networks for Document Classification</a></p>
+<h3><span id="24-hierarchical-attention">2.4 Hierarchical Attention</span></h3>
+<p><a href="https://www.researchgate.net/publication/305334401_Hierarchical_Attention_Networks_for_Document_Classification" target="_blank" rel="noopener">Hierarchical Attention Networks for Document Classification</a></p>
 <p>Hierarchical Attention构建了两个层次的Attention Mechanism，第一个层次是对句子中每个词的attention，即word attention；第二个层次是针对文档中每个句子的attention，即sentence attention。网络结构如图10所示.整个网络结构由四个部分组成：一个由双向RNN（GRU）构成的word sequence encoder，然后是一个关于词的word-level的attention layer；基于word attention layar之上，是一个由双向RNN构成的sentence encoder，最后的输出层是一个sentence-level的attention layer。</p>
 <p><img src="7.jpg" alt=""></p>
-<h3><span id="25-attention-in-attention">2.5 Attention in Attention</span></h3><p><a href="https://arxiv.org/abs/1607.04423" target="_blank" rel="noopener">Attention-over-Attention Neural Networks for Reading Comprehension</a></p>
+<h3><span id="25-attention-in-attention">2.5 Attention in Attention</span></h3>
+<p><a href="https://arxiv.org/abs/1607.04423" target="_blank" rel="noopener">Attention-over-Attention Neural Networks for Reading Comprehension</a></p>
 <p>两个输入，一个Document和一个Query，分别用一个双向的RNN进行特征抽取，得到各自的隐状态h（doc）和h（query），然后基于query和doc的隐状态进行dot product，得到query和doc的attention关联矩阵。然后按列（colum）方向进行softmax操作，得到query-to-document的attention 值a（t）；按照行（row）方向进行softmax操作，得到document-to-query的attention值b（t），再按照列方向进行累加求平均得到平均后的attention值b（t）。最后再基于上一步attention操作得到a（t）和b（t），再进行attention操作，即attention over attention得到最终query与document的关联矩阵。</p>
 <p><img src="8.jpg" alt=""></p>
-<h3><span id="26-multi-step-attention">2.6 Multi-Step Attention</span></h3><p><a href="https://arxiv.org/abs/1705.03122" target="_blank" rel="noopener">Convolutional Sequence to Sequence Learning</a></p>
+<h3><span id="26-multi-step-attention">2.6 Multi-Step Attention</span></h3>
+<p><a href="https://arxiv.org/abs/1705.03122" target="_blank" rel="noopener">Convolutional Sequence to Sequence Learning</a></p>
 <p><img src="9.jpg" alt=""></p>
 <p>采用了多层Attention Mechanism</p>
-<h3><span id="27-multi-dimensional-attention">2.7 Multi-Dimensional Attention</span></h3><p><a href="https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14441" target="_blank" rel="noopener">Coupled Multi-Layer Attentions for Co-Extraction of Aspect and Opinion Terms</a><br><img src="10.png" alt=""></p>
-<h3><span id="28-总结">2.8 总结</span></h3><p>attention机制其实就是学出一个权重分布，再拿这个权重分布施加在原来的特征之上，就可以叫做attention。简单来说：</p>
+<h3><span id="27-multi-dimensional-attention">2.7 Multi-Dimensional Attention</span></h3>
+<p><a href="https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14441" target="_blank" rel="noopener">Coupled Multi-Layer Attentions for Co-Extraction of Aspect and Opinion Terms</a><br>
+<img src="10.png" alt=""></p>
+<h3><span id="28-总结">2.8 总结</span></h3>
+<p>attention机制其实就是学出一个权重分布，再拿这个权重分布施加在原来的特征之上，就可以叫做attention。简单来说：</p>
 <ol>
 <li>这个加权可以是保留所有分量均做加权（即soft attention）；也可以是在分布中以某种采样策略选取部分分量（即hard attention）。</li>
 <li>这个加权可以作用在原图上，也就是<a href="https://arxiv.org/abs/1406.6247" target="_blank" rel="noopener">Recurrent Model of Visual Attention(RAM)</a>和<a href="https://arxiv.org/abs/1412.7755" target="_blank" rel="noopener">Multiple Object Recognition with Visual Attention(DRAM)</a>；也可以作用在特征图上，如后续的好多文章（例如image caption)。</li>
@@ -255,7 +277,13 @@
 <li>这个加权还可以作用在不同时刻历史特征上，如Machine Translation.</li>
 </ol>
 <p>介绍了单层Attention Model、多层Attention Model以及引入知识图谱或者领域信息的Attention Model的一些变型和应用。可以发现, 如果能针对任务提出合理的假设，Attention Model会有很多种变型和应用的。</p>
-<h2><span id="参考">参考</span></h2><p><a href="https://blog.csdn.net/guohao_zhang/article/details/79540014" target="_blank" rel="noopener">深度学习中的Attention机制</a><br><a href="https://zhuanlan.zhihu.com/p/37601161" target="_blank" rel="noopener">深度学习中的注意力模型（2017版）</a><br><a href="https://zhuanlan.zhihu.com/p/31547842" target="_blank" rel="noopener">模型汇总24 - 深度学习中Attention Mechanism详细介绍：原理、分类及应用</a><br><a href="https://machinelearningmastery.com/attention-long-short-term-memory-recurrent-neural-networks/" target="_blank" rel="noopener">Attention in Long Short-Term Memory Recurrent Neural Networks</a><br><a href="https://blog.csdn.net/weixin_41923961/article/details/81516589" target="_blank" rel="noopener">Attention机制【图像】</a><br><a href="https://www.zhihu.com/question/68482809/answer/264070398" target="_blank" rel="noopener">目前主流的attention方法都有哪些</a></p>
+<h2><span id="参考">参考</span></h2>
+<p><a href="https://blog.csdn.net/guohao_zhang/article/details/79540014" target="_blank" rel="noopener">深度学习中的Attention机制</a><br>
+<a href="https://zhuanlan.zhihu.com/p/37601161" target="_blank" rel="noopener">深度学习中的注意力模型（2017版）</a><br>
+<a href="https://zhuanlan.zhihu.com/p/31547842" target="_blank" rel="noopener">模型汇总24 - 深度学习中Attention Mechanism详细介绍：原理、分类及应用</a><br>
+<a href="https://machinelearningmastery.com/attention-long-short-term-memory-recurrent-neural-networks/" target="_blank" rel="noopener">Attention in Long Short-Term Memory Recurrent Neural Networks</a><br>
+<a href="https://blog.csdn.net/weixin_41923961/article/details/81516589" target="_blank" rel="noopener">Attention机制【图像】</a><br>
+<a href="https://www.zhihu.com/question/68482809/answer/264070398" target="_blank" rel="noopener">目前主流的attention方法都有哪些</a></p>
 
                 
 
@@ -464,7 +492,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

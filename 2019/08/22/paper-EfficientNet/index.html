@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,14 +217,19 @@
                 post-container">
 
                 <p>本篇论文是由谷歌研究中心的Mingxing Tan, Quoc V. Le所作的<a href="https://arxiv.org/pdf/1905.11946.pdf" target="_blank" rel="noopener">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</a>发表在2019年ICML上。</p>
-<h2><span id="收获总结">收获总结</span></h2><p>作者就目前网络模型的广度、深度和分辨率进行了研究，认为目前常用的加宽网络、加深网络和增加分辨率这3种常用的提升网络指标的方式之间不应该是相互独立的。因此提出了compound model scaling算法，通过综合优化网络宽度、网络深度和分辨率达到指标提升的目的，能够达到准确率指标和现有分类网络相似的情况下，大大减少模型参数量和计算量。</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>作者就目前网络模型的广度、深度和分辨率进行了研究，认为目前常用的加宽网络、加深网络和增加分辨率这3种常用的提升网络指标的方式之间不应该是相互独立的。因此提出了compound model scaling算法，通过综合优化网络宽度、网络深度和分辨率达到指标提升的目的，能够达到准确率指标和现有分类网络相似的情况下，大大减少模型参数量和计算量。</p>
 <p>作者的实验观察：</p>
 <ol>
 <li>扩展网络宽度、深度或分辨率的任何维度都可以提高精度，但是对于较大的模型，精度增益会降低。</li>
 <li>为了追求更高的精度和效率，在ConvNet缩放过程中平衡网络宽度、深度和分辨率的所有维度是至关重要的。</li>
 </ol>
-<p>作者通过实验发现，单个提升网络宽度或者深度或者分辨率对于网络精度的提升很容易饱和。而同时提升多个指标，可以提高网络的准确率，那么该按照什么样的指标提升网络的宽度、深度和分辨率呢。作者提出了公式</p>
-<script type="math/tex; mode=display">depth: d = \alpha^{\phi}</script><script type="math/tex; mode=display">width: w = \beta^{\phi}</script><script type="math/tex; mode=display">resolution: r = \gamma^{\phi}</script><script type="math/tex; mode=display">\alpha \times \beta^2 \times \gamma^2 \approx 2</script><p>在这个比例下，对网络扩大$\phi$，总的计算量提高约两倍。</p>
+<p>作者通过实验发现，单个提升网络宽度或者深度或者分辨率对于网络精度的提升很容易饱和。而同时提升多个指标，可以提高网络的准确率，那么该按照什么样的指标提升网络的宽度、深度和分辨率呢。作者提出了公式<br>
+$$depth: d = \alpha^{\phi}$$<br>
+$$width: w = \beta^{\phi}$$<br>
+$$resolution: r = \gamma^{\phi}$$<br>
+$$\alpha \times \beta^2 \times \gamma^2 \approx 2$$<br>
+在这个比例下，对网络扩大$\phi$，总的计算量提高约两倍。</p>
 <p>同时，作者提出了一种新模型EfficientNet，采用mobile inverted bottleneck convolution（MBConv）作为基线模型，同时按照compound model scaling算法对原模型进行缩放。EfficientNet-B7 在 ImageNet 上获得了当前最优的 84.4% top-1 / 97.1% top-5 准确率，</p>
 
                 
@@ -438,7 +443,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

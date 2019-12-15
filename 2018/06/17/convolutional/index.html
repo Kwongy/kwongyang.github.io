@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,37 +216,51 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="convolution-operation">Convolution operation</span></h2><hr>
+                <h2><span id="convolution-operation">Convolution operation</span></h2>
+<hr>
 <p><img src="1.png" alt=""></p>
 <p>From the top left，Take the inner product by useing the same matrix as the filter.And do the same thing.And so on, from left to right, from top to bottom.</p>
 <p><img src="2.png" alt=""></p>
 <hr>
-<h2><span id="more-edge-detection">More edge detection</span></h2><hr>
-<p>different between positive and negative edges,light to dark,versus dark to light edge transitions</p>
-<p>Three basic filter<br><img src="3.png" alt=""></p>
+<h2><span id="more-edge-detection">More edge detection</span></h2>
 <hr>
-<h2><span id="padding">Padding</span></h2><hr>
+<p>different between positive and negative edges,light to dark,versus dark to light edge transitions</p>
+<p>Three basic filter<br>
+<img src="3.png" alt=""></p>
+<hr>
+<h2><span id="padding">Padding</span></h2>
+<hr>
 <p>The math for this turns out to be that if we have a n-by-n image， and convolve that with a f-by-f filter then the dimension of the output will be $(n-f+1)*(n-f+1)$</p>
-<p>The two downsides to this.One is that every time you apply a convolutional operator,your image gets smaller,maybe you don’t want your image to shrink every time you detect edges or detect other features on it.the other one is that if you look the pixel at the corner of the edge and it is touched or used only in one of the outputs,whereas if you take a pixel in the middle,then there are a lot of the regions that overlap that pixel.So it’s as if pixels on the corers or on the edges are used much less in the output.So you’re throwing away a lot of the information near the edge of the image.</p>
-<p>To solve the two problems.What you can do is before apply the convolutional operation you can pad the image,let’s say you pad the image with an additional border of one pixel all around the edges.So by convention,when you padded with zeros and if <code>p</code> is the padding amounts.We’re padding all around with an extra border of one pixels.that the output becomes $(n+2p-f+1)*(n+2p-f+1)$</p>
-<p>In terms of how much to pad,it turns out there are two common choices,they are called <code>Valid convolutions</code> and <code>Same convolutions</code> </p>
-<p>Valid convolutions this basically means no padding<br>Same convolutions means that padding so that output size is the same as the input size.</p>
-<script type="math/tex; mode=display">p = \frac{f - 1}{2}</script><hr>
-<h2><span id="strided-convolutions">Strided convolutions</span></h2><hr>
+<p>The two downsides to this.One is that every time you apply a convolutional operator,your image gets smaller,maybe you don’t want your image to shrink every time you detect edges or detect other features on it.the other one is that if you look the pixel at the corner of the edge and it is touched or used only in one of the outputs,whereas if you take a pixel in the middle,then there are a lot of the regions that overlap that <a href="http://pixel.So" target="_blank" rel="noopener">pixel.So</a> it’s as if pixels on the corers or on the edges are used much less in the <a href="http://output.So" target="_blank" rel="noopener">output.So</a> you’re throwing away a lot of the information near the edge of the image.</p>
+<p>To solve the two problems.What you can do is before apply the convolutional operation you can pad the image,let’s say you pad the image with an additional border of one pixel all around the <a href="http://edges.So" target="_blank" rel="noopener">edges.So</a> by convention,when you padded with zeros and if <code>p</code> is the padding amounts.We’re padding all around with an extra border of one pixels.that the output becomes $(n+2p-f+1)*(n+2p-f+1)$</p>
+<p>In terms of how much to pad,it turns out there are two common choices,they are called <code>Valid convolutions</code> and <code>Same convolutions</code></p>
+<p>Valid convolutions this basically means no padding<br>
+Same convolutions means that padding so that output size is the same as the input size.<br>
+$$p = \frac{f - 1}{2}$$</p>
+<hr>
+<h2><span id="strided-convolutions">Strided convolutions</span></h2>
+<hr>
 <p>when steps become two</p>
-<p><img src="4.png" alt=""><br>So the input and output dimensions turns out to be governed by the following formula.if you have n-by-n image that you convolve with f-by-f filter,and if you use padding p,and stride s,then you end up with an output.</p>
-<script type="math/tex; mode=display">(\frac{n+2p-f}{s}+1) * (\frac{n+2p-f}{s}+1)</script><p>Last detail which is what if this fraction is not integer.in that case,we’re going to round this down.so this is also called the floor of z.</p>
-<script type="math/tex; mode=display">\lfloor z \rfloor = floor(z)</script><hr>
-<h2><span id="convolutions-over-volumes">Convolutions over volumes</span></h2><hr>
+<p><img src="4.png" alt=""><br>
+So the input and output dimensions turns out to be governed by the following formula.if you have n-by-n image that you convolve with f-by-f filter,and if you use padding p,and stride s,then you end up with an output.<br>
+$$(\frac{n+2p-f}{s}+1) * (\frac{n+2p-f}{s}+1)$$</p>
+<p>Last detail which is what if this fraction is not <a href="http://integer.in" target="_blank" rel="noopener">integer.in</a> that case,we’re going to round this <a href="http://down.so" target="_blank" rel="noopener">down.so</a> this is also called the floor of z.<br>
+$$\lfloor z \rfloor = floor(z)$$</p>
+<hr>
+<h2><span id="convolutions-over-volumes">Convolutions over volumes</span></h2>
+<hr>
 <p><img src="5.png" alt=""></p>
 <p>Convolution on volumes</p>
 <p><img src="6.png" alt=""></p>
 <hr>
-<h2><span id="one-layer-of-a-convolutional-network">One layer of a convolutional network</span></h2><hr>
-<p>take a 3D volume and convolve it with say two different filters<br><img src="7.png" alt=""></p>
+<h2><span id="one-layer-of-a-convolutional-network">One layer of a convolutional network</span></h2>
+<hr>
+<p>take a 3D volume and convolve it with say two different filters<br>
+<img src="7.png" alt=""></p>
 <p><img src="8.png" alt=""></p>
 <hr>
-<h2><span id="a-simple-convolution-network-example">A simple convolution network example</span></h2><hr>
+<h2><span id="a-simple-convolution-network-example">A simple convolution network example</span></h2>
+<hr>
 <p><img src="9.png" alt=""></p>
 <p>It turns out that in a typical ConvNet,there are usually three types of layers</p>
 <ul>
@@ -255,7 +269,8 @@
 <li>Fully connected</li>
 </ul>
 <hr>
-<h2><span id="pooling-layers">Pooling layers</span></h2><hr>
+<h2><span id="pooling-layers">Pooling layers</span></h2>
+<hr>
 <p><img src="10.png" alt=""></p>
 <p>So this is as if you’re applying a filter size of 2</p>
 <p>The reason people use max pooling is because it’s been found in a lot of experiments to work well</p>
@@ -267,16 +282,19 @@
 <li>Max or average pooling</li>
 </ul>
 <hr>
-<h2><span id="neural-network-example">Neural network example</span></h2><hr>
+<h2><span id="neural-network-example">Neural network example</span></h2>
+<hr>
 <p>There are two conventions which are slightly in consistence about what you call a layer.One convention is that this is called one layer,so this will be Layer 1 of the neural network,Another convention would be to count the Conv layer as a layer,and the Poor layer as a layer.When people report a number of layers in neural network,usually people report just the number of layers that have weight,that have parameters,and because the pooling layer has no weight ,has no parameters only a few hyperparameters,So you can use the convention that Conv and pool together</p>
 <p><img src="12.png" alt=""></p>
 <p><img src="13.png" alt=""></p>
 <hr>
-<h2><span id="why-convolutions">Why convolutions</span></h2><hr>
+<h2><span id="why-convolutions">Why convolutions</span></h2>
+<hr>
 <p>There are two main advantages of convolutional layers over,just using fully connected layers and the advantages are parameter sharing and sparsity of connections.</p>
 <p><strong>Parameter sharing</strong>：A feature detector(such as a vertical edge detector) that’s useful in one part of the image is probably useful in another part of image.</p>
 <p><strong>Sparsity of connections</strong>:In each layer,each output value depends only on a small number of inputs.</p>
-<p>Example:<br><img src="14.png" alt=""></p>
+<p>Example:<br>
+<img src="14.png" alt=""></p>
 
                 
 
@@ -489,7 +507,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

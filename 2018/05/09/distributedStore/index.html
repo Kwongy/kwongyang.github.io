@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -221,50 +221,66 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1789099&auto=1&height=66"></iframe>
 </div>
-
 <p>近几天上了关于分布式存储的大数据实践课，在此记录下整个过程以便以后学习。</p>
 <hr>
-<h1><span id="安装虚拟机">安装虚拟机</span></h1><hr>
-<p>首先在下面百度云中下载所有资源。<br>由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。</p>
+<h1><span id="安装虚拟机">安装虚拟机</span></h1>
+<hr>
+<p>首先在下面百度云中下载所有资源。<br>
+由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。</p>
 <blockquote>
 <p>链接：<a href="https://pan.baidu.com/s/1aHWy5UDeXQhit4azvPPM7A" target="_blank" rel="noopener">https://pan.baidu.com/s/1aHWy5UDeXQhit4azvPPM7A</a> 密码：ngeo</p>
 </blockquote>
 <hr>
-<h2><span id="安装vmware">安装VMware</span></h2><hr>
-<p>打开下载的软件中有<br><code>VMware-workstation-full-12.1.1</code>点击安装，然后一路Next即可，最后需要输入密匙，在同一个文件夹里有密匙txt，然后复制12版本的密匙即可<code>5A02H-AU243-TZJ49-GTC7K-3C61N</code></p>
+<h2><span id="安装vmware">安装VMware</span></h2>
 <hr>
-<h2><span id="创建虚拟机">创建虚拟机</span></h2><hr>
+<p>打开下载的软件中有<br>
+<code>VMware-workstation-full-12.1.1</code>点击安装，然后一路Next即可，最后需要输入密匙，在同一个文件夹里有密匙txt，然后复制12版本的密匙即可<code>5A02H-AU243-TZJ49-GTC7K-3C61N</code></p>
+<hr>
+<h2><span id="创建虚拟机">创建虚拟机</span></h2>
+<hr>
 <p>首先进入VMware，然后点击创建虚拟机。选择自定义高级</p>
-<p><img src="1.png" alt=""><br>下一步，然后点击浏览，找到你下载的Linux镜像.iso文件。</p>
-<p><img src="2.png" alt=""><br>然后将虚拟机名称改为<code>Master</code>(这个是为了方便),位置选择你磁盘比较大的磁盘。</p>
+<p><img src="1.png" alt=""><br>
+下一步，然后点击浏览，找到你下载的Linux镜像.iso文件。</p>
+<p><img src="2.png" alt=""><br>
+然后将虚拟机名称改为<code>Master</code>(这个是为了方便),位置选择你磁盘比较大的磁盘。</p>
 <p>内存根据自己电脑配置选择，由于机房电脑只有4G内存，要开3台虚拟机，于是选择了512M内存</p>
-<p><img src="3.png" alt=""><br>从网络连接开始一直选择推荐即下一步即可。</p>
+<p><img src="3.png" alt=""><br>
+从网络连接开始一直选择推荐即下一步即可。</p>
 <p>进入安装界面</p>
 <p><img src="4.png" alt=""></p>
 <p>用键盘<code>↑</code>来选择<code>Install CentOS 7</code> 然后键盘<code>Enter</code>进入安装界面</p>
-<p><img src="5.png" alt=""><br>直接选择英语即可，中文会乱码</p>
+<p><img src="5.png" alt=""><br>
+直接选择英语即可，中文会乱码</p>
 <p>看到如图 SYSTEM下两个都需要更改</p>
 <p><img src="6.png" alt=""></p>
 <p><img src="7.png" alt=""></p>
-<p><img src="8.png" alt=""><br>然后设置root password为1234<br>等待安装完成即可<br>点击Reboot输入<code>Enter</code>进入系统<br>输入用户名root和密码1234(Linux输入密码时不显示长度，不是机子出问题了放心)</p>
+<p><img src="8.png" alt=""><br>
+然后设置root password为1234<br>
+等待安装完成即可<br>
+点击Reboot输入<code>Enter</code>进入系统<br>
+输入用户名root和密码1234(Linux输入密码时不显示长度，不是机子出问题了放心)</p>
 <p><img src="9.png" alt=""></p>
 <hr>
-<h2><span id="创建三台虚拟机">创建三台虚拟机</span></h2><hr>
-<p>找到Master虚拟机所在位置<br>直接复制两个副本，即创建了三个虚拟机了</p>
+<h2><span id="创建三台虚拟机">创建三台虚拟机</span></h2>
 <hr>
-<h3><span id="修改主机名">修改主机名</span></h3><hr>
+<p>找到Master虚拟机所在位置<br>
+直接复制两个副本，即创建了三个虚拟机了</p>
+<hr>
+<h3><span id="修改主机名">修改主机名</span></h3>
+<hr>
 <ul>
 <li>sudo vi /etc/sysconfig/network (进入文件)</li>
 <li>o(输入表示进入编辑模式)</li>
 <li>HOSTNAME=Master</li>
 <li>点击Esc(最左上角的键)</li>
-<li>输入:wq!    (w代表写入q代表退出!代表强制执行)</li>
+<li>输入:wq!	(w代表写入q代表退出!代表强制执行)</li>
 </ul>
 <blockquote>
 <p>同时修改另外两台虚拟机为slave0和slave1</p>
 </blockquote>
 <hr>
-<h3><span id="修改主机名">修改主机名</span></h3><hr>
+<h3><span id="修改主机名">修改主机名</span></h3>
+<hr>
 <ul>
 <li>sudo vi /etc/hostname</li>
 <li>o(输入表示进入编辑模式)</li>
@@ -276,63 +292,95 @@
 <p>同时修改另外两台虚拟机为slave0和slave1</p>
 </blockquote>
 <hr>
-<h3><span id="配置hosts">配置hosts</span></h3><hr>
-<p>先查看三台机器的ip地址，输入<code>ifconfig</code><br>在Master机器中配置hosts</p>
+<h3><span id="配置hosts">配置hosts</span></h3>
+<hr>
+<p>先查看三台机器的ip地址，输入<code>ifconfig</code><br>
+在Master机器中配置hosts</p>
 <ul>
 <li>sudo vi /etc/hosts</li>
-<li><p>分别将三台机子的ip与用户名写入<br>如下</p>
+<li>分别将三台机子的ip与用户名写入<br>
+如下</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.4.128	master</span><br><span class="line">192.168.4.129	slave0</span><br><span class="line">192.168.4.130	slave1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>wq!</p>
-</li>
+<ul>
+<li>wq!</li>
 </ul>
 <p>输入如下命令，将配置好的hosts传入slave0与slave1虚拟机。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/hosts root@slave0:/etc/hosts</span><br><span class="line">scp /etc/hosts root@slave1:/etc/hosts</span><br></pre></td></tr></table></figure>
 <hr>
-<h1><span id="linux初探">Linux初探</span></h1><hr>
-<h2><span id="linux常用shell命令">Linux常用shell命令</span></h2><hr>
+<h1><span id="linux初探">Linux初探</span></h1>
+<hr>
+<h2><span id="linux常用shell命令">Linux常用shell命令</span></h2>
+<hr>
 <ul>
-<li>ls:显示文件夹所有文件<br>  -l 查看详细信息  ls -l(ll)<br>  -a  显示出隐藏文件</li>
-<li>rm：删除<br>  -f：强制删除<br>  -r：递归删除</li>
+<li>ls:显示文件夹所有文件<br>
+-l 查看详细信息  ls -l(ll)<br>
+-a  显示出隐藏文件</li>
+<li>rm：删除<br>
+-f：强制删除<br>
+-r：递归删除</li>
 <li>rm -rf *:慎用（删除当前目录下所有文件）</li>
 <li>cd ：进入退出文件夹</li>
 <li>ifconfig ：查看当前ip地址</li>
 <li>touch：创建文件</li>
 <li>mkdir：创建文件夹</li>
 <li>cat:查看文件</li>
-<li>vi 进入文件<br>o：进入编辑模式：在当前行的下一行<br>i：进入编辑模式：当前位置</li>
+<li>vi 进入文件<br>
+o：进入编辑模式：在当前行的下一行<br>
+i：进入编辑模式：当前位置</li>
 <li>scp：文件远程拷贝</li>
 <li>vi:打开或者新建文件</li>
 <li>tar:解压文件</li>
 </ul>
 <blockquote>
-<p>在命令前加sudo表示以管理员身份执行<br>Linux下鼠标选中或Ctrl+Insert即为复制，鼠标滚轮键为粘贴或者Shift+Insert</p>
+<p>在命令前加sudo表示以管理员身份执行<br>
+Linux下鼠标选中或Ctrl+Insert即为复制，鼠标滚轮键为粘贴或者Shift+Insert</p>
 </blockquote>
 <hr>
-<h1><span id="配置环境">配置环境</span></h1><hr>
-<h2><span id="安装sshsecureshellclient">安装SSHSecureShellClient</span></h2><hr>
+<h1><span id="配置环境">配置环境</span></h1>
+<hr>
+<h2><span id="安装sshsecureshellclient">安装SSHSecureShellClient</span></h2>
+<hr>
 <p>首先安装从百度云中下载的软件SSHSecureShellClient</p>
-<p>然后点击Quick Connect<br>在Host Name中输入ip地址<br>User Name输入root<br>password输入密码1234</p>
+<p>然后点击Quick Connect<br>
+在Host Name中输入ip地址<br>
+User Name输入root<br>
+password输入密码1234</p>
 <p><img src="10.png" alt=""></p>
 <p>这是windows下使用虚拟机的软件，可视化比较好，比VMware使用方便</p>
 <hr>
-<h2><span id="建立ssh连接">建立SSH连接</span></h2><hr>
+<h2><span id="建立ssh连接">建立SSH连接</span></h2>
+<hr>
 <p>建立SSH连接的目的是为了三台机器互相访问的时候无需输入密码。</p>
 <hr>
-<h3><span id="关闭三台虚拟机防火墙">关闭三台虚拟机防火墙</span></h3><hr>
-<p>查看防火墙状态<br><code>firewall-cmd --state</code></p>
-<p>临时停止防火墙<br><code>systemctl stop firewalld.service</code></p>
-<p>永久关闭防火墙（开机默认关闭防火墙）<br><code>systemctl disable firewalld.service</code></p>
-<p>开机默认启动防火墙<br><code>systemctl enable firewalld.service</code></p>
-<p>在三台机器上输入永久关闭防火墙命令，然后重启虚拟机查看防火墙状态<br>如果显示not running表示更改成功</p>
+<h3><span id="关闭三台虚拟机防火墙">关闭三台虚拟机防火墙</span></h3>
 <hr>
-<h3><span id="生成ssh密匙">生成SSH密匙</span></h3><hr>
-<p>在三台机器中都输入<code>ssh-keygen</code><br>进入ssh目录<code>cd ~/.ssh</code><br>在Master机器中将公钥追加到authorized_keys文件中，再将authorized_keys文件权限改为600。<br><code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@slave0</code></p>
+<p>查看防火墙状态<br>
+<code>firewall-cmd --state</code></p>
+<p>临时停止防火墙<br>
+<code>systemctl stop firewalld.service</code></p>
+<p>永久关闭防火墙（开机默认关闭防火墙）<br>
+<code>systemctl disable firewalld.service</code></p>
+<p>开机默认启动防火墙<br>
+<code>systemctl enable firewalld.service</code></p>
+<p>在三台机器上输入永久关闭防火墙命令，然后重启虚拟机查看防火墙状态<br>
+如果显示not running表示更改成功</p>
+<hr>
+<h3><span id="生成ssh密匙">生成SSH密匙</span></h3>
+<hr>
+<p>在三台机器中都输入<code>ssh-keygen</code><br>
+进入ssh目录<code>cd ~/.ssh</code><br>
+在Master机器中将公钥追加到authorized_keys文件中，再将authorized_keys文件权限改为600。<br>
+<code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@slave0</code></p>
 <p>建立如下五个连接</p>
 <p><img src="11.png" alt=""></p>
-<p>完成后测试<br><code>ssh root@slave0</code><br>如果不需要输入密码即可登陆则说明配置成功。<br>输入<code>exit</code>退出登陆</p>
+<p>完成后测试<br>
+<code>ssh root@slave0</code><br>
+如果不需要输入密码即可登陆则说明配置成功。<br>
+输入<code>exit</code>退出登陆</p>
 <hr>
-<h2><span id="安装jdk与hadoop">安装jdk与hadoop</span></h2><hr>
+<h2><span id="安装jdk与hadoop">安装jdk与hadoop</span></h2>
+<hr>
 <p>要将Windows系统下的文件传到Linux系统的虚拟机下</p>
 <p>首先在SSHsecure软件中点击New File Transfer Windows,在Local Name中找到要安装的jdk与hadoop压缩包目录，在Remote Name中先将文件目录更改为/opt，再把左边的文件直接拖入右边即可。</p>
 <p><img src="12.png" alt=""></p>
@@ -345,44 +393,80 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">hadoop version</span><br></pre></td></tr></table></figure>
 <p>如果成功则将上述所有文件使用scp命令传送给slave0、slave1虚拟机</p>
 <hr>
-<h1><span id="hadoop-hdfs">Hadoop-hdfs</span></h1><hr>
-<h2><span id="配置集群模式">配置集群模式</span></h2><hr>
-<p>首先切换目录<br><code>cd /opt/hadoop-2.6.4/etc/hadoop</code></p>
+<h1><span id="hadoop-hdfs">Hadoop-hdfs</span></h1>
 <hr>
-<h3><span id="配置core-sitexml">配置core-site.xml</span></h3><hr>
-<p><code>vi core-site.xml</code><br>在configuration标签中间加入</p>
+<h2><span id="配置集群模式">配置集群模式</span></h2>
+<hr>
+<p>首先切换目录<br>
+<code>cd /opt/hadoop-2.6.4/etc/hadoop</code></p>
+<hr>
+<h3><span id="配置core-sitexml">配置core-site.xml</span></h3>
+<hr>
+<p><code>vi core-site.xml</code><br>
+在configuration标签中间加入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--指定HDFS的老大是master--&gt;</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">                &lt;name&gt;fs.default.name&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;hdfs://master:9000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.permissions&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3><span id="配置hdfs-sitexml">配置hdfs-site.xml</span></h3><hr>
-<p><code>vi hdfs-site.xml</code><br>在configuration标签中间加入</p>
+<h3><span id="配置hdfs-sitexml">配置hdfs-site.xml</span></h3>
+<hr>
+<p><code>vi hdfs-site.xml</code><br>
+在configuration标签中间加入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--指定DataNode存储位置--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.data.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/opt/dfs/data&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!--指定NameNode存储位置--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.name.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/opt/dfs/name&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!--指定Block块备份数量--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">&lt;value&gt;3&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!--指定secondNameNode老大--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.secondary.http.address&lt;/name&gt;</span><br><span class="line">&lt;value&gt;master:50090&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3><span id="创建mapred-sitexml">创建mapred-site.xml</span></h3><hr>
-<p>直接将系统模板名字改了就行<br><code>cp mapred-site.xml.template mapred-site.xml</code></p>
+<h3><span id="创建mapred-sitexml">创建mapred-site.xml</span></h3>
 <hr>
-<h3><span id="配置mapred-sitexml">配置mapred-site.xml</span></h3><hr>
-<p><code>vi mapred-site.xml</code><br>在configuration标签中间加入</p>
+<p>直接将系统模板名字改了就行<br>
+<code>cp mapred-site.xml.template mapred-site.xml</code></p>
+<hr>
+<h3><span id="配置mapred-sitexml">配置mapred-site.xml</span></h3>
+<hr>
+<p><code>vi mapred-site.xml</code><br>
+在configuration标签中间加入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapred.job.tracker&lt;/name&gt;</span><br><span class="line">&lt;value&gt;master:9001&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!--指定hadoop以后运行在yarn--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">&lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</span><br><span class="line">&lt;value&gt;master:10020&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3><span id="配置yarn-sitexml">配置yarn-site.xml</span></h3><hr>
-<p><code>vi yarn-site.xml</code><br>在configuration标签中间加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--指定yarn的老大是master电脑--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">&lt;value&gt;master&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="配置yarn-sitexml">配置yarn-site.xml</span></h3>
 <hr>
-<h3><span id="编辑slaves文件">编辑slaves文件</span></h3><hr>
-<p><code>vi slaves</code><br>删除localhost<br>加入<br><code>slave0</code><br><code>slave1</code></p>
+<p><code>vi yarn-site.xml</code><br>
+在configuration标签中间加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--指定yarn的老大是master电脑--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">&lt;value&gt;master&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3><span id="编辑slaves文件">编辑slaves文件</span></h3>
+<hr>
+<p><code>vi slaves</code><br>
+删除localhost<br>
+加入<br>
+<code>slave0</code><br>
+<code>slave1</code></p>
 <hr>
 <p>以上所有配置完成，可以开启分布式存储系统了。</p>
 <hr>
-<h2><span id="开启hdfs">开启HDFS</span></h2><hr>
-<p>格式化整个分布式磁盘<br><code>hdfs namenode -format</code><br>若出现status为0则表示成功，若不是就自己寻找错误即可</p>
+<h2><span id="开启hdfs">开启HDFS</span></h2>
+<hr>
+<p>格式化整个分布式磁盘<br>
+<code>hdfs namenode -format</code><br>
+若出现status为0则表示成功，若不是就自己寻找错误即可</p>
 <p><img src="20.png" alt=""></p>
-<p>进入对应目录<br><code>cd /opt/hadoop-2.6.4/sbin</code><br>开启全部功能<br><code>./start-dfs.sh</code><br>分别在三个虚拟机里输入<code>jps</code>查看状态，主机若出现NameNode则表示成功，分机出现DataNode表示成功</p>
+<p>进入对应目录<br>
+<code>cd /opt/hadoop-2.6.4/sbin</code><br>
+开启全部功能<br>
+<code>./start-dfs.sh</code><br>
+分别在三个虚拟机里输入<code>jps</code>查看状态，主机若出现NameNode则表示成功，分机出现DataNode表示成功</p>
 <p>在浏览器中输入Ip:50070查看配置效果</p>
 <p><img src="21.png" alt=""></p>
 <p>到此为止分布式机群就搭建完成。</p>
 <hr>
-<h2><span id="hdfs使用方法">HDFS使用方法</span></h2><hr>
-<h3><span id="hdfs常用的shell命令">HDFS常用的shell命令</span></h3><hr>
-<p>hadoop fs -ls /  查看HDFS根目录<br>hadoop fs -mkdir /test 在根目录创建一个目录test<br>hadoop fs -mkdir /test1 在根目录创建一个目录test1<br>hadoop fs -put ./test.txt /test　或#hadoop fs -copyFromLocal ./test.txt /test    上传文件<br>hadoop fs -get /test/test.txt .或hadoop fs -getToLocal /test/test.txt .<br>hadoop fs -cp /test/test.txt /test1<br>hadoop fs -rm /test1/test.txt<br>hadoop fs -mv /test/test.txt /test1<br>hadoop fs -rmr /test1</p>
+<h2><span id="hdfs使用方法">HDFS使用方法</span></h2>
+<hr>
+<h3><span id="hdfs常用的shell命令">HDFS常用的shell命令</span></h3>
+<hr>
+<p>hadoop fs -ls /  查看HDFS根目录<br>
+hadoop fs -mkdir /test 在根目录创建一个目录test<br>
+hadoop fs -mkdir /test1 在根目录创建一个目录test1<br>
+hadoop fs -put ./test.txt /test　或#hadoop fs -copyFromLocal ./test.txt /test	上传文件<br>
+hadoop fs -get /test/test.txt .或hadoop fs -getToLocal /test/test.txt .<br>
+hadoop fs -cp /test/test.txt /test1<br>
+hadoop fs -rm /test1/test.txt<br>
+hadoop fs -mv /test/test.txt /test1<br>
+hadoop fs -rmr /test1</p>
 
                 
 
@@ -597,7 +681,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

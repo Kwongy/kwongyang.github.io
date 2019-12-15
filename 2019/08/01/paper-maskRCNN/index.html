@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,10 +217,12 @@
                 post-container">
 
                 <p>本篇论文是由FacebookAI研究院的Kaiming He，Georgia Gkioxari，Piotr Dollar，Ross Girshick所作的<a href="https://arxiv.org/pdf/1703.06870.pdf" target="_blank" rel="noopener">Mask R-CNN</a></p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文所提出的模型Mask R-CNN是用于物体的实例分割。Mask R-CNN是一个非常灵活的框架，可以增加不同的分支完成不同的任务，可以完成目标分类、目标检测、语义分割、实例分割、人体姿势识别等多种任务。它在Fash R-CNN的基础上添加了一个预测分支。由于RoI池化造成的信息丢失，使用RoIAlign层达到网络输入与输出像素到像素的对齐，以获取原图的精确信息。</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文所提出的模型Mask R-CNN是用于物体的实例分割。Mask R-CNN是一个非常灵活的框架，可以增加不同的分支完成不同的任务，可以完成目标分类、目标检测、语义分割、实例分割、人体姿势识别等多种任务。它在Fash R-CNN的基础上添加了一个预测分支。由于RoI池化造成的信息丢失，使用RoIAlign层达到网络输入与输出像素到像素的对齐，以获取原图的精确信息。</p>
 <p>Mask R-CNN使用ResNet提取图片特征，将C4输出的特征作为输入，分别用于分类和回归。在RoIAlign层中，由于之前的特征提取过程中，池化层会缩小原图像比例。在某些情况下会产生小数，而传统的算法中都直接将这些小数取整，这样会造成量化误差。解决办法是，对于每个虚拟点(带有浮点数的点)，利用它周围四个真实值，来进行双线性插值得到它的像素值。使用这种方法，可以使得feature map和原图像对齐，不会产生损失。</p>
-<p>Loss由三部分组成</p>
-<script type="math/tex; mode=display">L = L_{Class} + L_{Box} + L_{Mask}</script>
+<p>Loss由三部分组成<br>
+$$L = L_{Class} + L_{Box} + L_{Mask}$$</p>
+
                 
 
                 <hr>
@@ -432,7 +434,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

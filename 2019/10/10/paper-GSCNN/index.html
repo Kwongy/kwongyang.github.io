@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由NVIDIA, 加拿大滑铁卢和多伦多大学的Towaki Takikawa,David Acuna, Varun Jampani, Sanja Fidler所作的<a href="https://arxiv.org/pdf/1907.05740.pdf" target="_blank" rel="noopener">Gated-SCNN - Gated Shape CNNs for Semantic Segmentation</a>, 本篇论文于2019年7月挂在arxiv上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文提出了一个两个流(two-stream)的多任务学习语义分割模型Gate-SCNN, 主干网络就是普通的语义分割模型, 辅助子网络称为shape网络, 专门针对模型的边缘(bounding)进行学习, 使用一种门控结构Gated Convolutional Layer, 来增加attention.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文提出了一个两个流(two-stream)的多任务学习语义分割模型Gate-SCNN, 主干网络就是普通的语义分割模型, 辅助子网络称为shape网络, 专门针对模型的边缘(bounding)进行学习, 使用一种门控结构Gated Convolutional Layer, 来增加attention.</p>
 <p><img src="1.png" alt=""></p>
 <p>在最后的融合模块, 使用ASPP结构来增加多尺度提高语义分割的效果.</p>
 <p><img src="2.png" alt=""></p>
@@ -226,7 +227,8 @@
 <li>预测边界信息使用的是BCE，用来监督更新both the regular and shape streams的参数；</li>
 <li>预测语义信息使用的是CE，监督更新所有的网络参数</li>
 </ol>
-<p>最后通过超参数对这两部分loss进行线性组合, 同时增加正则化项来保证泛化性.<br>在用 Cityscapes 基准测试中，这个模型的 mIoU 比 DeepLab-v3 高出 1.5%，F-boundary 得分比 DeepLab-v3 高 4%。在更小的目标上，该模型能够实现 7% 的 IoU 提升。</p>
+<p>最后通过超参数对这两部分loss进行线性组合, 同时增加正则化项来保证泛化性.<br>
+在用 Cityscapes 基准测试中，这个模型的 mIoU 比 DeepLab-v3 高出 1.5%，F-boundary 得分比 DeepLab-v3 高 4%。在更小的目标上，该模型能够实现 7% 的 IoU 提升。</p>
 
                 
 
@@ -439,7 +441,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>

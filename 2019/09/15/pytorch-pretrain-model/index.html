@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -215,10 +215,18 @@
                 post-container">
 
                 <p>在平常的各项图像比赛中通常不能直接使用Pytorch提供的预训练模型,需要更改模型结构.如果直接重新写一个模型而没有预训练参数的话,训练任务的效果就会很差.为了使用预训练的参数,而又使模型适合我们的需求,所以需要对已经加载参数的模型修改结构.下面我将介绍使用它的方法.</p>
-<h2><span id="pytorch加载预训练模型">Pytorch加载预训练模型</span></h2><p>对于使用torchvision中的网络,加载预训练参数的方法是</p>
+<h2><span id="pytorch加载预训练模型">Pytorch加载预训练模型</span></h2>
+<p>对于使用torchvision中的网络,加载预训练参数的方法是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from torch.utils import model_zoo</span><br><span class="line"></span><br><span class="line">url = &apos;https://download.pytorch.org/models/deeplabv3_resnet101_coco-586e9e4e.pth&apos;</span><br><span class="line">model_dict = model.state_dict()     </span><br><span class="line">pretrained_dict = model_zoo.load_url(url, progress=False)</span><br><span class="line">pretrained_dict = &#123;k: v for k, v in pretrained_dict.items() if k in model_dict&#125;</span><br><span class="line">model_dict.update(pretrained_dict)</span><br><span class="line">model.load_state_dict(model_dict)</span><br></pre></td></tr></table></figure>
-<p><code>url</code>就是需要加载参数所在的下载地址.<br><code>state_dict()</code>方法是取当前model的所有参数.<br><code>model_zoo.load_url()</code>方法是从url将参数加载到本地.<br><code>{k: v for k, v in pretrained_dict.items() if k in model_dict}</code>是将model_dict中与pretrained_dict相同的参数进行替换.<br>将参数update后使用<code>load_state_dict</code>方法将参数加载到模型中,此时预训练参数就加载完成了</p>
-<p>加载完参数后,如果模型不符合要求怎么办?应该怎样修改?<br>比如我们输入的图片是4通道的而不是3通道.我们需要分类的个数是3个而不是1000个,改如何修改呢?<br>以<code>FCN_ResNet101</code>为例, 我们将输入channel和输出class替换成我们自己的需求.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">from torch.utils import model_zoo</span><br><span class="line">from torchvision.models.segmentation.segmentation import fcn_resnet101</span><br><span class="line">from torchvision.models.segmentation.fcn import FCNHead</span><br><span class="line"></span><br><span class="line">def pre_fcn_resnet101(in_channel, out_channel):</span><br><span class="line">    model = fcn_resnet101(pretrained=False, progress=False)</span><br><span class="line">    url = &quot;https://download.pytorch.org/models/fcn_resnet101_coco-7ecb50ca.pth&quot;  # COCO</span><br><span class="line">    model_dict = model.state_dict()</span><br><span class="line">    pretrained_dict = model_zoo.load_url(url, progress=False)</span><br><span class="line">    pretrained_dict = &#123;k: v for k, v in pretrained_dict.items() if k in model_dict&#125;</span><br><span class="line">    model_dict.update(pretrained_dict)</span><br><span class="line">    model.load_state_dict(model_dict)</span><br><span class="line">    model.backbone.conv1 = nn.Conv2d(in_channel, 64, kernel_size=7, stride=2, padding=3, bias=False)</span><br><span class="line">    model.classifier = FCNHead(2048, out_channel)</span><br><span class="line">    return model</span><br></pre></td></tr></table></figure></p>
+<p><code>url</code>就是需要加载参数所在的下载地址.<br>
+<code>state_dict()</code>方法是取当前model的所有参数.<br>
+<code>model_zoo.load_url()</code>方法是从url将参数加载到本地.<br>
+<code>{k: v for k, v in pretrained_dict.items() if k in model_dict}</code>是将model_dict中与pretrained_dict相同的参数进行替换.<br>
+将参数update后使用<code>load_state_dict</code>方法将参数加载到模型中,此时预训练参数就加载完成了</p>
+<p>加载完参数后,如果模型不符合要求怎么办?应该怎样修改?<br>
+比如我们输入的图片是4通道的而不是3通道.我们需要分类的个数是3个而不是1000个,改如何修改呢?<br>
+以<code>FCN_ResNet101</code>为例, 我们将输入channel和输出class替换成我们自己的需求.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">from torch.utils import model_zoo</span><br><span class="line">from torchvision.models.segmentation.segmentation import fcn_resnet101</span><br><span class="line">from torchvision.models.segmentation.fcn import FCNHead</span><br><span class="line"></span><br><span class="line">def pre_fcn_resnet101(in_channel, out_channel):</span><br><span class="line">    model = fcn_resnet101(pretrained=False, progress=False)</span><br><span class="line">    url = &quot;https://download.pytorch.org/models/fcn_resnet101_coco-7ecb50ca.pth&quot;  # COCO</span><br><span class="line">    model_dict = model.state_dict()</span><br><span class="line">    pretrained_dict = model_zoo.load_url(url, progress=False)</span><br><span class="line">    pretrained_dict = &#123;k: v for k, v in pretrained_dict.items() if k in model_dict&#125;</span><br><span class="line">    model_dict.update(pretrained_dict)</span><br><span class="line">    model.load_state_dict(model_dict)</span><br><span class="line">    model.backbone.conv1 = nn.Conv2d(in_channel, 64, kernel_size=7, stride=2, padding=3, bias=False)</span><br><span class="line">    model.classifier = FCNHead(2048, out_channel)</span><br><span class="line">    return model</span><br></pre></td></tr></table></figure>
 <p>相关代码见<a href="https://github.com/Kwongy/Pytorch/tree/master/Pretrain_model" target="_blank" rel="noopener">https://github.com/Kwongy/Pytorch/tree/master/Pretrain_model</a></p>
 <p>目前torchvision只提供了少数几个预训练模型, 分类模型有alexnet,resnet,vgg ,squeezenet, inception,densenet,googlenet,mobilenet和shufflenetv2.语义分割模型也仅有fcn_resNet和deeplab_resNet. 目前也有其他学者开源了部分其他的预训练模型, 今后我会将他们收集起来,不断丰富代码库,方便自己和大家.</p>
 
@@ -431,7 +439,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">173.6k words altogether</span>
+					<span class="post-count">176.4k words altogether</span>
 				</p>
             </div>
         </div>
