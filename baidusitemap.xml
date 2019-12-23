@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kwongyang.com/2019/12/23/paper-pointrender/</loc>
+    <lastmod>2019-12-23</lastmod>
+  </url>  <url>
     <loc>http://kwongyang.com/2019/12/19/paper-RPnet/</loc>
-    <lastmod>2019-12-19</lastmod>
+    <lastmod>2019-12-23</lastmod>
   </url>  <url>
     <loc>http://kwongyang.com/2019/12/15/paper-BagTricks/</loc>
     <lastmod>2019-12-15</lastmod>
