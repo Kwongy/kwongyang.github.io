@@ -92,9 +92,9 @@
                             
                               <a class="tag" href="/tags/#Python" title="Python">Python</a>
                             
-                              <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                            
                               <a class="tag" href="/tags/#DataMining" title="DataMining">DataMining</a>
+                            
+                              <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                             
                         </div>
                         <h1>k近邻算法</h1>
@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -221,21 +221,19 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=534530792&auto=1&height=66"></iframe>
 </div>
+
 <hr>
-<h1><span id="k近邻算法">k近邻算法</span></h1>
-<hr>
+<h1><span id="k近邻算法">k近邻算法</span></h1><hr>
 <p>首先科普一下基本知识</p>
 <hr>
-<h3><span id="有监督学习和无监督学习">有监督学习和无监督学习</span></h3>
-<hr>
+<h3><span id="有监督学习和无监督学习">有监督学习和无监督学习</span></h3><hr>
 <p>什么是有监督学习什么又是无监督学习？</p>
 <p><strong>这个问题可以回答得很简单：是否有监督（supervised），就看输入数据是否有标签（label）。输入数据有标签，则为有监督学习，没标签则为无监督学习。</strong></p>
 <p>有监督学习：对于分类，输入的训练数据有特征（feature），有标签（label）。所谓的学习，其本质就是找到特征和标签间的关系（mapping）。这样当有特征而无标签的未知数据输入时，我们就可以通过已有的关系得到未知数据标签。在上述的分类过程中，如果所有训练数据都有标签，则为有监督学习（supervised learning）</p>
 <p>无监督学习：输入的训练数据没有标签，称为无监督学习（unsupervised learning）了，也即聚类（clustering）。</p>
 <p>半监督学习：训练数据的一部分是有标签的，另一部分没有标签，而没标签数据的数量常常极大于有标签数据数量。</p>
 <hr>
-<h3><span id="距离">距离</span></h3>
-<hr>
+<h3><span id="距离">距离</span></h3><hr>
 <p>平常常见的距离有</p>
 <ol>
 <li>欧式距离</li>
@@ -248,11 +246,9 @@
 <p>夹角余弦距离就是两点与原点形成的夹角的余弦值。</p>
 <p>下面简单介绍一下欧氏距离和曼哈顿距离</p>
 <p>其实非常简单。如下图所示</p>
-<p><img src="1.jpg" alt=""><br>
-两点形成的直角三角形中，斜边为欧式距离(绿色线)。两直角边之和为曼哈顿距离(红色线)</p>
+<p><img src="1.jpg" alt=""><br>两点形成的直角三角形中，斜边为欧式距离(绿色线)。两直角边之和为曼哈顿距离(红色线)</p>
 <hr>
-<h2><span id="k近邻算法介绍">k近邻算法介绍</span></h2>
-<hr>
+<h2><span id="k近邻算法介绍">k近邻算法介绍</span></h2><hr>
 <p>KNN算法是一种lazy-learning监督式近邻算法</p>
 <p>KNN算法中，所选择的邻居都是已经正确分类的对象。对于预测的数据，将其与训练样本进行比较，找到最为相似的K个训练样本，并以这K个训练样本中出现最多的标签作为最终的预测标签。</p>
 <p>如图所示，如何给这个绿色的圆分类</p>
@@ -264,48 +260,25 @@
 <p>KNN算法不仅可以用于分类，还可以用于回归。</p>
 <p>K近邻算法使用的模型实际上对应于对特征空间的划分。<strong>K值的选择，距离度量和分类决策规则</strong>是该算法的三个基本要素</p>
 <hr>
-<h3><span id="算法优缺点">算法优缺点</span></h3>
+<h3><span id="算法优缺点">算法优缺点</span></h3><hr>
+<p><strong>优点</strong><br>1.精度高<br>2.对异常值不敏感<br>3.没有对数据的分布假设<br><strong>缺点</strong><br>1、knn算法不像其他算法有一个训练的过程<br>2、knn算法针对那些分类不均匀的分类训练样本可能误差较大<br>3、计算量太大，每一个待测测试样本都要遍历一遍训练样本来计算距离<br>4、我们无法知晓实例样本和典型实例样本具有什么特征，无法给出任何数据的基础结构信息</p>
 <hr>
-<p><strong>优点</strong><br>
-1.精度高<br>
-2.对异常值不敏感<br>
-3.没有对数据的分布假设<br>
-<strong>缺点</strong><br>
-1、knn算法不像其他算法有一个训练的过程<br>
-2、knn算法针对那些分类不均匀的分类训练样本可能误差较大<br>
-3、计算量太大，每一个待测测试样本都要遍历一遍训练样本来计算距离<br>
-4、我们无法知晓实例样本和典型实例样本具有什么特征，无法给出任何数据的基础结构信息</p>
-<hr>
-<h2><span id="实现步骤">实现步骤</span></h2>
-<hr>
+<h2><span id="实现步骤">实现步骤</span></h2><hr>
 <ol>
 <li>计算已知类别数据集中的点与当前点之间的距离；</li>
 <li>按照距离递增次序排序；</li>
 <li>选取与当前点距离最小的k个点；</li>
-<li>确定k个点所在类别的出现频率；<br>
-（K用于选择最近邻的数目，K的选择非常敏感。K值越小意味着模型复杂度越高，从而容易产生过拟合；K值越大则 意味着整体的模型变得简单，学习的近似误差会增大，在实际的应用中，一般采用一个比较小的K值，用交叉验证的 方法，选取一个最优的K值。）</li>
+<li>确定k个点所在类别的出现频率；<br>（K用于选择最近邻的数目，K的选择非常敏感。K值越小意味着模型复杂度越高，从而容易产生过拟合；K值越大则 意味着整体的模型变得简单，学习的近似误差会增大，在实际的应用中，一般采用一个比较小的K值，用交叉验证的 方法，选取一个最优的K值。）</li>
 <li>返回前k个点出现频率最高的类别作为当前点的预测分类</li>
 </ol>
 <p>python中无需这么繁琐，直接调用sklearn库即可</p>
 <hr>
-<h1><span id="knn-pyhton实现">knn-Pyhton实现</span></h1>
-<hr>
-<h2><span id="scikit-learn">Scikit-Learn</span></h2>
-<hr>
+<h1><span id="knn-pyhton实现">knn-Pyhton实现</span></h1><hr>
+<h2><span id="scikit-learn">Scikit-Learn</span></h2><hr>
 <ul>
-<li>估计器（Estimator）<br>
-估计器，可以理解成分类器，主要包含两个函数：<br>
-fit()：训练算法，设置内部参数。该函数接收训练集和类别两个参数。<br>
-predict()：预测测试集类别，参数为测试集，并返回一个包含测试集各条数据集类别的数组<br>
-大多数scikit-learn估计器接收和输出的数据格式均为numpy数组或类似格式。</li>
-<li>转换器（Transformer）<br>
-转换器用于数据预处理和数据转换，主要是三个方法：<br>
-fit()：训练算法，设置内部参数。<br>
-transform()：数据转换。<br>
-fit_transform()：合并fit和transform两个方法。</li>
-<li>流水线（Pipeline）<br>
-使用sklearn.pipeline包，流水线的功能：
-<ol>
+<li>估计器（Estimator）<br>估计器，可以理解成分类器，主要包含两个函数：<br>fit()：训练算法，设置内部参数。该函数接收训练集和类别两个参数。<br>predict()：预测测试集类别，参数为测试集，并返回一个包含测试集各条数据集类别的数组<br>大多数scikit-learn估计器接收和输出的数据格式均为numpy数组或类似格式。</li>
+<li>转换器（Transformer）<br>转换器用于数据预处理和数据转换，主要是三个方法：<br>fit()：训练算法，设置内部参数。<br>transform()：数据转换。<br>fit_transform()：合并fit和transform两个方法。</li>
+<li>流水线（Pipeline）<br>使用sklearn.pipeline包，流水线的功能：<ol>
 <li>跟踪记录各步骤的操作（以方便地重现实验结果）</li>
 <li>对各步骤进行一个封装</li>
 <li>确保代码的复杂程度不至于超出掌控范围</li>
@@ -317,30 +290,28 @@ fit_transform()：合并fit和transform两个方法。</li>
 <p>还有交叉验证(Cross-Validation)数据的方法cross_val_score、KFold、cross_val_predict、StratifiedKFold等</p>
 <p>上面介绍的这些大家自由学习~~</p>
 <hr>
-<h2><span id="kneighborsclassifier">KNeighborsClassifier</span></h2>
-<hr>
+<h2><span id="kneighborsclassifier">KNeighborsClassifier</span></h2><hr>
 <p>KNeighborsClassifier是一个类，它集成了其他的NeighborsBase, KNeighborsMixin,SupervisedIntegerMixin, ClassifierMixin。这里我们暂时不管它。主要看它的几个主要的方法。当然有的方法是其从父类那里集成过来的。</p>
 <p><code>__init__()</code>   初始化函数(构造函数) 它主要有一下几个参数：</p>
-<p>n_neighbors=5</p>
+<p>　　n_neighbors=5           </p>
 <p>int 型参数    knn算法中指定以最近的几个最近邻样本具有投票权，默认参数为5</p>
-<p>weights=‘uniform’</p>
-<p>str参数        即每个拥有投票权的样本是按什么比重投票，'uniform’表示等比重投票，'distance’表示按距离反比投票，[callable]表示自己定义的一个函数，这个函数接收一个</p>
+<p>　　weights=’uniform’       </p>
+<p>str参数        即每个拥有投票权的样本是按什么比重投票，’uniform’表示等比重投票，’distance’表示按距离反比投票，[callable]表示自己定义的一个函数，这个函数接收一个</p>
 <p>距离数组，返回一个权值数组。默认参数为‘uniform’</p>
-<p>algrithm=‘auto’</p>
-<p>str参数  即内部采用什么算法实现。有以下几种选择参数：‘ball_tree’:球树、‘kd_tree’:kd树、‘brute’:暴力搜索、‘auto’:自动根据数据的类型和结构选择合适的算法。默认情况下是‘auto’。暴力搜索就不用说了大家都知道。具体前两种树型数据结构哪种好视情况而定。KD树是对依次对K维坐标轴，以中值切分构造的树,每一个节点是一个超矩形，在维数小于20时效率最高–可以参看《统计学习方法》第二章。ball tree 是为了克服KD树高维失效而发明的，其构造过程是以质心C和半径r分割样本空间，每一个节点是一个超球体。一般低维数据用kd_tree速度快，用ball_tree相对较慢。超过20维之后的高维数据用kd_tree效果反而不佳，而ball_tree效果要好，具体构造过程及优劣势的理论大家有兴趣可以去具体学习。</p>
-<p>leaf_size=30</p>
+<p>　　algrithm=’auto’           </p>
+<p>str参数  即内部采用什么算法实现。有以下几种选择参数：’ball_tree’:球树、’kd_tree’:kd树、’brute’:暴力搜索、’auto’:自动根据数据的类型和结构选择合适的算法。默认情况下是‘auto’。暴力搜索就不用说了大家都知道。具体前两种树型数据结构哪种好视情况而定。KD树是对依次对K维坐标轴，以中值切分构造的树,每一个节点是一个超矩形，在维数小于20时效率最高—可以参看《统计学习方法》第二章。ball tree 是为了克服KD树高维失效而发明的，其构造过程是以质心C和半径r分割样本空间，每一个节点是一个超球体。一般低维数据用kd_tree速度快，用ball_tree相对较慢。超过20维之后的高维数据用kd_tree效果反而不佳，而ball_tree效果要好，具体构造过程及优劣势的理论大家有兴趣可以去具体学习。</p>
+<p>　　leaf_size=30               </p>
 <p>int参数      基于以上介绍的算法，此参数给出了kd_tree或者ball_tree叶节点规模，叶节点的不同规模会影响数的构造和搜索速度，同样会影响储树的内存的大小。具体最优规模是多少视情况而定。</p>
-<p>matric=‘minkowski’</p>
-<p>str或者距离度量对象   即怎样度量距离。默认是闵氏距离，闵氏距离不是一种具体的距离度量方法，它可以说包括了其他距离度量方式，是其他距离度量的推广，具体各种距离度量只是参数p的取值不同或者是否去极限的不同情况，具体大家可以参考这里，讲的非常详细</p>
-<p>p=2</p>
+<p>　　matric=’minkowski’     </p>
+<p>str或者距离度量对象   即怎样度量距离。默认是闵氏距离，闵氏距离不是一种具体的距离度量方法，它可以说包括了其他距离度量方式，是其他距离度量的推广，具体各种距离度量只是参数p的取值不同或者是否去极限的不同情况，具体大家可以参考这里，讲的非常详细    　　　　　　　　　　　　　　　　　　　　　　　　　　　　</p>
+<p>　　p=2                         </p>
 <p>int参数       就是以上闵氏距离各种不同的距离参数，默认为2，即欧氏距离。p=1代表曼哈顿距离等等</p>
-<p>metric_params=None</p>
+<p>　　metric_params=None                </p>
 <p>距离度量函数的额外关键字参数，一般不用管，默认为None</p>
-<p>n_jobs=1</p>
+<p>　　n_jobs=1                </p>
 <p>int参数       指并行计算的线程数量，默认为1表示一个线程，为-1的话表示为CPU的内核数，也可以指定为其他数量的线程，这里不是很追求速度的话不用管，需要用到的话去看看多线程。</p>
 <hr>
-<h2><span id="使用knn对鸢尾花分类">使用knn对鸢尾花分类</span></h2>
-<hr>
+<h2><span id="使用knn对鸢尾花分类">使用knn对鸢尾花分类</span></h2><hr>
 <p>在之前的OneR算法中对鸢尾花分类的准确率为65.8%，下面看看用knn算法的效果如何</p>
 <p>上代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line"></span><br><span class="line">class Knn(object):</span><br><span class="line"></span><br><span class="line">    def split_data(self):</span><br><span class="line">        x = load_iris().data</span><br><span class="line">        y = load_iris().target</span><br><span class="line">        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=14)</span><br><span class="line">        return x_train, x_test, y_train, y_test</span><br><span class="line">    pass    #split_data</span><br><span class="line"></span><br><span class="line">    def deal_data(self):</span><br><span class="line">        x_train, x_test, y_train, y_test=self.split_data()</span><br><span class="line">        estimator = KNeighborsClassifier(n_neighbors=10)</span><br><span class="line">        estimator.fit(x_train, y_train)</span><br><span class="line">        y_predicted = estimator.predict(x_test)</span><br><span class="line">        accuracy = np.mean(y_test == y_predicted) * 100</span><br><span class="line">        print(&quot;The accuracy is &#123;0:.1f&#125;%&quot;.format(accuracy))</span><br><span class="line">    pass    #deal_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pass    #Knn</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    knn = Knn()</span><br><span class="line">    knn.deal_data()</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
@@ -348,10 +319,7 @@ fit_transform()：合并fit和transform两个方法。</li>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The accuracy is 97.4%</span><br></pre></td></tr></table></figure>
 <p>非常准确！</p>
 <hr>
-<p>参考文献<br>
-<a href="https://baike.baidu.com/item/k%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/9512781?fr=aladdin" target="_blank" rel="noopener">百度百科</a><br>
-<a href="https://blog.csdn.net/google19890102/article/details/23924971" target="_blank" rel="noopener">简单易学的机器学习算法——K-近邻算法</a><br>
-<a href="https://www.cnblogs.com/xiaotan-code/p/6680438.html" target="_blank" rel="noopener">基于scikit-learn包实现机器学习之KNN(K近邻)-完整示例</a></p>
+<p>参考文献<br><a href="https://baike.baidu.com/item/k%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/9512781?fr=aladdin" target="_blank" rel="noopener">百度百科</a><br><a href="https://blog.csdn.net/google19890102/article/details/23924971" target="_blank" rel="noopener">简单易学的机器学习算法——K-近邻算法</a><br><a href="https://www.cnblogs.com/xiaotan-code/p/6680438.html" target="_blank" rel="noopener">基于scikit-learn包实现机器学习之KNN(K近邻)-完整示例</a></p>
 
                 
 
@@ -427,9 +395,9 @@ fit_transform()：合并fit和transform两个方法。</li>
                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
                           <a class="tag" href="/tags/#DataMining" title="DataMining">DataMining</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                     </div>
                 </section>
@@ -566,7 +534,7 @@ fit_transform()：合并fit和transform两个方法。</li>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.1k words altogether</span>
+					<span class="post-count">176.2k words altogether</span>
 				</p>
             </div>
         </div>
@@ -672,22 +640,6 @@ fit_transform()：合并fit和transform两个方法。</li>
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,8 +219,7 @@
                 post-container">
 
                 <p>本篇论文是由中科院和京东的Jun Fu, Jing Liu, Haijie Tian, Yong Li, Yongjun Bao, Zhiwei Fang, Hanqing Lu所作的<a href="https://arxiv.org/pdf/1809.02983v4.pdf" target="_blank" rel="noopener">Dual Attention Network for Scene Segmentation</a>, 发表再2019年CVPR上</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇论文主要聚焦attention结构, 基于self-attention machanism来融合局部和全局的特征. 本文提出的Dual Attention Network(DANet)使用了两种attention module, 分别为针对位置信息的position attention module和针对通道的channel attention module.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇论文主要聚焦attention结构, 基于self-attention machanism来融合局部和全局的特征. 本文提出的Dual Attention Network(DANet)使用了两种attention module, 分别为针对位置信息的position attention module和针对通道的channel attention module.</p>
 <p><img src="1.png" alt=""></p>
 <p>网络的backbone为ResNet, 下采样八倍 得到原图 1/8的特征图, 之后使用position attention module和channel attention module同时提取特征.</p>
 <p><img src="2.png" alt=""></p>
@@ -441,7 +440,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.1k words altogether</span>
+					<span class="post-count">176.2k words altogether</span>
 				</p>
             </div>
         </div>
@@ -547,22 +546,6 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

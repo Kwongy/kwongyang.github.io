@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,13 +219,10 @@
                 post-container">
 
                 <p>本篇论文是由华中科技大学和北京大学的Changqian Yu, Jingbo Wang, Chao Peng, Changxin Gao, Gang Yu, Nong Sang所作的<a href="https://arxiv.org/abs/1804.09337" target="_blank" rel="noopener">Learning a Discriminative Feature Network for Semantic Segmentation</a>, 发表在2018年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>作者就语义分割中的两个常见问题</p>
+<h2><span id="收获总结">收获总结</span></h2><p>作者就语义分割中的两个常见问题</p>
 <ol>
 <li>类内差异过大: 外观差异过大,但是具有相同的语义信息.</li>
-<li>类间差异过小: 相邻的部分外观差异较小,但是却具有不同的语义信息.<br>
-提出了自己的解决方案, 同时考虑类内一致性和类间区别性提出了DFN, 它由两部分组成<br>
-分别是平滑网络(Smooth Network, SN)和边界网络(Border Network, BN). 平滑网络被设计用于处理类内一致性问题, 边界网络被用于解决类间区别性.</li>
+<li>类间差异过小: 相邻的部分外观差异较小,但是却具有不同的语义信息.<br>提出了自己的解决方案, 同时考虑类内一致性和类间区别性提出了DFN, 它由两部分组成<br>分别是平滑网络(Smooth Network, SN)和边界网络(Border Network, BN). 平滑网络被设计用于处理类内一致性问题, 边界网络被用于解决类间区别性.</li>
 </ol>
 <p><img src="1.png" alt=""></p>
 <p>SN使用U形的Encoder-Decoder结构, 使用全局平均池化来多尺度融合特征, 同时借用SENet的优势部分,使用Channel Attention来提高特征选择, 使用残差块来增强feature map.</p>
@@ -445,7 +442,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.1k words altogether</span>
+					<span class="post-count">176.2k words altogether</span>
 				</p>
             </div>
         </div>
@@ -551,22 +548,6 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

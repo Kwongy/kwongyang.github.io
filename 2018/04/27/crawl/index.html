@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -221,15 +221,13 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=437387277&auto=1&height=66"></iframe>
 </div>
+
 <p>近期老师教了Python爬虫的一些知识，在此总结复习一下，同时如果你对爬虫也感兴趣，可以将这篇文章作为参考。</p>
 <blockquote>
-<p>Python版本3.7.0b2(基于Anaconda的Python编译器)<br>
-IDE用的是PyCharm 2017.3.3<br>
-Win10系统</p>
+<p>Python版本3.7.0b2(基于Anaconda的Python编译器)<br>IDE用的是PyCharm 2017.3.3<br>Win10系统 </p>
 </blockquote>
 <hr>
-<h1><span id="爬虫概述">爬虫概述</span></h1>
-<hr>
+<h1><span id="爬虫概述">爬虫概述</span></h1><hr>
 <p>爬虫是什么?</p>
 <blockquote>
 <p>网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。另外一些不常使用的名字还有蚂蚁、自动索引、模拟程序或者蠕虫。(来自百度百科)</p>
@@ -239,10 +237,8 @@ Win10系统</p>
 <p>浏览器所显示的网页信息，都是由Html、CSS和JavaScript构成的。它们通过浏览器解析后就成为了我们所看到的网页。因此想要获取网页上的信息，我们使用爬虫过滤Html代码，然后将我们需要的内柔提取出来，这样就能获取信息了。</p>
 </blockquote>
 <hr>
-<h1><span id="爬虫基础知识">爬虫基础知识</span></h1>
-<hr>
-<h2><span id="网页构成介绍">网页构成介绍</span></h2>
-<hr>
+<h1><span id="爬虫基础知识">爬虫基础知识</span></h1><hr>
+<h2><span id="网页构成介绍">网页构成介绍</span></h2><hr>
 <ul>
 <li>URL（Uniform Resource Locator），统一资源定位符，就是我们常说的网址。用来表示从因特网上得到的资源位置和访问这些资源的方法。具体的内容我会在以后的计算机网络总结中详细讲解。</li>
 <li>HTML（HyperText Markup Language），超文本标记语言，网页的本质。</li>
@@ -251,19 +247,15 @@ Win10系统</p>
 </ul>
 <p>一般情况下，我们从HTML里就可以得到想要的信息了，但有的时候一些信息会被隐藏到JS里，因此我们可能还需要抓包。因为我还没有遇到需要<a href="https://baike.baidu.com/item/cookie/1119" target="_blank" rel="noopener">Cookie</a>和<a href="https://baike.baidu.com/item/%E6%8A%93%E5%8C%85" target="_blank" rel="noopener">抓包</a>的情况，因此本文先不做介绍，以后遇到后再做补充。</p>
 <p><strong>再粗略的介绍一下HTML</strong></p>
-<p>HTML中最基本单位是标签就是两个尖括号里的东西<code>&lt;xxx&gt; &lt;\xxx&gt;</code>，他们是成对出现(除了图片标签img等少数标签外)。而这些标签中间的内容就是我们页面上看到的文字。<br>
-一般我们所需要爬取的数据也就是这些标签中间的内容。</p>
+<p>HTML中最基本单位是标签就是两个尖括号里的东西<code>&lt;xxx&gt; &lt;\xxx&gt;</code>，他们是成对出现(除了图片标签img等少数标签外)。而这些标签中间的内容就是我们页面上看到的文字。<br>一般我们所需要爬取的数据也就是这些标签中间的内容。</p>
 <hr>
-<h2><span id="编码">编码</span></h2>
-<hr>
+<h2><span id="编码">编码</span></h2><hr>
 <blockquote>
 <p>编码是信息从一种形式或格式转换为另一种形式的过程也称为计算机编程语言的代码简称编码。用预先规定的方法将文字、数字或其它对象编成数码，或将信息、数据转换成规定的电脉冲信号。编码在电子计算机、电视、遥控和通讯等方面广泛使用。编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。(来自百度百科)</p>
 </blockquote>
-<p>我们常用的编码格式有ASCII、UTF-8、GB 2312和GBK等等。<br>
-从网页上爬取的数据需要通过解码才能翻译成我们所看到的汉字。</p>
+<p>我们常用的编码格式有ASCII、UTF-8、GB 2312和GBK等等。<br>从网页上爬取的数据需要通过解码才能翻译成我们所看到的汉字。</p>
 <hr>
-<h2><span id="爬虫所需要的了解的内容">爬虫所需要的了解的内容</span></h2>
-<hr>
+<h2><span id="爬虫所需要的了解的内容">爬虫所需要的了解的内容</span></h2><hr>
 <ul>
 <li>Python基础语法</li>
 <li>urllib库的用法</li>
@@ -271,60 +263,38 @@ Win10系统</p>
 <li>chardt库的用法</li>
 </ul>
 <hr>
-<h1><span id="urllib库的基本用法">urllib库的基本用法</span></h1>
-<hr>
+<h1><span id="urllib库的基本用法">urllib库的基本用法</span></h1><hr>
 <p>urllib是Python语言内置的用于处理网络请求的库，使用最多的模块，涉及请求、响应、浏览器模拟、代理、cookie等功能。</p>
-<p><strong>urllib内置的常用模块：</strong><br>
-urllib.request： 请求模块，用来打开和读取URLs的<br>
-urllib.error：处理urllib.request请求过程中,出现的异常，可以使用try进行捕捉处理</p>
+<p><strong>urllib内置的常用模块：</strong><br>urllib.request： 请求模块，用来打开和读取URLs的<br>urllib.error：处理urllib.request请求过程中,出现的异常，可以使用try进行捕捉处理</p>
 <hr>
-<h2><span id="urllibrequest">urllib.request</span></h2>
-<hr>
+<h2><span id="urllibrequest">urllib.request</span></h2><hr>
 <p>常用函数</p>
-<h3><span id="urlopen">urlopen</span></h3>
-<pre><code> urlopen(url, data=None, timeout=socket._GLOBAL_DEFAULT_TIMEOUT)
-</code></pre>
-<p>url：必须参数，需要爬取的网站地址。<br>
-data：一般get方法不需要设置，如果post方法需要设置为post。<br>
-timeout：请求设置超时时间，防止请求阻塞一直等待，一般使用默认值就可以。</p>
+<h3><span id="urlopen">urlopen</span></h3><pre><code> urlopen(url, data=None, timeout=socket._GLOBAL_DEFAULT_TIMEOUT)
+</code></pre><p>url：必须参数，需要爬取的网站地址。<br>data：一般get方法不需要设置，如果post方法需要设置为post。<br>timeout：请求设置超时时间，防止请求阻塞一直等待，一般使用默认值就可以。</p>
 <p>使用urlopen函数返回http.client.HTTPResponse对象，再使用read()函数可以解析为二进制文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen</span><br><span class="line">response = urlopen(&quot;http://music.163.com/&quot;)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 <p><img src="1.png" alt=""></p>
 <p>这时候在用decode()函数解码就可以看到中文了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen</span><br><span class="line">response = urlopen(&quot;http://music.163.com/&quot;)</span><br><span class="line">print(response.read().decode(&quot;utf-8&quot;))</span><br></pre></td></tr></table></figure>
-<p><img src="2.png" alt=""><br>
-对于网站的编码，每次我们这样人工查找在爬取很多页面的时候极不方便，下面介绍chardet库中的detect函数</p>
+<p><img src="2.png" alt=""><br>对于网站的编码，每次我们这样人工查找在爬取很多页面的时候极不方便，下面介绍chardet库中的detect函数</p>
 <pre><code> chardet.detect(response.read())
-</code></pre>
-<p>会返回一个字典</p>
+</code></pre><p>会返回一个字典</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen</span><br><span class="line">import chardet</span><br><span class="line">response = urlopen(&quot;http://music.163.com/&quot;).read()</span><br><span class="line">print(chardet.detect(response))</span><br><span class="line"></span><br><span class="line">&#123;&apos;encoding&apos;: &apos;utf-8&apos;, &apos;confidence&apos;: 0.99, &apos;language&apos;: &apos;&apos;&#125;</span><br></pre></td></tr></table></figure>
 <p>这时我们只要获取encoding的键值就可以拿到编码方式，不需要人工获取了。</p>
-<h3><span id="urlretrieve">urlretrieve</span></h3>
-<p>urlretrieve用来将网页信息直接下载到本地。可以直接下载音乐、网址和图片等</p>
+<h3><span id="urlretrieve">urlretrieve</span></h3><p>urlretrieve用来将网页信息直接下载到本地。可以直接下载音乐、网址和图片等</p>
 <pre><code> urlretrieve(url, filename=None, reporthook=None, data=None)
-</code></pre>
-<p>url：必须参数爬取的网址。<br>
-filename：下载数据的文件名(如果下载数据保存为.mp4格式，那么它就是音乐了)<br>
-reporthook：回调函数，用来显示下载进度。<br>
-data：同urlopen函数。</p>
+</code></pre><p>url：必须参数爬取的网址。<br>filename：下载数据的文件名(如果下载数据保存为.mp4格式，那么它就是音乐了)<br>reporthook：回调函数，用来显示下载进度。<br>data：同urlopen函数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlretrieve</span><br><span class="line">urlretrieve(&quot;http://music.163.com/&quot;,&quot;网易云.html&quot;)</span><br></pre></td></tr></table></figure>
-<p>这时在运行文件的同级目录下就会生成一个&quot;网易云.html&quot;的文件。</p>
-<h3><span id="urlcleanup">urlcleanup</span></h3>
-<p>urlcleanup函数是用来清理urlretrieve函数所产生的缓存。<br>
-每次使用urlretrieve后记得使用就可以了。</p>
+<p>这时在运行文件的同级目录下就会生成一个”网易云.html”的文件。</p>
+<h3><span id="urlcleanup">urlcleanup</span></h3><p>urlcleanup函数是用来清理urlretrieve函数所产生的缓存。<br>每次使用urlretrieve后记得使用就可以了。</p>
 <hr>
-<h1><span id="urllib库的高级用法">urllib库的高级用法</span></h1>
+<h1><span id="urllib库的高级用法">urllib库的高级用法</span></h1><hr>
+<p>直接使用urlopen函数时，会被爬取网站的服务器鉴定为爬虫，于是就有被封禁的危险。<br>爬虫其实就是程序猿之间的斗智斗勇，做爬虫的人想拿走网页的数据，做网页的不想数据被拿走，于是他就会设置一些预防措施，比如加验证码，统计你一段时间内访问的次数等来判断你是人为访问还是爬虫访问。因此我们需要做一些伪装。而基本的urlopen()函数并不能不支持验证、cookie或其他HTTP高级功能。</p>
 <hr>
-<p>直接使用urlopen函数时，会被爬取网站的服务器鉴定为爬虫，于是就有被封禁的危险。<br>
-爬虫其实就是程序猿之间的斗智斗勇，做爬虫的人想拿走网页的数据，做网页的不想数据被拿走，于是他就会设置一些预防措施，比如加验证码，统计你一段时间内访问的次数等来判断你是人为访问还是爬虫访问。因此我们需要做一些伪装。而基本的urlopen()函数并不能不支持验证、cookie或其他HTTP高级功能。</p>
-<hr>
-<h2><span id="浏览器伪装技术">浏览器伪装技术</span></h2>
-<hr>
-<p>如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。(服务器通过Headers来判断是否是浏览器访问的)<br>
-下面给出火狐浏览器的报头</p>
+<h2><span id="浏览器伪装技术">浏览器伪装技术</span></h2><hr>
+<p>如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。(服务器通过Headers来判断是否是浏览器访问的)<br>下面给出火狐浏览器的报头</p>
 <pre><code> User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
-</code></pre>
-<p>也可以自己从网上找一些浏览器报头<a href="https://blog.csdn.net/tao_627/article/details/42297443" target="_blank" rel="noopener">常见浏览器User-Agent大全</a></p>
+</code></pre><p>也可以自己从网上找一些浏览器报头<a href="https://blog.csdn.net/tao_627/article/details/42297443" target="_blank" rel="noopener">常见浏览器User-Agent大全</a></p>
 <ul>
 <li>build_opener：为urlopen函数设置访问模式</li>
 <li>addheaders:为访问模式添加报头</li>
@@ -332,23 +302,17 @@ data：同urlopen函数。</p>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">header = (&quot;User-Agent&quot;,</span><br><span class="line">          &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.22 Safari/537.36 SE 2.X MetaSr 1.0&quot;)</span><br><span class="line">opener = urllib.request.build_opener()      #创建访问模式</span><br><span class="line">opener.addheaders = [header]                #为访问模式添加报头</span><br><span class="line">urllib.request.install_opener(opener)       #将访问模式设为全局访问模式</span><br><span class="line">urllib.request.urlopen(&quot;https://music.163.com/&quot;)                               #直接使用就可以</span><br></pre></td></tr></table></figure>
 <hr>
-<h2><span id="urlerror">URLError</span></h2>
+<h2><span id="urlerror">URLError</span></h2><hr>
+<p>urllib.error.URLError函数的使用方法类似Java里面的try-catch。<br>可以帮助我们调试程序。</p>
 <hr>
-<p>urllib.error.URLError函数的使用方法类似Java里面的try-catch。<br>
-可以帮助我们调试程序。</p>
-<hr>
-<h2><span id="ip代理技术">Ip代理技术</span></h2>
-<hr>
+<h2><span id="ip代理技术">Ip代理技术</span></h2><hr>
 <p>假如你用了浏览器伪装后依然被服务器识别出来了是爬虫，那么你可能会遭到服务器的IP封禁。解决办法就是用别人的IP模拟别人登陆，这样就算被封禁也是别人的IP被封禁，你依然可以继续爽歪歪的爬虫啦.</p>
 <p>关于IP代理大家也可以自己上网搜索，有很多免费的。这里给大家提供两个<a href="http://www.xicidaili.com/" target="_blank" rel="noopener">西刺代理</a>和<a href="https://www.kuaidaili.com/free/inha/" target="_blank" rel="noopener">快代理</a></p>
 <p>如何使用这些代理呢。需要使用<code>ProxyHandler</code>函数，下面给出一个综合实例</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib.request</span><br><span class="line">import urllib.error</span><br><span class="line">from urllib.request import urlopen</span><br><span class="line">class Spyder(object):</span><br><span class="line">    def openthml(self,url,hearder,proxy_addr):</span><br><span class="line">        try:</span><br><span class="line">            proxy = urllib.request.ProxyHandler(proxy_addr)</span><br><span class="line">            opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)</span><br><span class="line">            opener.addheaders = [header]</span><br><span class="line">            urllib.request.install_opener(opener)</span><br><span class="line">            data = urlopen(url).read().decode(&quot;utf-8&quot;)</span><br><span class="line">            print(data)</span><br><span class="line">        except urllib.error.URLError as er:</span><br><span class="line">            if hasattr(er, &apos;code&apos;):</span><br><span class="line">                print(er.code)</span><br><span class="line">            elif hasattr(er, &apos;reason&apos;):</span><br><span class="line">                print(er.reason)</span><br><span class="line">            pass</span><br><span class="line">        pass</span><br><span class="line">    pass</span><br><span class="line">pass</span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">    spyder = Spyder()</span><br><span class="line">    proxy_addr = &#123;&apos;HTTPS&apos;: &apos;122.72.18.35:80&apos;&#125;</span><br><span class="line">    header =  (&quot;User-Agent&quot;,&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.22 Safari/537.36 SE 2.X MetaSr 1.0&quot;)</span><br><span class="line">    url = &apos;https://www.oschina.net&apos;</span><br><span class="line">    spyder.openthml(url,header,proxy_addr)</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
 <hr>
-<h1><span id="re库">Re库</span></h1>
-<hr>
-<p>Re就是使用正则表达式所需要的库。<br>
-Python中正则表达式和大多数语言中正则表达式的用法一样。<br>
-具体的使用方法就不在此赘述了，大家自由查阅有关资料就可以啦</p>
+<h1><span id="re库">Re库</span></h1><hr>
+<p>Re就是使用正则表达式所需要的库。<br>Python中正则表达式和大多数语言中正则表达式的用法一样。<br>具体的使用方法就不在此赘述了，大家自由查阅有关资料就可以啦</p>
 <p>最后给出一个综合实例，爬取豆瓣读书所有出版社信息及其在售书籍数目。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">#coding = utf-8</span><br><span class="line">from urllib.request import urlopen</span><br><span class="line">import urllib.request</span><br><span class="line">import chardet</span><br><span class="line">import urllib.error</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">class Publish(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def getInfo(self,address,header,proxy_addr):</span><br><span class="line">        try:</span><br><span class="line">            proxy = urllib.request.ProxyHandler(proxy_addr)</span><br><span class="line">            opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)</span><br><span class="line">            opener.addheaders = [header]</span><br><span class="line">            urllib.request.install_opener(opener)</span><br><span class="line">            response = urlopen(address,timeout=2).read()</span><br><span class="line">            char = chardet.detect(response)</span><br><span class="line">            data = response.decode(char[&apos;encoding&apos;])</span><br><span class="line">            pattern1 = &apos;&lt;div class=&quot;name&quot;&gt;(.*?)&lt;/div&gt;&apos;</span><br><span class="line">            pattern2 = &apos;&lt;div class=&quot;works-num&quot;&gt;(.*?) 部作品在售&lt;/div&gt;&apos;</span><br><span class="line">            result1 = re.compile(pattern1).findall(data)</span><br><span class="line">            result2 = re.compile(pattern2).findall(data)</span><br><span class="line">            return [result1,result2]</span><br><span class="line">        except urllib.error.URLError as er:</span><br><span class="line">            if hasattr(er, &apos;code&apos;):</span><br><span class="line">                print(er.code)</span><br><span class="line">            elif hasattr(er, &apos;reason&apos;):</span><br><span class="line">                print(er.reason)</span><br><span class="line">            pass</span><br><span class="line">        pass</span><br><span class="line">        pass</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">    def writeTxT(self,address,fileName,header,proxy_addr):</span><br><span class="line">        result = self.getInfo(address,header,proxy_addr)</span><br><span class="line">        f = open(fileName,&apos;w&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">        lenth = result[0].__len__()</span><br><span class="line">        for i in range(0,lenth):</span><br><span class="line">            f.write(str(i+1) +&apos;\t&apos; + result[0][i] + &apos;\t&apos; +result[1][i] + &apos;\n&apos;)</span><br><span class="line">        pass</span><br><span class="line">        f.close()</span><br><span class="line">    pass</span><br><span class="line">pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    publish = Publish()</span><br><span class="line">    proxy_addr = &#123;&apos;HTTPS&apos;: &apos;122.72.18.35:80&apos;&#125;</span><br><span class="line">    header = (&quot;User-Agent&quot;,</span><br><span class="line">              &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.22 Safari/537.36 SE 2.X MetaSr 1.0&quot;)</span><br><span class="line">    fileName = &apos;publish.txt&apos;</span><br><span class="line">    address = &apos;https://read.douban.com/provider/all&apos;</span><br><span class="line">    publish.writeTxT(address,fileName,header,proxy_addr)</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
 
@@ -565,7 +529,7 @@ Python中正则表达式和大多数语言中正则表达式的用法一样。<b
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.1k words altogether</span>
+					<span class="post-count">176.2k words altogether</span>
 				</p>
             </div>
         </div>
@@ -671,22 +635,6 @@ Python中正则表达式和大多数语言中正则表达式的用法一样。<b
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

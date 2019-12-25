@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -213,6 +213,45 @@
 
 <div class="post-preview">
 
+    <a href="/2018/05/15/pyUseDatabase/">
+        <h2 class="post-title">
+            数据库交互
+        </h2>
+        <h3 class="post-subtitle">
+            Database interaction under python
+        </h3>
+        <div class="post-content-preview">
+            
+
+
+
+首先说明还有很多坑没解决，但是确实学到很多，所以先记录下来。
+python与外部交互主要就是两大块首先是建立连接然后就是读和写操作
+
+操作txt
+可以直接使用open函数，不详细介绍了。给个Demo
+12345678910111213141516171819202122232425import ioclass FiterDouble (object):    @staticmetho......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2018-05-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Python" title="Python">Python</a>
+            
+              <a href="/tags/#Database" title="Database">Database</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2018/05/12/sortSummary/">
         <h2 class="post-title">
             内部排序总结
@@ -225,18 +264,15 @@
 
 
 
-内部排序介绍
 
+内部排序介绍
 算法的稳定性：如果待排序中有两个元素$R_i$、$R_j$，并且它们相等。且在排序前$R_i$在$R_j$前面。如果使用某种排序算法后$R_i$仍在$R_j$前面，则称这种算法是稳定的，否则就是不稳定的。
 排序算法一般考虑两种操作：比较 移动
 
 插入排序
-
 直接插入排序
-
 如图所示
-
-每次从无序表中取出第一个元素，可以看作是每次将两个有序表合并，即$L[1{\cdot......
+每次从无序表中取出第一个元素，可以看作是每次将两个有序表合并，即$L[1{\cdots}i......
         </div>
     </a>
     
@@ -271,19 +307,17 @@
             
 
 
+
 近几天上了关于分布式存储的大数据实践课，在此记录下整个过程以便以后学习。
 
 安装虚拟机
-
-首先在下面百度云中下载所有资源。
-由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。
+首先在下面百度云中下载所有资源。由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。
 
 链接：https://pan.baidu.com/s/1aHWy5UDeXQhit4azvPPM7A 密码：ngeo
 
 
 安装VMware
-
-打开下载的......
+打开下载的软件......
         </div>
     </a>
     
@@ -319,14 +353,13 @@
 
 
 
+
 并查集
-
 并查集介绍
-
 并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。常常在使用中以森林来表示。每个子集合以一颗树表示，所有表示子集合的树，构成表示全集合的森林存放在双亲表示数组内。数组元素下标代表元素名，根节点的双亲为负数，它的绝对值为该棵树内的结点个数。
 并查集支持以下两种操作
 
-Merge(Root1,Root2) ：若Roo......
+Merge(Root1,Root2) ：若Root......
         </div>
     </a>
     
@@ -362,11 +395,10 @@ Merge(Root1,Root2) ：若Roo......
 
 
 
-最小生成树
 
-最小生成树介绍
-最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。
-最小生成树的性质：设G=(V，E）是一个连通网络，U是顶点集V的一个非空真子集。若(u，v）是G中一条“一个端点在U中（例如：u∈U），另一个端点不在U中的边（例如：v∈V-U），且（u，v）具有最小权值，则一定存在G的一棵最......
+最小生成树
+最小生成树介绍最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。
+最小生成树的性质：设G=(V，E）是一个连通网络，U是顶点集V的一个非空真子集。若(u，v）是G中一条“一个端点在U中（例如：u∈U），另一个端点不在U中的边（例如：v∈V-U），且（u，v）具有最小权值，则一定存在G的一棵最小......
         </div>
     </a>
     
@@ -408,12 +440,10 @@ Merge(Root1,Root2) ：若Roo......
 
 
 
+
 关键路径
-
 AOE网
-
-AOE网：Activity on edge network
-若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活......
+AOE网：Activity on edge network若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活动是......
         </div>
     </a>
     
@@ -452,15 +482,12 @@ AOE网：Activity on edge network
             
 
 
+
 看以前写的博客，感觉没图好像光说并不是很能让人明白。但作图确实很花时间。(其实是做的图好丑不想做了QAQ)，以后会多做一些图。
 
 邻接链表
-
-邻接链表的介绍
-邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
-
-C语言结构代码为
-123456789typedef struct v_node&#123;		//头......
+邻接链表的介绍邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
+C语言结构代码为123456789typedef struct v_node&#123;		//头结点 ......
         </div>
     </a>
     
@@ -497,11 +524,11 @@ C语言结构代码为
             
 
 
+
 今天看了考研真题，感觉看了书跟没看一样。考的非常细，所以以后更加需要注重细节。要补充各种情况。
 
 Floyd算法介绍
-
-Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决&quot;负权回路&quot;的图。比如下面这个图A-&gt;C就不......
+Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决”负权回路”的图。比如下面这个图A-&gt;C就不存在最短路，因为产生......
         </div>
     </a>
     
@@ -541,18 +568,16 @@ Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一
 
 
 
+
 这首歌原唱Ed Sheeran的比较好听，但是网易云没有版权，建议用软件听。
 
-由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式
-本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式
+由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式
 
 LaTeX语法
-
 公式类型
-
 123行内公式： $f(x)=x+3$行间公式： $$f(x)=x+3$$
 $f(x)=x+3$是行内公式，而下面的是行间公式
-$$f......
+f(x)=......
         </div>
     </a>
     
@@ -562,11 +587,11 @@ $$f......
         </p>
         <div class="tags">
             
-              <a href="/tags/#Note" title="Note">Note</a>
-            
               <a href="/tags/#Mathjax" title="Mathjax">Mathjax</a>
             
               <a href="/tags/#LaTex" title="LaTex">LaTex</a>
+            
+              <a href="/tags/#Note" title="Note">Note</a>
             
         </div>
     
@@ -587,18 +612,16 @@ $$f......
             
 
 
+
 近期老师教了Python爬虫的一些知识，在此总结复习一下，同时如果你对爬虫也感兴趣，可以将这篇文章作为参考。
 
-Python版本3.7.0b2(基于Anaconda的Python编译器)
-IDE用的是PyCharm 2017.3.3
-Win10系统
+Python版本3.7.0b2(基于Anaconda的Python编译器)IDE用的是PyCharm 2017.3.3Win10系统 
 
 
 爬虫概述
-
 爬虫是什么?
 
-网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则......
+网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则，......
         </div>
     </a>
     
@@ -613,44 +636,6 @@ Win10系统
               <a href="/tags/#Crawl" title="Crawl">Crawl</a>
             
               <a href="/tags/#Urllib" title="Urllib">Urllib</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/26/teachManagement/">
-        <h2 class="post-title">
-            教学管理系统数据库设计
-        </h2>
-        <h3 class="post-subtitle">
-            Implementation of the database design process.
-        </h3>
-        <div class="post-content-preview">
-            
-
-
-数据库学习半学期了，今天就简单的实现一下整个数据库设计流程，同时练习一下各种语法。
-系统用户分析
-
-本数据库系统设计的用户有:
-
-数据库系统管理人员:维护和管理数据库系统，并拥有系统所有权限。
-教学管理人员:负责管理教学教师和学生的相关信息，可以对教学教师与学生信息进行更改，同时负责课程的安排。
-教学教师:可对选择本教师课程的学生的学习成绩进行修改，同时可以查询学生的成绩信息和个人的任......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2018-04-26
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Database" title="Database">Database</a>
             
         </div>
     
@@ -698,11 +683,15 @@ Win10系统
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="75">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="76">DeepLearning</a>
             
         
             
             <a href="/tags/#Python" title="Python" rel="21">Python</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -726,7 +715,11 @@ Win10系统
             
         
             
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
+            
+        
+            
+            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
             
         
             
@@ -735,14 +728,6 @@ Win10系统
         
             
             <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
-            
-        
-            
-            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
-            
-        
-            
-            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
             
         
             
@@ -762,14 +747,6 @@ Win10系统
             
         
             
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
-            
-        
-            
             <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
@@ -782,11 +759,15 @@ Win10系统
             
         
             
-            <a href="/tags/#Paper" title="Paper" rel="57">Paper</a>
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
-            <a href="/tags/#SemanticSegmentation" title="SemanticSegmentation" rel="12">SemanticSegmentation</a>
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Paper" title="Paper" rel="58">Paper</a>
             
         
             
@@ -794,11 +775,11 @@ Win10系统
             
         
             
-            <a href="/tags/#EdgeDetection" title="EdgeDetection" rel="1">EdgeDetection</a>
+            <a href="/tags/#SemanticSegmentation" title="SemanticSegmentation" rel="12">SemanticSegmentation</a>
             
         
             
-            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            <a href="/tags/#EdgeDetection" title="EdgeDetection" rel="1">EdgeDetection</a>
             
         
             
@@ -815,6 +796,10 @@ Win10系统
         
             
             <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
             
         
             
@@ -900,6 +885,10 @@ Win10系统
     <ul>
       
         <li>
+          <a href="/2019/12/25/paper-FickleNet/">FickleNet - Weakly and Semi-supervised Semantic Image Segmentation using Stochastic Inference</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/23/paper-pointrender/">PointRend - Image Segmentation as Rendering</a>
         </li>
       
@@ -913,10 +902,6 @@ Win10系统
       
         <li>
           <a href="/2019/12/10/paper-datadecoder/">Decoders Matter for Semantic Segmentation, Data-Dependent Decoding Enables Flexible Feature Aggregation</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/09/paper-acnet/">Adaptive Context Network for Scene Parsing</a>
         </li>
       
     </ul>
@@ -999,7 +984,7 @@ Win10系统
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.1k words altogether</span>
+					<span class="post-count">176.2k words altogether</span>
 				</p>
             </div>
         </div>
@@ -1105,22 +1090,6 @@ Win10系统
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
