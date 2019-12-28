@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,8 +217,9 @@
                 post-container">
 
                 <p>本篇论文是由新加坡国立大学颜水成团队的Yunpeng Chen, Jianan Li, Huaxin Xiao, Xiaojie Jin, Shuicheng Yan, Jiashi Feng所作的<a href="https://arxiv.org/pdf/1707.01629.pdf" target="_blank" rel="noopener">Dual Path Networks</a>, 发表在CVPR上.DPNet赢得了最后一届ImageNet 2017的冠军.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>ResNet中残差是直接element-wise addition,DenseNet中的连接是concat.ResNet每一层的特征都会被后面的一层重复利用,DenseNet中的每一层特征都会被后一层作为基础模块重新挖掘新的特征.因此,ResNet和DenseNet虽然都可以多次使用前面提取的特征来增加信息传导,但是也造成了很多冗余计算.</p>
-<p>作者在推导ResNet和DenseNet传导公式的过程中发现,当ResNet的module中增加一个1x1的卷积层, 并且固定特征提取步骤时, ResNet和DenseNet的传导公式相同, 可以将ResNet看作DenseNet的一种特殊情况. </p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>ResNet中残差是直接element-wise addition,DenseNet中的连接是concat.ResNet每一层的特征都会被后面的一层重复利用,DenseNet中的每一层特征都会被后一层作为基础模块重新挖掘新的特征.因此,ResNet和DenseNet虽然都可以多次使用前面提取的特征来增加信息传导,但是也造成了很多冗余计算.</p>
+<p>作者在推导ResNet和DenseNet传导公式的过程中发现,当ResNet的module中增加一个1x1的卷积层, 并且固定特征提取步骤时, ResNet和DenseNet的传导公式相同, 可以将ResNet看作DenseNet的一种特殊情况.</p>
 <p><img src="1.png" alt=""></p>
 <p>在此基础上, 作者希望能有一个模型可以继承ResNet多次使用浅层特征和DenseNet使用之前的特征重新生成新的特征的优点, 提出了DPNet, 将ResNet和DenseNet 相融合.</p>
 <p><img src="2.png" alt=""></p>
@@ -435,7 +436,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -541,6 +542,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

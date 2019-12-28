@@ -152,14 +152,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -225,11 +225,13 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=419254231&auto=1&height=66"></iframe>
 </div>
-
 <hr>
-<h1><span id="关键路径">关键路径</span></h1><hr>
-<h2><span id="aoe网">AOE网</span></h2><hr>
-<p>AOE网：Activity on edge network<br>若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活动是否会提高整个工程的效率。因此，通常在AOE网中列出完成预定工程计划所需要进行的活动，每个活动计划完成的时间，要发生哪些事件以及这些事件与活动之间的关系，从而可以确定该项工程是否可行，估算工程完成的时间以及确定哪些活动是影响工程进度的关键。</p>
+<h1><span id="关键路径">关键路径</span></h1>
+<hr>
+<h2><span id="aoe网">AOE网</span></h2>
+<hr>
+<p>AOE网：Activity on edge network<br>
+若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活动是否会提高整个工程的效率。因此，通常在AOE网中列出完成预定工程计划所需要进行的活动，每个活动计划完成的时间，要发生哪些事件以及这些事件与活动之间的关系，从而可以确定该项工程是否可行，估算工程完成的时间以及确定哪些活动是影响工程进度的关键。</p>
 <blockquote>
 <p>来自百度百科</p>
 </blockquote>
@@ -243,45 +245,60 @@
 <p>AOE表示工程的流程，把没有入边的称为始点或者源点，没有出边的顶点称为终点或者汇点。一般情况下，工程只有一个开始，一个结束，</p>
 <p>所以正常情况下，AOE只有一个源点一个汇点。</p>
 <hr>
-<h2><span id="aov网和aoe网的比较">AOV网和AOE网的比较</span></h2><hr>
+<h2><span id="aov网和aoe网的比较">AOV网和AOE网的比较</span></h2>
+<hr>
 <p>AOV网（Activity On Vertex Network）优先关心的是顶点，而AOE网则侧重于关心边。</p>
 <p><strong>AOV和AOE的区别：</strong></p>
 <ol>
-<li><p>AOV用顶点表示活动的网，描述活动之间的制约关系。</p>
+<li>
+<p>AOV用顶点表示活动的网，描述活动之间的制约关系。</p>
 </li>
-<li><p>AOE用边表示活动的网，边上的权值表示活动持续的时间。</p>
+<li>
+<p>AOE用边表示活动的网，边上的权值表示活动持续的时间。</p>
 </li>
 </ol>
 <p>AOE 是建立在子过程之间的制约关系没有矛盾的基础之上，再来分析整个过程需要的时间。</p>
 <hr>
-<h2><span id="关键路径的介绍">关键路径的介绍</span></h2><hr>
+<h2><span id="关键路径的介绍">关键路径的介绍</span></h2>
+<hr>
 <p>关键路径：AOE网中从源点到汇点的所有路径中，具有最大路径长度的路径。</p>
 <p>关键活动：关键路径上的活动。</p>
 <p>完成整个AOE网上所有工程的最短时间就是关键路径的长度，也就是关键路径上各活动花费开销的总和。</p>
 <hr>
-<h2><span id="关键路径求法思路">关键路径求法思路</span></h2><hr>
+<h2><span id="关键路径求法思路">关键路径求法思路</span></h2>
+<hr>
 <ul>
-<li>事件(顶点)$v_k$的最早发生时间ve(k)<br>它是指从开始顶点V到$V_k$的最长路径长度，它的递推公式为<script type="math/tex; mode=display">\begin{cases}
-ve(源点)=0\\
-ve(k)=Max\{ve(j)+Weight(v_j,v_k)\}\\
-\end{cases}</script></li>
+<li>事件(顶点)$v_k$的最早发生时间ve(k)<br>
+它是指从开始顶点V到$V_k$的最长路径长度，它的递推公式为<br>
+$$\begin{cases}<br>
+ve(源点)=0\<br>
+ve(k)=Max{ve(j)+Weight(v_j,v_k)}\<br>
+\end{cases}<br>
+$$</li>
 </ul>
 <blockquote>
 <p>计算ve(k)时是从前往后递推的</p>
 </blockquote>
 <ul>
-<li>事件(顶点)$v_k$的最迟发生时间vl(k)<br>它是指在不推迟整个工程完成的前提下，该事件最迟发生的事件，它的递推公式为<script type="math/tex; mode=display">\begin{cases}
-vl(汇点)=ve(汇点)\\
-vl(j)=Max\{vl(k)-Weight(v_j,v_k)\}\\
-\end{cases}</script></li>
+<li>事件(顶点)$v_k$的最迟发生时间vl(k)<br>
+它是指在不推迟整个工程完成的前提下，该事件最迟发生的事件，它的递推公式为<br>
+$$\begin{cases}<br>
+vl(汇点)=ve(汇点)\<br>
+vl(j)=Max{vl(k)-Weight(v_j,v_k)}\<br>
+\end{cases}<br>
+$$</li>
 </ul>
 <blockquote>
 <p>计算vl(j)时是从后往前递推的</p>
 </blockquote>
 <ul>
-<li><p>活动(边)$a_i$的最早发生时间e(i)<br>它是指该活动的起点所表示的事件的最早发生时间，计算公式:e(i)=ve(k)</p>
+<li>
+<p>活动(边)$a_i$的最早发生时间e(i)<br>
+它是指该活动的起点所表示的事件的最早发生时间，计算公式:e(i)=ve(k)</p>
 </li>
-<li><p>活动(边)$a_i$的最迟发生时间l(i)<br>它是指该活动的起点所表示的事件的最迟发生时间，计算公式:l(i)=vl(j)-Weight($v_k,v_j$)</p>
+<li>
+<p>活动(边)$a_i$的最迟发生时间l(i)<br>
+它是指该活动的起点所表示的事件的最迟发生时间，计算公式:l(i)=vl(j)-Weight($v_k,v_j$)</p>
 </li>
 </ul>
 <p>若一个活动的最早发生时间e(i)等于它的最迟发生时间l(i)那么它就属于关键活动，所属的路径就是关键路径。</p>
@@ -289,7 +306,8 @@ vl(j)=Max\{vl(k)-Weight(v_j,v_k)\}\\
 <p>一个工程不一定有一条关键路径，可能会有多条</p>
 </blockquote>
 <hr>
-<h2><span id="实现步骤">实现步骤</span></h2><hr>
+<h2><span id="实现步骤">实现步骤</span></h2>
+<hr>
 <p>求关键路径的算法步骤如下：</p>
 <ol>
 <li>求AOE网中所有事件的最早发生时间ve()</li>
@@ -305,10 +323,13 @@ vl(j)=Max\{vl(k)-Weight(v_j,v_k)\}\\
 <li>按公式计算e()和l()，取出所有相等的活动，构成关键路径。</li>
 </ol>
 <hr>
-<h2><span id="实例理解">实例理解</span></h2><hr>
+<h2><span id="实例理解">实例理解</span></h2>
+<hr>
 <p>如下一个AOE网</p>
-<p><img src="1.png" alt="图1"><br>其邻接链表为</p>
-<p><img src="2.png" alt="图2"><br>按照上面给出的思路求解即可，下面给出实现代码</p>
+<p><img src="1.png" alt="图1"><br>
+其邻接链表为</p>
+<p><img src="2.png" alt="图2"><br>
+按照上面给出的思路求解即可，下面给出实现代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;malloc.h&gt; </span><br><span class="line"></span><br><span class="line">#define vex 9</span><br><span class="line">#define bor 13</span><br><span class="line"></span><br><span class="line">typedef struct vexNode&#123;			//头结点		 </span><br><span class="line">	struct vexNode *next;</span><br><span class="line">	int pre; </span><br><span class="line">	int weight;</span><br><span class="line">&#125;vNode; </span><br><span class="line"></span><br><span class="line">typedef struct listNode&#123;		//表结点 </span><br><span class="line">	struct vNode *head;</span><br><span class="line">	int indegree;</span><br><span class="line">&#125;lNode; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lNode node[vex];</span><br><span class="line">int ve[vex];					//求顶点k最早发生时间ve[k] </span><br><span class="line">int vl[vex];					//求顶点k最迟发生时间vl[k] </span><br><span class="line">int topological[vex];			//拓扑排序后的序列 </span><br><span class="line"></span><br><span class="line">void create()&#123;</span><br><span class="line">	int i;</span><br><span class="line">	int a,b,c;</span><br><span class="line">	vNode *p;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;			//初始化表头信息 </span><br><span class="line">		node[i].head=NULL;</span><br><span class="line">		node[i].indegree=0; </span><br><span class="line">	&#125;	</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;			//读入边的信息 </span><br><span class="line">		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		node[b].indegree++;</span><br><span class="line">		p=(vNode *)malloc(sizeof(vNode));</span><br><span class="line">		p-&gt;next=node[a].head;</span><br><span class="line">		node[a].head=p;</span><br><span class="line">		p-&gt;pre=b;</span><br><span class="line">		p-&gt;weight=c;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line">void topSort()&#123;</span><br><span class="line">	int stack[vex];</span><br><span class="line">	int i,j,dut,c;</span><br><span class="line">	int cnt=0,k=0;</span><br><span class="line">	vNode *p;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;</span><br><span class="line">		ve[i]=0;						//初始化顶点事件最早发生时间为0 </span><br><span class="line">		if(node[i].indegree==0)&#123;		//找所有入度为0的点 </span><br><span class="line">			stack[cnt]=i;</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	while(cnt--)&#123;					//拓扑排序 </span><br><span class="line">		j=cnt; </span><br><span class="line">		topological[k]=stack[j];</span><br><span class="line">		k++;</span><br><span class="line">		p=node[stack[j]].head;</span><br><span class="line">		while(p!=NULL)&#123;	</span><br><span class="line">			dut = p-&gt;weight;</span><br><span class="line">			c =p-&gt;pre;</span><br><span class="line">			node[c].indegree--;</span><br><span class="line">			if(ve[topological[k-1]]+dut&gt;ve[c])&#123;</span><br><span class="line">				ve[c]=ve[topological[k-1]]+dut;</span><br><span class="line">			&#125;</span><br><span class="line">			if(node[c].indegree==0)&#123;</span><br><span class="line">				stack[cnt]=c;</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;	</span><br><span class="line">			</span><br><span class="line">			p=p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">//	for(i=vex-1;i&gt;=0;i--)&#123;</span><br><span class="line">//		printf(&quot;%d %d\n&quot;,ve[i],topological[i]);</span><br><span class="line">//	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void criticalPath()&#123;</span><br><span class="line">	topSort();</span><br><span class="line">	int i,j,k,dut;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;</span><br><span class="line">		vl[i]=ve[vex-1];		//初始化顶点最迟发生时间 </span><br><span class="line">	&#125;</span><br><span class="line">	int cnt=vex;				//下面按逆拓扑排序取出表结点 </span><br><span class="line">	vNode *p;</span><br><span class="line">	while(--cnt!=-1)&#123;</span><br><span class="line">		for(j=topological[cnt],p=node[j].head;p!=NULL;p=p-&gt;next)&#123;</span><br><span class="line">			k=p-&gt;pre;</span><br><span class="line">			dut=p-&gt;weight;</span><br><span class="line">			if(vl[k]-dut&lt;vl[j])&#123;			//计算顶点的最迟发生时间 </span><br><span class="line">				vl[j]=vl[k]-dut;</span><br><span class="line">			&#125;</span><br><span class="line">//			printf(&quot;%d\n&quot;,vl[j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int e,l;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;						//计算e和l </span><br><span class="line">		for(p=node[i].head;p!=NULL;p=p-&gt;next)&#123;</span><br><span class="line">			k=p-&gt;pre;</span><br><span class="line">			dut=p-&gt;weight;</span><br><span class="line">			e=ve[i];</span><br><span class="line">			l=vl[k]-dut;</span><br><span class="line">			if(e==l)&#123;</span><br><span class="line">				printf(&quot;（%d,%d）&quot;,i,k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">//	freopen(&quot;aa.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">	create();</span><br><span class="line">	criticalPath(); </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">0 1 5</span><br><span class="line">0 2 7</span><br><span class="line">1 3 3</span><br><span class="line">2 3 6</span><br><span class="line">2 4 3</span><br><span class="line">3 4 4</span><br><span class="line">3 5 4</span><br><span class="line">3 6 4</span><br><span class="line">4 6 2</span><br><span class="line">4 7 5</span><br><span class="line">6 8 5</span><br><span class="line">5 8 4</span><br><span class="line">7 8 2</span><br></pre></td></tr></table></figure>
@@ -534,7 +555,7 @@ vl(j)=Max\{vl(k)-Weight(v_j,v_k)\}\\
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -640,6 +661,22 @@ vl(j)=Max\{vl(k)-Weight(v_j,v_k)\}\\
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

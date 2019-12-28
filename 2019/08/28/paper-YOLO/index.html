@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,12 +217,15 @@
                 post-container">
 
                 <p>本文是由华盛顿大学和和FacebookAI研究所的Joseph Redmon, Santosh Divvalay, Ross Girshick, Ali Farhad所作的<a href="https://arxiv.org/pdf/1506.02640.pdf" target="_blank" rel="noopener">You Only Look Once:Unified, Real-Time Object Detection</a>,发表在2016年CVPR上.</p>
-<h2><span id="总结收获">总结收获</span></h2><p>在本篇论文发出前,目标检测部分较著名的算法是RCNN,它通过启发式搜索产生一系列可能的候选框,然后对这些候选框分别进行分类和回归.RCNN的精确度较高,在PASCAL数据集上的correct为71.6%,但是RCNN的速度非常慢,检测一张图的时间通常需要几十秒.本文所提出的YOLO算法仅仅需要对图片扫描一遍,速度更快,而精确度差的不多.</p>
+<h2><span id="总结收获">总结收获</span></h2>
+<p>在本篇论文发出前,目标检测部分较著名的算法是RCNN,它通过启发式搜索产生一系列可能的候选框,然后对这些候选框分别进行分类和回归.RCNN的精确度较高,在PASCAL数据集上的correct为71.6%,但是RCNN的速度非常慢,检测一张图的时间通常需要几十秒.本文所提出的YOLO算法仅仅需要对图片扫描一遍,速度更快,而精确度差的不多.</p>
 <p>YOLO的思路是:将整个图片按照$7*7$的大小分割成若干个grid,分别输入网络进行目标检测出,最后得到每个grid分类结果和bounding box.再设置阈值,过滤掉分数较低的boxes后进行非极大值抑制(Non-Maximum Suppression)处理得到整幅图的预测结果.</p>
-<p>网络模型如图所示<br><img src="1.png" alt=""></p>
-<p>作者还提出了一个概念confidence,它由是否存在object和box的准确度共同决定</p>
-<script type="math/tex; mode=display">Pr(Object) * IoU^{Truth}_{Pred}</script><p>其中,当一个grid中有object时$Pr(Object)$为1, 否则为0.因此预测一个grid中有一个object需要有5个值,该grid的confidence,object所在位置横坐标$x$,object所在位置纵坐标$y$,object的宽$w$,和object的高$h$.它们的值都为小数,表示在该grid中的比例.</p>
-<p>在PASCAL VOC中训练该模型,输入的图片大小为448 <em> 448 </em> 3, 最后的输出为7 <em> 7 </em> 30, 截取的grid为$7<em>7$,一个grid同时预测两个物品, 该数据集中验证20个类别, 所以最后输出的30个channel 为 2 </em> 5(confidence,x,y,w,h) + 20 = 30</p>
+<p>网络模型如图所示<br>
+<img src="1.png" alt=""></p>
+<p>作者还提出了一个概念confidence,它由是否存在object和box的准确度共同决定<br>
+$$Pr(Object) * IoU^{Truth}_{Pred}$$<br>
+其中,当一个grid中有object时$Pr(Object)$为1, 否则为0.因此预测一个grid中有一个object需要有5个值,该grid的confidence,object所在位置横坐标$x$,object所在位置纵坐标$y$,object的宽$w$,和object的高$h$.它们的值都为小数,表示在该grid中的比例.</p>
+<p>在PASCAL VOC中训练该模型,输入的图片大小为448 * 448 * 3, 最后的输出为7 * 7 * 30, 截取的grid为$7*7$,一个grid同时预测两个物品, 该数据集中验证20个类别, 所以最后输出的30个channel 为 2 * 5(confidence,x,y,w,h) + 20 = 30</p>
 <p>损失函数部分作者直接使用了各个部分的平方和.</p>
 <p>1.每个图片的每个单元格不一定都包含object，如果没有object，那么confidence就会变成0，这样在优化模型的时候可能会让梯度跨越太大，模型不稳定。为了平衡这一点，在损失函数中，设置两个参数和，其中控制bounding box预测位置的损失，控制单个格内没有目标的损失。</p>
 <p>2.对于大的物体，小的偏差对于小的物体影响较大，为了减少这个影响，所以对bounding box的宽高都开根号。</p>
@@ -438,7 +441,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -544,6 +547,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

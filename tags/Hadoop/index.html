@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -225,6 +225,21 @@
                     <span class="tag-text">2019</span>
                 </span>
                 <ul>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    12-28
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/2019/12/28/paper-rcf/" style="color: #0085a1">
+                        <span>
+                            Richer Convolutional Features for Edge Detection
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
                 
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -1810,15 +1825,11 @@
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="76">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
             
         
             
             <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -1842,19 +1853,19 @@
             
         
             
-            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
-            
-        
-            
-            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
-            
-        
-            
             <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
             
         
             
             <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
+            
+        
+            
+            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
+            
+        
+            
+            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
             
         
             
@@ -1870,11 +1881,19 @@
             
         
             
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
@@ -1886,15 +1905,11 @@
             
         
             
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
             
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="58">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
             
         
             
@@ -1910,6 +1925,14 @@
             
         
             
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -1919,14 +1942,6 @@
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
-            
-        
-            
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
-            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
             
         
             
@@ -2012,6 +2027,10 @@
     <ul>
       
         <li>
+          <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/25/paper-FickleNet/">FickleNet - Weakly and Semi-supervised Semantic Image Segmentation using Stochastic Inference</a>
         </li>
       
@@ -2025,10 +2044,6 @@
       
         <li>
           <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/10/paper-datadecoder/">Decoders Matter for Semantic Segmentation, Data-Dependent Decoding Enables Flexible Feature Aggregation</a>
         </li>
       
     </ul>
@@ -2111,7 +2126,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -2217,6 +2232,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

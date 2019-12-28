@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由康奈尔大学和Facebook研究院的Lin Tsung-Yi, Dollár Piotr, Girshick Ross, He Kaiming, Hariharan Bharath, Belongie Serge所作的<a href="https://arxiv.org/abs/1612.03144" target="_blank" rel="noopener">Feature Pyramid Networks for Object Detection</a></p>
-<h2><span id="收获总结">收获总结</span></h2><p>本文所提出的特征金字塔结构是来自于传统图像中的图像高斯金字塔(通过高斯平滑等操作获得下采样图片),直接将高斯金字塔运用到深度学习中需要大量的运算和大量的内存,因此作者提出了改进的特征金字塔.一般图像中存在不同尺寸的目标，而不同的目标具有不同的特征，利用浅层的特征就可以将简单的目标的区分开来；利用深层的特征可以将复杂的目标区分开来.把更抽象，语义更强的高层特征图进行取样，然后把该特征横向连接至前一层特征,利用低层图像恢复定位细节.通过自上而下的路径和横向连接将低分辨率但语义强的特征与高分辨率语义弱的特征结合在一起，这样就可以获得高分辨率，强语义的特征，有利于小目标的检测。</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本文所提出的特征金字塔结构是来自于传统图像中的图像高斯金字塔(通过高斯平滑等操作获得下采样图片),直接将高斯金字塔运用到深度学习中需要大量的运算和大量的内存,因此作者提出了改进的特征金字塔.一般图像中存在不同尺寸的目标，而不同的目标具有不同的特征，利用浅层的特征就可以将简单的目标的区分开来；利用深层的特征可以将复杂的目标区分开来.把更抽象，语义更强的高层特征图进行取样，然后把该特征横向连接至前一层特征,利用低层图像恢复定位细节.通过自上而下的路径和横向连接将低分辨率但语义强的特征与高分辨率语义弱的特征结合在一起，这样就可以获得高分辨率，强语义的特征，有利于小目标的检测。</p>
 <p><img src="1.png" alt=""></p>
 <p>可以将FPN作为一个模块和Fast RCNN和DeepMask结合,用于目标检测和实力分割.可以提升模型的准确率和计算效率.</p>
 
@@ -432,7 +433,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -538,6 +539,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

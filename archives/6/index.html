@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,6 +213,39 @@
 
 <div class="post-preview">
 
+    <a href="/2019/07/02/regularization/">
+        <h2 class="post-title">
+            正则化
+        </h2>
+        <h3 class="post-subtitle">
+            Regularization
+        </h3>
+        <div class="post-content-preview">
+            Regularization
+深度学习中的正则化：对目标函数增加惩罚和约束项，以偏差的增加降低方差，从而提升训练模型的泛化能力。
+bias偏差就是衡量训练集和真实数据之间的误差，反应模型的拟合能力。
+variance方差是指验证集和训练集的效果的差别，反应预测的准确性。
+低偏差高方差：表示模型准确但是稳定性差，对验证数据&amp;测试数据的拟合能力差，即是模型的泛化能力差，产生了过拟合。
+高......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-07-02
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/07/01/paper-Deeplabv3/">
         <h2 class="post-title">
             Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation
@@ -222,7 +255,8 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由谷歌公司的Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff, and Hartwig Adam所作的Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation
-Abstract深度神经网络采用空间金字......
+Abstract
+深度神经网络采用空间金......
         </div>
     </a>
     
@@ -255,7 +289,8 @@ Abstract深度神经网络采用空间金字......
         </h3>
         <div class="post-content-preview">
             本篇论文是由谷歌公司的Liang-Chieh Chen George Papandreou Florian Schroff Hartwig Adam所作的Rethinking Atrous Convolution for Semantic Image Segmentation
-AbstractDeepLabv3进一步探讨空洞卷积，这是一个在语义分割任务中：可以调整滤波器视野、控制卷积神经网络......
+Abstract
+DeepLabv3进一步探讨空洞卷积，这是一个在语义分割任务中：可以调整滤波器视野、控制卷积神经网......
         </div>
     </a>
     
@@ -321,7 +356,8 @@ AbstractDeepLabv3进一步探讨空洞卷积，这是一个在语义分割任务
         </h3>
         <div class="post-content-preview">
             本篇论文是由Cambridge大学Vijay Badrinarayanan, Alex Kendall, Roberto Cipolla, Senior Member所作的SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation
-Abstract提出了一种新颖实用的深度全卷积神经网络结构—......
+Abstract
+提出了一种新颖实用的深度全卷积神经网络结构......
         </div>
     </a>
     
@@ -354,7 +390,8 @@ Abstract提出了一种新颖实用的深度全卷积神经网络结构—......
         </h3>
         <div class="post-content-preview">
             本篇论文是由加州大学伯克利分校的Jonathan Long,Evan Shelhamer和Trevor Darrell发表的Fully Convolutional Networks for Semantic Segmentation，它是CVPR 2015 best paper。
-Abstract卷积网络是一种功能强大的可视化模型，它可以生成特性的层次结构。实验结果表明，卷积网络本身经过端到......
+Abstract
+卷积网络是一种功能强大的可视化模型，它可以生成特性的层次结构。实验结果表明，卷积网络本身经过端......
         </div>
     </a>
     
@@ -387,7 +424,8 @@ Abstract卷积网络是一种功能强大的可视化模型，它可以生成特
         </h3>
         <div class="post-content-preview">
             本篇论文是西班牙Alicante大学计算机信息技术系的Garcia-Garcia, Alberto等人2017年4月份所作的A Review on Deep Learning Techniques Applied to Semantic Segmentation
-Abstract图像语义分割越来越受到计算机视觉和机器学习研究者的关注。许多正在兴起的应用程序需要精确和高效的分割机制:自动驾驶、......
+Abstract
+图像语义分割越来越受到计算机视觉和机器学习研究者的关注。许多正在兴起的应用程序需要精确和高效的分割机制:自动驾驶......
         </div>
     </a>
     
@@ -419,12 +457,14 @@ Abstract图像语义分割越来越受到计算机视觉和机器学习研究者
             Semantic Segmentation Introduction
         </h3>
         <div class="post-content-preview">
-            语义分割语意分割是对图像中的每一个像素进行分类
+            语义分割
+语意分割是对图像中的每一个像素进行分类
 语义分割中的难点
+
 数据问题：分割需要精确的像素级标注，包括每一个目标的轮廓等信息；
 计算资源问题：分割预测了每一个像素，这就要求feature map的分辨率尽可能的高。
 精细分割：很多算法的像道路、建筑物等类别，分割精度很高，能达到98%，而对于细小的类别，像行人、交通等等，由于其轮廓太小，而无法精确的定位轮廓，造成精度较低；
-上下文信息：分......
+上下文信息......
         </div>
     </a>
     
@@ -482,10 +522,13 @@ Abstract图像语义分割越来越受到计算机视觉和机器学习研究者
             陈光 — 南京理工大学
         </h3>
         <div class="post-content-preview">
-            本篇论文是由陈光所作的南京理工大学硕士学位论文。下载地址所发表的年份是2006，当时深度学习刚刚出现苗头。因此本篇论文所使用的方法没有使用CNN，而是基于以前的经典算法。
+            本篇论文是由陈光所作的南京理工大学硕士学位论文。
+下载地址
+所发表的年份是2006，当时深度学习刚刚出现苗头。因此本篇论文所使用的方法没有使用CNN，而是基于以前的经典算法。
 论文主要内容
+
 研究了基于线段分析的方法及其在建筑物提取方面的应用。详细介绍了边缘提取算法、轮廓跟踪算法、提取直线、提取平行线对、生成假设屋顶的算法和对假设屋顶进行选择检验的规则，实现了遥感图像中建筑物屋顶的提取。
-研究了变......
+研......
         </div>
     </a>
     
@@ -498,38 +541,6 @@ Abstract图像语义分割越来越受到计算机视觉和机器学习研究者
               <a href="/tags/#Paper" title="Paper">Paper</a>
             
               <a href="/tags/#RemoteSensing" title="RemoteSensing">RemoteSensing</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/10/convolutionNN/">
-        <h2 class="post-title">
-            卷积神经网络
-        </h2>
-        <h3 class="post-subtitle">
-            Convolution Nerual Network
-        </h3>
-        <div class="post-content-preview">
-            卷积神经网络的层级结构• 数据输入层/ Input layer• 卷积层/ CONV layer• ReLU激励层 / ReLU layer• 池化层 / Pooling layer• 全连接层 / FC layer
-Input layer主要对输入的数据进行预处理，包括：
-
-去均值化：对每个数据减去整体的均值。
-归一化：常用的归一化策略有BN(Batch Normalization)， W......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2019-06-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
             
         </div>
     
@@ -577,15 +588,11 @@ Input layer主要对输入的数据进行预处理，包括：
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="76">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
             
         
             
             <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -609,19 +616,19 @@ Input layer主要对输入的数据进行预处理，包括：
             
         
             
-            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
-            
-        
-            
-            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
-            
-        
-            
             <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
             
         
             
             <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
+            
+        
+            
+            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
+            
+        
+            
+            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
             
         
             
@@ -637,11 +644,19 @@ Input layer主要对输入的数据进行预处理，包括：
             
         
             
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
@@ -653,15 +668,11 @@ Input layer主要对输入的数据进行预处理，包括：
             
         
             
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
             
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="58">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
             
         
             
@@ -677,6 +688,14 @@ Input layer主要对输入的数据进行预处理，包括：
             
         
             
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -686,14 +705,6 @@ Input layer主要对输入的数据进行预处理，包括：
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
-            
-        
-            
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
-            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
             
         
             
@@ -779,6 +790,10 @@ Input layer主要对输入的数据进行预处理，包括：
     <ul>
       
         <li>
+          <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/25/paper-FickleNet/">FickleNet - Weakly and Semi-supervised Semantic Image Segmentation using Stochastic Inference</a>
         </li>
       
@@ -792,10 +807,6 @@ Input layer主要对输入的数据进行预处理，包括：
       
         <li>
           <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/10/paper-datadecoder/">Decoders Matter for Semantic Segmentation, Data-Dependent Decoding Enables Flexible Feature Aggregation</a>
         </li>
       
     </ul>
@@ -878,7 +889,7 @@ Input layer主要对输入的数据进行预处理，包括：
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -984,6 +995,22 @@ Input layer主要对输入的数据进行预处理，包括：
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

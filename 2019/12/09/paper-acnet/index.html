@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,8 +217,11 @@
                 post-container">
 
                 <p>本篇论文是由中科院和南京大学的Jun Fu, Jing Liu, Yuhang Wang, Yong Li, Yongjun Bao, Jinhui Tang, Hanqing Lu所作的<a href="https://arxiv.org/abs/1911.01664" target="_blank" rel="noopener">Adaptive Context Network for Scene Parsing</a>, 发表在2019年ICCV上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文所提出的ACNet也是一个SOTA模型. 作者针对语义分割中上下文问题进行了深入研究, 提出了自适应上下文模块, 对上下文进行自适应的融合.</p>
-<p>作者首先使用最简单的分割网络FCN分别对全局上下文融合和局部上下文融合做了分析<br><img src="1.png" alt=""><br>可以看出, 使用局部上下文融合和全局上下文融合对于模型的识别能力在大多数情况下都是有帮助的. 因此作者对于局部和全局的上下文融合进行了深入研究.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文所提出的ACNet也是一个SOTA模型. 作者针对语义分割中上下文问题进行了深入研究, 提出了自适应上下文模块, 对上下文进行自适应的融合.</p>
+<p>作者首先使用最简单的分割网络FCN分别对全局上下文融合和局部上下文融合做了分析<br>
+<img src="1.png" alt=""><br>
+可以看出, 使用局部上下文融合和全局上下文融合对于模型的识别能力在大多数情况下都是有帮助的. 因此作者对于局部和全局的上下文融合进行了深入研究.</p>
 <p>作者提出的一个数据驱动的门控机制，根据像素感知的上下文需求捕获全局上下文和局部上下文. 他对于这种结构的解释是数据驱动的门控机制. 但是, 就我看来, 它仍是一个attention mechanism的变种. global context module对应 channel attention, local context module对应 spatial attention.</p>
 <p><img src="2.png" alt=""></p>
 <p>首先从高层特征图A出发, 首先进行全局平均池化, 与原特征图A算一个距离(点与点的距离), 此时得到的就是一个权重矩阵, 使用这个权重矩阵对全局平均池化的结果进行加权后再作用到原特征图A上, 上采样. 这里完成了global context module. 在local context module中使用global context module经过上采样的权重矩阵对低一层的特征图B进行加权. 对这个加权的特征图和从高层加权后上采样得到的特征进行多次的融合(融合的方式采用了concat)再卷积, 最终得到本层特征图输出.</p>
@@ -435,7 +438,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -541,6 +544,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

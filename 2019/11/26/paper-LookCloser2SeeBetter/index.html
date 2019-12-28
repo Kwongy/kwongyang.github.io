@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由微软研究院和中国科学技术大学的Jianlong Fu, Heliang Zheng, TaoMei所作的<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8099959&amp;tag=1" target="_blank" rel="noopener">Look Closer to See Better: Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition</a>, 发表在2017年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文所提出的网络是针对细粒度图像分类所设计的网络. 细粒度识别的挑战主要有两方面, 首先是区分区域定位, 其次是从这些区域中学习图像的细粒度特征.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文所提出的网络是针对细粒度图像分类所设计的网络. 细粒度识别的挑战主要有两方面, 首先是区分区域定位, 其次是从这些区域中学习图像的细粒度特征.</p>
 <p>作者所提出的RA-CNN是一种类似目标检测的图像分类算法, 它不需要标注的bounding box, 而使用无监督的方法, 利用attention proposal network(APN)提取目标的bounding box. 再将所提取的部分crop后放大, 进一步对目标区域进行处理. 网络一共三层, 三次递归后分别得到分类结果, 每一层的网络结构完全相同, 只是参数不同.</p>
 <p><img src="1.jpg" alt=""></p>
 <p>这里我们可以看到, 通过不断地zooming, 原图片的目标区域产生了多个尺度, 这是本文的第一个亮点. 第二, 网络不仅仅做了图像分类, 其实使用APN还对图像进行了区域划分(目标检测), 因此这是一个多任务学习模型, 两个任务 - 分类和检测之间相互促进,有利于图像的细粒度分类.</p>
@@ -434,7 +435,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -540,6 +541,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

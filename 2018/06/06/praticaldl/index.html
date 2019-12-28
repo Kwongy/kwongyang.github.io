@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,47 +216,63 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="traindevtest-sets">Train/dev/test Sets</span></h2><hr>
-<p>How to make your neural network work well by setting your data?<br>It’t almost impossible to correctly guess the right values for all parameters,so in practice applied machine learning is a highly iterative process.maybe keep iterating in order to try to find a better and a better neural network.</p>
+                <h2><span id="traindevtest-sets">Train/dev/test Sets</span></h2>
+<hr>
+<p>How to make your neural network work well by setting your data?<br>
+It’t almost impossible to correctly guess the right values for all parameters,so in practice applied machine learning is a highly iterative process.maybe keep iterating in order to try to find a better and a better neural network.</p>
 <p>The traditionally you might take all the data you have and carve off some portion of it to be your training set.Some portion of it to be your hold-out cross validation set,and this is sometimes also called the development set.and then you might carve out some final portion of it to be your test set.</p>
 <p>What you have to do is that you keep on training algorithms on your training sets,and use your dev set or your hold-out cross validation set to see which of many different models performs best on your dev set after having done this long enought. Finally,you can take the best model you have found and evaluate it on your test set.</p>
 <hr>
-<h2><span id="bias-amp-variance">Bias &amp; Variance</span></h2><hr>
-<p><img src="1.png" alt=""><br>For the first picture,this is not very good fit to the data.And so this is class of a high bias.What we say that is <strong>underfitting the data</strong>.On the opposite end,looking at the third picture,maybe you can fit the data perfectly.but that doesn’t look like a great fit eigher.So there’s a classifier of high variance and this is <strong>overfitting the data</strong>.With a medium level of complexity.that maybe fits it correctly like that.So we call that just right.</p>
-<p>The two key numbers to look at to understand bias and variance will be the train set error and the dev set error.</p>
-<p>If you’re doing very well on the training set,but you’re doing relatively poorly on the dev set.So this looks like you might have overfit the training set(high variance).<br>That you measure your training set and your dev set error.</p>
+<h2><span id="bias-amp-variance">Bias &amp; Variance</span></h2>
 <hr>
-<h2><span id="regularization">Regularization</span></h2><hr>
+<p><img src="1.png" alt=""><br>
+For the first picture,this is not very good fit to the data.And so this is class of a high bias.What we say that is <strong>underfitting the data</strong>.On the opposite end,looking at the third picture,maybe you can fit the data perfectly.but that doesn’t look like a great fit <a href="http://eigher.So" target="_blank" rel="noopener">eigher.So</a> there’s a classifier of high variance and this is <strong>overfitting the data</strong>.With a medium level of complexity.that maybe fits it correctly like <a href="http://that.So" target="_blank" rel="noopener">that.So</a> we call that just right.</p>
+<p>The two key numbers to look at to understand bias and variance will be the train set error and the dev set error.</p>
+<p>If you’re doing very well on the training set,but you’re doing relatively poorly on the dev <a href="http://set.So" target="_blank" rel="noopener">set.So</a> this looks like you might have overfit the training set(high variance).<br>
+That you measure your training set and your dev set error.</p>
+<hr>
+<h2><span id="regularization">Regularization</span></h2>
+<hr>
 <p>To solve a high variance problem,you should try is probably regularization.The other way to address high variance is to get more training data,that’s also quite reliable.</p>
 <p>To add regularization to the logistic regression,what you do is add to it,lambda,which is called the regularization parameter.But lambda/2m times the norm of w squared.this is called L2 regularization</p>
 <p>Lambda is called the regularization parameter.usually,you set this using your dev set or cross validation.when you try a variety of values and see what does the best</p>
 <p>L2 norm regularization is also called weight decay.Because it’s just like the ordinarily gradient descent,where you update</p>
 <p><img src="2.png" alt=""></p>
 <hr>
-<h2><span id="dropout-regularization">Dropout regularization</span></h2><hr>
-<p>With dropout,what we’re going to do is go through each of the layers of the network and set some probabilty of eliminating a node in neural network,maybe we’ll decide to eliminate those nodes,then what you do is actually remove all the ingoing outgoing things from that node as well.So you end up with a much smaller,really much diminished network,and then you do back propagation training</p>
+<h2><span id="dropout-regularization">Dropout regularization</span></h2>
 <hr>
-<h3><span id="inverted-dropout">inverted dropout</span></h3><hr>
+<p>With dropout,what we’re going to do is go through each of the layers of the network and set some probabilty of eliminating a node in neural network,maybe we’ll decide to eliminate those nodes,then what you do is actually remove all the ingoing outgoing things from that node as <a href="http://well.So" target="_blank" rel="noopener">well.So</a> you end up with a much smaller,really much diminished network,and then you do back propagation training</p>
+<hr>
+<h3><span id="inverted-dropout">inverted dropout</span></h3>
+<hr>
 <p>which is technique called inverted dropout</p>
 <p>This inverted dropout technique by dividing by the keep.prob,it ensures that the expected value remains the same.</p>
 <hr>
-<h2><span id="other-regularization">Other regularization</span></h2><hr>
+<h2><span id="other-regularization">Other regularization</span></h2>
+<hr>
 <p>There’s one other technique that is often used called <strong>early stopping</strong></p>
 <p><img src="3.png" alt=""></p>
 <hr>
-<h2><span id="normalizing-inputs">Normalizing inputs</span></h2><hr>
-<p>Normalizing your inputs corresponds to two steps.The first is to subtract out or to zero out the mean</p>
-<script type="math/tex; mode=display">\mu = \frac{1}{m}\sum_{i=1}^mx^{i}</script><p>So this means you just move the training set until it has 0 mean.And then the second step is to normalize the variances.</p>
-<script type="math/tex; mode=display">{\sigma}^2 = \frac{1}{m}\sum_{i=1}^m{(x^{i})}^2</script><p>So sigma squared is a vector with the variances of each of the features.</p>
-<p><img src="4.png" alt=""><br>Now the variance of X1 and X2 are both equal to one.</p>
+<h2><span id="normalizing-inputs">Normalizing inputs</span></h2>
+<hr>
+<p>Normalizing your inputs corresponds to two steps.The first is to subtract out or to zero out the mean<br>
+$$\mu = \frac{1}{m}\sum_{i=1}^mx^{i}$$<br>
+So this means you just move the training set until it has 0 mean.And then the second step is to normalize the variances.<br>
+$${\sigma}^2 = \frac{1}{m}\sum_{i=1}^m{(x^{i})}^2$$<br>
+So sigma squared is a vector with the variances of each of the features.</p>
+<p><img src="4.png" alt=""><br>
+Now the variance of X1 and X2 are both equal to one.</p>
 <p>Why normalize inputs?</p>
 <p><img src="5.png" alt=""></p>
 <hr>
-<h2><span id="vanishing-exploding-gradients">Vanishing / exploding gradients</span></h2><hr>
+<h2><span id="vanishing-exploding-gradients">Vanishing / exploding gradients</span></h2>
+<hr>
 <p>What vanishing or exploding gradients means is that when you’re training a very deep network,your derivatives or your slopes can sometimes get either very big or small,maybe even expoentially small.</p>
 <hr>
-<h2><span id="gradient-check">Gradient check</span></h2><hr>
-<p>For each I,so for each component of theta let’s compute D theta approx i to b,And I want to take a two sided diffence. the value should be approximately equal to d theta.<br>Compute the distance between two vectors</p>
+<h2><span id="gradient-check">Gradient check</span></h2>
+<hr>
+<p>For each I,so for each component of theta let’s compute D theta approx i to b,And I want to take a two sided diffence. the value should be approximately equal to d theta.<br>
+Compute the distance between two vectors</p>
 <p><img src="7.png" alt=""></p>
 
                 
@@ -470,7 +486,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -576,6 +592,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,6 +213,42 @@
 
 <div class="post-preview">
 
+    <a href="/2018/12/30/quick-mi/">
+        <h2 class="post-title">
+            快速幂取模
+        </h2>
+        <h3 class="post-subtitle">
+            快速幂取模运算
+        </h3>
+        <div class="post-content-preview">
+            
+快速幂基础
+
+首先对于取模运算有
+1(a * b) % c= (a % c) * (b % c) % c
+这个是快速幂的基础
+对于幂次比较高的幂运算，如果使用朴素幂运算会占用大量的计算机资源，因此我们需要将幂次做处理。
+对于任何数，都可以将其分解成二进制形式，即1、0形式。
+123eg: 678 = 512 + 128 + 32 + 4 + 2		= 2^9 + 2^7 + 2^5 + 2......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2018-12-30
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2018/07/24/traverseTree/">
         <h2 class="post-title">
             二叉树遍历转换
@@ -222,6 +258,7 @@
         </h3>
         <div class="post-content-preview">
             二叉树的遍历
+
 先序(先根)遍历：即先访问根节点，再访问左子树和右子树
 中序遍历：先访问左子树，再访问根节点，再访问右子树
 后序遍历：先访问左子树和右子树，再访问根节点
@@ -230,7 +267,7 @@
 注：其中层次遍历需要借助队列
 假设有以下数据结构
 1234struct node&#123;	struct node *left,*right;	int value;&#125;
-那么它......
+那么......
         </div>
     </a>
     
@@ -263,8 +300,10 @@
             Basic models
 
 
+
 Picking the most likely sentence
-The decoder network looks pretty much identical to the language model.So what the machine translation model is very similar to the language model exc......
+
+The decoder network looks pretty much identical to the language model.So what the machine translation model is very similar to the language model e......
         </div>
     </a>
     
@@ -295,7 +334,8 @@ The decoder network looks pretty much identical to the language model.So what th
         </h3>
         <div class="post-content-preview">
             Word representation
-One of the key ideas you learn about is word embeddings, which is a way of representing words that let your algorithms automatically understand analogies like that,man is to wom......
+
+One of the key ideas you learn about is word embeddings, which is a way of representing words that let your algorithms automatically understand analogies like that,man is to wo......
         </div>
     </a>
     
@@ -326,7 +366,9 @@ One of the key ideas you learn about is word embeddings, which is a way of repre
         </h3>
         <div class="post-content-preview">
             Recurrent Netural Networks
-The recurrent neural network scans through the data from left to right And the parameters it uses for each time step are shared.One weakness of this RNN is that it only u......
+
+The recurrent neural network scans through the data from left to right And the parameters it uses for each time step are shared.
+One weakness of this RNN is that it only......
         </div>
     </a>
     
@@ -362,7 +404,8 @@ Recognition
 
 
 One-shot learning
-The one-shot learning problem what that means is that,for most face recognition applications you need to recognize a person or given just one single im......
+
+The one-shot learning problem what that means is that,for most face recognition applications you need to recognize a person or given just one single i......
         </div>
     </a>
     
@@ -393,7 +436,8 @@ The one-shot learning problem what that means is that,for most face recognition 
         </h3>
         <div class="post-content-preview">
             Object localization
-Classification with localization which means not only do you have to label this,but the algorithm also is responsible for putting a bounding box or drawing a red rectangle aroun......
+
+Classification with localization which means not only do you have to label this,but the algorithm also is responsible for putting a bounding box or drawing a red rectangle arou......
         </div>
     </a>
     
@@ -424,23 +468,26 @@ Classification with localization which means not only do you have to label this,
         </h3>
         <div class="post-content-preview">
             Classic network
+
 LeNet-5
+
 LeNet-5 was trained on grayscale images
 
 
 AlexNet
 
 
+
 VGG - 16
 
 
+
 Residual Networks(ResNets)
+
 ResNets are built out of something called a residual block
 
 
-Inception network
-
-Cos......
+Inception network......
         </div>
     </a>
     
@@ -472,10 +519,11 @@ Cos......
         <div class="post-content-preview">
             Convolution operation
 
+
 From the top left，Take the inner product by useing the same matrix as the filter.And do the same thing.And so on, from left to right, from top to bottom.
 
 
-More edge detectio......
+More edge detecti......
         </div>
     </a>
     
@@ -506,57 +554,19 @@ More edge detectio......
         </h3>
         <div class="post-content-preview">
             Carrying out error analysis
+
 Error analysis:
 
 Get 100 mislabeled dev set example
 Count up how many are the same things
 
-You should find a set of mislabeled examples,either in your dev set,or in your......
+You should find a set of mislabeled examples,either in your dev set,or in you......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Kwong on
             2018-06-16
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
-            
-              <a href="/tags/#Python" title="Python">Python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/06/14/ml1/">
-        <h2 class="post-title">
-            吴恩达深度学习Part 3,Week 1
-        </h2>
-        <h3 class="post-subtitle">
-            Improving model
-        </h3>
-        <div class="post-content-preview">
-            Orthogonalization
-Chain of assumptions in Machine Learning
-
-Fit training set well on cost function
-
-Fit dev set well on cost function
-
-Fit test set well on cost function
-
-Performs well on cost func......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2018-06-14
         </p>
         <div class="tags">
             
@@ -610,15 +620,11 @@ Performs well on cost func......
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="76">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
             
         
             
             <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -642,19 +648,19 @@ Performs well on cost func......
             
         
             
-            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
-            
-        
-            
-            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
-            
-        
-            
             <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
             
         
             
             <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
+            
+        
+            
+            <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
+            
+        
+            
+            <a href="/tags/#Topological" title="Topological" rel="2">Topological</a>
             
         
             
@@ -670,11 +676,19 @@ Performs well on cost func......
             
         
             
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
             
         
             
@@ -686,15 +700,11 @@ Performs well on cost func......
             
         
             
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
             
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="58">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
             
         
             
@@ -710,6 +720,14 @@ Performs well on cost func......
             
         
             
+            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
+            
+        
+            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -719,14 +737,6 @@ Performs well on cost func......
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
-            
-        
-            
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
-            <a href="/tags/#Personal" title="Personal" rel="1">Personal</a>
             
         
             
@@ -812,6 +822,10 @@ Performs well on cost func......
     <ul>
       
         <li>
+          <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/25/paper-FickleNet/">FickleNet - Weakly and Semi-supervised Semantic Image Segmentation using Stochastic Inference</a>
         </li>
       
@@ -825,10 +839,6 @@ Performs well on cost func......
       
         <li>
           <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/10/paper-datadecoder/">Decoders Matter for Semantic Segmentation, Data-Dependent Decoding Enables Flexible Feature Aggregation</a>
         </li>
       
     </ul>
@@ -911,7 +921,7 @@ Performs well on cost func......
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -1017,6 +1027,22 @@ Performs well on cost func......
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

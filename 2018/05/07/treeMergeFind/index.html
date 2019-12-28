@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -221,10 +221,11 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=110762&auto=1&height=66"></iframe>
 </div>
-
 <hr>
-<h1><span id="并查集">并查集</span></h1><hr>
-<h2><span id="并查集介绍">并查集介绍</span></h2><hr>
+<h1><span id="并查集">并查集</span></h1>
+<hr>
+<h2><span id="并查集介绍">并查集介绍</span></h2>
+<hr>
 <p>并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。常常在使用中以森林来表示。每个子集合以一颗树表示，所有表示子集合的树，构成表示全集合的森林存放在双亲表示数组内。数组元素下标代表元素名，根节点的双亲为负数，它的绝对值为该棵树内的结点个数。</p>
 <p>并查集支持以下两种操作</p>
 <ul>
@@ -232,18 +233,24 @@
 <li>Find(x) :查找x元素所在的集合的根节点。</li>
 </ul>
 <hr>
-<h2><span id="实现步骤">实现步骤</span></h2><hr>
+<h2><span id="实现步骤">实现步骤</span></h2>
+<hr>
 <p>假设有如下三棵树</p>
-<p><img src="1.png" alt=""><br>它们的存储结构为</p>
-<p><img src="2.png" alt=""><br>为了得到两个子集合的并，只要将其中一个子集合的根结点的双亲指针指向另一个集合的根节点即可。<br>执行一次S1与S2合并操作后</p>
-<p><img src="3.png" alt=""><br>它们的存储数组变为</p>
+<p><img src="1.png" alt=""><br>
+它们的存储结构为</p>
+<p><img src="2.png" alt=""><br>
+为了得到两个子集合的并，只要将其中一个子集合的根结点的双亲指针指向另一个集合的根节点即可。<br>
+执行一次S1与S2合并操作后</p>
+<p><img src="3.png" alt=""><br>
+它们的存储数组变为</p>
 <p><img src="4.png" alt=""></p>
 <p>下面给出一般的并查集C语言实现代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">#define node 5</span><br><span class="line"></span><br><span class="line">int MFset[node];</span><br><span class="line"></span><br><span class="line">void init()&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for(i=0;i&lt;node;i++)&#123;	//初始化结点-1代表每一个结点都是跟结点。 </span><br><span class="line">		MFset[i]=-1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int findMFset(int i)&#123;		//查找第i个结点的根节点 </span><br><span class="line">	int k=i;</span><br><span class="line">	while(i&gt;=0)&#123;</span><br><span class="line">		k=i;</span><br><span class="line">		i=MFset[i];</span><br><span class="line">	&#125; </span><br><span class="line">	return k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mergeMFset(int i,int j)&#123;	//合并包含i结点的树，和包含j结点的树 </span><br><span class="line">	int a=findMFset(i);</span><br><span class="line">	int b=findMFset(j);</span><br><span class="line">	if(a!=b)&#123;		//当两个结点的根节点不相等时执行合并操作 </span><br><span class="line">		if(MFset[a]&lt;=MFset[b])&#123;</span><br><span class="line">			MFset[a]+=MFset[b];</span><br><span class="line">			MFset[b]=a;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			MFset[b]+=MFset[a];</span><br><span class="line">			MFset[a]=b;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	init();</span><br><span class="line">	int i,j,k;</span><br><span class="line">	for(i=0;i&lt;node;i++)&#123;</span><br><span class="line">		printf(&quot;第%d个结点的根节点为:%d\n&quot;,i,findMFset(i));</span><br><span class="line">	&#125; </span><br><span class="line">	printf(&quot;\n执行合并操作\n\n&quot;);</span><br><span class="line">	for(i=1;i&lt;node;i++)&#123;</span><br><span class="line">		mergeMFset(0,i); </span><br><span class="line">	&#125;</span><br><span class="line">	for(i=0;i&lt;node;i++)&#123;</span><br><span class="line">		printf(&quot;第%d个结点的根节点为:%d		它的权值是%d\n&quot;,i,findMFset(i),-MFset[findMFset(i)]);</span><br><span class="line">	&#125; </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">第0个结点的根节点为:0</span><br><span class="line">第1个结点的根节点为:1</span><br><span class="line">第2个结点的根节点为:2</span><br><span class="line">第3个结点的根节点为:3</span><br><span class="line">第4个结点的根节点为:4</span><br><span class="line"></span><br><span class="line">执行合并操作</span><br><span class="line"></span><br><span class="line">第0个结点的根节点为:0		它的权值是5</span><br><span class="line">第1个结点的根节点为:0		它的权值是5</span><br><span class="line">第2个结点的根节点为:0		它的权值是5</span><br><span class="line">第3个结点的根节点为:0		它的权值是5</span><br><span class="line">第4个结点的根节点为:0		它的权值是5</span><br></pre></td></tr></table></figure>
 <hr>
-<h2><span id="算法分析">算法分析</span></h2><hr>
+<h2><span id="算法分析">算法分析</span></h2>
+<hr>
 <p>Merge合并操作的时间复杂度为$O(1)$</p>
 <p>Find查找操作的时间复杂度为$O(d)$其中d为树的深度。</p>
 <p>总的时间复杂度为线性$O(n)$。</p>
@@ -251,8 +258,10 @@
 <p><img src="5.png" alt=""></p>
 <p>并查集的应用：求无向图的连通分量个数，最近公共祖先（LCA），带限制的作业排序，实现Kruskar算法求最小生成树等</p>
 <hr>
-<h1><span id="kruskal算法并查集实现">Kruskal算法并查集实现</span></h1><hr>
-<p>上一篇写最小生成树，Kruskal算法没有给代码<br>今天学完了并查集，才能实现Kruskal算法。</p>
+<h1><span id="kruskal算法并查集实现">Kruskal算法并查集实现</span></h1>
+<hr>
+<p>上一篇写最小生成树，Kruskal算法没有给代码<br>
+今天学完了并查集，才能实现Kruskal算法。</p>
 <p>还以上一篇文章的题目为例。</p>
 <p>给出C语言代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define vex 6			//顶点个数</span><br><span class="line">#define bor 10			//边的个数</span><br><span class="line"></span><br><span class="line">typedef struct&#123;</span><br><span class="line">	int in;</span><br><span class="line">	int out;</span><br><span class="line">	int weight;</span><br><span class="line">&#125;EDGE;</span><br><span class="line"></span><br><span class="line">int sum; </span><br><span class="line">int MFset[vex];</span><br><span class="line">EDGE edge[bor];</span><br><span class="line"></span><br><span class="line">int cmp(const void*a,const void*b)&#123;</span><br><span class="line">	return ((EDGE*)a)-&gt;weight-((EDGE*)b)-&gt;weight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void init()&#123;</span><br><span class="line">	sum=0;</span><br><span class="line">	int i;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;</span><br><span class="line">		MFset[i]=-1;</span><br><span class="line">	&#125;</span><br><span class="line">	int a,b,c;</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		edge[i].in=a;</span><br><span class="line">		edge[i].out=b;</span><br><span class="line">		edge[i].weight=c;</span><br><span class="line">	&#125;</span><br><span class="line">	qsort(edge,bor,sizeof(EDGE),cmp);</span><br><span class="line">//	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">//		printf(&quot;%d	%d	%d\n&quot;,edge[i].in,edge[i].out,edge[i].weight);</span><br><span class="line">//	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int findMFset(int i)&#123;		//查找第i个结点的根节点 </span><br><span class="line">	int k=i;</span><br><span class="line">	while(i&gt;=0)&#123;</span><br><span class="line">		k=i;</span><br><span class="line">		i=MFset[i];</span><br><span class="line">	&#125; </span><br><span class="line">	return k;</span><br><span class="line">&#125;</span><br><span class="line">int mergeMFset(int i,int j)&#123;	//合并包含i结点的树，和包含j结点的树 </span><br><span class="line">	int a=findMFset(i);</span><br><span class="line">	int b=findMFset(j);</span><br><span class="line">	if(a!=b)&#123;		//当两个结点的根节点不相等时执行合并操作</span><br><span class="line">		if(MFset[a]&lt;=MFset[b])&#123;</span><br><span class="line">			MFset[a]+=MFset[b];</span><br><span class="line">			MFset[b]=a;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			MFset[b]+=MFset[a];</span><br><span class="line">			MFset[a]=b;</span><br><span class="line">		&#125;</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	int i,j;</span><br><span class="line">	int a,b,c;</span><br><span class="line">	int root1,root2;</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">		a=edge[i].in;</span><br><span class="line">		b=edge[i].out;</span><br><span class="line">		c=edge[i].weight;</span><br><span class="line">		if(mergeMFset(a,b))&#123;</span><br><span class="line">			printf(&quot;&#123;%d,%d&#125;	%3d\n&quot;,a,b,c); </span><br><span class="line">			sum+=c;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">//	freopen(&quot;aa.txt&quot;,&quot;r&quot;,stdin); </span><br><span class="line">//	freopen(&quot;bb.txt&quot;,&quot;w&quot;,stdout); </span><br><span class="line">	init();</span><br><span class="line">	kruskal(); </span><br><span class="line">	printf(&quot;sum  =  %d&quot;,sum);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -473,7 +482,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -579,6 +588,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

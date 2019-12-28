@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,15 +217,26 @@
                 post-container">
 
                 <p>本篇论文是俄罗斯莫斯科skoltech的Alexey Bokhovkin, Evgeny Burnaev所作的<a href="https://arxiv.org/abs/1905.07852v1" target="_blank" rel="noopener">Boundary Loss for Remote Sensing Imagery Semantic Segmentation</a>, 2019年5月发表在arxiv上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>作者根据以前提出的边界损失函数提出了一种可微的改进,用于计算边缘损失.</p>
-<p>relate work中:<br>假设$S_{gt}^c$是第$c$类的语义分割的ground truth,$S_{pd}^c$是第$c$类的预测图像.其中$B_{gt}^c,B_{pd}^c$分别是它们对应的边界.</p>
-<script type="math/tex; mode=display">P^c=\frac{1}{|B_{pd}^c|}\sum_{x \in B_{pd}^c}[[d(x, B_{gt}^c) < \theta]]</script><script type="math/tex; mode=display">R^c=\frac{1}{|B_{gt}^c|}\sum_{x \in B_{gt}^c}[[d(x, B_{pd}^c) < \theta]]</script><p>其中[[]]代表逻辑函数, 最终得出的是一个值{0, 1}, 函数$d$代表欧氏距离.$\theta$代表阈值.最终的损失函数定义为:</p>
-<script type="math/tex; mode=display">BF^c_1=\frac{2P^cR^c}{P^c+R^c}</script><p>代表第$c$类的边界损失的$F_1$值.其中损失$P^c$可以理解为预测的每一个点, 与它欧式距离小于阈值$\theta$的代表损失为0, 否则损失为1. 总损失为平均.</p>
-<p>这个损失有一点问题就是不可微. 不方便计算. 于是作者提出了改进.</p>
-<script type="math/tex; mode=display">y_{gt}^b=pool(1-y_{gt}, \theta_0)-(1-y_{gt}),y_{pd}^b=pool(1-y_{pd}, \theta_0)-(1-y_{pd})</script><p>$pool$代表最大池化.这里的阈值$\theta_0$代表滑动窗口取的大小, 也就是$pooling$的大小.为了计算预测边界和真实边界的欧氏距离,需要计算一个扩展边.</p>
-<script type="math/tex; mode=display">y_{gt}^b=pool(y_{gt}, \theta),y_{pd}^b=pool(y_{pd}, \theta)</script><p>这里的$\theta$为人为可以接受的真实结果和预测之间的偏差.<br>最终的损失为:</p>
-<script type="math/tex; mode=display">P^c=\frac{sum(y_{pd}^b \cdot y_{gt}^{b,ext})}{sum(y_{pd}^b)}</script><script type="math/tex; mode=display">R^c=\frac{sum(y_{gt}^b \cdot y_{pd}^{b,ext})}{sum(y_{gt}^b)}</script><p>最终的损失为</p>
-<script type="math/tex; mode=display">BF^c_1=\frac{2P^cR^c}{P^c+R^c}</script><p>上面给出的这个损失函数是可微可导的, 使用池化可以帮助训练. 作者同时尝试了Sobel算子, 但是效果没有池化效果好. 最终在测试集上的实验效果比baseline更好</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>作者根据以前提出的边界损失函数提出了一种可微的改进,用于计算边缘损失.</p>
+<p>relate work中:<br>
+假设$S_{gt}^c$是第$c$类的语义分割的ground truth,$S_{pd}^c$是第$c$类的预测图像.其中$B_{gt}^c,B_{pd}^c$分别是它们对应的边界.<br>
+$$P^c=\frac{1}{|B_{pd}^c|}\sum_{x \in B_{pd}^c}[[d(x, B_{gt}^c) &lt; \theta]]$$<br>
+$$R^c=\frac{1}{|B_{gt}^c|}\sum_{x \in B_{gt}^c}[[d(x, B_{pd}^c) &lt; \theta]]$$<br>
+其中[[]]代表逻辑函数, 最终得出的是一个值{0, 1}, 函数$d$代表欧氏距离.$\theta$代表阈值.最终的损失函数定义为:<br>
+$$BF^c_1=\frac{2P^cR^c}{P^c+R^c}$$<br>
+代表第$c$类的边界损失的$F_1$值.其中损失$P^c$可以理解为预测的每一个点, 与它欧式距离小于阈值$\theta$的代表损失为0, 否则损失为1. 总损失为平均.</p>
+<p>这个损失有一点问题就是不可微. 不方便计算. 于是作者提出了改进.<br>
+$$y_{gt}^b=pool(1-y_{gt}, \theta_0)-(1-y_{gt}),y_{pd}^b=pool(1-y_{pd}, \theta_0)-(1-y_{pd})$$<br>
+$pool$代表最大池化.这里的阈值$\theta_0$代表滑动窗口取的大小, 也就是$pooling$的大小.为了计算预测边界和真实边界的欧氏距离,需要计算一个扩展边.<br>
+$$y_{gt}^b=pool(y_{gt}, \theta),y_{pd}^b=pool(y_{pd}, \theta)$$<br>
+这里的$\theta$为人为可以接受的真实结果和预测之间的偏差.<br>
+最终的损失为:<br>
+$$P^c=\frac{sum(y_{pd}^b \cdot y_{gt}^{b,ext})}{sum(y_{pd}^b)}$$<br>
+$$R^c=\frac{sum(y_{gt}^b \cdot y_{pd}^{b,ext})}{sum(y_{gt}^b)}$$<br>
+最终的损失为<br>
+$$BF^c_1=\frac{2P^cR^c}{P^c+R^c}$$<br>
+上面给出的这个损失函数是可微可导的, 使用池化可以帮助训练. 作者同时尝试了Sobel算子, 但是效果没有池化效果好. 最终在测试集上的实验效果比baseline更好</p>
 
                 
 
@@ -438,7 +449,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -544,6 +555,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 

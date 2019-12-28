@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -219,50 +219,85 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=526468083&auto=1&height=66"></iframe>
 </div>
-
 <hr>
-<h1><span id="one-hidden-layer-neural-network">One hidden layer Neural Network</span></h1><hr>
-<h2><span id="what-is-a-neural-network">What is a Neural Network</span></h2><hr>
-<p>Neural Network is an operational model and it’s made up of neurons that they also call activation function.<br>A ordinary neuron is shown here:<br><img src="1.png" alt=""><br>A simple neural network is shown here:<br><img src="2.png" alt=""></p>
+<h1><span id="one-hidden-layer-neural-network">One hidden layer Neural Network</span></h1>
 <hr>
-<h2><span id="computing-a-neural-networks-output">Computing a Neural Network’s Output</span></h2><hr>
-<p>Computing a node is similar to the logistic regression unit on the left in neural network.<br><img src="3.png" alt=""><br>Given input X:</p>
-<script type="math/tex; mode=display">Z^{[1]} = W^{[1]} + b^{[1]}</script><script type="math/tex; mode=display">a^{[1]} = \sigma ^{[1]}</script><script type="math/tex; mode=display">Z^{[2]} = W^{[2]} + b^{[2]}</script><script type="math/tex; mode=display">a^{[2]} = \sigma ^{[2]}</script><p>Z is the output of the hidden layer.<br>W&amp;b is any number(matrix).<br>$\sigma$ is the activation function.</p>
+<h2><span id="what-is-a-neural-network">What is a Neural Network</span></h2>
 <hr>
-<h2><span id="activation-functions">Activation functions</span></h2><hr>
+<p>Neural Network is an operational model and it’s made up of neurons that they also call activation function.<br>
+A ordinary neuron is shown here:<br>
+<img src="1.png" alt=""><br>
+A simple neural network is shown here:<br>
+<img src="2.png" alt=""></p>
+<hr>
+<h2><span id="computing-a-neural-networks-output">Computing a Neural Network’s Output</span></h2>
+<hr>
+<p>Computing a node is similar to the logistic regression unit on the left in neural network.<br>
+<img src="3.png" alt=""><br>
+Given input X:<br>
+$$Z^{[1]} = W^{[1]} + b^{[1]}$$<br>
+$$a^{[1]} = \sigma ^{[1]}$$<br>
+$$Z^{[2]} = W^{[2]} + b^{[2]}$$<br>
+$$a^{[2]} = \sigma ^{[2]}$$</p>
+<p>Z is the output of the hidden layer.<br>
+W&amp;b is any number(matrix).<br>
+$\sigma$ is the activation function.</p>
+<hr>
+<h2><span id="activation-functions">Activation functions</span></h2>
+<hr>
 <p>In the logistic regression,we use the <code>sigmoid</code> function as activation function.But there is an activation function that almost always works better than the sigmoid function is the <code>tanh</code> function or the <code>hyperbolic tangent function</code> in the neural network.</p>
 <p>Tanh’s values are between plus one and minus one.The mean of the activations is zero.Using a tanh instead of a sigmoid function kind of has the effect of centering your data.</p>
 <p>Other function is the rectified linear unit(<code>ReLU</code>).The formula is a equals max of 0 comma z.</p>
 <p>But there is another version of ReLU called the <code>leaky ReLU</code>.The derivative is not zero when z is negative.</p>
 <p>As for sigmoid function.I would say never use this except for the output layer if you are doing binary classification.</p>
-<p>The graph of all the functions above:<br><img src="4.png" alt=""></p>
+<p>The graph of all the functions above:<br>
+<img src="4.png" alt=""></p>
 <hr>
-<h2><span id="derivatives-of-activation-functions">Derivatives of activation functions</span></h2><hr>
-<h3><span id="sigmoid-activation-function">Sigmoid activation function:</span></h3><script type="math/tex; mode=display">g(z) = \frac{1}{1+e^{-z}}</script><p>Derivatives:</p>
-<script type="math/tex; mode=display">g(z)' = \frac{1}{1+e^{-z}}\left(1 - \frac{1}{1+e^{-z}}\right)</script><blockquote>
+<h2><span id="derivatives-of-activation-functions">Derivatives of activation functions</span></h2>
+<hr>
+<h3><span id="sigmoid-activation-function">Sigmoid activation function:</span></h3>
+<p>$$g(z) = \frac{1}{1+e^{-z}}$$<br>
+Derivatives:<br>
+$$g(z)’ = \frac{1}{1+e^{-z}}\left(1 - \frac{1}{1+e^{-z}}\right)$$</p>
+<blockquote>
 <p>For sigmoid g(z)’=g(z)(1-g(z))</p>
 </blockquote>
 <hr>
-<h3><span id="tanh-activation-function">Tanh activation function:</span></h3><script type="math/tex; mode=display">g(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}}</script><p>Derivatives:</p>
-<script type="math/tex; mode=display">g(z)' = 1 - {\left(\frac{e^z-e^{-z}}{e^z+e^{-z}}\right)}^2</script><blockquote>
+<h3><span id="tanh-activation-function">Tanh activation function:</span></h3>
+<p>$$g(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}}$$<br>
+Derivatives:<br>
+$$g(z)’ = 1 - {\left(\frac{e^z-e^{-z}}{e^z+e^{-z}}\right)}^2$$</p>
+<blockquote>
 <p>For Tanh g(z)’=1-${g(z)}^2$</p>
 </blockquote>
 <hr>
-<h3><span id="relu-activation-function">ReLU activation function:</span></h3><script type="math/tex; mode=display">g(z) = Max(0,z)</script><p>Derivatives:</p>
-<script type="math/tex; mode=display">g(z)' = \begin{cases}
-0 \ \ \ \  If \ \ z<0\\
-1 \ \ \ \ If \ \ z>0\\
-\end{cases}</script><hr>
-<h3><span id="relu-activation-function">ReLU activation function:</span></h3><script type="math/tex; mode=display">g(z) = Max(0.01z,z)</script><p>Derivatives:</p>
-<script type="math/tex; mode=display">g(z)' = \begin{cases}
-0.01 \ \ If \ \ z<0\\
-1 \ \ \ \ \ \ \ If \ \ z>0\\
-\end{cases}</script><hr>
-<h2><span id="gradient-descent-for-neural-networks">Gradient descent for neural networks</span></h2><hr>
-<p>Using back propagation iteration to calculate W&amp;b,this is gradient descent.<br>The formulas are as follow:<br><img src="5.png" alt=""></p>
+<h3><span id="relu-activation-function">ReLU activation function:</span></h3>
+<p>$$g(z) = Max(0,z)$$<br>
+Derivatives:<br>
+$$g(z)’ = \begin{cases}<br>
+0 \ \ \ \  If \ \ z&lt;0\<br>
+1 \ \ \ \ If \ \ z&gt;0\<br>
+\end{cases}$$</p>
 <hr>
-<h2><span id="random-initialization">Random initialization</span></h2><hr>
-<p>If you initialize weights to zero,the result is also zero and it doesn’t make sense.<br>So for the weight you should initialize it to a small number.It will make your iteration faster<br>For parameter b,any number is ok.</p>
+<h3><span id="relu-activation-function">ReLU activation function:</span></h3>
+<p>$$g(z) = Max(0.01z,z)$$<br>
+Derivatives:<br>
+$$g(z)’ = \begin{cases}<br>
+0.01 \ \ If \ \ z&lt;0\<br>
+1 \ \ \ \ \ \ \ If \ \ z&gt;0\<br>
+\end{cases}$$</p>
+<hr>
+<h2><span id="gradient-descent-for-neural-networks">Gradient descent for neural networks</span></h2>
+<hr>
+<p>Using back propagation iteration to calculate W&amp;b,this is gradient descent.<br>
+The formulas are as follow:<br>
+<img src="5.png" alt=""></p>
+<hr>
+<h2><span id="random-initialization">Random initialization</span></h2>
+<hr>
+<p>If you initialize weights to zero,the result is also zero and it doesn’t make sense.<br>
+So for the weight you should initialize it to a small <a href="http://number.It" target="_blank" rel="noopener">number.It</a> will make your iteration faster<br>
+For parameter b,any number is ok.</p>
 <hr>
 
                 
@@ -476,7 +511,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">176.2k words altogether</span>
+					<span class="post-count">178.1k words altogether</span>
 				</p>
             </div>
         </div>
@@ -582,6 +617,22 @@
 <!-- Image to hack wechat -->
 <img src="http://kwongyang.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
