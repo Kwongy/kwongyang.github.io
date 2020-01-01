@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,13 +219,13 @@
                 post-container">
 
                 <div align="center">
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=418602088&auto=1&height=66"></iframe>	
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=418602088&auto=1&height=66"></iframe>    
 </div>
+
+
 <hr>
-<h1><span id="哈希表">哈希表</span></h1>
-<hr>
-<h2><span id="hashtable简单介绍">HashTable简单介绍</span></h2>
-<hr>
+<h1><span id="哈希表">哈希表</span></h1><hr>
+<h2><span id="hashtable简单介绍">HashTable简单介绍</span></h2><hr>
 <p>哈希表（Hash table，也叫散列表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
 <p>简单的说就是哈希表就是把要存储的值映射成一个新的值，这种转换映射是一种压缩映射。</p>
 <hr>
@@ -236,8 +236,7 @@
 <p>注：哈希地址的大小要不小于存储记录数。</p>
 </blockquote>
 <hr>
-<h2><span id="哈希函数的构建">哈希函数的构建</span></h2>
-<hr>
+<h2><span id="哈希函数的构建">哈希函数的构建</span></h2><hr>
 <ul>
 <li>哈希函数的定义域必须全部包含要存储的关键字。</li>
 <li>散列函数计算出来的函数值要均匀、等概率地分布在整个哈希地址空间内，从而减少发生散列冲突的几率。</li>
@@ -245,121 +244,102 @@
 </ul>
 <p><strong>常用的散列函数：</strong></p>
 <ul>
-<li>
-<p>直接定址法</p>
+<li><p>直接定址法</p>
 <p>直接取关键字或关键字的某个线性函数值为哈希地址，即</p>
 </li>
 </ul>
-<p>$$Hash(key) = key或Hash(key) = a \cdot key + b$$</p>
-<p>其中a和b为常数。直接定址法适用于关键字连续的情况，它不会发生哈希冲突。</p>
+<script type="math/tex; mode=display">Hash(key) = key或Hash(key) = a \cdot key + b</script><p>  其中a和b为常数。直接定址法适用于关键字连续的情况，它不会发生哈希冲突。</p>
 <ul>
-<li>
-<p>除留余数法</p>
+<li><p>除留余数法</p>
 <p>取某个不大于哈希表表长m的数p除后的余数为哈希地址，即</p>
 </li>
 </ul>
-<p>$$Hash(key)=key % p  ,p&lt;=m$$</p>
-<p>p最好选取质数，可减少哈希冲突。</p>
+<script type="math/tex; mode=display">Hash(key)=key % p  ,p<=m</script><p>  p最好选取质数，可减少哈希冲突。</p>
 <ul>
 <li>数字分析法</li>
 </ul>
-<p>设关键字是r进制数，在它的每一位上数字出现的频率不同，根据分析后选取数个不同位置上的数组合后形成哈希地址。</p>
-<p>数字分析法适用于已知关键字集合。如果更换了关键字就需要更换哈希函数。</p>
+<p>  设关键字是r进制数，在它的每一位上数字出现的频率不同，根据分析后选取数个不同位置上的数组合后形成哈希地址。</p>
+<p>  数字分析法适用于已知关键字集合。如果更换了关键字就需要更换哈希函数。</p>
 <ul>
 <li>平方取中法</li>
 </ul>
-<p>由于一个数平方后与关键字的每一位都有关系。将关键字平方后，任取其中几个数组合成哈希地址。</p>
-<p>这种方法使得散列地址分布较均匀。适用于关键字的每一位取值都不够均匀或者均小于散列地址所需的位数。</p>
+<p>  由于一个数平方后与关键字的每一位都有关系。将关键字平方后，任取其中几个数组合成哈希地址。</p>
+<p>  这种方法使得散列地址分布较均匀。适用于关键字的每一位取值都不够均匀或者均小于散列地址所需的位数。</p>
 <ul>
 <li>折叠法</li>
 </ul>
-<p>将一个数分割成位数相同的几个子部分(最后一部分位数可以不同)，然后取这几部分的叠加和(高位舍去)，将其作为哈希地址。</p>
-<p>折叠法适用于关键字位数很多，且每一位上的数字分布大致均匀时。</p>
+<p>  将一个数分割成位数相同的几个子部分(最后一部分位数可以不同)，然后取这几部分的叠加和(高位舍去)，将其作为哈希地址。</p>
+<p>  折叠法适用于关键字位数很多，且每一位上的数字分布大致均匀时。</p>
 <ul>
 <li>伪随机数法</li>
 </ul>
-<p>选择一个随机函数，取关键字的随机函数值为它的散列地址，即<br>
-$$H(key)=random(key)$$<br>
-其中random为伪随机函数，但要保证函数值是在0到m-1之间。如果真的随机则无法查找了，实际上random是一个伪随机函数。</p>
+<p>  选择一个随机函数，取关键字的随机函数值为它的散列地址，即</p>
+<script type="math/tex; mode=display">H(key)=random(key)</script><p>  其中random为伪随机函数，但要保证函数值是在0到m-1之间。如果真的随机则无法查找了，实际上random是一个伪随机函数。</p>
 <hr>
-<h2><span id="处理冲突的方法">处理冲突的方法</span></h2>
-<hr>
+<h2><span id="处理冲突的方法">处理冲突的方法</span></h2><hr>
 <ul>
 <li>开放定址法</li>
 </ul>
-<p>开放定址法指的是对于哈希表内未含值的空闲地址，既对它的同义词关键字开放又对它的非同义词关键字开放(简单的说就是一个空闲地址，任何关键字都可以存入)。其数学递推公式为</p>
-<p>$$H_1 = (H(key) + d_i) MOD m   , i=1,2,…,k (k&lt;=m-1)$$</p>
-<p>其中H(key)为哈希函数，m为哈希表表长，d为增量序列，有以下三种取法</p>
-<p>(1)线性探测再散列：$d_i$ = 1,2,3,…,m-1<br>
-(2)二次探测再散列：$d_i$ = $1^2$,$-1^2$,$2^2$,$-2^2$,…,$-k^2$   ($k &lt;= m/2$)<br>
-(3)伪随机探测再散列：在关键字周围随机取值。</p>
+<p>  开放定址法指的是对于哈希表内未含值的空闲地址，既对它的同义词关键字开放又对它的非同义词关键字开放(简单的说就是一个空闲地址，任何关键字都可以存入)。其数学递推公式为</p>
+<script type="math/tex; mode=display">H_1 = (H(key) + d_i) MOD m   , i=1,2,...,k (k<=m-1)</script><p>  其中H(key)为哈希函数，m为哈希表表长，d为增量序列，有以下三种取法</p>
+<p>(1)线性探测再散列：$d_i$ = 1,2,3,…,m-1<br>(2)二次探测再散列：$d_i$ = $1^2$,$-1^2$,$2^2$,$-2^2$,…,$-k^2$   ($k &lt;= m/2$)<br>(3)伪随机探测再散列：在关键字周围随机取值。</p>
 <ol>
 <li>线性探测再散列容易发生聚集现象——处理同义词的冲突过程中又添加了非同义词冲突。</li>
 <li>线性探测再散列可以做到只要哈希表未满就一定可以找到一个不发生冲突的地址H</li>
-<li>二次探测再散列只有在表长m为4j+3的质数时才能找到不发生冲突的地址。</li>
+<li>二次探测再散列只有在表长m为4j+3的质数时才能找到不发生冲突的地址。 </li>
 <li>二次探测再散列可以保证至少探测到一半的单元。</li>
 <li>开放定址法中不能随意删除表中已有元素，因为若删除某个元素可能或造成同义词截断。因此正确的做法是从逻辑上删除。</li>
 </ol>
 <ul>
 <li>再哈希法</li>
 </ul>
-<p>再哈希法就是同义词产生地址冲突时计算另一个哈希函数地址，直到不再发生冲突。</p>
+<p>  再哈希法就是同义词产生地址冲突时计算另一个哈希函数地址，直到不再发生冲突。</p>
 <ul>
 <li>链地址法(拉链法)</li>
 </ul>
-<p>哈希表中存储指针，用链表存储各个同义词。如图所示</p>
+<p>  哈希表中存储指针，用链表存储各个同义词。如图所示</p>
 <p><img src="1.jpg" alt=""></p>
-<p>链地址法适用于经常进行插入和删除的情况。</p>
+<p>  链地址法适用于经常进行插入和删除的情况。</p>
 <ul>
 <li>建立公共溢出区</li>
 </ul>
-<p>将所有发生冲突的值全部放入公共溢出区，查找时，若哈希地址中不是该关键字就从公共溢出区内查找。</p>
+<p>  将所有发生冲突的值全部放入公共溢出区，查找时，若哈希地址中不是该关键字就从公共溢出区内查找。</p>
 <hr>
-<h2><span id="c语言实现">C语言实现</span></h2>
-<hr>
+<h2><span id="c语言实现">C语言实现</span></h2><hr>
 <p>简单实现哈希表开放定址法和拉链法。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include&lt;malloc.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt; </span><br><span class="line"></span><br><span class="line">typedef struct hashnode&#123;</span><br><span class="line">	int data;</span><br><span class="line">	struct hashnode *next;</span><br><span class="line">&#125;hashlist;</span><br><span class="line"></span><br><span class="line">void hash(int *a,int n)&#123;</span><br><span class="line">	int add=n%10;</span><br><span class="line">	int d=1;</span><br><span class="line">	if(a[add]==-1)&#123;		//未发生哈希冲突 </span><br><span class="line">		a[add]=n;</span><br><span class="line"></span><br><span class="line">	&#125; else&#123;				//发生哈希冲突 </span><br><span class="line">		while(a[add%10]!=-1)&#123;</span><br><span class="line">			add+=d;</span><br><span class="line">		&#125; </span><br><span class="line">		a[add]=n;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void insert(hashlist **hashtable2,int n)&#123;</span><br><span class="line">	int add=n%10;</span><br><span class="line">	hashlist *p=(hashlist *)malloc(sizeof(hashlist));	//头插法直接插入线性链表中 </span><br><span class="line">	p-&gt;next=hashtable2[add];</span><br><span class="line">	p-&gt;data=n;</span><br><span class="line">	hashtable2[add]=p;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int i;</span><br><span class="line">	int array[8]=&#123;23,91,2,65,87,12,44,73&#125;;</span><br><span class="line">	int hashtable1[10];				//线性探测开放定址法哈希表</span><br><span class="line">	memset(hashtable1,-1,sizeof(hashtable1)); </span><br><span class="line">	for(i=0;i&lt;8;i++)&#123;				//建立哈希表 </span><br><span class="line">		hash(hashtable1,array[i]); </span><br><span class="line">	&#125;</span><br><span class="line">	for(i=0;i&lt;10;i++)&#123;				//查看哈希表 1</span><br><span class="line">		printf(&quot;%d : %d\n&quot;,i,hashtable1[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;\n\n\n&quot;);</span><br><span class="line">	hashlist (*hashtable2)[10];		//拉链法哈希表 </span><br><span class="line">	hashlist *p;</span><br><span class="line">	p-&gt;next=NULL;</span><br><span class="line">	for(i=0;i&lt;10;i++)&#123;				//哈希表初始化 	 </span><br><span class="line">		(&amp;hashtable2)[i]=p;</span><br><span class="line">	&#125;</span><br><span class="line">	int a[8]=&#123;23,91,2,65,87,12,44,73&#125;;</span><br><span class="line">	for(i=0;i&lt;8;i++)&#123;				//建立哈希表 </span><br><span class="line">		insert(&amp;hashtable2,a[i]); </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(i=0;i&lt;10;i++)&#123;				//查看哈希表2 </span><br><span class="line">		p=(&amp;hashtable2)[i];</span><br><span class="line">		while(p-&gt;next!=NULL)&#123;</span><br><span class="line">			printf(&quot;%d : %d\n&quot;,i,p-&gt;data);</span><br><span class="line">			p=p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>打印结果为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">0 : -1</span><br><span class="line">1 : 91</span><br><span class="line">2 : 2</span><br><span class="line">3 : 23</span><br><span class="line">4 : 12</span><br><span class="line">5 : 65</span><br><span class="line">6 : 44</span><br><span class="line">7 : 87</span><br><span class="line">8 : 73</span><br><span class="line">9 : -1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1 : 91</span><br><span class="line">2 : 12</span><br><span class="line">2 : 2</span><br><span class="line">3 : 73</span><br><span class="line">3 : 23</span><br><span class="line">4 : 44</span><br><span class="line">5 : 65</span><br><span class="line">7 : 87</span><br></pre></td></tr></table></figure>
 <hr>
-<h2><span id="优缺点">优缺点</span></h2>
-<hr>
+<h2><span id="优缺点">优缺点</span></h2><hr>
 <p>优点：不论哈希表中有多少数据，查找、插入、删除（有时包括删除）只需要接近常量的时间即0(1）的时间级。实际上，这只需要几条机器指令。</p>
 <p>哈希表运算得非常快，在计算机程序中，如果需要在一秒种内查找上千条记录通常使用哈希表（例如拼写检查器)哈希表的速度明显比树快，树的操作通常需要O(N)的时间级。哈希表不仅速度快，编程实现也相对容易。</p>
 <p>如果不需要有序遍历数据，并且可以提前预测数据量的大小。那么哈希表在速度和易用性方面是无与伦比的。</p>
 <p>缺点：它是<strong>基于数组</strong>的，数组创建后难于扩展，某些哈希表被基本填满时，性能下降得非常严重，所以程序员必须要清楚表中将要存储多少数据（或者准备好定期地把数据转移到更大的哈希表中，这是个费时的过程）。</p>
 <hr>
-<h2><span id="性能分析">性能分析</span></h2>
-<hr>
+<h2><span id="性能分析">性能分析</span></h2><hr>
 <p>散列表的查找效率取决于三个因素：<strong>散列函数</strong>、<strong>处理冲突的方法</strong>和<strong>装填因子</strong></p>
 <p>装填因子：一个哈希表的装满程度，即</p>
-<p>$$ 	\alpha = \frac{表中记录数n}{哈希表长m}$$</p>
-<p>散列表的平均查找长度取决于 $ \alpha $ 而不是直接依赖于m或者n。</p>
+<script type="math/tex; mode=display">\alpha = \frac{表中记录数n}{哈希表长m}</script><p>散列表的平均查找长度取决于 $ \alpha $ 而不是直接依赖于m或者n。</p>
 <ul>
 <li>线性探测再散列的哈希表查找成功时的平均查找长度为</li>
 </ul>
-<p>$$S_n = \frac{1}{2}\left(1+{\frac{1}{(1-\alpha)}}\right)$$</p>
-<ul>
+<script type="math/tex; mode=display">S_n = \frac{1}{2}\left(1+{\frac{1}{(1-\alpha)}}\right)</script><ul>
 <li>随机探测再散列、二次探测再散列和再哈希的哈希表查找成功时的平均查找长度为</li>
 </ul>
-<p>$$S_n = -\frac{1}{\alpha}\ln{(1-\alpha)}$$</p>
-<ul>
+<script type="math/tex; mode=display">S_n = -\frac{1}{\alpha}\ln{(1-\alpha)}</script><ul>
 <li>链地址法的哈希表查找成功时的平均查找长度为</li>
 </ul>
-<p>$$S_n = 1+\frac{\alpha}{2}$$</p>
-<ul>
+<script type="math/tex; mode=display">S_n = 1+\frac{\alpha}{2}</script><ul>
 <li>线性探测再散列的哈希表查找不成功时的平均查找长度为</li>
 </ul>
-<p>$$U_n = \frac{1}{2}\left(1+{\frac{1}{(1-\alpha)^2}}\right)$$</p>
-<ul>
+<script type="math/tex; mode=display">U_n = \frac{1}{2}\left(1+{\frac{1}{(1-\alpha)^2}}\right)</script><ul>
 <li>伪随机探测再散列的哈希表查找不成功时的平均查找长度为</li>
 </ul>
-<p>$$U_n = \frac{1}{1-\alpha}$$</p>
-<ul>
+<script type="math/tex; mode=display">U_n = \frac{1}{1-\alpha}</script><ul>
 <li>链地址法的哈希表查找不成功时的平均查找长度为</li>
 </ul>
-<p>$$U_n = \alpha+e^{-\alpha}$$</p>
-
+<script type="math/tex; mode=display">U_n = \alpha+e^{-\alpha}</script>
                 
 
                 <hr>
@@ -565,7 +545,7 @@ $$H(key)=random(key)$$<br>
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -573,7 +553,7 @@ $$H(key)=random(key)$$<br>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

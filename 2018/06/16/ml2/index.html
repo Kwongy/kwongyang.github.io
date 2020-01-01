@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -216,52 +216,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="carrying-out-error-analysis">Carrying out error analysis</span></h2>
-<hr>
+                <h2><span id="carrying-out-error-analysis">Carrying out error analysis</span></h2><hr>
 <p>Error analysis:</p>
 <ul>
 <li>Get 100 mislabeled dev set example</li>
 <li>Count up how many are the same things</li>
 </ul>
-<p>You should find a set of mislabeled examples,either in your dev set,or in your development set.And look at the mislabeled examples for false positives and false negatives,and just count up the number of errors that fall into various different categories.<br>
-During this process you might be inspired to generate new categories of errors.</p>
+<p>You should find a set of mislabeled examples,either in your dev set,or in your development set.And look at the mislabeled examples for false positives and false negatives,and just count up the number of errors that fall into various different categories.<br>During this process you might be inspired to generate new categories of errors.</p>
 <hr>
-<h2><span id="cleaning-up-incorrectly-labeled-data">Cleaning up incorrectly labeled data</span></h2>
-<hr>
+<h2><span id="cleaning-up-incorrectly-labeled-data">Cleaning up incorrectly labeled data</span></h2><hr>
 <p>DL algorithms are quite robust to random errors in the training set.But they are less robust to systematic errors</p>
-<p>Apply same process to your dev and test sets to make sure they continue to come from the same distribution<br>
-Consider examining example your algorithm got right as well as ones it got wrong<br>
-Train and dev/test data may now come from slightly different distributions.</p>
+<p>Apply same process to your dev and test sets to make sure they continue to come from the same distribution<br>Consider examining example your algorithm got right as well as ones it got wrong<br>Train and dev/test data may now come from slightly different distributions.</p>
 <hr>
-<h2><span id="addressing-data-mismatch">Addressing data mismatch</span></h2>
+<h2><span id="addressing-data-mismatch">Addressing data mismatch</span></h2><hr>
+<p>Carry out manunal error analysis to try to understand difference between training and dev/test sets<br>Make training data more similar;or collect more similar to dev/test sets</p>
 <hr>
-<p>Carry out manunal error analysis to try to understand difference between training and dev/test sets<br>
-Make training data more similar;or collect more similar to dev/test sets</p>
-<hr>
-<h2><span id="transfer-learning">Transfer learning</span></h2>
-<hr>
+<h2><span id="transfer-learning">Transfer learning</span></h2><hr>
 <p>You might take out the last layer of the neural network again and create a new output node.But sometimes another thing you could do is actually create not just a single new output,but actually create several new layers to your neural network to try.</p>
 <p>Transfer learning makes sense when you have a lot of data for the probleam you’re transferring from and usually relatively less data for the problem you’re transferring to.</p>
 <hr>
-<h2><span id="multi-task-learning">Multi-task learning</span></h2>
-<hr>
+<h2><span id="multi-task-learning">Multi-task learning</span></h2><hr>
 <p>One image can have multiple labels,you are carrying out multi-task learning.</p>
-<p>Training on a set of tasks that could benefit from having shared lower-level features.<br>
-Usually:Amount of data you have for each task is quite similar<br>
-Can train a big enough neural network to do well on all the tasks</p>
+<p>Training on a set of tasks that could benefit from having shared lower-level features.<br>Usually:Amount of data you have for each task is quite similar<br>Can train a big enough neural network to do well on all the tasks</p>
 <hr>
-<h2><span id="whether-to-use-end-to-end-learning">Whether to use end-to-end learning</span></h2>
-<hr>
+<h2><span id="whether-to-use-end-to-end-learning">Whether to use end-to-end learning</span></h2><hr>
 <p>Pros:</p>
 <ul>
 <li>Let the data speak</li>
-<li>Less hand-designing of components needed<br>
-Cons:</li>
+<li>Less hand-designing of components needed<br>Cons:</li>
 <li>May need large amount of data</li>
 <li>Excludes potentially useful hand-designed components</li>
 </ul>
-<p>Key<br>
-Do you have sufficient data to learn a function of the complexity needed to map x to y?</p>
+<p>Key<br>Do you have sufficient data to learn a function of the complexity needed to map x to y?</p>
 
                 
 
@@ -466,7 +452,7 @@ Do you have sufficient data to learn a function of the complexity needed to map 
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -474,7 +460,7 @@ Do you have sufficient data to learn a function of the complexity needed to map 
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

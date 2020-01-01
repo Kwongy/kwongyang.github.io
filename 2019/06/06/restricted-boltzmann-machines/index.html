@@ -90,9 +90,9 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
-                            
                               <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                            
+                              <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
                             
                         </div>
                         <h1>受限波尔兹曼机</h1>
@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -216,27 +216,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="rbm是什么">RBM是什么</span></h2>
-<p>波尔兹曼机(Boltzmann Machine,BM)是Hinton和Sejnowski于1986年提出的一种根植于统计力学的随机神经网络。这种网络中的神经元是随机神经元，神经元的输出只有两种状态（未激活、激活）。从功能上讲，BM是由随机神经元全连接组成的反馈神经网络，且对称连接，无自反馈。</p>
+                <h2><span id="rbm是什么">RBM是什么</span></h2><p>波尔兹曼机(Boltzmann Machine,BM)是Hinton和Sejnowski于1986年提出的一种根植于统计力学的随机神经网络。这种网络中的神经元是随机神经元，神经元的输出只有两种状态（未激活、激活）。从功能上讲，BM是由随机神经元全连接组成的反馈神经网络，且对称连接，无自反馈。</p>
 <p>受限波尔兹曼机(Restricted Boltzmann Machines，RBM)是一类具有两层结构、对称连接且无自反馈的随机神经网络模型，层间全连接，层内无连接。</p>
 <p>两者的区别是：BM是全连接的，而RBM层内相互独立，层间全连接的。</p>
-<p>RBM的结构如下图所示：<br>
-<img src="1.png" alt=""></p>
+<p>RBM的结构如下图所示：<br><img src="1.png" alt=""></p>
 <p>上面一层神经元组成隐藏层(hidden layer), 用$h$向量表示隐藏层神经元的值。下面一层的神经元组成可见层(visible layer),用$v$向量表示可见层神经元的值。隐藏层和可见层之间是全连接的。RBM不区分前向和反向，可见层的状态可以作用于隐藏层，而隐藏层的状态也可以作用于可见层。隐藏层的偏倚系数是向量$b$,而可见层的偏倚系数是向量$a$,$W$是权重矩阵。</p>
 <p>常用的RBM一般是二值的，即不管是隐藏层还是可见层，它们的神经元的取值只为0或者1。</p>
-<h2><span id="rbm模型">RBM模型</span></h2>
-<p>RBM是基于基于能量的概率分布模型。对于给定的状态向量$h$和$v$，则RBM当前的能量函数可以表示为：</p>
-<p>$$E(v,h)=-a^Tv-b^Th-h^TWv$$</p>
-<p>则$v$,$h$的概率分布为：</p>
-<p>$$P(v,h)=\frac{1}{Z}e^{-E(v,h)} , Z=\sum_{v,h}{e^{E(v,h)} }$$</p>
-<p>有了概率分布，就可以求出条件概率分布：</p>
-<p>$$P(h|v)=\frac{1}{P(v)}\frac{1}{Z}exp{a^Tv}\prod_{j=1}^{nh}{exp { b_j^Th_j+h_j^TW_{j,:}v } }$$</p>
-<p>求可见层到隐藏层$h$的方法：</p>
-<p>$$P(h_j=1|v)=sigmoid(b_j+W_{j,:}{v})$$</p>
-<p>同样地，由隐藏层反求可见层的方法为：</p>
-<p>$$P(v_j=1|h)=sigmoid(a_j+W_{:,j}{h})$$</p>
-<h2><span id="求解rbm">求解RBM</span></h2>
-<p>RBM中权重的学习步骤：</p>
+<h2><span id="rbm模型">RBM模型</span></h2><p>RBM是基于基于能量的概率分布模型。对于给定的状态向量$h$和$v$，则RBM当前的能量函数可以表示为：</p>
+<script type="math/tex; mode=display">E(v,h)=-a^Tv-b^Th-h^TWv</script><p>则$v$,$h$的概率分布为：</p>
+<script type="math/tex; mode=display">P(v,h)=\frac{1}{Z}e^{-E(v,h)} , Z=\sum_{v,h}{e^{E(v,h)} }</script><p>有了概率分布，就可以求出条件概率分布：</p>
+<script type="math/tex; mode=display">P(h|v)=\frac{1}{P(v)}\frac{1}{Z}exp\{a^Tv\}\prod_{j=1}^{nh}{exp \{ b_j^Th_j+h_j^TW_{j,:}v \} }</script><p>求可见层到隐藏层$h$的方法：</p>
+<script type="math/tex; mode=display">P(h_j=1|v)=sigmoid(b_j+W_{j,:}{v})</script><p>同样地，由隐藏层反求可见层的方法为：</p>
+<script type="math/tex; mode=display">P(v_j=1|h)=sigmoid(a_j+W_{:,j}{h})</script><h2><span id="求解rbm">求解RBM</span></h2><p>RBM中权重的学习步骤：</p>
 <ol>
 <li>取一个样本数据，把可见变量的状态设置为这个样本数据。随机初始化$W,a,b$。</li>
 <li>根据公式，利用$v$来求解$h$。</li>
@@ -246,8 +237,7 @@
 <li>以上过程迭代$K$次。</li>
 </ol>
 <p>求解的目标可以认为是让RBM网络表示的Gibbs分布与输入样本的分布尽可能的接近。输入的是未知分布，不好求解但是可以通过能量函数来表示，能量出现的概率就是$v$和$h$的联合概率密度，也是一个特殊的Gibbs分布。给出RBM的损失函数:</p>
-<p>$$L(W,a,b)=-\sum_{i=1}^{m}\ln(P(V^{i})) = \sum_{i=1}^{m}[\ln(\sum_{v,h}{e^{-E(v,h)} })-\ln(\sum_{h}{e^{-E(v,h)} })]$$</p>
-<p>对于损失函数的求解方法有：</p>
+<script type="math/tex; mode=display">L(W,a,b)=-\sum_{i=1}^{m}\ln(P(V^{i})) = \sum_{i=1}^{m}[\ln(\sum_{v,h}{e^{-E(v,h)} })-\ln(\sum_{h}{e^{-E(v,h)} })]</script><p>对于损失函数的求解方法有：</p>
 <ol>
 <li>直接使用梯度下降法</li>
 <li>基于蒙特卡罗方法来模拟计算求解每个样本的梯度损失再求梯度和</li>
@@ -327,9 +317,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
-                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
                         
                     </div>
                 </section>
@@ -458,7 +448,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -466,7 +456,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

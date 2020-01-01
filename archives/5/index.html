@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -213,6 +213,39 @@
 
 <div class="post-preview">
 
+    <a href="/2019/08/16/paper-DenseNet/">
+        <h2 class="post-title">
+            Densely Connected Convolutional Networks
+        </h2>
+        <h3 class="post-subtitle">
+            Gao Huang，Zhuang Liu，Laurens van der Maaten， Kilian Q. Weinberger
+        </h3>
+        <div class="post-content-preview">
+            本篇文章是由清华大学的Zhuang Liu和康乃尔大学的Gao Huang所作的Densely Connected Convolutional Networks,论文发表在2017年CVPR上。
+总结收获作者发现使用随机深度可以提升ResNet-1202的训练效果，这就说明了ResNet中存在大量的冗余。因此，他们提出了一种密集连接的网络DenseNet。
+
+该网络每一个DenseBlock......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-08-16
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Paper" title="Paper">Paper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/08/08/paper-xception/">
         <h2 class="post-title">
             Xception - Deep Learning with Depthwise Separable Convolutions
@@ -222,8 +255,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由谷歌公司的 Francois Chollet 发表于2017年CVPR上的Xception - Deep Learning with Depthwise Separable Convolutions
-收获总结
-文章首先分析了Inception模块和卷积层的不同，卷积层是从长宽(2D)和通道(1D)一共3D的层面分别取寻找图像的空间之间的关联和通道之间的关联。而Inception模......
+收获总结文章首先分析了Inception模块和卷积层的不同，卷积层是从长宽(2D)和通道(1D)一共3D的层面分别取寻找图像的空间之间的关联和通道之间的关联。而Inception模块......
         </div>
     </a>
     
@@ -254,8 +286,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由香港中文大学Hengshuang Zhao, Jianping Shi, Xiaojuan Qi, Xiaogang Wang, Jiaya Jia发表于2017年CVPR上的Pyramid Scene Parsing Network
-收获总结
-本篇论文提出的模型主要用于语义分割和场景解析，许多以前的工作问题出在FCN不能有效的处理场景之间的关系和全局信息。本论文提出了能够获取全......
+收获总结本篇论文提出的模型主要用于语义分割和场景解析，许多以前的工作问题出在FCN不能有效的处理场景之间的关系和全局信息。本论文提出了能够获取全局......
         </div>
     </a>
     
@@ -286,8 +317,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由FacebookAI研究院的Kaiming He，Georgia Gkioxari，Piotr Dollar，Ross Girshick所作的Mask R-CNN
-收获总结
-本篇论文所提出的模型Mask R-CNN是用于物体的实例分割。Mask R-CNN是一个非常灵活的框架，可以增加不同的分支完成不同的任务，可以完成目标分类、目标检测、语义分割、实例分割、人体姿势识别等多种任务......
+收获总结本篇论文所提出的模型Mask R-CNN是用于物体的实例分割。Mask R-CNN是一个非常灵活的框架，可以增加不同的分支完成不同的任务，可以完成目标分类、目标检测、语义分割、实例分割、人体姿势识别等多种任务。......
         </div>
     </a>
     
@@ -318,10 +348,8 @@
         </h3>
         <div class="post-content-preview">
             本篇文章是来自微软研究院的Ross Girshick所作的Fast R-CNN
-收获总结
-本篇文章提出的模型主要用于目标检测。受到SPPnet网络影响，作者结合SPPnet提出了RoI池化层，改进了R-CNN的三个方面：训练速度慢、测试速度慢和所需空间大。
-网络结构为：
-123  图片-&gt;VGG-&gt;RoI池化层-&gt;全连接层-&gt;全连接层-&gt;softmax分类   ......
+收获总结本篇文章提出的模型主要用于目标检测。受到SPPnet网络影响，作者结合SPPnet提出了RoI池化层，改进了R-CNN的三个方面：训练速度慢、测试速度慢和所需空间大。
+网络结构为：123  图片-&gt;VGG-&gt;RoI池化层-&gt;全连接层-&gt;全连接层-&gt;softmax分类     ......
         </div>
     </a>
     
@@ -353,8 +381,7 @@
         <div class="post-content-preview">
             本文是由加州大学伯克利分校的Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik所作的Rich feature hierarchies for accurate object detection and semantic segmentation
 本篇文章写于2013年，发表在2014年的CVPR上
-收获
-本文所提出的方法是用......
+收获本文所提出的方法是用于......
         </div>
     </a>
     
@@ -387,9 +414,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由微软研究院的Kaiming He, Xiangyu Zhang,Shaoqing Ren,Jian Sun所作的Deep Residual Learning for Image Recognition
-收获总结
-当网络结构加深时，网络预测精度会达到饱和，甚至在某些更深的网络中在训练集和测试集中的精度都会变差，导致这种变差的原因不是由于模型过拟合。
-本文提出了一种残差网络用于解决深......
+收获总结当网络结构加深时，网络预测精度会达到饱和，甚至在某些更深的网络中在训练集和测试集中的精度都会变差，导致这种变差的原因不是由于模型过拟合。本文提出了一种残差网络用于解决深度网......
         </div>
     </a>
     
@@ -420,8 +445,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由香港大学计算机科学系及生物信号研究中心和德国弗莱堡大学的Olaf Ronneberger, Philipp Fischer, and Thomas Brox所作的U-Net: Convolutional Networks for Biomedical Image Segmentation
-Abstract
-人们普遍同意，深度网络的成功培训需要数千个带注释的培训样本。在本文中，我们......
+Abstract人们普遍同意，深度网络的成功培训需要数千个带注释的培训样本。在本文中，我们提......
         </div>
     </a>
     
@@ -454,8 +478,7 @@ Abstract
         </h3>
         <div class="post-content-preview">
             本文是由加州大学圣地亚哥分校的Saining Xie, Zhuowen Tu所作的Holistically-Nested Edge Detection
-Abstract
-我们开发了一种新的边缘检测算法，解决了这个长期存在的视觉问题中的两个重要问题:(1)整体形象训练与预测;(2)多尺度、多层次的特征学习。我们提出的方法，整体嵌套边缘检测(HED)，通过一个充分利用卷积神经网络和深度监督网络的......
+Abstract我们开发了一种新的边缘检测算法，解决了这个长期存在的视觉问题中的两个重要问题:(1)整体形象训练与预测;(2)多尺度、多层次的特征学习。我们提出的方法，整体嵌套边缘检测(HED)，通过一个充分利用卷积神经网络和深度监督网络的深......
         </div>
     </a>
     
@@ -509,38 +532,6 @@ Abstract
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/07/09/paper-changedetectionReview/">
-        <h2 class="post-title">
-            Change Detection Techniques in Remote Sensing —— A Review
-        </h2>
-        <h3 class="post-subtitle">
-            Shivangi Mishra, Priyanka Shrivastava and Priyanka Dhurvey
-        </h3>
-        <div class="post-content-preview">
-            本篇论文是由印度的Shivangi Mishra, Priyanka Shrivastava and Priyanka Dhurvey所作的Change Detection Techniques in Remote Sensing —— A Review。
-Abstract
-地球表面由于自然现象或人类活动而不断变化。识别随时间在地球表面发生的变化的过程称为变化检测。利用多种技术在遥感领域有效......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2019-07-09
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Paper" title="Paper">Paper</a>
-            
-              <a href="/tags/#RemoteSensing" title="RemoteSensing">RemoteSensing</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -581,14 +572,6 @@ Abstract
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
-            
-        
-            
-            <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
             <a href="/tags/#Algorithm" title="Algorithm" rel="15">Algorithm</a>
             
         
@@ -606,6 +589,18 @@ Abstract
         
             
             <a href="/tags/#Graph" title="Graph" rel="5">Graph</a>
+            
+        
+            
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="78">DeepLearning</a>
+            
+        
+            
+            <a href="/tags/#Python" title="Python" rel="21">Python</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -637,10 +632,6 @@ Abstract
             
         
             
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
-            
-        
-            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
@@ -653,6 +644,10 @@ Abstract
             
         
             
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            
+        
+            
             <a href="/tags/#Mathjax" title="Mathjax" rel="1">Mathjax</a>
             
         
@@ -661,11 +656,7 @@ Abstract
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="60">Paper</a>
             
         
             
@@ -685,10 +676,6 @@ Abstract
             
         
             
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -698,6 +685,10 @@ Abstract
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -783,6 +774,10 @@ Abstract
     <ul>
       
         <li>
+          <a href="/2020/01/01/paper-moco/">Momentum Contrast for Unsupervised Visual Representation Learning</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
         </li>
       
@@ -796,10 +791,6 @@ Abstract
       
         <li>
           <a href="/2019/12/19/paper-RPnet/">Residual Pyramid Learning for Single-Shot Semantic Segmentation</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
         </li>
       
     </ul>
@@ -874,7 +865,7 @@ Abstract
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -882,7 +873,7 @@ Abstract
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

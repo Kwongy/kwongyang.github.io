@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -213,6 +213,36 @@
 
 <div class="post-preview">
 
+    <a href="/2019/11/29/CrossEntropy/">
+        <h2 class="post-title">
+            Cross Entropy in Pytorch
+        </h2>
+        <h3 class="post-subtitle">
+            Kwong
+        </h3>
+        <div class="post-content-preview">
+            今天同学问我一个问题给我问懵了123456import torchimport torch.nn.functional as Fpred = torch.Tensor([[1, 0, 0, 0, 0]])lab = torch.LongTensor([0])z = F.cross_entropy(pred, lab)print(z)
+答案是1tensor(0.9048)
+猛地一看, 一脸懵逼......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2019-11-29
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/11/26/paper-LookCloser2SeeBetter/">
         <h2 class="post-title">
             Look Closer to See Better - Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition
@@ -222,8 +252,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由微软研究院和中国科学技术大学的Jianlong Fu, Heliang Zheng, TaoMei所作的Look Closer to See Better: Recurrent Attention Convolutional Neural Network for Fine-grained Image Recognition, 发表在2017年CVPR上.
-收获总结
-本篇论文所提出......
+收获总结本篇论文所提出的......
         </div>
     </a>
     
@@ -284,9 +313,7 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由北京大学和腾讯AI研究所的Xiangtai Li, Houlong Zhao, Lei Han, Yunhai Tong, Kuiyuan Yang所作的GFF: Gated Fully Fusion for Semantic Segmentation, 今年4月挂在arxiv上.
-收获总结
-本篇论文所提出的模型是针对特征融合的一些不足来进行改进.
-传统的特征融合是简单用相加或拼......
+收获总结本篇论文所提出的模型是针对特征融合的一些不足来进行改进.传统的特征融合是简单用相加或拼接将......
         </div>
     </a>
     
@@ -313,10 +340,9 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是由华中科技大学和北京大学的Changqian Yu, Jingbo Wang, Chao Peng, Changxin Gao, Gang Yu, Nong Sang所作的Learning a Discriminative Feature Network for Semantic Segmentation, 发表在2018年CVPR上.
-收获总结
-作者就语义分割中的两个常见问题
+收获总结作者就语义分割中的两个常见问题
 
-......
+类......
         </div>
     </a>
     
@@ -379,10 +405,8 @@
         </h3>
         <div class="post-content-preview">
             本篇论文是俄罗斯莫斯科skoltech的Alexey Bokhovkin, Evgeny Burnaev所作的Boundary Loss for Remote Sensing Imagery Semantic Segmentation, 2019年5月发表在arxiv上.
-收获总结
-作者根据以前提出的边界损失函数提出了一种可微的改进,用于计算边缘损失.
-relate work中:
-假设$S_......
+收获总结作者根据以前提出的边界损失函数提出了一种可微的改进,用于计算边缘损失.
+relate work中:假设$S_{g......
         </div>
     </a>
     
@@ -443,8 +467,7 @@ relate work中:
         </h3>
         <div class="post-content-preview">
             本篇论文是由FaceBook研究院的Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár所作的Focal Loss for Dense Object Detection, 发表在2017年CVPR上.
-收获总结
-作者针对目标检测领域one-stage模型比two-stage模型结果差的情况,作者提出了一种改进的l......
+收获总结作者针对目标检测领域one-stage模型比two-stage模型结果差的情况,作者提出了一种改进的lo......
         </div>
     </a>
     
@@ -494,39 +517,6 @@ relate work中:
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/23/attention-NLP/">
-        <h2 class="post-title">
-            Attention
-        </h2>
-        <h3 class="post-subtitle">
-            Attention in NLP
-        </h3>
-        <div class="post-content-preview">
-            1. Attention Mechanism原理
-1.1 为什么使用Attention Mechanism
-
-当输入序列非常长时，模型难以学到合理的向量表示
-输入序列不论长短都会被编码成一个固定长度的向量表示，而解码则受限于该固定长度的向量表示。
-编解码器的结构无法解释，也就导致了其无法设计。
-
-Neural Machine Translation by Jointly Learning t......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2019-10-23
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -567,14 +557,6 @@ Neural Machine Translation by Jointly Learning t......
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
-            
-        
-            
-            <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
             <a href="/tags/#Algorithm" title="Algorithm" rel="15">Algorithm</a>
             
         
@@ -592,6 +574,18 @@ Neural Machine Translation by Jointly Learning t......
         
             
             <a href="/tags/#Graph" title="Graph" rel="5">Graph</a>
+            
+        
+            
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="78">DeepLearning</a>
+            
+        
+            
+            <a href="/tags/#Python" title="Python" rel="21">Python</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -623,10 +617,6 @@ Neural Machine Translation by Jointly Learning t......
             
         
             
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
-            
-        
-            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
@@ -639,6 +629,10 @@ Neural Machine Translation by Jointly Learning t......
             
         
             
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            
+        
+            
             <a href="/tags/#Mathjax" title="Mathjax" rel="1">Mathjax</a>
             
         
@@ -647,11 +641,7 @@ Neural Machine Translation by Jointly Learning t......
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="60">Paper</a>
             
         
             
@@ -671,10 +661,6 @@ Neural Machine Translation by Jointly Learning t......
             
         
             
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -684,6 +670,10 @@ Neural Machine Translation by Jointly Learning t......
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -769,6 +759,10 @@ Neural Machine Translation by Jointly Learning t......
     <ul>
       
         <li>
+          <a href="/2020/01/01/paper-moco/">Momentum Contrast for Unsupervised Visual Representation Learning</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
         </li>
       
@@ -782,10 +776,6 @@ Neural Machine Translation by Jointly Learning t......
       
         <li>
           <a href="/2019/12/19/paper-RPnet/">Residual Pyramid Learning for Single-Shot Semantic Segmentation</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
         </li>
       
     </ul>
@@ -860,7 +850,7 @@ Neural Machine Translation by Jointly Learning t......
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -868,7 +858,7 @@ Neural Machine Translation by Jointly Learning t......
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

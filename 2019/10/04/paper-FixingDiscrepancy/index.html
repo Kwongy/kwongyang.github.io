@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,12 +217,11 @@
                 post-container">
 
                 <p>本篇论文是由Facebook AI研究院的Hugo Touvron, Andrea Vedaldi, Matthijs Douze, Herve Jegou所作的<a href="https://arxiv.org/pdf/1906.06423v2.pdf" target="_blank" rel="noopener">Fixing the train-test resolution discrepancy</a>, 2019年7月挂在arxiv上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>在目前的CNN网络中都会使用Data augmented来增强网络的泛化能力, 提高模型的精确度. 在Data augmented通常会使用随机裁剪的方法来产生新的图片进行模型训练, 测试集测试时也会使用一些不同的策略来对图像进行预处理, 而训练和测试时的两种数据预处理方式是相互独立的, 这会导致数据发生显著的分布偏移. 作者首先证明了消除分布偏移可以通过对图片分辨率的改变来修正.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>在目前的CNN网络中都会使用Data augmented来增强网络的泛化能力, 提高模型的精确度. 在Data augmented通常会使用随机裁剪的方法来产生新的图片进行模型训练, 测试集测试时也会使用一些不同的策略来对图像进行预处理, 而训练和测试时的两种数据预处理方式是相互独立的, 这会导致数据发生显著的分布偏移. 作者首先证明了消除分布偏移可以通过对图片分辨率的改变来修正.</p>
 <p><img src="1.png" alt=""></p>
 <p>但是每种图片都单独进行尺度上的修改费时费力, 作者提出了一种策略, 仅仅需要finetune两个网络层就能达到同样的效果. 由于CNN不能对尺度变化做出可预测的响应, 而且不同尺寸的目标物体会影响网络的激活值, finetune全局池化层前几个层的结构, 从而对测试集裁剪区域的尺寸增加的激活值分布变化进行补偿.</p>
 <p><img src="2.png" alt=""></p>
-<p>作者还发现训练集使用小尺寸, 测试集上使用大尺寸会得到更好的效果. 以ResNet-50为例, 训练时图片大小为128 * 128, 测试时图片大小为224 * 224, Top-1精度可以达到82.5%</p>
+<p>作者还发现训练集使用小尺寸, 测试集上使用大尺寸会得到更好的效果. 以ResNet-50为例, 训练时图片大小为128 <em> 128, 测试时图片大小为224 </em> 224, Top-1精度可以达到82.5%</p>
 <p><img src="3.png" alt=""></p>
 <p>应用本篇论文的方法对几乎所有的模型都可以提升一定的准确度,在ResNeXt-101 32x48d模型上达到了目前的state-of-the-art水平.</p>
 
@@ -429,7 +428,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -437,7 +436,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

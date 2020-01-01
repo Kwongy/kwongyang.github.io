@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,8 +217,7 @@
                 post-container">
 
                 <p>本篇论文是由北京航天航空大学的Haoning Lin, Zhenwei Shi和Zhengxia Zou所作的Fully Convolutional Network With Task Partitioning for Inshore Ship Detection in Optical Remote Sensing Images,发表在2017年IEEE GEOSCIENCE AND REMOTE SENSING LETTERS上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇论文所针对的问题是遥感图像中近海范围内的船舶提取. 由于船舶通常在遥感图像中成像很不均衡,  通常一艘船在遥感图像中宽度可能不到20像素,而长度通常会达到200像素以上, 使用传统的语义分割算法会造成上采样效果很差. 作者针对这个问题对FCN网络进行了改进.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇论文所针对的问题是遥感图像中近海范围内的船舶提取. 由于船舶通常在遥感图像中成像很不均衡,  通常一艘船在遥感图像中宽度可能不到20像素,而长度通常会达到200像素以上, 使用传统的语义分割算法会造成上采样效果很差. 作者针对这个问题对FCN网络进行了改进.</p>
 <p>由于浅层的网络具有较高的位置信息, 深层的网络具有较高的语义信息. 作者将整个网络分为浅层网络和深层网络, 浅层网络用于特征图提取和定位, 深层网络使用浅层网络得到的特征图进行分类, 这里称为浅层路径. 同时对浅层网络进一步处理, 生成attention map, 这里称为深层路径.</p>
 <p><img src="1.png" alt=""></p>
 <p>作者将浅层网络得到的语义分割的结果和深层网络得到attention map结合, 同时使用非极大抑制将分割任务转化为关键点检测, 分别探测每艘船的船头和船尾两个关键点. 语义分割的结果只对根据attention map上的点进行loss的反向传播, 而不是整幅特征图作反向传播.</p>
@@ -427,7 +426,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -435,7 +434,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

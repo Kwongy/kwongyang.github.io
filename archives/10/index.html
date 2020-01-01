@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -213,6 +213,47 @@
 
 <div class="post-preview">
 
+    <a href="/2018/05/24/affinity-oner/">
+        <h2 class="post-title">
+            亲和性分析&OneR
+        </h2>
+        <h3 class="post-subtitle">
+            Affinity analyze & One rule algorithm
+        </h3>
+        <div class="post-content-preview">
+            
+
+
+
+入门数据挖掘。实现亲和性分析算法和OneR算法。
+老实说这两个算法没有什么逻辑上的难度，但是要实现确实需要一些Python语言功底。
+
+亲和性分析
+亲和性分析介绍
+亲和性分析主要是用于分析样品与样品间的相关性。比如我们买了物品a，那么又会买物品b这样的规则(一条规则有前提和结论两个部分组成)。我们怎样衡量这样的规则是优势劣呢？可以使用置信度(confidence)和支持度(suppo......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2018-05-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+            
+              <a href="/tags/#Python" title="Python">Python</a>
+            
+              <a href="/tags/#DataMining" title="DataMining">DataMining</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2018/05/22/hashtable/">
         <h2 class="post-title">
             HashTable
@@ -222,17 +263,17 @@
         </h3>
         <div class="post-content-preview">
             
-	
+    
+
+
 
 
 哈希表
-
 HashTable简单介绍
-
 哈希表（Hash table，也叫散列表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。
 简单的说就是哈希表就是把要存储的值映射成一个新的值，这种转换映射是一种压缩映射。
 
-举个小例子理解一下。假设你......
+举个小例子理解一下。......
         </div>
     </a>
     
@@ -267,16 +308,13 @@ HashTable简单介绍
             
 
 
+
 首先说明还有很多坑没解决，但是确实学到很多，所以先记录下来。
-python与外部交互主要就是两大块
-首先是建立连接
-然后就是读和写操作
+python与外部交互主要就是两大块首先是建立连接然后就是读和写操作
 
 操作txt
-
-可以直接使用open函数，不详细介绍了。
-给个Demo
-12345678910111213141516171819202122232425import ioclass FiterDouble (object):    @staticme......
+可以直接使用open函数，不详细介绍了。给个Demo
+12345678910111213141516171819202122232425import ioclass FiterDouble (object):    @staticmetho......
         </div>
     </a>
     
@@ -310,18 +348,15 @@ python与外部交互主要就是两大块
 
 
 
-内部排序介绍
 
+内部排序介绍
 算法的稳定性：如果待排序中有两个元素$R_i$、$R_j$，并且它们相等。且在排序前$R_i$在$R_j$前面。如果使用某种排序算法后$R_i$仍在$R_j$前面，则称这种算法是稳定的，否则就是不稳定的。
 排序算法一般考虑两种操作：比较 移动
 
 插入排序
-
 直接插入排序
-
 如图所示
-
-每次从无序表中取出第一个元素，可以看作是每次将两个有序表合并，即$L[1{\cdot......
+每次从无序表中取出第一个元素，可以看作是每次将两个有序表合并，即$L[1{\cdots}i......
         </div>
     </a>
     
@@ -356,19 +391,17 @@ python与外部交互主要就是两大块
             
 
 
+
 近几天上了关于分布式存储的大数据实践课，在此记录下整个过程以便以后学习。
 
 安装虚拟机
-
-首先在下面百度云中下载所有资源。
-由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。
+首先在下面百度云中下载所有资源。由于百度云无法上传大于4G的单个文件，所以Linux系统镜像文件无法上传，大家自己到百度上自由下载就可以了。
 
 链接：https://pan.baidu.com/s/1aHWy5UDeXQhit4azvPPM7A 密码：ngeo
 
 
 安装VMware
-
-打开下载的......
+打开下载的软件......
         </div>
     </a>
     
@@ -404,14 +437,13 @@ python与外部交互主要就是两大块
 
 
 
+
 并查集
-
 并查集介绍
-
 并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。常常在使用中以森林来表示。每个子集合以一颗树表示，所有表示子集合的树，构成表示全集合的森林存放在双亲表示数组内。数组元素下标代表元素名，根节点的双亲为负数，它的绝对值为该棵树内的结点个数。
 并查集支持以下两种操作
 
-Merge(Root1,Root2) ：若Roo......
+Merge(Root1,Root2) ：若Root......
         </div>
     </a>
     
@@ -447,11 +479,10 @@ Merge(Root1,Root2) ：若Roo......
 
 
 
-最小生成树
 
-最小生成树介绍
-最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。
-最小生成树的性质：设G=(V，E）是一个连通网络，U是顶点集V的一个非空真子集。若(u，v）是G中一条“一个端点在U中（例如：u∈U），另一个端点不在U中的边（例如：v∈V-U），且（u，v）具有最小权值，则一定存在G的一棵最......
+最小生成树
+最小生成树介绍最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。
+最小生成树的性质：设G=(V，E）是一个连通网络，U是顶点集V的一个非空真子集。若(u，v）是G中一条“一个端点在U中（例如：u∈U），另一个端点不在U中的边（例如：v∈V-U），且（u，v）具有最小权值，则一定存在G的一棵最小......
         </div>
     </a>
     
@@ -493,12 +524,10 @@ Merge(Root1,Root2) ：若Roo......
 
 
 
+
 关键路径
-
 AOE网
-
-AOE网：Activity on edge network
-若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活......
+AOE网：Activity on edge network若在带权的有向图中，以顶点表示事件，以有向边表示活动，边上的权值表示活动的开销（如该活动持续的时间），则此带权的有向图称为AOE网。 如果用AOE网来表示一项工程，那么，仅仅考虑各个子工程之间的优先关系还不够，更多的是关心整个工程完成的最短时间是多少；哪些活动的延期将会影响整个工程的进度，而加速这些活动是......
         </div>
     </a>
     
@@ -537,15 +566,12 @@ AOE网：Activity on edge network
             
 
 
+
 看以前写的博客，感觉没图好像光说并不是很能让人明白。但作图确实很花时间。(其实是做的图好丑不想做了QAQ)，以后会多做一些图。
 
 邻接链表
-
-邻接链表的介绍
-邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
-
-C语言结构代码为
-123456789typedef struct v_node&#123;		//头......
+邻接链表的介绍邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。
+C语言结构代码为123456789typedef struct v_node&#123;		//头结点 ......
         </div>
     </a>
     
@@ -582,11 +608,11 @@ C语言结构代码为
             
 
 
+
 今天看了考研真题，感觉看了书跟没看一样。考的非常细，所以以后更加需要注重细节。要补充各种情况。
 
 Floyd算法介绍
-
-Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决&quot;负权回路&quot;的图。比如下面这个图A-&gt;C就不......
+Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决”负权回路”的图。比如下面这个图A-&gt;C就不存在最短路，因为产生......
         </div>
     </a>
     
@@ -605,53 +631,6 @@ Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一
               <a href="/tags/#Graph" title="Graph">Graph</a>
             
               <a href="/tags/#Floyd" title="Floyd">Floyd</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/28/mathjax/">
-        <h2 class="post-title">
-            Mathjax的使用方法
-        </h2>
-        <h3 class="post-subtitle">
-            Use mathjax to write LaTeX
-        </h3>
-        <div class="post-content-preview">
-            
-
-
-
-这首歌原唱Ed Sheeran的比较好听，但是网易云没有版权，建议用软件听。
-
-由于以后会发一些数学相关的内容，所以需要熟悉网页上如何写数学公式
-本博客使用Markdown语法，加载Mathjax渲染LaTeX数学公式
-
-LaTeX语法
-
-公式类型
-
-123行内公式： $f(x)=x+3$行间公式： $$f(x)=x+3$$
-$f(x)=x+3$是行内公式，而下面的是行间公式
-$$f......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2018-04-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Note" title="Note">Note</a>
-            
-              <a href="/tags/#Mathjax" title="Mathjax">Mathjax</a>
-            
-              <a href="/tags/#LaTex" title="LaTex">LaTex</a>
             
         </div>
     
@@ -699,14 +678,6 @@ $$f......
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="77">DeepLearning</a>
-            
-        
-            
-            <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
             <a href="/tags/#Algorithm" title="Algorithm" rel="15">Algorithm</a>
             
         
@@ -724,6 +695,18 @@ $$f......
         
             
             <a href="/tags/#Graph" title="Graph" rel="5">Graph</a>
+            
+        
+            
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="78">DeepLearning</a>
+            
+        
+            
+            <a href="/tags/#Python" title="Python" rel="21">Python</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
             
         
             
@@ -755,10 +738,6 @@ $$f......
             
         
             
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
-            
-        
-            
             <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
@@ -771,6 +750,10 @@ $$f......
             
         
             
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
+            
+        
+            
             <a href="/tags/#Mathjax" title="Mathjax" rel="1">Mathjax</a>
             
         
@@ -779,11 +762,7 @@ $$f......
             
         
             
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
-            <a href="/tags/#Paper" title="Paper" rel="59">Paper</a>
+            <a href="/tags/#Paper" title="Paper" rel="60">Paper</a>
             
         
             
@@ -803,10 +782,6 @@ $$f......
             
         
             
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -816,6 +791,10 @@ $$f......
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -901,6 +880,10 @@ $$f......
     <ul>
       
         <li>
+          <a href="/2020/01/01/paper-moco/">Momentum Contrast for Unsupervised Visual Representation Learning</a>
+        </li>
+      
+        <li>
           <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
         </li>
       
@@ -914,10 +897,6 @@ $$f......
       
         <li>
           <a href="/2019/12/19/paper-RPnet/">Residual Pyramid Learning for Single-Shot Semantic Segmentation</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/15/paper-BagTricks/">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>
         </li>
       
     </ul>
@@ -992,7 +971,7 @@ $$f......
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -1000,7 +979,7 @@ $$f......
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

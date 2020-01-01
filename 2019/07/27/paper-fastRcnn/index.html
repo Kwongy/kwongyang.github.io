@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,10 +217,8 @@
                 post-container">
 
                 <p>本篇文章是来自微软研究院的Ross Girshick所作的<a href="https://arxiv.org/pdf/1504.08083.pdf" target="_blank" rel="noopener">Fast R-CNN</a></p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇文章提出的模型主要用于目标检测。受到SPPnet网络影响，作者结合SPPnet提出了RoI池化层，改进了R-CNN的三个方面：训练速度慢、测试速度慢和所需空间大。</p>
-<p>网络结构为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  图片-&gt;VGG-&gt;RoI池化层-&gt;全连接层-&gt;全连接层-&gt;softmax分类</span><br><span class="line">                          ↓ </span><br><span class="line">bounding-box positions&lt;-全连接层</span><br></pre></td></tr></table></figure>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇文章提出的模型主要用于目标检测。受到SPPnet网络影响，作者结合SPPnet提出了RoI池化层，改进了R-CNN的三个方面：训练速度慢、测试速度慢和所需空间大。</p>
+<p>网络结构为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  图片-&gt;VGG-&gt;RoI池化层-&gt;全连接层-&gt;全连接层-&gt;softmax分类</span><br><span class="line">                          ↓ </span><br><span class="line">bounding-box positions&lt;-全连接层</span><br></pre></td></tr></table></figure></p>
 <p>RoI层对每个类别的候选区分割成相同数量的区域($W$x$H$)来进行最大池化，每个候选区会产生相同数量的特征向量，这样可以统一送入下一层进行运算。</p>
 <p>网络的损失函数由分类代价和检测框定位代价共同决定。将两者加权组合则为总的代价。</p>
 <p>本文的实验显示，对于同样一组数据，分别进行两个任务训练比同时训练两个任务效果更差。作者还发现，通常网络的前几层不需要进行微调，一般都是通用的，任务无法直接从中获得有效内容。</p>
@@ -428,7 +426,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -436,7 +434,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>

@@ -146,14 +146,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -216,33 +216,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="using-an-appropriate-scale-to-pick-hyperparameters">Using an appropriate scale to pick hyperparameters</span></h2>
+                <h2><span id="using-an-appropriate-scale-to-pick-hyperparameters">Using an appropriate scale to pick hyperparameters</span></h2><hr>
+<p>Let’s say that you suspect 0.0001 might be on the low end,or maybe it could be as high as 1.It seems more reasonable to search for hyperparameters on a <strong>log scale</strong> where instead of using a liner scale,You can use 0.001、0.01 or 0.1 to divide the interval.</p>
+<p><img src="1.png" alt=""><br>You have more resources dedicated to searching between 0.0001 and 0.001.</p>
 <hr>
-<p>Let’s say that you suspect 0.0001 might be on the low end,or maybe it could be as high as <a href="http://1.It" target="_blank" rel="noopener">1.It</a> seems more reasonable to search for hyperparameters on a <strong>log scale</strong> where instead of using a liner scale,You can use 0.001、0.01 or 0.1 to divide the interval.</p>
-<p><img src="1.png" alt=""><br>
-You have more resources dedicated to searching between 0.0001 and 0.001.</p>
-<hr>
-<h2><span id="normalizing-activations-in-a-network">Normalizing activations in a network</span></h2>
-<hr>
+<h2><span id="normalizing-activations-in-a-network">Normalizing activations in a network</span></h2><hr>
 <p>Batch normalization makes your hyperparameter search problem much easier and makes the neural network much more robust to the choice of hyperparameters.</p>
 <p>Batch normallization:</p>
-<p>Give some intermediate value in NN $z^1,z^2,\cdots,z^m$<br>
-$$\mu = \frac{1}{m}\sum_i^m{z^i}$$<br>
-$${\sigma}^2 = \frac{1}{m}\sum_i^m{(z^i - \mu)}^2$$<br>
-$$z_{norm}^i = \frac{z^i - \mu}{\sqrt{{\sigma}^2 + \epsilon}}$$<br>
-$$\widehat {z^i} = \gamma z_{norm}^i + \beta$$</p>
-<p>You can now make sure that your Z value have the range of valuse that you want or what it does really is that ensures that your hidden units have standardized mean and <a href="http://variance.it" target="_blank" rel="noopener">variance.it</a> normalizes the mean and variance of these hidden unit values – the Z to have some fixed mean and variance.</p>
+<p>Give some intermediate value in NN $z^1,z^2,\cdots,z^m$</p>
+<script type="math/tex; mode=display">\mu = \frac{1}{m}\sum_i^m{z^i}</script><script type="math/tex; mode=display">{\sigma}^2 = \frac{1}{m}\sum_i^m{(z^i - \mu)}^2</script><script type="math/tex; mode=display">z_{norm}^i = \frac{z^i - \mu}{\sqrt{{\sigma}^2 + \epsilon}}</script><script type="math/tex; mode=display">\widehat {z^i} = \gamma z_{norm}^i + \beta</script><p>You can now make sure that your Z value have the range of valuse that you want or what it does really is that ensures that your hidden units have standardized mean and variance.it normalizes the mean and variance of these hidden unit values — the Z to have some fixed mean and variance.</p>
 <hr>
-<h2><span id="softmax-regression">Softmax regression</span></h2>
-<hr>
+<h2><span id="softmax-regression">Softmax regression</span></h2><hr>
 <p>Softmax regression lets you make predictions where you’re trying to recognize one of X rather than just recognize two classes.</p>
-<p>Softmax activation function:<br>
-$$t = e^{z^l}$$<br>
-$$a^l = \frac{t_i}{\sum{t_i}}$$</p>
-<p>All of $a^l$ to sum is 1</p>
+<p>Softmax activation function:</p>
+<script type="math/tex; mode=display">t = e^{z^l}</script><script type="math/tex; mode=display">a^l = \frac{t_i}{\sum{t_i}}</script><p>All of $a^l$ to sum is 1</p>
 <hr>
-<h2><span id="deep-learning-frameworks">Deep learning frameworks</span></h2>
-<hr>
+<h2><span id="deep-learning-frameworks">Deep learning frameworks</span></h2><hr>
 <p><img src="2.png" alt=""></p>
 
                 
@@ -448,7 +437,7 @@ $$a^l = \frac{t_i}{\sum{t_i}}$$</p>
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kwong 2019 
+                    Copyright &copy; Kwong 2020 
                     <br>
                      To my beloved lover
                 </p>
@@ -456,7 +445,7 @@ $$a^l = \frac{t_i}{\sum{t_i}}$$</p>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.1k words altogether</span>
+					<span class="post-count">177.0k words altogether</span>
 				</p>
             </div>
         </div>
