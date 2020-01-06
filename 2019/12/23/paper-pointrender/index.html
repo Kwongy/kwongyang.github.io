@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由Facebook AI研究院何凯明组的Alexander Kirillov, Yuxin Wu, Kaiming He, Ross Girshick所作的<a href="https://arxiv.org/abs/1912.08193" target="_blank" rel="noopener">PointRend: Image Segmentation as Rendering</a>, 前两天才挂在arxiv上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>作者将图像分割问题视作是一个图形学中图像渲染的问题. 基于的考虑是, 例如一个渲染器将一个3D模型映射到栅格化的图像上时, 当输出在规则的网格上时, 并不是均匀地分配到网格上地. 在图形学中采用的方法是在图像平面上自适应地选择点.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>作者将图像分割问题视作是一个图形学中图像渲染的问题. 基于的考虑是, 例如一个渲染器将一个3D模型映射到栅格化的图像上时, 当输出在规则的网格上时, 并不是均匀地分配到网格上地. 在图形学中采用的方法是在图像平面上自适应地选择点.</p>
 <p>作者将这种图形学地方法封装成一个神经网络的模块中. 使用推理选择策略来使得图像上高频区域附近的点被用来预测结果(物体边界). 具体做法是, PointRender首先使用双线性插值上采样, 然后在这个上采样的结果中选取N个不确定的点, 然后对这N个点计算点向量表示, 并预测它们的标签. 重复迭代这个过程直到完成输出预测.</p>
 <p><img src="1.png" alt=""></p>
 <p>理论上这是一个迭代算法. 但是为了计算效率, 作者没用使用这样的迭代, 而采用了多种组合采样的方法来代替迭代. 下图为采样过程.</p>
@@ -437,7 +438,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

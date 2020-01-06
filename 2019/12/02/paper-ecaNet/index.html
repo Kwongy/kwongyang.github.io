@@ -217,10 +217,15 @@
                 post-container">
 
                 <p>本篇论文是由天津大学,大连理工和哈尔滨工业大学的Qilong Wang, Banggu Wu, Pengfei Zhu, Peihua Li, Wangmeng Zuo, Qinghua Hu所作的<a href="https://arxiv.org/abs/1910.03151" target="_blank" rel="noopener">ECA-Net: Efficient Channel Attention for Deep Convolutional Neural Networks</a>, 2019年10月挂在arxiv上, 好像已经被AAAI2020接收.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇文章也是对channel attention通道注意力机制的进一步改进. 作者发现使用深度可分离卷积的轻型网络如果使用SENet中的attention, 它的模型效果提升并不明显. 不同于之前的SENet使用attention提高特征聚合来让模型获得更好的性能, 作者提出的ECANet使用attention是为了提高有效的渠道注意力, 并降低模型的复杂度. </p>
-<p>首先, 看一下SENet的结构<br><img src="1.png" alt=""><br>某一层特征图先使用全局平均池化, 接着使用两个全连接层对前面的结果进行非线性变换, 最后经过softmax得到权值.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇文章也是对channel attention通道注意力机制的进一步改进. 作者发现使用深度可分离卷积的轻型网络如果使用SENet中的attention, 它的模型效果提升并不明显. 不同于之前的SENet使用attention提高特征聚合来让模型获得更好的性能, 作者提出的ECANet使用attention是为了提高有效的渠道注意力, 并降低模型的复杂度.</p>
+<p>首先, 看一下SENet的结构<br>
+<img src="1.png" alt=""><br>
+某一层特征图先使用全局平均池化, 接着使用两个全连接层对前面的结果进行非线性变换, 最后经过softmax得到权值.</p>
 <p>回顾整个流程, 我们可以发现, SENet中使用两个全连接层使用了降维的手段将原来的$C$个神经元降低为$\frac{C}{r}$个神经元, 这样做虽然可以降低模型的参数和计算的复杂度, 但是它破坏了通道与其权值之间的直接对应关系。 除此之外, 经过实验证明的, 使用全连接层这种跨通道交互对模型的学习确实是有帮助的.</p>
-<p>针对SENet的优点和缺点, 作者对attention部分进行了改进.<br><img src="2.png" alt=""><br>作者将原来的全连接层改为一个一维的卷积操作, 其中卷积核为大小为$k$的卷积, 其中$k$为自适应参数, 公式为$C=\phi(k)=\exp(\gamma*k-b)$, 经过变换得$k=|\frac{\log_2{C}}{\gamma} + \frac{b}{\gamma}|$, 其中$\gamma, b$均为超参, 这里设置为2和1</p>
+<p>针对SENet的优点和缺点, 作者对attention部分进行了改进.<br>
+<img src="2.png" alt=""><br>
+作者将原来的全连接层改为一个一维的卷积操作, 其中卷积核为大小为$k$的卷积, 其中$k$为自适应参数, 公式为$C=\phi(k)=\exp(\gamma*k-b)$, 经过变换得$k=|\frac{\log_2{C}}{\gamma} + \frac{b}{\gamma}|$, 其中$\gamma, b$均为超参, 这里设置为2和1</p>
 <p>作者提出的ECA(有效的通道注意力模块)能够避免降维所带来的通道不对齐并能够提升局部的跨通道交互, 增强了模型性能的同时还降低了计算的复杂度和参数数量. 作者分别使用了ResNet和MobileNet进行实验证明. 该模型在图像分类, 目标检测中均有很好得效果.</p>
 
                 
@@ -434,7 +439,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

@@ -217,17 +217,24 @@
                 post-container">
 
                 <p>本篇论文是由微软研究院的Kaiming He, Xiangyu Zhang,Shaoqing Ren,Jian Sun所作的<a href="http://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></p>
-<h2><span id="收获总结">收获总结</span></h2><p>当网络结构加深时，网络预测精度会达到饱和，甚至在某些更深的网络中在训练集和测试集中的精度都会变差，导致这种变差的原因不是由于模型过拟合。<br>本文提出了一种残差网络用于解决深度网络的模型退化问题。深度残差网络更加容易于优化，而相对的“普通”网(即简单的叠加层)在深度增加时训练误差较大，深度残差网可以很容易地从深度中获得更好的精度收益。</p>
-<p>作者提出的一个残差块的结构如下<br><img src="1.png" alt=""></p>
-<p>残差网络其实是很多并行子网络的组合，类似U-Net中的跳跃结构，每两个层不仅仅直接向下传，而且跳过一个块向下传。可以用下图进行理解。<br><img src="2.png" alt=""></p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>当网络结构加深时，网络预测精度会达到饱和，甚至在某些更深的网络中在训练集和测试集中的精度都会变差，导致这种变差的原因不是由于模型过拟合。<br>
+本文提出了一种残差网络用于解决深度网络的模型退化问题。深度残差网络更加容易于优化，而相对的“普通”网(即简单的叠加层)在深度增加时训练误差较大，深度残差网可以很容易地从深度中获得更好的精度收益。</p>
+<p>作者提出的一个残差块的结构如下<br>
+<img src="1.png" alt=""></p>
+<p>残差网络其实是很多并行子网络的组合，类似U-Net中的跳跃结构，每两个层不仅仅直接向下传，而且跳过一个块向下传。可以用下图进行理解。<br>
+<img src="2.png" alt=""></p>
 <p>这样带来的好处是，模型更具有层次性。每一次卷积都会造成特征的丢失，而跳跃向下传导时，可以将低层次提取的特征传导下去，一定程度上保留了更多的原始信息。</p>
 <p>对于shortcut，有两种情况：</p>
 <ol>
 <li>当$F(x)$与$x$的channel维度相同时，$y = F(x) + x, F(x) = W_2\sigma(W_1x)$。</li>
 <li>当$F(x)$与$x$的channel维度不相同时，$y = F(x) + Wx, F(x) = W_2\sigma(W_1x)$，其中$W$为卷积，用于调整$x$的channel。对增加的维度用0来填充。</li>
 </ol>
-<p>对于Deeper residual “Bottleneck”，结构如下<br><img src="3.png" alt=""><br>它使用了两个1x1卷积层代替3x3卷积层，其中1x1的卷积层用于降维和增加维度。它可以使网络更深，且参数更少。代价就是模型结构更大、时间复杂度更高。</p>
-<p>tensorflow实现ResNet代码<br><a href="https://github.com/tensorflow/models/tree/master/official/resnet" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/official/resnet</a></p>
+<p>对于Deeper residual “Bottleneck”，结构如下<br>
+<img src="3.png" alt=""><br>
+它使用了两个1x1卷积层代替3x3卷积层，其中1x1的卷积层用于降维和增加维度。它可以使网络更深，且参数更少。代价就是模型结构更大、时间复杂度更高。</p>
+<p>tensorflow实现ResNet代码<br>
+<a href="https://github.com/tensorflow/models/tree/master/official/resnet" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/official/resnet</a></p>
 
                 
 
@@ -440,7 +447,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

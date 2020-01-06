@@ -219,39 +219,61 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=36024442&auto=1&height=66"></iframe>
 </div>
-
 <p>首先说明还有很多坑没解决，但是确实学到很多，所以先记录下来。</p>
-<p>python与外部交互主要就是两大块<br>首先是<strong>建立连接</strong><br>然后就是<strong>读和写</strong>操作</p>
+<p>python与外部交互主要就是两大块<br>
+首先是<strong>建立连接</strong><br>
+然后就是<strong>读和写</strong>操作</p>
 <hr>
-<h1><span id="操作txt">操作txt</span></h1><hr>
-<p>可以直接使用open函数，不详细介绍了。<br>给个Demo</p>
+<h1><span id="操作txt">操作txt</span></h1>
+<hr>
+<p>可以直接使用open函数，不详细介绍了。<br>
+给个Demo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import io</span><br><span class="line">class FiterDouble (object):</span><br><span class="line">    @staticmethod</span><br><span class="line">    def writeTxt(outputName,ls):</span><br><span class="line">        file = open(outputName,&apos;w&apos;)</span><br><span class="line">        for i in range(500):</span><br><span class="line">            file.write(&apos;%d &apos; % (i + 1))    </span><br><span class="line">        pass</span><br><span class="line">        file.close()</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def readTxt(inputName):</span><br><span class="line">        file = open(inputName,&apos;r&apos;)</span><br><span class="line">        txt = file.read()</span><br><span class="line">        ls = txt.split(&quot; &quot;)</span><br><span class="line">        file.close()</span><br><span class="line">        return ls</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">pass</span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    ls=FiterDouble.readTxt(&quot;input.txt&quot;)</span><br><span class="line">    FiterDouble.writeTxt(&quot;output.txt&quot;,ls)</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
 <p>基于panda的<code>read_table()</code>方法 <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_table.html" target="_blank" rel="noopener">官方文档</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">p=&quot;C://Users/76003/Desktop/input.txt&quot;</span><br><span class="line">data=pd.read_table(p)</span><br></pre></td></tr></table></figure>
 <p>返回的是dataframe类型</p>
 <hr>
-<h1><span id="操作excel">操作Excel</span></h1><hr>
+<h1><span id="操作excel">操作Excel</span></h1>
+<hr>
 <p>基于两个库分别介绍两种方法。</p>
 <hr>
-<h2><span id="基于xlrd和xlwt库">基于xlrd和xlwt库</span></h2><hr>
-<p>xlrd用于读取和操作Excel<br>首先介绍一下xlrd库的基本用法。<br><code>open_workbook()</code>打开Excel文件<br><code>sheets()[index]</code>或者<code>sheet_by_index(index)</code>获取一个工作表<br><code>nrows</code>获取行数,<code>ncols</code>获取列数<br><code>row_values(index)</code>按行读取值,<code>col_values(index)</code>按列读取值<br><code>cell(row,col).value</code>某一个单元格的值<br><code>ctype()</code>查看字段类型</p>
-<p>然后是xlwt<br>xlwt是用于写入Excel和设置Excel<br><code>Workbook()</code>创建一个工作空间<br><code>add_sheet(name)</code>添加一个表单<br><code>write(i,j,value)</code>向第i行j列插入value<br><code>save(name)</code>保存Excel</p>
+<h2><span id="基于xlrd和xlwt库">基于xlrd和xlwt库</span></h2>
+<hr>
+<p>xlrd用于读取和操作Excel<br>
+首先介绍一下xlrd库的基本用法。<br>
+<code>open_workbook()</code>打开Excel文件<br>
+<code>sheets()[index]</code>或者<code>sheet_by_index(index)</code>获取一个工作表<br>
+<code>nrows</code>获取行数,<code>ncols</code>获取列数<br>
+<code>row_values(index)</code>按行读取值,<code>col_values(index)</code>按列读取值<br>
+<code>cell(row,col).value</code>某一个单元格的值<br>
+<code>ctype()</code>查看字段类型</p>
+<p>然后是xlwt<br>
+xlwt是用于写入Excel和设置Excel<br>
+<code>Workbook()</code>创建一个工作空间<br>
+<code>add_sheet(name)</code>添加一个表单<br>
+<code>write(i,j,value)</code>向第i行j列插入value<br>
+<code>save(name)</code>保存Excel</p>
 <p>给大家一个Demo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#coding = utf-8</span><br><span class="line">import xlrd</span><br><span class="line">import xlwt</span><br><span class="line">path = &quot;C://Users/76003/Desktop/timu.xlsx&quot;          #打开文件</span><br><span class="line">data=xlrd.open_workbook(path)                           #打开工作表</span><br><span class="line">table=data.sheet_by_index(0)                            </span><br><span class="line">ls=[]</span><br><span class="line">for i in range(5):</span><br><span class="line">    ls.append(table.row_values(i))                      #提取前五行内容</span><br><span class="line">data=xlwt.Workbook()</span><br><span class="line">tb=data.add_sheet(&apos;info&apos;)                               #添加一个新的表单info</span><br><span class="line">for i in range(5):</span><br><span class="line">    for j in range(len(ls[0])):</span><br><span class="line">        tb.write(i,j,ls[i][j])                          #写入</span><br><span class="line">data.save(&apos;excelFile.xls&apos;)</span><br></pre></td></tr></table></figure>
 <p>这里有很多坑</p>
 <blockquote>
-<p>如果读入遇到空行好像无法直接判断。可能会出现数据错误。<br>首先读取写入无法直接作用于图片类型，需要做处理(这个我还不会QAQ)<br>如果直接读入时间类型的Excel数据会在python中返回float类型而不是日期型</p>
+<p>如果读入遇到空行好像无法直接判断。可能会出现数据错误。<br>
+首先读取写入无法直接作用于图片类型，需要做处理(这个我还不会QAQ)<br>
+如果直接读入时间类型的Excel数据会在python中返回float类型而不是日期型</p>
 </blockquote>
-<p>解决办法:首先用<code>ctype()</code>判断类型，如果是日期型则做转换可以使用<code>xlrd.xldate_as_tuple(table.cell(2,2).value, 0)   #转化为元组形式</code>也可以使用<code>xlrd.xldate.xldate_as_datetime(table.cell(2,2).value, 1)   #直接转化为datetime对象</code></p>
+<p>解决办法:首先用<code>ctype()</code>判断类型，如果是日期型则做转换可以使用<code>xlrd.xldate_as_tuple(table.cell(2,2).value, 0) #转化为元组形式</code>也可以使用<code>xlrd.xldate.xldate_as_datetime(table.cell(2,2).value, 1) #直接转化为datetime对象</code></p>
 <blockquote>
 <p>使用xlwt库写入Excel时我插入旧表没有效果。(不知道是否能插入已有Excel中)，<code>save()</code>函数会生成一个新表保存到当前目录下。</p>
 </blockquote>
 <hr>
-<h2><span id="基于panda库">基于panda库</span></h2><hr>
+<h2><span id="基于panda库">基于panda库</span></h2>
+<hr>
 <p>panda库。哎 说了都是泪。panda是模仿R语言数据框dataframe创建的一个库，内容很丰富，功能很强大，但是也很多坑，各种数据不兼容。这里就不详细介绍了。</p>
 <hr>
-<p><strong>读入Excel</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_excel.html" target="_blank" rel="noopener">官方文档</a><br><code>read_excel()</code>一行命令解决读入问题。方便强大，但是返回的一个<code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</code>,同样无法读取图片，但是可以完整的读取时间。</p>
-<p><strong>写入Excel</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html?highlight=to_excel#pandas.DataFrame.to_excel" target="_blank" rel="noopener">官方文档</a><br><code>DataFrame.to_excel()</code>。同样一行命令，直接将一个数据框按照原有格式写入Excel</p>
+<p><strong>读入Excel</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_excel.html" target="_blank" rel="noopener">官方文档</a><br>
+<code>read_excel()</code>一行命令解决读入问题。方便强大，但是返回的一个<code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code>,同样无法读取图片，但是可以完整的读取时间。</p>
+<p><strong>写入Excel</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html?highlight=to_excel#pandas.DataFrame.to_excel" target="_blank" rel="noopener">官方文档</a><br>
+<code>DataFrame.to_excel()</code>。同样一行命令，直接将一个数据框按照原有格式写入Excel</p>
 <p>下面给一个Demo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">path = &quot;C://Users/76003/Desktop/timu.xlsx&quot;          </span><br><span class="line">data=pd.read_excel(path)</span><br><span class="line">print(data)</span><br><span class="line">print(type(data))</span><br><span class="line">writer = pd.ExcelWriter(&apos;output.xlsx&apos;)</span><br><span class="line">data.to_excel(writer,&apos;Sheet1&apos;)</span><br><span class="line">writer.save()</span><br></pre></td></tr></table></figure>
 <p>同样简单的说一下坑</p>
@@ -259,29 +281,52 @@
 <p>无法写入已有Excel表中，如果名字相同会直接覆盖。</p>
 </blockquote>
 <hr>
-<h1><span id="操作mysql">操作Mysql</span></h1><hr>
-<h2><span id="基于panda库">基于panda库</span></h2><hr>
+<h1><span id="操作mysql">操作Mysql</span></h1>
+<hr>
+<h2><span id="基于panda库">基于panda库</span></h2>
+<hr>
 <p>首先需要借用pymysql库中的<code>connect()</code>方法建立数据库连接。</p>
-<p>从mysql读取数据<code>read_sql()</code> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_sql.html#pandas.read_sql" target="_blank" rel="noopener">官方文档</a><br>返回的也是dataframe类型。</p>
+<p>从mysql读取数据<code>read_sql()</code> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_sql.html#pandas.read_sql" target="_blank" rel="noopener">官方文档</a><br>
+返回的也是dataframe类型。</p>
 <p>Demo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#coding = utf-8</span><br><span class="line">import pandas as pd</span><br><span class="line">import pymysql</span><br><span class="line"># 1.打开数据库连接</span><br><span class="line">con = pymysql.connect(host=&quot;localhost&quot;, user=&apos;root&apos;, passwd=&apos;123456&apos;, db=&apos;oo&apos;, charset=&apos;utf8&apos;)</span><br><span class="line"># 2.查询语句</span><br><span class="line">sql = &apos;select * from t_department limit &apos; + str(5)</span><br><span class="line"># 3.读取数据</span><br><span class="line">result = pd.read_sql(sql, con)</span><br><span class="line"># 4.关闭数据库连接</span><br><span class="line">con.close()</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
 <p>panda库中同样有写入数据库的方法<code>DataFrame.to_sql</code>，但是我试了很多次都没有成功，因为它这个方法中的con参数需要一个engine。但是它只支持sqlite3的connect()和sqlalchemy的create_engine()。而它依赖于mysqldb库，mysqldb库现在不支持现在的版本。</p>
 <p><img src="1.png" alt=""></p>
 <hr>
-<h2><span id="基于pymysql库">基于pymysql库</span></h2><hr>
+<h2><span id="基于pymysql库">基于pymysql库</span></h2>
+<hr>
 <p>简单介绍一下pymysql常见用法。</p>
-<p>pymysql.Connect()参数说明<br>host(str):      MySQL服务器地址<br>port(int):      MySQL服务器端口号<br>user(str):      用户名<br>passwd(str):    密码<br>db(str):        数据库名称<br>charset(str):   连接编码</p>
-<p>connection对象支持的方法<br>cursor()        使用该连接创建并返回游标<br>commit()        提交当前事务<br>rollback()      回滚当前事务<br>close()         关闭连接</p>
-<p>cursor对象支持的方法<br>execute(op)     执行一个数据库的查询命令<br>fetchone()      取得结果集的下一行<br>fetchmany(size) 获取结果集的下几行<br>fetchall()      获取结果集中的所有行<br>rowcount()      返回数据条数或影响行数<br>close()         关闭游标对象</p>
+<p>pymysql.Connect()参数说明<br>
+host(str):      MySQL服务器地址<br>
+port(int):      MySQL服务器端口号<br>
+user(str):      用户名<br>
+passwd(str):    密码<br>
+db(str):        数据库名称<br>
+charset(str):   连接编码</p>
+<p>connection对象支持的方法<br>
+cursor()        使用该连接创建并返回游标<br>
+commit()        提交当前事务<br>
+rollback()      回滚当前事务<br>
+close()         关闭连接</p>
+<p>cursor对象支持的方法<br>
+execute(op)     执行一个数据库的查询命令<br>
+fetchone()      取得结果集的下一行<br>
+fetchmany(size) 获取结果集的下几行<br>
+fetchall()      获取结果集中的所有行<br>
+rowcount()      返回数据条数或影响行数<br>
+close()         关闭游标对象</p>
 <p>其实调用pymysql库就可以在python上写sql命令。等同于在数据库上操作一样，但同时会返回数据到python上。</p>
 <p>Demo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import pymysql</span><br><span class="line">class ImportData(object):</span><br><span class="line">    def importMysqlData_1(self, topn):</span><br><span class="line">        # 1.打开数据库连接</span><br><span class="line">        con = pymysql.connect(host=&quot;localhost&quot;, user=&apos;root&apos;, passwd=&apos;123456&apos;, db=&apos;oo&apos;, charset=&apos;utf8&apos;)</span><br><span class="line">        # 2.查询语句</span><br><span class="line">        sql = &apos;select * from sales limit &apos; + str(topn)</span><br><span class="line">        # 3.读取数据</span><br><span class="line">        result = pd.read_sql(sql, con)</span><br><span class="line">        # 4.关闭数据库连接</span><br><span class="line">        con.close()</span><br><span class="line">        return result</span><br><span class="line">    pass</span><br><span class="line">    def output(self, data):</span><br><span class="line">        # 1.打开数据库连接</span><br><span class="line">        con = pymysql.connect(host=&quot;localhost&quot;, user=&apos;root&apos;, passwd=&apos;123456&apos;, db=&apos;oo&apos;, charset=&apos;utf8&apos;)</span><br><span class="line">        # 2.创建游标</span><br><span class="line">        cursor = con.cursor()</span><br><span class="line">        cursor.execute(&quot;DROP TABLE IF EXISTS python&quot;)</span><br><span class="line">        sql = &quot;&quot;&quot;CREATE TABLE python (</span><br><span class="line">         stor_id  VARCHAR(20) NOT NULL,</span><br><span class="line">         ord_num  VARCHAR(20) PRIMARY KEY ,</span><br><span class="line">         ord_date DATETIME,  </span><br><span class="line">         qty INT,</span><br><span class="line">         payterms VARCHAR(20),</span><br><span class="line">         title_id VARCHAR(20) )&quot;&quot;&quot;</span><br><span class="line">        #执行创建表</span><br><span class="line">        cursor.execute(sql)</span><br><span class="line">        sql2 = &quot;&quot;&quot;INSERT INTO python(stor_id,ord_num,ord_date,qty,payterms,title_id) VALUES(&apos;%s&apos;,&apos;%s&apos;,&apos;%s&apos;,&apos;%s&apos;,&apos;%s&apos;,&apos;%s&apos;)&quot;&quot;&quot;</span><br><span class="line">        # 执行sql语句</span><br><span class="line">        for i in range(5):</span><br><span class="line">            cursor.execute(sql2%data[i])</span><br><span class="line">        # 提交到数据库执行</span><br><span class="line">        con.commit()</span><br><span class="line">        cursor.close()</span><br><span class="line">        con.close()</span><br><span class="line">        print(&quot;is ok!&quot;)</span><br><span class="line">    pass</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    ipa = ImportData()</span><br><span class="line">    # 导入MySql数据库数据</span><br><span class="line">    data=ipa.importMysqlData_1(5)</span><br><span class="line">    print(data)</span><br><span class="line">    len = data.shape</span><br><span class="line">    print(len)</span><br><span class="line">    y=[]</span><br><span class="line">    x=np.array(data)    #数据框转换成List需要先转换成矩阵</span><br><span class="line">    y=x.tolist()</span><br><span class="line">    #将时间戳转换字符串</span><br><span class="line">    for i in range(len[0]):</span><br><span class="line">        y[i][2]=y[i][2].strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)</span><br><span class="line">    print(y)</span><br><span class="line">    #字符串格式化需要元组</span><br><span class="line">    for i in range(5):</span><br><span class="line">        y[i]=tuple(y[i])</span><br><span class="line">    y=tuple(y)</span><br><span class="line">    ipa.output(y)</span><br><span class="line">pass</span><br></pre></td></tr></table></figure>
 <p>我在上面的例子中使用了panda的read_sql()方法读取数据，将数据格式先转换成列表，然后转换成元组(字符串格式化只能使用元组或者字典)，用pymysql的execute()执行INSECT插入命令。将从数据库提取的数据重新写入数据库。</p>
 <blockquote>
-<p>注：读取数据可以直接使用execute()命令，这样得到的数据就不需要格式转换了。<br>除了execute还有executemany()方法，可以批量操作。<br>另外插入还有另外一种不需要字符串格式化的方法直接execute(sql,data)。具体怎么用还不知道…还在摸索中</p>
+<p>注：读取数据可以直接使用execute()命令，这样得到的数据就不需要格式转换了。<br>
+除了execute还有executemany()方法，可以批量操作。<br>
+另外插入还有另外一种不需要字符串格式化的方法直接execute(sql,data)。具体怎么用还不知道…还在摸索中</p>
 </blockquote>
 <hr>
-<p>另外<br>使用<code>strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)</code>方法可以将时间戳timestamp转换成字符串。</p>
+<p>另外<br>
+使用<code>strftime('%Y-%m-%d %H:%M:%S')</code>方法可以将时间戳timestamp转换成字符串。</p>
 
                 
 
@@ -494,7 +539,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

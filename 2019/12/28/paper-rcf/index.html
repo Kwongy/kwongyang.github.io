@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由南开大学,华中科技大学和南京大学的Yun Liu, Ming-Ming Cheng, Xiaowei Hu, Kai Wang, Xiang Bai所作的<a href="https://arxiv.org/abs/1612.02103" target="_blank" rel="noopener">Richer Convolutional Features for Edge Detection</a>, 发表在2017年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文也是一篇使用深度学习来做边缘检检测的文章, 针对HED做出了改进.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文也是一篇使用深度学习来做边缘检检测的文章, 针对HED做出了改进.</p>
 <p>在HED中, 对于VGG的每一个阶段, 仅仅使用最后一层的卷积层来做边界提取的特征输入, 这样会失去部分细节, RCF相较于HED对每个stage中所有的卷积层特征先进行融合, 然后再这个融合的特征反卷积得到预测边界.</p>
 <p><img src="1.png" alt=""></p>
 <p>此外, 作者针对loss也提出了新的改进.  作者认为一个数据集中会有很多不同的人进行标注, 每一个人的标注方法都不相同, 可能会造成边界标注的误差. 所以对于每一幅图像, 对所有标注者给出的标签, 生成一张值在[0, 1]标签的概率图,0表示没有标注者在这个像素上进行标记，1表示所有标注者都在这个像素处标记了。我们将边缘像素的概率高于η的像素视为正样本，像素边缘概率等于0为负样本。否则,这个像素如果少于η个人标记,这个像素可能是语义上有争议的一个边缘点。直接忽略它们. 最终, 边界的损失为:</p>
@@ -434,7 +435,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

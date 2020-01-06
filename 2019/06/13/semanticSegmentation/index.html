@@ -214,24 +214,31 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="语义分割">语义分割</span></h1><p>语意分割是对图像中的每一个像素进行分类</p>
-<h1><span id="语义分割中的难点">语义分割中的难点</span></h1><ol>
+                <h1><span id="语义分割">语义分割</span></h1>
+<p>语意分割是对图像中的每一个像素进行分类</p>
+<h1><span id="语义分割中的难点">语义分割中的难点</span></h1>
+<ol>
 <li>数据问题：分割需要精确的像素级标注，包括每一个目标的轮廓等信息；</li>
 <li>计算资源问题：分割预测了每一个像素，这就要求feature map的分辨率尽可能的高。</li>
 <li>精细分割：很多算法的像道路、建筑物等类别，分割精度很高，能达到98%，而对于细小的类别，像行人、交通等等，由于其轮廓太小，而无法精确的定位轮廓，造成精度较低；</li>
 <li>上下文信息：分割中上下文信息很重要，否则会造成一个目标被分成多个part，或者不同类别目标分类成相同类别；</li>
 </ol>
-<h1><span id="实现方法">实现方法</span></h1><ul>
+<h1><span id="实现方法">实现方法</span></h1>
+<ul>
 <li>encoder-decoder方法：与经典的FCN中的skip-connection思想类似，encoder为分类网络，用于提取特征，而decoder则是将encoder的先前丢失的空间信息逐渐恢复，decoder的典型结构有U-Net/segnet/refineNet，该类方法虽然有一定的效果，能恢复部分信息，但毕竟信息已经丢失了，不可能完全恢复。</li>
 <li>膨胀卷积 ( dilated convolutions )方法：deeplabv1提出的方法，将vgg的最后的两个pool层步长置为1，这样网络的输出分辨率从1/32变为1/8。可以保留更多的细节信息，同时也丢掉了复杂的decoder结构，但这种方法计算量大。</li>
 </ul>
-<h1><span id="语义分割领域使用的数据集">语义分割领域使用的数据集</span></h1><ol>
+<h1><span id="语义分割领域使用的数据集">语义分割领域使用的数据集</span></h1>
+<ol>
 <li>Pascal VOC系列:　<a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2012/</a>　通常采用PASCAL VOC 2012，最开始有1464 张具有标注信息的训练图片，2014 年增加到10582张训练图片。主要涉及了日常生活中常见的物体，包括汽车，狗，船等20个分类</li>
 <li>Microsoft COCO:　<a href="http://link.zhihu.com/?target=http%3A//mscoco.org/explore/" target="_blank" rel="noopener">http://link.zhihu.com/?target=http%3A//mscoco.org/explore/</a>　一共有80个类别。这个数据集主要用于实例级别的分割（Instance-level Segmentation）以及图片描述Image Caption）。</li>
 <li>Cityscapes: <a href="https://www.cityscapes-dataset.com/" target="_blank" rel="noopener">https://www.cityscapes-dataset.com/</a> 适用于汽车自动驾驶的训练数据集，包括19种都市街道场景：road、side-walk、building、wal、fence、pole、traficlight、trafic　sign、vegetation、terain、sky、person、rider、car、truck、bus、train、motorcycle 和 bicycle。该数据库中用于训练和校验的精细标注的图片数量为3475，同时也包含了 2 万张粗糙的标记图片。</li>
 </ol>
-<h1><span id="语义分割中的深度学习">语义分割中的深度学习</span></h1><p>语义分割按时间所演变：<br>FCN 、SegNet 、Dilated Convolutions 、DeepLab (v1 &amp; v2) 、RefineNet 、PSPNet 、Large Kernel Matters 、DeepLab v3</p>
-<p>推荐论文<br><a href="https://arxiv.org/pdf/1704.06857.pdf" target="_blank" rel="noopener">A Review on Deep Learning Techniques Applied to Semantic Segmentation</a></p>
+<h1><span id="语义分割中的深度学习">语义分割中的深度学习</span></h1>
+<p>语义分割按时间所演变：<br>
+FCN 、SegNet 、Dilated Convolutions 、DeepLab (v1 &amp; v2) 、RefineNet 、PSPNet 、Large Kernel Matters 、DeepLab v3</p>
+<p>推荐论文<br>
+<a href="https://arxiv.org/pdf/1704.06857.pdf" target="_blank" rel="noopener">A Review on Deep Learning Techniques Applied to Semantic Segmentation</a></p>
 <p>Semantic Segmentation 相关论文</p>
 <ol>
 <li>Fully Convolutional Networks for Semantic Segmentation(FCN)</li>
@@ -241,16 +248,18 @@
 <li>DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution,and Fully Connected CRFs(Deeplab v2)</li>
 <li>Understanding Convolution for Semantic Segmentation(DUC)</li>
 <li>Pyramid Scene Parsing Network(PSPNet)</li>
-<li>Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network(GCN)</li>
+<li>Large Kernel Matters – Improve Semantic Segmentation by Global Convolutional Network(GCN)</li>
 <li>Rethinking Atrous Convolution for Semantic Image Segmentation(Deeplab v3)</li>
 <li>DenseASPP for Semantic Segmentation in Street Scenes（DenseASPP）</li>
 <li>Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation(Deeplab v3plus）</li>
-<li>Context Encoding for Semantic Segmentation(EncNet)<br>Learning a Discriminative Feature Network for Semantic Segmentation(DFN)</li>
+<li>Context Encoding for Semantic Segmentation(EncNet)<br>
+Learning a Discriminative Feature Network for Semantic Segmentation(DFN)</li>
 <li>Smoothed Dilated Convolutions for Improved Dense Prediction(SDC)</li>
 <li>Pyramid Attention Network for Semantic Segmentation(PAN)</li>
 <li>Exploring Context with Deep Structured models for Semantic Segmentation(FeatMap-Net)</li>
 <li>ExFuse: Enhancing Feature Fusion for Semantic Segmentation(ExFuse)</li>
-<li>Dilated Residual Networks(DRN)<br>Dual Attention Network for Scene Segmentation(DANet)</li>
+<li>Dilated Residual Networks(DRN)<br>
+Dual Attention Network for Scene Segmentation(DANet)</li>
 <li>OCNet:Object Context Network for Scene Parsing(OCNet)</li>
 <li>RefineNet: Multi-Path Refinement Networks for High-Resolution Semantic Segmentation(RefineNet)</li>
 <li>Dense Relation Network: Learning Consistent And Context-Aware Prepresentation For Semantic Image Segmentation(DRN)</li>
@@ -476,7 +485,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

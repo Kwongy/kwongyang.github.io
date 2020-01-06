@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由约翰霍普金斯大学,斯坦福大学和谷歌AI研究所的Chenxi Liu, Barret Zoph, Maxim Neumann2 Jonathon Shlens, Wei Hua, Li-Jia Li, Li Fei-Fei, Alan Yuille, Jonathan Huang, and Kevin Murph所作的<a href="https://arxiv.org/pdf/1712.00559.pdf" target="_blank" rel="noopener">Progressive Neural Architecture Search</a>, 发表在2018年ECCV上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>卷积神经网络结构由AlexNet, VGG, GoogLeNet到ResNet等等已经取得了越来越好的结果, 但是这些网络结构都是由人类设定的. 作者思考能否让机器自动学习,学习好的网络结构.因此提出的PNASNet网络, 它基于神经架构搜索技术(Neural Architecture Search technology)而创建的. 这一技术已经被用于谷歌的AutoML架构. 以强化学习的方法, 在迭代中自学习来寻找最优的网络架构.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>卷积神经网络结构由AlexNet, VGG, GoogLeNet到ResNet等等已经取得了越来越好的结果, 但是这些网络结构都是由人类设定的. 作者思考能否让机器自动学习,学习好的网络结构.因此提出的PNASNet网络, 它基于神经架构搜索技术(Neural Architecture Search technology)而创建的. 这一技术已经被用于谷歌的AutoML架构. 以强化学习的方法, 在迭代中自学习来寻找最优的网络架构.</p>
 <p>NAS网络的基础步骤:</p>
 <ul>
 <li>Construct some networksn based on some policy/rule</li>
@@ -226,7 +227,9 @@
 <li>Iterate</li>
 </ul>
 <p>NAS网络取得了很好的效果但是它的开销很大,需要很大的算力. 在CIFAR-10数据集上, 使用500台P100GPU训练了20000个神经网络花费了4天.因此作者在此基础上提出了“渐进式的神经结构搜索网络(PNASNet)来对NAS进行改进.</p>
-<p>首先, NAS的选择cell结构是基于强化学习对准确率的反馈, 作者提出的PNAS不仅仅可以基于强化学习, 而且可以使用进化(EA)算法来选择cell结构.<br>第二, 一个网络的组成由多个cell叠加而成, 类似ResNet是由多个Residual block叠加组成. 整个网络由三部分组成, cell的结构, cell的个数N, 每一个cell中的卷积个数F. 这里的N和F为超参数, 由人手工设定. N用来限制网络的深度, F限制网络的宽度. 使用N和F共同限制网络的大小.<br>第三, 每一个cell内部的卷积组成由下列结构组成</p>
+<p>首先, NAS的选择cell结构是基于强化学习对准确率的反馈, 作者提出的PNAS不仅仅可以基于强化学习, 而且可以使用进化(EA)算法来选择cell结构.<br>
+第二, 一个网络的组成由多个cell叠加而成, 类似ResNet是由多个Residual block叠加组成. 整个网络由三部分组成, cell的结构, cell的个数N, 每一个cell中的卷积个数F. 这里的N和F为超参数, 由人手工设定. N用来限制网络的深度, F限制网络的宽度. 使用N和F共同限制网络的大小.<br>
+第三, 每一个cell内部的卷积组成由下列结构组成</p>
 <ul>
 <li>3x3 depthwise-separable convolution</li>
 <li>5x5 depthwise-separable convolution</li>
@@ -237,7 +240,7 @@
 <li>3x3 max pooling</li>
 <li>3x3 dilated convolution</li>
 </ul>
-<p>第四, 之前的算法都是枚举后直接搜索, 它们的解空间太大, 需要搜索的结果更多. 使用渐进式的搜索来减少解空间. 方法是: 首先训练b个block, 然后选择其中表现最好的k个作为候选项来枚举第b+1个block, 然后去训练网络. </p>
+<p>第四, 之前的算法都是枚举后直接搜索, 它们的解空间太大, 需要搜索的结果更多. 使用渐进式的搜索来减少解空间. 方法是: 首先训练b个block, 然后选择其中表现最好的k个作为候选项来枚举第b+1个block, 然后去训练网络.</p>
 <p><img src="2.jpg" alt=""></p>
 <p>第五, 使用了渐进式的搜索会大大减少解空间, 但是每次搜索后再去训练的开销依旧很大, 为了继续减少开销, 作者提出了LSTM准确率预测器. 使用它, 可以不训练和评估网络就能评估一个网络是否具有潜力.</p>
 <p>作者经过大量的试验后, 使用PNASNet搜索出的模型PNASNet-5具有the-state-of-the-art.</p>
@@ -454,7 +457,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>

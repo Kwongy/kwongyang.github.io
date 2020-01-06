@@ -217,10 +217,11 @@
                 post-container">
 
                 <p>本篇论文是由中科院和牛津大学的Jie Hu, Li Shen, Samuel Albanie, Gang Sun, Enhua Wu 所作的<a href="https://arxiv.org/pdf/1709.01507.pdf" target="_blank" rel="noopener">Squeeze-and-Excitation Networks</a>, 发表在2017年CVPR上.SENet赢得了最后一届ImageNet2017挑战赛冠军.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>Inception结构从空间维度上进行多尺度融合, ResNet通过增加深度提升网络性能, 作者思考是否能从其他的方向去提升性能. 作者希望建立特征通道之间的关系来增加网络性能, 因此提出了SE module.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>Inception结构从空间维度上进行多尺度融合, ResNet通过增加深度提升网络性能, 作者思考是否能从其他的方向去提升性能. 作者希望建立特征通道之间的关系来增加网络性能, 因此提出了SE module.</p>
 <p><img src="1.png" alt=""></p>
 <p>整个SE module由三部分Squeeze block和Excitation block和Output block组成.Squeeze使用全局平均池化提取每个通道的全局信息, Excitation block通过loss引导全连接层来自动学习每个特征所占权重, 最后的Output block 从Excitation获取权重, 权重看做是进过特征选择后的每个特征通道的重要性，然后通过乘法逐通道加权到先前的特征上，完成在通道维度上的对原始特征的重标定。</p>
-<p>SENet的核心思想在于通过网络根据loss去学习特征权重，使得有效的feature map权重大，无效或效果小的feature map权重小的方式训练模型达到更好的结果.SE module可以嵌入到现在几乎所有的网络结构中。通过在原始网络的各种结构单元中嵌入SE模块可以显著的提升网络性能.</p>
+<p>SENet的核心思想在于通过网络根据loss去学习特征权重，使得有效的feature map权重大，无效或效果小的feature <a href="http://xn--map-bk2ew8vo5cs5ftohxnrd2cxyaz4ap3vl00cha4884a7hau82shfq5vj.SE" target="_blank" rel="noopener">map权重小的方式训练模型达到更好的结果.SE</a> module可以嵌入到现在几乎所有的网络结构中。通过在原始网络的各种结构单元中嵌入SE模块可以显著的提升网络性能.</p>
 <p><img src="2.png" alt=""></p>
 
                 
@@ -434,7 +435,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.0k words altogether</span>
+					<span class="post-count">178.8k words altogether</span>
 				</p>
             </div>
         </div>
