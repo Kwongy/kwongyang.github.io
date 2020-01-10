@@ -217,14 +217,11 @@
                 post-container">
 
                 <p>本篇论文是由澳大利亚阿德莱德大学和华为诺亚方舟实验室的Zhi Tian, Tong He, Chunhua Shen, Youliang Yan所作的<a href="https://arxiv.org/abs/1903.02120" target="_blank" rel="noopener">Decoders Matter for Semantic Segmentation: Data-Dependent Decoding Enables Flexible Feature Aggregation</a>,发表在2019年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇论文所研究的是语义分割中的上采样方式.由于传统的双线性插值上采样方法是独立运作的,忽略了每个像素之间的关联性(每个点与相邻的点并不是互相独立的),因此, 作者提出一种数据驱动的上采样方式.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇论文所研究的是语义分割中的上采样方式.由于传统的双线性插值上采样方法是独立运作的,忽略了每个像素之间的关联性(每个点与相邻的点并不是互相独立的),因此, 作者提出一种数据驱动的上采样方式.</p>
 <p><img src="1.png" alt=""></p>
 <p>对于某一层特征图,其大小为$H\times W \times C$, 对于$H\times W$中每一个点, 取出它所有通道, 构成一个向量$1\times C$, 乘上一个权重矩阵(自适应, 学习得到)$\omega$, 得到一个$1\times N$的向量,  将其直接reshape成$2\times 2\times \frac{N}{4}$, 此时得到的就是上采样后的效果, 但是它是通过自适应的权重矩阵变换后再reshape得到,  这样得到的上采样结果会保留原图中像素之间的相关性, 结果会更好.</p>
-<p>为了对这样的上采样结果进行评估, 作者提出了对结果进行修正的loss<br>
-$$L(F,Y)=Loss(softmax(DUpsample(F)), Y)$$<br>
-直接计算上采样的结果和label之间的loss, 来引导自适应矩阵的学习.<br>
-但是DUpsampling与softmax的这种组合难以产生尖锐的激活（我认为是产生的各元素的概率差别很大），也就是概率分布比较平滑，这样导致训练时的损失计算会卡住。产生这种现象的原因作者认为可能是因为W是根据one-hot的label计算得到的，因此为了解决这个问题引入了 adaptive-temperature softmax, 就是在计算$\exp(z)$的时候对$z$除一个$T$(可学习参数), 使用这种数据驱动的上采样方式比双线性插值的计算消耗提高了大约20%, 但是实验效果更好.</p>
+<p>为了对这样的上采样结果进行评估, 作者提出了对结果进行修正的loss</p>
+<script type="math/tex; mode=display">L(F,Y)=Loss(softmax(DUpsample(F)), Y)</script><p>直接计算上采样的结果和label之间的loss, 来引导自适应矩阵的学习.<br>但是DUpsampling与softmax的这种组合难以产生尖锐的激活（我认为是产生的各元素的概率差别很大），也就是概率分布比较平滑，这样导致训练时的损失计算会卡住。产生这种现象的原因作者认为可能是因为W是根据one-hot的label计算得到的，因此为了解决这个问题引入了 adaptive-temperature softmax, 就是在计算$\exp(z)$的时候对$z$除一个$T$(可学习参数), 使用这种数据驱动的上采样方式比双线性插值的计算消耗提高了大约20%, 但是实验效果更好.</p>
 
                 
 
@@ -437,7 +434,7 @@ $$L(F,Y)=Loss(softmax(DUpsample(F)), Y)$$<br>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

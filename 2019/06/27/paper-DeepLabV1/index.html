@@ -220,10 +220,8 @@
 
                 <p>本篇论文是由Cambridge大学Vijay Badrinarayanan, Alex Kendall, Roberto Cipolla, Senior Member所作的<a href="https://arxiv.org/pdf/1606.00915v1.pdf" target="_blank" rel="noopener">DeepLab-Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs</a></p>
 <p><a href="http://web.eng.tau.ac.il/deep_learn/wp-content/uploads/2017/12/Rethinking-Atrous-Convolution-for-Semantic-Image-Segmentation-1.pdf" target="_blank" rel="noopener">官方ppt</a></p>
-<h2><span id="abstract">Abstract</span></h2>
-<p>DeepLab是结合了深度卷积神经网络(DCNNs)和概率图模型(DenseCRFs)的方法。在实验中发现DCNNs做语义分割时精准度不够的问题，根本原因是DCNNs的高级特征的平移不变性(即高层次特征映射)。DeepLab解决这一问题的方法是通过将DCNNs层的响应和完全连接的条件随机场(CRF)结合。同时模型创新性的将hole(即空洞卷积)算法应用到DCNNs模型上，在现代GPU上运行速度达到了8FPS。</p>
-<h2><span id="introduction">Introduction</span></h2>
-<p>相比于传统的视觉算法(SIFT或HOG)，DCNN以其end-to-end方式获得了很好的效果。这样的成功部分可以归功于DCNN对图像转换的平移不变性(invariance)，这根本是源于重复的池化和下采样组合层。平移不变性增强了对数据分层抽象的能力，但同时可能会阻碍低级(low-level)视觉任务,例如姿态估计、语义分割等，在这些任务中我们倾向于精确的定位而不是抽象的空间关系。</p>
+<h2><span id="abstract">Abstract</span></h2><p>DeepLab是结合了深度卷积神经网络(DCNNs)和概率图模型(DenseCRFs)的方法。在实验中发现DCNNs做语义分割时精准度不够的问题，根本原因是DCNNs的高级特征的平移不变性(即高层次特征映射)。DeepLab解决这一问题的方法是通过将DCNNs层的响应和完全连接的条件随机场(CRF)结合。同时模型创新性的将hole(即空洞卷积)算法应用到DCNNs模型上，在现代GPU上运行速度达到了8FPS。</p>
+<h2><span id="introduction">Introduction</span></h2><p>相比于传统的视觉算法(SIFT或HOG)，DCNN以其end-to-end方式获得了很好的效果。这样的成功部分可以归功于DCNN对图像转换的平移不变性(invariance)，这根本是源于重复的池化和下采样组合层。平移不变性增强了对数据分层抽象的能力，但同时可能会阻碍低级(low-level)视觉任务,例如姿态估计、语义分割等，在这些任务中我们倾向于精确的定位而不是抽象的空间关系。</p>
 <p>DCNN在图像标记任务中存在两个技术障碍：</p>
 <ul>
 <li>信号下采样</li>
@@ -231,29 +229,19 @@
 </ul>
 <p>第一个问题涉及到：在DCNN中重复最大池化和下采样带来的分辨率下降问题，分辨率的下降会丢失细节。DeepLab是采用的atrous(带孔)算法扩展感受野，获取更多的上下文信息。</p>
 <p>第二个问题涉及到：分类器获取以对象中心的决策是需要空间变换的不变性，这天然的限制了DCNN的定位精度，DeepLab采用完全连接的条件随机场(DenseCRF)提高模型捕获细节的能力。</p>
-<p>论文的主要贡献在于：<br>
-速度：带atrous算法的DCNN可以保持8FPS的速度，全连接CRF平均推断需要0.5s<br>
-准确：在PASCAL语义分割挑战中获得了第二的成绩<br>
-简单：DeepLab是由两个非常成熟的模块(DCNN和CRFs)级联而成</p>
-<h2><span id="related-work">Related Work</span></h2>
-<p>DeepLab系统应用在语义分割任务上，目的是做逐像素分类的，这与使用两阶段的DCNN方法形成鲜明对比(指R-CNN等系列的目标检测工作)，R-CNN系列的做法是原先图片上获取候选区域，再送到DCNN中获取分割建议，重新排列取结果。虽然这种方法明确地尝试处理前段分割算法的本质，但在仍没有明确的利用DCNN的预测图。</p>
+<p>论文的主要贡献在于：<br>速度：带atrous算法的DCNN可以保持8FPS的速度，全连接CRF平均推断需要0.5s<br>准确：在PASCAL语义分割挑战中获得了第二的成绩<br>简单：DeepLab是由两个非常成熟的模块(DCNN和CRFs)级联而成</p>
+<h2><span id="related-work">Related Work</span></h2><p>DeepLab系统应用在语义分割任务上，目的是做逐像素分类的，这与使用两阶段的DCNN方法形成鲜明对比(指R-CNN等系列的目标检测工作)，R-CNN系列的做法是原先图片上获取候选区域，再送到DCNN中获取分割建议，重新排列取结果。虽然这种方法明确地尝试处理前段分割算法的本质，但在仍没有明确的利用DCNN的预测图。</p>
 <p>我们的系统与其他先进模型的主要区别在于DenseCRFs和DCNN的结合。是将每个像素视为CRF节点，利用远程依赖关系，并使用CRF推理直接优化DCNN的损失函数。Koltun(2011)的工作表明完全连接的CRF在语义分割下非常有效。</p>
 <p>也有其他组采取非常相似的方向，将DCNN和密集的CRF结合起来，我们已经更新提出了DeepLab系统(指的是DeepLabV2)。</p>
-<h2><span id="methods">METHODS</span></h2>
-<h3><span id="atrous-convolution-for-dense-feature-extraction-and-field-of-view-enlargement">Atrous Convolution for Dense Feature Extraction and Field-of-View Enlargement</span></h3>
-<p>这里先描述一下DCNN如何设计，我们调整VGG16模型，转为一个可以有效提取特征的语义分割系统。具体来说，先将VGG16的FC层转为卷积层，模型变为全卷积的方式，在图像的原始分辨率上产生非常稀疏的计算检测分数(步幅32,步幅=输入尺寸输出特征尺寸步幅/输入尺寸输出特征尺寸)，为了以更密集(步幅8)的计算得分,我们在最后的两个最大池化层不下采样(padding到原大小)，再通过2或4的采样率的空洞卷积对特征图做采样扩大感受野，缩小步幅。</p>
-<h3><span id="multiscale-image-representations-using-atrous-spatial-pyramid-pooling">Multiscale Image Representations using Atrous Spatial Pyramid Pooling</span></h3>
-<p>这种带孔的采样又称atrous算法，可以稀疏的采样底层特征映射，该方法具有通常性，并且可以使用任何采样率计算密集的特征映射。在VGG16中使用不同采样率的空洞卷积，可以让模型再密集的计算时，明确控制网络的感受野。保证DCNN的预测图可靠的预测图像中物体的位置。</p>
+<h2><span id="methods">METHODS</span></h2><h3><span id="atrous-convolution-for-dense-feature-extraction-and-field-of-view-enlargement">Atrous Convolution for Dense Feature Extraction and Field-of-View Enlargement</span></h3><p>这里先描述一下DCNN如何设计，我们调整VGG16模型，转为一个可以有效提取特征的语义分割系统。具体来说，先将VGG16的FC层转为卷积层，模型变为全卷积的方式，在图像的原始分辨率上产生非常稀疏的计算检测分数(步幅32,步幅=输入尺寸输出特征尺寸步幅/输入尺寸输出特征尺寸)，为了以更密集(步幅8)的计算得分,我们在最后的两个最大池化层不下采样(padding到原大小)，再通过2或4的采样率的空洞卷积对特征图做采样扩大感受野，缩小步幅。</p>
+<h3><span id="multiscale-image-representations-using-atrous-spatial-pyramid-pooling">Multiscale Image Representations using Atrous Spatial Pyramid Pooling</span></h3><p>这种带孔的采样又称atrous算法，可以稀疏的采样底层特征映射，该方法具有通常性，并且可以使用任何采样率计算密集的特征映射。在VGG16中使用不同采样率的空洞卷积，可以让模型再密集的计算时，明确控制网络的感受野。保证DCNN的预测图可靠的预测图像中物体的位置。</p>
 <p>训练时将预训练的VGG16的权重做fine-tune，损失函数取是输出的特征图与ground truth下采样8倍做交叉熵和；测试时取输出图双线性上采样8倍得到结果。但DCNN的预测物体的位置是粗略的，没有确切的轮廓。在卷积网络中，因为有多个最大池化层和下采样的重复组合层使得模型的具有平移不变性，我们在其输出的high-level的基础上做定位是比较难的。这需要做分类精度和定位精度之间是有一个自然的折中。</p>
 <p>解决这个问题的工作，主要分为两个方向：</p>
-<p>第一种是利用卷积网络中多个层次的信息<br>
-第二种是采样超像素表示，实质上是将定位任务交给低级的分割方法</p>
+<p>第一种是利用卷积网络中多个层次的信息<br>第二种是采样超像素表示，实质上是将定位任务交给低级的分割方法</p>
 <p>DeepLab是结合了DCNNs的识别能力和全连接的CRF的细粒度定位精度，寻求一个结合的方法，结果证明能够产生准确的语义分割结果。</p>
-<h3><span id="structured-prediction-with-fully-connected-conditional-random-fields-for-accurate-boundary-recovery">Structured Prediction with Fully-Connected Conditional Random Fields for Accurate Boundary Recovery</span></h3>
-<p>传统上，CRF已被用于平滑噪声分割图。通常，这些模型包含耦合相邻节点的能量项，有利于相同标签分配空间近端像素。定性的说，这些短程的CRF主要功能是清除在手工特征基础上建立的弱分类器的虚假预测。</p>
+<h3><span id="structured-prediction-with-fully-connected-conditional-random-fields-for-accurate-boundary-recovery">Structured Prediction with Fully-Connected Conditional Random Fields for Accurate Boundary Recovery</span></h3><p>传统上，CRF已被用于平滑噪声分割图。通常，这些模型包含耦合相邻节点的能量项，有利于相同标签分配空间近端像素。定性的说，这些短程的CRF主要功能是清除在手工特征基础上建立的弱分类器的虚假预测。</p>
 <p>与这些弱分类器相比，现代的DCNN体系产生质量不同的预测图，通常是比较平滑且均匀的分类结果(即以前是弱分类器预测的结果，不是很靠谱，现在DCNN的预测结果靠谱多了)。在这种情况下，使用短程的CRF可能是不利的，因为我们的目标是恢复详细的局部结构，而不是进一步平滑。而有工作证明可用全连接的CRF来提升分割精度。</p>
-<h2><span id="总结">总结</span></h2>
-<p>DeepLabv1是在VGG16的基础上做了修改：</p>
+<h2><span id="总结">总结</span></h2><p>DeepLabv1是在VGG16的基础上做了修改：</p>
 <ul>
 <li>VGG16的全连接层转为卷积</li>
 <li>最后的两个池化层去掉了下采样</li>
@@ -475,7 +463,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

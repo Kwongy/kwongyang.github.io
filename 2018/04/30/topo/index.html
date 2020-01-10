@@ -223,21 +223,17 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28870193&auto=1&height=66"></iframe>
 </div>
+
 <p>看以前写的博客，感觉没图好像光说并不是很能让人明白。但作图确实很花时间。(其实是做的图好丑不想做了QAQ)，以后会多做一些图。</p>
 <hr>
-<h1><span id="邻接链表">邻接链表</span></h1>
-<hr>
-<h2><span id="邻接链表的介绍">邻接链表的介绍</span></h2>
-<p>邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。</p>
-<p><img src="1.png" alt="图1"><br>
-C语言结构代码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct v_node&#123;		//头结点 </span><br><span class="line">	int ver;</span><br><span class="line">	struct v_node *link;</span><br><span class="line">&#125;V_NODE;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;			 //表结点</span><br><span class="line">	int count ;</span><br><span class="line">	V_NODE *head;</span><br><span class="line">&#125;C_NODE;</span><br></pre></td></tr></table></figure>
+<h1><span id="邻接链表">邻接链表</span></h1><hr>
+<h2><span id="邻接链表的介绍">邻接链表的介绍</span></h2><p>邻接链表是图的一种链式存储结构。对于一张图的每一个顶点都建立一个单链表。每个单链表的中的结点代表该顶点所指向的顶点。如图所示。</p>
+<p><img src="1.png" alt="图1"><br>C语言结构代码为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct v_node&#123;		//头结点 </span><br><span class="line">	int ver;</span><br><span class="line">	struct v_node *link;</span><br><span class="line">&#125;V_NODE;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;			 //表结点</span><br><span class="line">	int count ;</span><br><span class="line">	V_NODE *head;</span><br><span class="line">&#125;C_NODE;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>一般C++可以使用vector代替链表，表示邻接表。</p>
 </blockquote>
 <hr>
-<h2><span id="邻接链表结点的插入">邻接链表结点的插入</span></h2>
-<hr>
+<h2><span id="邻接链表结点的插入">邻接链表结点的插入</span></h2><hr>
 <p>邻接表的结点插入一般选用头插法。即不断把结点直接插入表头后面，它的时间复杂度为$O(n)$，即查找表头结点的时间。空间复杂度为$O(1)$，即不需要辅助空间。</p>
 <p>如下图所示的一个链表。</p>
 <p><img src="2.png" alt="图2"></p>
@@ -248,15 +244,12 @@ C语言结构代码为</p>
 <p>提示：仅靠邻接链表是无法直接得到入度信息的，因此我们需要把入度数记录在表头里以便我们进行拓扑排序。</p>
 </blockquote>
 <hr>
-<h1><span id="拓扑排序">拓扑排序</span></h1>
-<hr>
-<h2><span id="拓扑排序和aov网介绍">拓扑排序和AOV网介绍</span></h2>
-<hr>
+<h1><span id="拓扑排序">拓扑排序</span></h1><hr>
+<h2><span id="拓扑排序和aov网介绍">拓扑排序和AOV网介绍</span></h2><hr>
 <p>对一个有向无环图(Directed Acyclic Graph简称DAG)G进行拓扑排序，是将G中所有顶点排成一个线性序列，使得图中任意一对顶点u和v，若边(u,v)∈E(G)，则u在线性序列中出现在v之前。通常，这样的线性序列称为满足拓扑次序(Topological Order)的序列，简称拓扑序列。简单的说，由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序。</p>
 <p>用顶点表示活动，用弧表示活动间的优先关系的有向图称为顶点表示活动的网（Activity On Vertex Network)，简称AOV网。</p>
 <hr>
-<h2><span id="拓扑排序的实现步骤">拓扑排序的实现步骤</span></h2>
-<hr>
+<h2><span id="拓扑排序的实现步骤">拓扑排序的实现步骤</span></h2><hr>
 <ul>
 <li>在有向图中选一个没有前驱的顶点并且输出</li>
 <li>从图中删除该顶点和所有以它为尾的弧（简单的说：删除所有和它有关的边）</li>
@@ -266,13 +259,10 @@ C语言结构代码为</p>
 <p>一个图的拓扑排序可能是不唯一的。</p>
 </blockquote>
 <hr>
-<h2><span id="实例理解">实例理解</span></h2>
-<hr>
+<h2><span id="实例理解">实例理解</span></h2><hr>
 <p>对于如下的一个有向图</p>
-<p><img src="4.png" alt="图4"><br>
-对该图的拓扑排序的操作如下：该图入度为0的点只有1号结点。因此先将1号结点插入拓扑序列中，同时删除边&lt;1,2&gt;和&lt;1,3&gt;,得到图a。这时顶点2和3的入度都为0，因此可以将2(也可以先将3插入拓扑排序中)插入拓扑排序中。删除与2相邻的边&lt;2,4&gt;、&lt;2,5&gt;和&lt;2,6&gt;，一直这样进行下去于是得到该图的一个拓扑排序序列1，2，4，6，3，5，7。</p>
-<p><img src="5.png" alt="图6"><br>
-该图的邻接表为</p>
+<p><img src="4.png" alt="图4"><br>对该图的拓扑排序的操作如下：该图入度为0的点只有1号结点。因此先将1号结点插入拓扑序列中，同时删除边<1,2>和<1,3>,得到图a。这时顶点2和3的入度都为0，因此可以将2(也可以先将3插入拓扑排序中)插入拓扑排序中。删除与2相邻的边<2,4>、<2,5>和<2,6>，一直这样进行下去于是得到该图的一个拓扑排序序列1，2，4，6，3，5，7。</2,6></2,5></2,4></1,3></1,2></p>
+<p><img src="5.png" alt="图6"><br>该图的邻接表为</p>
 <p><img src="6.png" alt="图6"></p>
 <p>下面给出C语言实现代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;malloc.h&gt;</span><br><span class="line"></span><br><span class="line">#define vex 7			//7个顶点 </span><br><span class="line">#define bor 9			//9条边 </span><br><span class="line"></span><br><span class="line">typedef struct &#123;			//存储边的信息。 </span><br><span class="line">	int in;					</span><br><span class="line">	int out;</span><br><span class="line">&#125;E_NODE;</span><br><span class="line"></span><br><span class="line">typedef struct v_node&#123;		//邻接链表各个结点。 </span><br><span class="line">	int ver;</span><br><span class="line">	struct v_node *link;</span><br><span class="line">&#125;V_NODE;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;			//邻接链表头指针 </span><br><span class="line">	int count ;</span><br><span class="line">	V_NODE *head;</span><br><span class="line">&#125;C_NODE;</span><br><span class="line"></span><br><span class="line">int TOPO[vex];		//拓扑排序序列。 </span><br><span class="line">E_NODE edge[bor];</span><br><span class="line">C_NODE graph[vex];</span><br><span class="line"></span><br><span class="line">void init()&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	int i,j; </span><br><span class="line">	V_NODE *p;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;		//初始化邻接链表头指针 </span><br><span class="line">		graph[i].count=0;</span><br><span class="line">		graph[i].head=NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;,&amp;u,&amp;v);				//读入边的信息。 </span><br><span class="line">		edge[i].in=u;	</span><br><span class="line">		edge[i].out=v;</span><br><span class="line">		p=(V_NODE *)malloc(sizeof(V_NODE));		//插入邻接链表中。 </span><br><span class="line">		p-&gt;ver=v;	</span><br><span class="line">		p-&gt;link=graph[u].head; 					//相当于每次把结点插入到头后面一个。(而不是接在末尾) </span><br><span class="line">		graph[v].count++;</span><br><span class="line">		graph[u].head=p;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125; </span><br><span class="line">int topo()&#123;</span><br><span class="line">	int stack[vex+1];		//模拟栈的数组</span><br><span class="line">	int index = 0;</span><br><span class="line">	int cnt = 0;			//记录有多少个顶点完成排序 </span><br><span class="line">	V_NODE *t;</span><br><span class="line">	int i,j,k;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;</span><br><span class="line">		if(graph[i].count==0)&#123;			//如果顶点的入度为0则入栈 </span><br><span class="line">			stack[index++]=i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int now;</span><br><span class="line">	while(index!=0)&#123;</span><br><span class="line">		index--;</span><br><span class="line">		now = stack[index];		//出栈 </span><br><span class="line">//		printf(&quot;%d\n&quot;,now);</span><br><span class="line">		TOPO[cnt]=now;	//完成排序的一个顶点 </span><br><span class="line">		cnt++;</span><br><span class="line">		t=graph[now].head;</span><br><span class="line">		while(t!=NULL)&#123;			//将所有入度为这个顶点的点入度数减一 </span><br><span class="line">			k = t-&gt;ver;</span><br><span class="line">			if(--(graph[k].count)==0)&#123;		//若减一后入度为零则入栈 </span><br><span class="line">				stack[index++]=k;</span><br><span class="line">			&#125; </span><br><span class="line">			t=t-&gt;link; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return cnt;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">//	freopen(&quot;aa.txt&quot;,&quot;r&quot;,stdin); </span><br><span class="line">//	freopen(&quot;bb.txt&quot;,&quot;w&quot;,stdout); </span><br><span class="line">	init();</span><br><span class="line">	int count;</span><br><span class="line">	count = topo();</span><br><span class="line">	if(count != vex)&#123;</span><br><span class="line">		printf(&quot;Sorry!The graph exist loop&quot;);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		int i=0;</span><br><span class="line">		printf(&quot;TopologcialSort is:&quot;);</span><br><span class="line">		for(;i&lt;vex;i++)&#123;</span><br><span class="line">			printf(&quot;%d &quot;,TOPO[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -495,7 +485,7 @@ C语言结构代码为</p>
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

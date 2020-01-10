@@ -217,17 +217,14 @@
                 post-container">
 
                 <p>本篇论文是由加州大学圣地亚哥分校和FaceBook AI研究院的Saining Xie, Ross Girshick, Piotr Dollar, Zhuowen Tu, Kaiming He所作的<a href="https://arxiv.org/pdf/1611.05431.pdf" target="_blank" rel="noopener">Aggregated Residual Transformations for Deep Neural Networks</a>, 发表在2017年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>作者发现目前的视觉识别任务正在从&quot;特征工程&quot;到&quot;网络工程&quot;进行转变, 受到Inception模块分组卷积的启发, 对ResNet进行改进, 提出了ResNetXt模型.<br>
-Inception模块虽然复杂度较低，效果较好，但是其filter的设计针对性较强，不利于模型的迁移。将Inception中的分割、转换、聚合的三元操作融合进残差模块之中, 作者提出了基数cardinality的概念, 即一个module中的group数. 将ResNet中高维特征图分组为多个相同的低维特征图，然后在卷积操作之后，然后将多组结构进行求和.</p>
+<h2><span id="收获总结">收获总结</span></h2><p>作者发现目前的视觉识别任务正在从”特征工程”到”网络工程”进行转变, 受到Inception模块分组卷积的启发, 对ResNet进行改进, 提出了ResNetXt模型.<br>Inception模块虽然复杂度较低，效果较好，但是其filter的设计针对性较强，不利于模型的迁移。将Inception中的分割、转换、聚合的三元操作融合进残差模块之中, 作者提出了基数cardinality的概念, 即一个module中的group数. 将ResNet中高维特征图分组为多个相同的低维特征图，然后在卷积操作之后，然后将多组结构进行求和.</p>
 <p><img src="1.png" alt=""></p>
 <p>作者设计的module有两个原则</p>
 <ol>
 <li>如果产生的feature-map大小相同, 那么它们共享超参数(filter等)</li>
 <li>如果产生的feature-map减小一半, 那么group数量增加一倍.</li>
 </ol>
-<p>作者用实验证明了增加cardinality比增加模型的深度和宽度更有助于提高模型的精度.<br>
-由于使用共享超参数, ResNetXt相对于ResNet有更少的参数, 且精度更高.</p>
+<p>作者用实验证明了增加cardinality比增加模型的深度和宽度更有助于提高模型的精度.<br>由于使用共享超参数, ResNetXt相对于ResNet有更少的参数, 且精度更高.</p>
 
                 
 
@@ -440,7 +437,7 @@ Inception模块虽然复杂度较低，效果较好，但是其filter的设计�
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

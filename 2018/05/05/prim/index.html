@@ -227,37 +227,32 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=487587444&auto=1&height=66"></iframe>
 </div>
+
 <hr>
-<h1><span id="最小生成树">最小生成树</span></h1>
-<hr>
-<h2><span id="最小生成树介绍">最小生成树介绍</span></h2>
-<p><strong>最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。</strong></p>
+<h1><span id="最小生成树">最小生成树</span></h1><hr>
+<h2><span id="最小生成树介绍">最小生成树介绍</span></h2><p><strong>最小生成树：一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。</strong></p>
 <p>最小生成树的性质：设G=(V，E）是一个连通网络，U是顶点集V的一个非空真子集。若(u，v）是G中一条“一个端点在U中（例如：u∈U），另一个端点不在U中的边（例如：v∈V-U），且（u，v）具有最小权值，则一定存在G的一棵最小生成树包括此边（u，v）。</p>
 <blockquote>
 <p>注：一般来说最小生成树指的是无向连通图(有向连通图也可能由最小生成树，但一般不讨论)，且最小生成树不是唯一的。</p>
 </blockquote>
 <hr>
-<h2><span id="prim算法">Prim算法</span></h2>
-<hr>
-<h3><span id="实现步骤">实现步骤</span></h3>
-<hr>
+<h2><span id="prim算法">Prim算法</span></h2><hr>
+<h3><span id="实现步骤">实现步骤</span></h3><hr>
 <ol>
 <li>设有一个加权连通图，其中顶点集合为V，边集合为E；</li>
 <li>令$V_{new}$= {x}，其中x为集合V中的任一节点（起始点），$E_{new}$= {},为空；</li>
-<li>重复下列操作，直到$V_{new}$= V：</li>
-</ol>
-<ul>
-<li>在集合E中选取权值最小的边&lt;u, v&gt;，其中u为集合$V_{new}$中的元素，而v不在$V_{new}$集合当中，并且v∈V（如果存在有多条满足前述条件即具有相同权值的边，则可任意选取其中之一）；</li>
-<li>将v加入集合$V_{new}$中，将&lt;u, v&gt;边加入集合$E_{new}$中；</li>
+<li>重复下列操作，直到$V_{new}$= V：<ul>
+<li>在集合E中选取权值最小的边<u, v="">，其中u为集合$V_{new}$中的元素，而v不在$V_{new}$集合当中，并且v∈V（如果存在有多条满足前述条件即具有相同权值的边，则可任意选取其中之一）；</u,></li>
+<li>将v加入集合$V_{new}$中，将<u, v="">边加入集合$E_{new}$中；</u,></li>
 </ul>
+</li>
+</ol>
 <p>简单的说就是从V-E集合中不断取出最小权值的点加如到E中</p>
 <p>Prim算法的时间复杂度(无论是何种存储图的方式)为$O(n^2)$，与网中的边数无关。因此适合求边稠密的网的最小生成树。</p>
 <hr>
-<h3><span id="实例理解">实例理解</span></h3>
-<hr>
+<h3><span id="实例理解">实例理解</span></h3><hr>
 <p>如下图的一个无向带权图</p>
-<p><img src="1.png" alt=""><br>
-假设其从顶点1开始生成最小生成树,给出C语言代码</p>
+<p><img src="1.png" alt=""><br>假设其从顶点1开始生成最小生成树,给出C语言代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;malloc.h&gt;</span><br><span class="line"></span><br><span class="line">#define INF 1&lt;&lt;29		//无穷大 </span><br><span class="line">#define vex 6			//顶点个数</span><br><span class="line">#define bor 10			//边的个数</span><br><span class="line"></span><br><span class="line">int graph[vex][vex];</span><br><span class="line">int sum; </span><br><span class="line"> </span><br><span class="line">void init()&#123;</span><br><span class="line">	sum=0;</span><br><span class="line">	int i,j;</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">		for(j=0;j&lt;bor;j++)&#123;</span><br><span class="line">			if(i==j) graph[i][j]=0;</span><br><span class="line">			else&#123;</span><br><span class="line">				graph[i][j]=INF;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int a,b,c;</span><br><span class="line">	for(i=0;i&lt;bor;i++)&#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		graph[a][b]=c;</span><br><span class="line">		graph[b][a]=c;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">void prim()&#123;</span><br><span class="line">	int lowcost[vex];				//用来存储各个顶点到连通图的最小代价，为0表示该顶点在连通图中 </span><br><span class="line">	int close[vex];					//用来存储前驱结点 </span><br><span class="line">	int min,begin=0;</span><br><span class="line">	int i,j,k;</span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;				//初始化 ，从第0个顶点开始生成最小树。 </span><br><span class="line">		lowcost[i]=graph[begin][i];</span><br><span class="line">		close[i]=begin;</span><br><span class="line">	&#125; </span><br><span class="line">	for(i=0;i&lt;vex;i++)&#123;</span><br><span class="line">		if(i==begin) continue;</span><br><span class="line">		min=INF;</span><br><span class="line">		for(j=0;j&lt;vex;j++)&#123;						//找出与其相邻的最短边 </span><br><span class="line">			if(lowcost[j]!=0&amp;&amp;lowcost[j]&lt;min)&#123;</span><br><span class="line">				min=lowcost[j];</span><br><span class="line">				k=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;&#123;%d,%d&#125;%3d\n&quot;,close[k],k,graph[close[k]][k]);</span><br><span class="line">		sum+=graph[close[k]][k];</span><br><span class="line">		lowcost[k]=0;							//将k加入连通图内 </span><br><span class="line">		for(j=0;j&lt;vex;j++)&#123;</span><br><span class="line">			if(graph[k][j]!=0&amp;&amp;graph[k][j]&lt;lowcost[j])&#123;			//更新剩余点 </span><br><span class="line">				lowcost[j]=graph[k][j];</span><br><span class="line">				close[j]=k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">//	freopen(&quot;aa.txt&quot;,&quot;r&quot;,stdin); </span><br><span class="line">//	freopen(&quot;bb.txt&quot;,&quot;w&quot;,stdout); </span><br><span class="line">	init();</span><br><span class="line">	prim();	 </span><br><span class="line">	printf(&quot;sum  =  %d&quot;,sum);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0 1 6</span><br><span class="line">0 3 5</span><br><span class="line">0 2 1</span><br><span class="line">1 2 5</span><br><span class="line">2 3 5</span><br><span class="line">2 4 6</span><br><span class="line">1 4 3</span><br><span class="line">4 5 6</span><br><span class="line">2 5 4</span><br><span class="line">3 5 2</span><br></pre></td></tr></table></figure>
@@ -266,21 +261,17 @@
 <p>下面给出实现过程</p>
 <p><img src="2.png" alt=""></p>
 <hr>
-<h2><span id="kruskal算法">Kruskal算法</span></h2>
-<hr>
-<h3><span id="实现步骤">实现步骤</span></h3>
-<hr>
+<h2><span id="kruskal算法">Kruskal算法</span></h2><hr>
+<h3><span id="实现步骤">实现步骤</span></h3><hr>
 <p>假设 W=(V,{E}) 是一个含有 n 个顶点的连通网，则按照克鲁斯卡尔算法构造最小生成树的过程为：先构造一个只含 n 个顶点，而边集为空的子图，若将该子图中各个顶点看成是各棵树上的根结点，则它是一个含有 n 棵树的一个森林。之后，从网的边集 E 中选取一条权值最小的边，若该条边的两个顶点分属不同的树，则将其加入子图，也就是说，将这两个顶点分别所在的两棵树合成一棵树；反之，若该条边的两个顶点已落在同一棵树上，则不可取，而应该取下一条权值最小的边再试之。依次类推，直至森林中只有一棵树，也即子图中含有 n-1条边为止。</p>
 <p>简单的来说就是每次选取最短的边，如果两端点不在同一树内，则将两端点所在的树合并。</p>
 <p>Kruskal算法的时间复杂度为$O(e{log_2}e)$，其中e为网内的边数。因此它仅与边的个数有关，适合求边稀疏的网的最小生成树。</p>
 <hr>
-<h3><span id="kruskal与prim的比较">Kruskal与Prim的比较</span></h3>
-<hr>
+<h3><span id="kruskal与prim的比较">Kruskal与Prim的比较</span></h3><hr>
 <p>Prim算法：初始值为某个顶点(即仅有一个连通分量)，在该连通分量上不断添加边和顶点。直至所有顶点都在该连通分量中。</p>
 <p>Kruskal算法：初始值为n个顶点(即有n个连通分量(n颗仅有跟结点的树))，每次使连通分量减一(即树的合并)。最终使连通分量变为1。</p>
 <hr>
-<h3><span id="实例理解">实例理解</span></h3>
-<hr>
+<h3><span id="实例理解">实例理解</span></h3><hr>
 <p>给出上面例子的Kruskal过程</p>
 <p><img src="3.png" alt=""></p>
 
@@ -503,7 +494,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

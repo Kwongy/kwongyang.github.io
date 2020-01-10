@@ -217,8 +217,7 @@
                 post-container">
 
                 <p>本篇论文是由Facebook AI研究中心的Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, Ross Girshick所作的<a href="https://arxiv.org/abs/1911.05722" target="_blank" rel="noopener">Momentum Contrast for Unsupervised Visual Representation Learning</a>, 19年11月挂在arxiv上.</p>
-<h2><span id="收获总结">收获总结</span></h2>
-<p>本篇文章是一篇视觉方面无监督训练的文章, 何凯明为第一作者. 无监督训练在NLP领域应用很多, 而在视觉方面使用的却很少, 作者认为其原因可能源于它们各自信号空间的不同. 针对前人在视觉方面无监督训练的探索, 作者提出自己的解决方案, Momentum Contrast (MoCo).</p>
+<h2><span id="收获总结">收获总结</span></h2><p>本篇文章是一篇视觉方面无监督训练的文章, 何凯明为第一作者. 无监督训练在NLP领域应用很多, 而在视觉方面使用的却很少, 作者认为其原因可能源于它们各自信号空间的不同. 针对前人在视觉方面无监督训练的探索, 作者提出自己的解决方案, Momentum Contrast (MoCo).</p>
 <p>首先是Instance Discrimination, 就是无监督训练方法. 简单说就是将每张图片在训练数据集中的序号作为标签，它与训练集中其他所有图片都是异类。对同一张图片做（剪切，旋转，缩放，调色等 Augmentation）等增强产生的图片与源图片同类. 然后构建对比字典. 对比字典是一个由队列构成的动态字典, 这个字典在训练的过程中不断更新encoder的同时保存一个它的历史smooth的版本, 最终优化损失函数来进行学习. 损失函数表示一个正样本与K个负样本的 negative log-likelihood, 对应 (K+1)类的 softmax, 使用队列保存最近几个mini-batch中训练样本的特征表示，提供 K 个负样本。随着训练的继续，老的 mini-batch 被从队列中移除，新 mini-batch 的特征表示被加入队列，保证字典中的负样本都来自于最新的键编码器。</p>
 <p>除了无监督外, 本文还使用了很多训练用的trick, 比如动量, shuffle BN等等, 不做介绍.</p>
 <p>在实验中, 作者使用了64块GPU, 迭代训练了125万次, backbone为ResNet50.在下游的七个任务中(分类，检测，分割，生成), 除了语义分割外, 无监督都取得了比有监督更好的效果.</p>
@@ -434,7 +433,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>

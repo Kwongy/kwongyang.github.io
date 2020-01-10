@@ -217,113 +217,70 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=22201018&auto=1&height=66"></iframe>
 </div>
+
 <p>数据库学习半学期了，今天就简单的实现一下整个数据库设计流程，同时练习一下各种语法。</p>
-<h2><span id="系统用户分析">系统用户分析</span></h2>
-<p><img src="1.png" alt="图片"><br>
-本数据库系统设计的用户有:</p>
+<h2><span id="系统用户分析">系统用户分析</span></h2><p><img src="1.png" alt="图片"><br>本数据库系统设计的用户有:</p>
 <ul>
 <li>数据库系统管理人员:维护和管理数据库系统，并拥有系统所有权限。</li>
 <li>教学管理人员:负责管理教学教师和学生的相关信息，可以对教学教师与学生信息进行更改，同时负责课程的安排。</li>
 <li>教学教师:可对选择本教师课程的学生的学习成绩进行修改，同时可以查询学生的成绩信息和个人的任教情况。</li>
 <li>学生:本数据库中用户最多但是权限最低的人群，仅允许修改自己的个人信息、选修选修课情况和查询个人成绩信息。</li>
 </ul>
-<h2><span id="系统需求分析">系统需求分析</span></h2>
-<ol>
-<li>
-<p>学生对系统功能的需求<br>
-学生需要查询自己的学科成绩和课程安排，能够更改个人基本信息并能对自由选修选修课等。</p>
+<h2><span id="系统需求分析">系统需求分析</span></h2><ol>
+<li><p>学生对系统功能的需求<br>学生需要查询自己的学科成绩和课程安排，能够更改个人基本信息并能对自由选修选修课等。</p>
 </li>
-<li>
-<p>教师对系统功能的需求<br>
-教学教师可以查询自己所教学生的个人成绩、全班成绩、所教的课程安排等，并能修改个人基本信息，添加学生的课程成绩等。</p>
+<li><p>教师对系统功能的需求<br>教学教师可以查询自己所教学生的个人成绩、全班成绩、所教的课程安排等，并能修改个人基本信息，添加学生的课程成绩等。</p>
 </li>
-<li>
-<p>教学管理人员对系统功能的需求<br>
-教学管理人员可以查询和修改所有学生和教师的信息，但只能修改个人的信息。需要安排教师和学生上课时间和上课地点等。</p>
+<li><p>教学管理人员对系统功能的需求<br>教学管理人员可以查询和修改所有学生和教师的信息，但只能修改个人的信息。需要安排教师和学生上课时间和上课地点等。</p>
 </li>
-<li>
-<p>成绩管理对系统功能的需求<br>
-任课教师可以录入本门课程的学生成绩，录入成绩后系统需要提供不及格学生的名单，反馈给教师各个班的平均成绩和个人的成绩等。</p>
+<li><p>成绩管理对系统功能的需求<br>任课教师可以录入本门课程的学生成绩，录入成绩后系统需要提供不及格学生的名单，反馈给教师各个班的平均成绩和个人的成绩等。</p>
 </li>
-<li>
-<p>课程安排对系统功能的需求<br>
-教学管理人员根据任课教师所任教的课程安排相应的上课时间和上课地点，之后系统要反馈给任课教师和学生。</p>
+<li><p>课程安排对系统功能的需求<br>教学管理人员根据任课教师所任教的课程安排相应的上课时间和上课地点，之后系统要反馈给任课教师和学生。</p>
 </li>
-<li>
-<p>学生选修课对系统功能的需求<br>
-学生根据个人课表、选修课目录和选修课剩余容量自由选取一些选修课。</p>
+<li><p>学生选修课对系统功能的需求<br>学生根据个人课表、选修课目录和选修课剩余容量自由选取一些选修课。</p>
 </li>
 </ol>
-<h2><span id="系统功能模块设计">系统功能模块设计</span></h2>
-<p><img src="2.png" alt="图片"></p>
+<h2><span id="系统功能模块设计">系统功能模块设计</span></h2><p><img src="2.png" alt="图片"></p>
 <ol>
 <li>系统管理模块</li>
 </ol>
 <p><img src="3.png" alt="图片"></p>
 <ul>
-<li>用户管理模块<br>
-管理员拥有所有权限，对所有老师，学生的信息进行更改，同时为不同的用户(老师、学生)设置不同的权限。<br>
-该模块的功能是管理员可以查看所有用户、修改用户、增加用户、删除用户。</li>
+<li>用户管理模块<br>管理员拥有所有权限，对所有老师，学生的信息进行更改，同时为不同的用户(老师、学生)设置不同的权限。<br>该模块的功能是管理员可以查看所有用户、修改用户、增加用户、删除用户。</li>
 </ul>
-<p>(1)	查看用户：查询与用户有关的所有信息。<br>
-(2)	添加用户：添加用户信息、用户类型(学生，任课教师，教学管理人员)、用户登陆账号密码等，并为他们设置相应的权限。<br>
-(3)	修改用户：通过查询查找需要修改的信息，再做相关更改。<br>
-(4)	删除用户：把要删除的用户所有信息从数据库中删除。</p>
+<p>(1)    查看用户：查询与用户有关的所有信息。<br>(2)    添加用户：添加用户信息、用户类型(学生，任课教师，教学管理人员)、用户登陆账号密码等，并为他们设置相应的权限。<br>(3)    修改用户：通过查询查找需要修改的信息，再做相关更改。<br>(4)    删除用户：把要删除的用户所有信息从数据库中删除。</p>
 <ul>
-<li>
-<p>学生信息管理模块<br>
-(1)	查询学生信息：拥有查询学生信息权限的用户可以查询学生的相关信息。学生的信息包括：姓名、性别、学号、出生年月、年龄、所属院系、班级、家庭住址、联系方式、民族、爱好、课程和成绩。<br>
-(2)	修改学生记录：拥有相关权限的用户可以修改学生信息的部分字段。</p>
+<li><p>学生信息管理模块<br>(1)    查询学生信息：拥有查询学生信息权限的用户可以查询学生的相关信息。学生的信息包括：姓名、性别、学号、出生年月、年龄、所属院系、班级、家庭住址、联系方式、民族、爱好、课程和成绩。<br>(2)    修改学生记录：拥有相关权限的用户可以修改学生信息的部分字段。</p>
 </li>
-<li>
-<p>教师信息管理模块<br>
-(1)查询教师信息：拥有查询教师信息权限的用户可以查询教师的相关信息。教师的信息包括：姓名、性别、工号、出生年月、年龄、学历、所属院系、家庭住址、联系方式、民族、授课情况、工资。<br>
-(2)修改教师信息：拥有相关权限的用户可以修改教师信息的部分字段</p>
+<li><p>教师信息管理模块<br>(1)查询教师信息：拥有查询教师信息权限的用户可以查询教师的相关信息。教师的信息包括：姓名、性别、工号、出生年月、年龄、学历、所属院系、家庭住址、联系方式、民族、授课情况、工资。<br>(2)修改教师信息：拥有相关权限的用户可以修改教师信息的部分字段</p>
 </li>
-<li>
-<p>教室信息管理模块<br>
-(1)查询教室使用信息：用户可以查询教室的使用情况，教室使用情况包括：是否占用、所上课程、上课时间。<br>
-(2)修改教室信息：拥有相关权限的用户可以修改教室信息的部分字段</p>
+<li><p>教室信息管理模块<br>(1)查询教室使用信息：用户可以查询教室的使用情况，教室使用情况包括：是否占用、所上课程、上课时间。<br>(2)修改教室信息：拥有相关权限的用户可以修改教室信息的部分字段</p>
 </li>
 </ul>
-<ol start="2">
+<ol>
 <li>教学管理模块</li>
 </ol>
 <p><img src="4.png" alt="图片"></p>
 <ul>
-<li>教学情况管理模块<br>
-教学管理人员可以以多种方式查询学生考试成绩来统计任课教师的教学情况。统计不及格的学生、班级平均分，以此来选出优秀班级。同时可以调整课程的教学教师。</li>
+<li>教学情况管理模块<br>教学管理人员可以以多种方式查询学生考试成绩来统计任课教师的教学情况。统计不及格的学生、班级平均分，以此来选出优秀班级。同时可以调整课程的教学教师。</li>
 </ul>
 <ul>
-<li>
-<p>课程管理模块<br>
-教学管理人员和任课老师可以查询公共课和专业课的上课情况。教学管理人员可以排课，对教室的使用情况进行更改。课程包括<br>
-(1)	公共选修课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、可选人数。<br>
-(2)	专业课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、班级。</p>
+<li><p>课程管理模块<br>教学管理人员和任课老师可以查询公共课和专业课的上课情况。教学管理人员可以排课，对教室的使用情况进行更改。课程包括<br>(1)    公共选修课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、可选人数。<br>(2)    专业课：课程名称、学时、学分、上课地点、上课时间、任课教师、教师工号、学期、考试方式、班级。</p>
 </li>
-<li>
-<p>成绩管理模块<br>
-不同用户拥有不同权限。<br>
-(1)	学生查询成绩：学生可以查询自己所修课程的成绩信息。<br>
-(2)	任课教师和教学管理人员查询成绩：老师可以查询个人或者集体的成绩。<br>
-(3)	任课教师录入学生成绩：任课教师可以录入所授课程学生的期中、期末和平时成绩。<br>
-(4)	教学管理人员录入补考成绩：教学管理人员可以录入挂科学生的补考成绩。</p>
+<li><p>成绩管理模块<br>不同用户拥有不同权限。<br>(1)    学生查询成绩：学生可以查询自己所修课程的成绩信息。<br>(2)    任课教师和教学管理人员查询成绩：老师可以查询个人或者集体的成绩。<br>(3)    任课教师录入学生成绩：任课教师可以录入所授课程学生的期中、期末和平时成绩。<br>(4)    教学管理人员录入补考成绩：教学管理人员可以录入挂科学生的补考成绩。</p>
 </li>
-<li>
-<p>选课管理模块<br>
-教学管理人员可以设置学生专业课程，任课教师可以开设新的选修课程。学生可以选修公共课</p>
+<li><p>选课管理模块<br>教学管理人员可以设置学生专业课程，任课教师可以开设新的选修课程。学生可以选修公共课</p>
 </li>
 </ul>
-<h2><span id="数据库设计">数据库设计</span></h2>
-<ol>
+<h2><span id="数据库设计">数据库设计</span></h2><ol>
 <li>E-R图</li>
 </ol>
-<p><img src="5.png" alt="图片"><br>
-<img src="6.png" alt="图片"></p>
-<ol start="2">
+<p><img src="5.png" alt="图片"><br><img src="6.png" alt="图片"></p>
+<ol>
 <li>数据表结构设计</li>
 </ol>
-<p>(1)	学院表 AcademyTable</p>
+<p>(1)    学院表 AcademyTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -354,7 +311,9 @@
 </tr>
 </tbody>
 </table>
-<p>(2)	学生表	StudentTable</p>
+</div>
+<p>(2)    学生表    StudentTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -403,9 +362,9 @@
 <td style="text-align:left">Degree</td>
 <td style="text-align:center">年级</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|NOT NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 <tr>
 <td style="text-align:left">Class_id</td>
@@ -449,7 +408,9 @@
 </tr>
 </tbody>
 </table>
-<p>(3)	教师表	TeacherTable</p>
+</div>
+<p>(3)    教师表    TeacherTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -536,7 +497,9 @@
 </tr>
 </tbody>
 </table>
-<p>(4)	班级表	ClassTable</p>
+</div>
+<p>(4)    班级表    ClassTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -601,13 +564,15 @@
 <td style="text-align:left">Study_time</td>
 <td style="text-align:center">学制</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 </tbody>
 </table>
-<p>(5)	课程信息表	CourseInfo</p>
+</div>
+<p>(5)    课程信息表    CourseInfo</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -654,7 +619,9 @@
 </tr>
 </tbody>
 </table>
-<p>(6)	课程表	CourseTable</p>
+</div>
+<p>(6)    课程表    CourseTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -709,7 +676,9 @@
 </tr>
 </tbody>
 </table>
-<p>(7)	成绩表	ScoreTable</p>
+</div>
+<p>(7)    成绩表    ScoreTable</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -742,46 +711,46 @@
 <td style="text-align:left">Course_term</td>
 <td style="text-align:center">学期</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 <tr>
 <td style="text-align:left">Usual_score</td>
 <td style="text-align:center">平时成绩</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|	NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 <tr>
 <td style="text-align:left">Midterm_score</td>
 <td style="text-align:center">期中成绩</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|	NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 <tr>
 <td style="text-align:left">End_score</td>
 <td style="text-align:center">期末成绩</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|	NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 <tr>
 <td style="text-align:left">Score</td>
 <td style="text-align:center">总成绩</td>
 <td style="text-align:right">INT</td>
-<td style="text-align:left">|	NULL</td>
-<td style="text-align:center">\</td>
-<td style="text-align:right"></td>
+<td style="text-align:left">\</td>
+<td style="text-align:center">NULL</td>
+<td style="text-align:right">\</td>
 </tr>
 </tbody>
 </table>
-<h2><span id="数据库实现">数据库实现</span></h2>
-<ul>
+</div>
+<h2><span id="数据库实现">数据库实现</span></h2><ul>
 <li>创建数据库</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE EducationManagementSys</span><br><span class="line">ON</span><br><span class="line">(NAME = Datab ,FILENAME = &apos;C:\Users\Public\db\EducationManagementSys.MDF&apos;</span><br><span class="line">,MAXSIZE = 100 , FILEGROWTH = 5)</span><br><span class="line">LOG ON</span><br><span class="line">(NAME = DatabLog , FILENAME = &apos;C:\Users\Public\db\EducationManagementSyslog.LDF&apos;)</span><br></pre></td></tr></table></figure>
@@ -800,11 +769,11 @@
 <li>学生成绩视图</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW student_Score</span><br><span class="line">AS</span><br><span class="line">SELECT A.Student_id 学号,A.Student_name 姓名,C.Course_name 课程名称,</span><br><span class="line">	B.Usual_score 平时成绩,B.Midterm_score 期中成绩,B.End_score 期末成绩,B.Score 总成绩</span><br><span class="line">FROM StudentTable A,ScoreTable B,CourseInfo C</span><br><span class="line">WHERE A.Student_id=B.Student_id AND B.Course_id=C.Course_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<ol>
 <li>班级不及格人数与平均分视图</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW class_Summarizing</span><br><span class="line">AS</span><br><span class="line">SELECT A.Class_id 班级编号,C.Course_name 课程名称,</span><br><span class="line">AVG(B.Score) 班级平均分,SUM(CASE WHEN B.Score&lt;60 THEN 1 ELSE 0 END) 不及格人数</span><br><span class="line">FROM ClassTable A,ScoreTable B,CourseInfo C,StudentTable D</span><br><span class="line">GROUP BY A.Class_id,D.Class_id,D.Student_id,B.Student_id,c.Course_name</span><br><span class="line">HAVING D.Class_id=A.Class_id AND D.Student_id = B.Student_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-<ol start="3">
+<ol>
 <li>教师授课信息视图</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW teacher_Course</span><br><span class="line">AS</span><br><span class="line">SELECT A.Teacher_id 教师工号,A.Teacher_name 姓名,B.Course_class 上课班级,</span><br><span class="line">	B.Course_time 上课时间,B.Course_address 上课地点,C.Course_name 课程名称</span><br><span class="line">FROM TeacherTable A JOIN CourseTable B ON A.Teacher_id=B.Course_teacher</span><br><span class="line">	JOIN CourseInfo C ON B.Course_id=C.Course_id</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
@@ -815,11 +784,11 @@
 <li>根据班级编号查询班级内所有学生信息</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE classid_studentInfo</span><br><span class="line">@classid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT StudentTable.* FROM StudentTable</span><br><span class="line">WHERE Student_id=@classid</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<ol>
 <li>根据学生编号查询学生选修课程信息</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_Course</span><br><span class="line">@studentid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT B.Student_name 姓名,C.Course_name 课程名称,A.Usual_score 平时成绩,</span><br><span class="line">	A.Midterm_score 期中成绩,A.End_score 期末成绩, A.Score 总成绩</span><br><span class="line">FROM ScoreTable A,StudentTable B,CourseInfo C</span><br><span class="line">WHERE @studentid=B.Student_id AND B.Student_id=A.Student_id AND A.Course_id = C.Course_id</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-<ol start="3">
+<ol>
 <li>根据教师编号查询教师教授课程及平均成绩、最高最低分和不及格人数</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE teacher_Summary</span><br><span class="line">@teacherid CHAR(12)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">SELECT D.Teacher_name 姓名,B.Course_name 课程名称,AVG(C.Score) 平均分,MAX(C.Score),</span><br><span class="line">	MIN(C.score),SUM(CASE WHEN C.Score&lt;60 THEN 1 ELSE 0 END) 不及格人数</span><br><span class="line">FROM CourseTable A,CourseInfo B,ScoreTable C,TeacherTable D</span><br><span class="line">GROUP BY A.Course_teacher,D.Teacher_name,B.Course_name,A.Course_id,B.Course_id,C.Course_id,D.Teacher_id</span><br><span class="line">HAVING A.Course_teacher=@teacherid AND A.Course_id = B.Course_id AND</span><br><span class="line">	B.Course_id=C.Course_id AND A.Course_teacher=D.Teacher_id</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
@@ -1039,7 +1008,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">178.8k words altogether</span>
+					<span class="post-count">177.9k words altogether</span>
 				</p>
             </div>
         </div>
