@@ -144,13 +144,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -159,6 +152,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -214,22 +214,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>今天同学问我一个问题给我问懵了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">pred = torch.Tensor([[1, 0, 0, 0, 0]])</span><br><span class="line">lab = torch.LongTensor([0])</span><br><span class="line">z = F.cross_entropy(pred, lab)</span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure></p>
-<p>答案是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor(0.9048)</span><br></pre></td></tr></table></figure></p>
-<p>猛地一看, 一脸懵逼..  这不是正确的预测吗, 为什么cross entropy出来个0.9048?</p>
-<h2><span id="cross-entropy-详解">Cross Entropy 详解</span></h2><p>我们知道Cross Entropy的公式为</p>
-<script type="math/tex; mode=display">cross\_entropy(pred, lab)=-\sum_{n=1}^{N}{lab_i\cdot\log{(pred_i)}}</script><p>这里的$pred,lab$都是$1\times N$的向量, 且$pred_i$中每个值应该为0到1之间数,代表概率, 它们的总和为1.</p>
-<p>首先我们来看看Pytorch中, Cross Entropy是如何实现的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@weak_script</span><br><span class="line">def cross_entropy(input, target, weight=None, size_average=None, ignore_index=-100,</span><br><span class="line">                  reduce=None, reduction=&apos;mean&apos;):</span><br><span class="line">    if size_average is not None or reduce is not None:</span><br><span class="line">        reduction = _Reduction.legacy_get_string(size_average, reduce)</span><br><span class="line">    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)</span><br></pre></td></tr></table></figure></p>
+                <p>今天同学问我一个问题给我问懵了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">pred = torch.Tensor([[1, 0, 0, 0, 0]])</span><br><span class="line">lab = torch.LongTensor([0])</span><br><span class="line">z = F.cross_entropy(pred, lab)</span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure>
+<p>答案是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor(0.9048)</span><br></pre></td></tr></table></figure>
+<p>猛地一看, 一脸懵逼…  这不是正确的预测吗, 为什么cross entropy出来个0.9048?</p>
+<h2><span id="cross-entropy-详解">Cross Entropy 详解</span></h2>
+<p>我们知道Cross Entropy的公式为<br>
+$$cross_entropy(pred, lab)=-\sum_{n=1}^{N}{lab_i\cdot\log{(pred_i)}}$$<br>
+这里的$pred,lab$都是$1\times N$的向量, 且$pred_i$中每个值应该为0到1之间数,代表概率, 它们的总和为1.</p>
+<p>首先我们来看看Pytorch中, Cross Entropy是如何实现的.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@weak_script</span><br><span class="line">def cross_entropy(input, target, weight=None, size_average=None, ignore_index=-100,</span><br><span class="line">                  reduce=None, reduction=&apos;mean&apos;):</span><br><span class="line">    if size_average is not None or reduce is not None:</span><br><span class="line">        reduction = _Reduction.legacy_get_string(size_average, reduce)</span><br><span class="line">    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)</span><br></pre></td></tr></table></figure>
 <p>源码中, 首先对输入的pred做了log_softmax.接着使用了nll_loss函数, 最终返回的值就是答案.</p>
-<h2><span id="log_softmax">log_softmax</span></h2><p>log_softmax很好理解, 就是先求softmax, 再对结果取log.</p>
-<script type="math/tex; mode=display">softmax(x_i)=\frac{\exp(x_i)}{\sum_{j=1}^{N}\exp(x_j)}</script><script type="math/tex; mode=display">log\_softmax(x_i)=\log(softmax(x_i))</script><p>以最开始的题目为例,  $pred=[1, 0, 0, 0, 0]$, 我们计算一下它的log_softmax值.对于第0号元素$1$.</p>
-<script type="math/tex; mode=display">softmax(x_0)=\frac{\exp(1)}{\exp(1) + \exp(0) \times 4} = 0.40460967519168967</script><script type="math/tex; mode=display">log\_softmax(x_0)=log(softmax(x_0))=\log(0.404609)=-0.904832</script><p>同理,第1,2,3,4号元素为$0$, 它们的log_softmax为</p>
-<script type="math/tex; mode=display">softmax(x_1)=\frac{\exp(0)}{\exp(1) + \exp(0) \times 4} = 0.14884758120207758</script><script type="math/tex; mode=display">log\_softmax(x_1)=log(softmax(x_0))=\log(0.148847)=-1.904832</script><h2><span id="nn_loss">nn_loss</span></h2><p>nn_loss的全称为negative log likelihood loss, 函数表达式为</p>
-<script type="math/tex; mode=display">f(x, class)=-x[class]</script><p>其中$x$为预测的结果是一个$1\times N$的向量,$class$为正确的样本序号, 是一个标量.<br>举个简单的例子解释一下.假设$x=[1, 2, 3]$, $class=1$,那么$f(x, class)=-x[1]=-2$.(注: 这里的class序号从0开始)               </p>
-<h2><span id="总结">总结</span></h2><p>上面已经介绍了cross entropy的公式. 对于开头的例子, 它的$\log(pred)=[-0.9048, -1.9048,-1.9048 ,-1.9048,-1.9048]$, 由于标签为0,将它扩展成one-hot方式为$[1, 0, 0, 0, 0]$,那么它的$cross_entropy=-(1 \times -0.9048 + 0 \times -1.9048 \times 4) = 0.9048$.</p>
+<h2><span id="log_softmax">log_softmax</span></h2>
+<p>log_softmax很好理解, 就是先求softmax, 再对结果取log.<br>
+$$softmax(x_i)=\frac{\exp(x_i)}{\sum_{j=1}^{N}\exp(x_j)}$$<br>
+$$log_softmax(x_i)=\log(softmax(x_i))$$</p>
+<p>以最开始的题目为例,  $pred=[1, 0, 0, 0, 0]$, 我们计算一下它的log_softmax值.对于第0号元素$1$.<br>
+$$softmax(x_0)=\frac{\exp(1)}{\exp(1) + \exp(0) \times 4} = 0.40460967519168967$$<br>
+$$log_softmax(x_0)=log(softmax(x_0))=\log(0.404609)=-0.904832$$<br>
+同理,第1,2,3,4号元素为$0$, 它们的log_softmax为<br>
+$$softmax(x_1)=\frac{\exp(0)}{\exp(1) + \exp(0) \times 4} = 0.14884758120207758$$<br>
+$$log_softmax(x_1)=log(softmax(x_0))=\log(0.148847)=-1.904832$$</p>
+<h2><span id="nn_loss">nn_loss</span></h2>
+<p>nn_loss的全称为negative log likelihood loss, 函数表达式为<br>
+$$f(x, class)=-x[class]$$<br>
+其中$x$为预测的结果是一个$1\times N$的向量,$class$为正确的样本序号, 是一个标量.<br>
+举个简单的例子解释一下.假设$x=[1, 2, 3]$, $class=1$,那么$f(x, class)=-x[1]=-2$.(注: 这里的class序号从0开始)</p>
+<h2><span id="总结">总结</span></h2>
+<p>上面已经介绍了cross entropy的公式. 对于开头的例子, 它的$\log(pred)=[-0.9048, -1.9048,-1.9048 ,-1.9048,-1.9048]$, 由于标签为0,将它扩展成one-hot方式为$[1, 0, 0, 0, 0]$,那么它的$cross_entropy=-(1 \times -0.9048 + 0 \times -1.9048 \times 4) = 0.9048$.</p>
 <p>仔细观察可以知道，因为$lab_i$的元素不是$0$就是$1$，而且又是乘法，所以很自然地我们如果知道$1$所对应的$index$，那么就不用做其他无意义的运算了。所以在pytorch代码中target不是以one-hot形式表示的，而是直接用scalar表示。</p>
-<script type="math/tex; mode=display">cross\_entropy(x, class)=-\log(\frac{\exp(x[class])}{\sum_j\exp{x[j]}})</script><p>可以看出, 这是不是相当于$log_softmax$后直接使用$nn_loss$, 这就是pytorch中cross entropy的解析.</p>
-<p>参考:<br><a href="https://www.cnblogs.com/marsggbo/p/10401215.html" target="_blank" rel="noopener">Pytorch里的CrossEntropyLoss详解</a></p>
+<p>$$cross_entropy(x, class)=-\log(\frac{\exp(x[class])}{\sum_j\exp{x[j]}})$$</p>
+<p>可以看出, 这是不是相当于$log_softmax$后直接使用$nn_loss$, 这就是pytorch中cross entropy的解析.</p>
+<p>参考:<br>
+<a href="https://www.cnblogs.com/marsggbo/p/10401215.html" target="_blank" rel="noopener">Pytorch里的CrossEntropyLoss详解</a></p>
 
                 
 
@@ -440,7 +458,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,14 +217,15 @@
                 post-container">
 
                 <p>本篇文章是由清华大学的Zhuang Liu和康乃尔大学的Gao Huang所作的<a href="https://arxiv.org/pdf/1608.06993.pdf" target="_blank" rel="noopener">Densely Connected Convolutional Networks</a>,论文发表在2017年CVPR上。</p>
-<h2><span id="总结收获">总结收获</span></h2><p>作者发现使用随机深度可以提升ResNet-1202的训练效果，这就说明了ResNet中存在大量的冗余。因此，他们提出了一种密集连接的网络DenseNet。</p>
+<h2><span id="总结收获">总结收获</span></h2>
+<p>作者发现使用随机深度可以提升ResNet-1202的训练效果，这就说明了ResNet中存在大量的冗余。因此，他们提出了一种密集连接的网络DenseNet。</p>
 <p><img src="1.png" alt=""></p>
 <p>该网络每一个DenseBlock中每个层的输入是前面所有层的输出之和。这样的结构可以减少网络参数，避免ResNet中可能出现的缺点。同时，在每一个DenseBlock之间加入bottleneck layer(1x1卷积)，用于降维和减少参数。达到ResNet的精度水平，DenseBlock仅需要其三分之一的参数。</p>
 <p>模型优点。</p>
 <ol>
-<li>减轻了消失梯度（梯度消失） </li>
-<li>加强了特征的传递 </li>
-<li>更有效地利用了特征 </li>
+<li>减轻了消失梯度（梯度消失）</li>
+<li>加强了特征的传递</li>
+<li>更有效地利用了特征</li>
 <li>一定程度上较少了参数数量</li>
 </ol>
 
@@ -439,7 +440,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

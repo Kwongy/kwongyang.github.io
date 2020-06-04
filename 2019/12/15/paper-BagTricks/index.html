@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由亚马逊实验室的Tong He, Zhi Zhang, Hang Zhang, Zhongyue Zhang, Junyuan Xie, Mu Li所作的<a href="https://arxiv.org/abs/1812.01187" target="_blank" rel="noopener">Bag of Tricks for Image Classification with Convolutional Neural Networks</a>, 发表在2019年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>论文复现对很多人而言难度都比较大，因为常常涉及很多细节，部分细节对于模型效果影响很大，但是却很少有文章介绍这些细节，本篇论文就是专门详细描述各种图像领域调参Trick的文章, 包括各种小Trick的内容并测试它们的效果.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>论文复现对很多人而言难度都比较大，因为常常涉及很多细节，部分细节对于模型效果影响很大，但是却很少有文章介绍这些细节，本篇论文就是专门详细描述各种图像领域调参Trick的文章, 包括各种小Trick的内容并测试它们的效果.</p>
 <p>作者首先选用了ResNet50作为基线, 并且使用了数据增强. 具体的做法有</p>
 <ol>
 <li>每个像素除以255,做归一化</li>
@@ -227,12 +228,13 @@
 <li>以正态分布N(0, 0.1)对图像添加PCA噪声</li>
 <li>对每一个图像通道进行标准化(减去均值除以方差)</li>
 </ol>
-<p>在验证集上, 保持图片的长宽比例不变, 将短边缩放到256像素, 然后随机裁剪$224\times 224$. 模型的参数随机初始化成$[-a, a]$其中</p>
-<script type="math/tex; mode=display">a=\sqrt{6/(d_{in}+d_{out})}</script><p>$d_{in},d_{out}$分别是输入图片的通道数和模型输出的通道数, 所有的bias初始化为0, batch normalization层中$\gamma$初始化为1, $\beta$初始化为0, 模型使用8块V100GPU训练120个epoch,Batch size设置为256, 初始学习率为0.1, 每30个epoch 学习率降低10倍. 使用了这种训练技巧的结果比参考更好.</p>
+<p>在验证集上, 保持图片的长宽比例不变, 将短边缩放到256像素, 然后随机裁剪$224\times 224$. 模型的参数随机初始化成$[-a, a]$其中<br>
+$$a=\sqrt{6/(d_{in}+d_{out})}$$<br>
+$d_{in},d_{out}$分别是输入图片的通道数和模型输出的通道数, 所有的bias初始化为0, batch normalization层中$\gamma$初始化为1, $\beta$初始化为0, 模型使用8块V100GPU训练120个epoch,Batch size设置为256, 初始学习率为0.1, 每30个epoch 学习率降低10倍. 使用了这种训练技巧的结果比参考更好.</p>
 <p><img src="1.png" alt=""></p>
 <p>第二部分: 有效的训练技巧</p>
-<p>首先是批训练, 小批量梯度下降法可以并行, 减少运行开销. 而使用大批量会减慢训练进度, 并且对于凸优化来说, 大批量也不利于收敛. 在小批量梯度下降法中, batch size的大小并不影响随机梯度的均值, 但会影响它的方差, batch size越大, 就可以减少造型对模型的影响, 换句话说就可以选择更大的学习率来更新梯度. </p>
-<p>除了batch size, 学习率的更新还有一种方法warmup. 在训练刚开始时, 模型并不稳定, 如果选择一个大的学习率会导致模型不稳定,  warmup的做法是, 在训练的开始先选一个较小的学习率, 在更新一定次数后, 将学习率调整为较大的学习率, </p>
+<p>首先是批训练, 小批量梯度下降法可以并行, 减少运行开销. 而使用大批量会减慢训练进度, 并且对于凸优化来说, 大批量也不利于收敛. 在小批量梯度下降法中, batch size的大小并不影响随机梯度的均值, 但会影响它的方差, batch size越大, 就可以减少造型对模型的影响, 换句话说就可以选择更大的学习率来更新梯度.</p>
+<p>除了batch size, 学习率的更新还有一种方法warmup. 在训练刚开始时, 模型并不稳定, 如果选择一个大的学习率会导致模型不稳定,  warmup的做法是, 在训练的开始先选一个较小的学习率, 在更新一定次数后, 将学习率调整为较大的学习率,</p>
 <p>每个残差块的最后一个BN层的$\gamma$参数初始化为0, 作者认为初始化为0更有利于模型的训练。</p>
 <p>不对bias参数执行weight decay操作, weight decay主要的作用就是通过对网络层的参数（包括weight和bias）做约束（L2正则化会使得网络层的参数更加平滑）达到减少模型过拟合的效果。</p>
 <p>除此之外, 我们通常使用的是32位精度的浮点运算进行训练, 如果可以换成16位精度的浮点数运算就可以加快训练. 不过作者提出的技巧只有在V100GPU上才能实现.</p>
@@ -244,7 +246,8 @@
 <li>知识蒸馏（knowledge distillation）,  这部分其实是模型加速压缩领域的一个重要分支，表示用一个效果更好的teacher model训练student model，使得student model在模型结构不改变的情况下提升效果。作者采用ResNet-152作为teacher model，用ResNet-50作为student model，代码上通过在ResNet网络后添加一个蒸馏损失函数实现，这个损失函数用来评价teacher model输出和student model输出的差异，因此整体的损失函数原损失函数和蒸馏损失函数的结合</li>
 <li>mixup, mixup也是一种数据增强方式, 每次读取两张图片, 以一定比例将两幅图像进行混合</li>
 </ol>
-<p>最终, 这四种技巧的训练结果如图所示<br><img src="2.png" alt=""></p>
+<p>最终, 这四种技巧的训练结果如图所示<br>
+<img src="2.png" alt=""></p>
 <p>同时, 作者使用了迁移学习验证了这些技巧在语义分割和目标检测中同样拥有很好的性能.</p>
 
                 
@@ -458,7 +461,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

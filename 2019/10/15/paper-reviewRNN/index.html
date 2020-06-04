@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,25 +217,35 @@
                 post-container">
 
                 <p>本篇论文是由加州大学圣地亚哥分校的Zachary C. Lipton所做的<a href="https://arxiv.org/pdf/1506.00019v1.pdf" target="_blank" rel="noopener">A Critical Review of Recurrent Neural Networks for Sequence Learning</a>, 2015年在arxiv上preprint, 本篇论文是一篇关于RNN的综述.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>论文首先介绍了传统的RNN</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>论文首先介绍了传统的RNN</p>
 <ol>
 <li>Jordan在1986年提出的RNN</li>
 </ol>
 <p><img src="1.png" alt=""></p>
 <p>这个模型是序列化的监督学习模型,红绿蓝为全连接神经网络，然后加了黄色的context units，通过context units将Output输出的信息重新传导回隐藏层, 为了减少梯度爆炸, Output连接到context units的权重置为1, LSTM也借用了这种思想来减少梯度爆炸.</p>
-<ol>
+<ol start="2">
 <li>Elman在1990年提出的RNN</li>
 </ol>
 <p><img src="2.png" alt=""></p>
 <p>简化了Jordan的RNN，隐藏层的输出直接连接到context units，且权重恒为1。context units重新连回隐藏层，这样利用context units形成了信息循环。</p>
-<ol>
+<ol start="3">
 <li>现代的RNN</li>
 </ol>
-<p>现代的RNN主要是LSTM和BRNN, 其中LSTM使用memory cell来代替context units.<br>最初的LSTM如下图所示<br><img src="3.png" alt=""><br>$\prod$代表连乘, 就是将输入进该单元的元素进行连乘.<br>$\sigma$代表激活函数, 一开始使用sigmoid, 后来大部分改用tanh<br>虚线箭头代表由上一个时间点得到的输出.其中$o_c^{(t)}$称为输出门, 用来控制输出.$i_c^{(t)}$ 称为输入门, 用于控制输入是否进入memory cell. $g_c^{(t)}$称为Input node, 就是上一个时间节点的输出.$s_c^{(t)}$自连的这条边，权重恒为1，用来传送上一个时间步的误差，称为Constant error carousel，简称CEC.</p>
-<p>由于早期信息不断累加造成梯度越来越大, 会大大影响后面的结点效果, 下面介绍带遗忘门的LSTM<br><img src="4.png" alt=""><br>$f_c^{(t)}$称为遗忘门,   如果遗忘门值为0, 那么通过连乘单元, 前期的所有记忆均被重置为0, 且$s_c^{(t)}$ 自循环的边的权值也不再为1, 而是可以通过学习得到的可变值.遗忘门的作用在于刷新CEC传送的信息, 即时遗忘掉前期冗余的记忆.</p>
-<p>在时间线上展开的LSTM<br><img src="6.png" alt=""></p>
+<p>现代的RNN主要是LSTM和BRNN, 其中LSTM使用memory cell来代替context units.<br>
+最初的LSTM如下图所示<br>
+<img src="3.png" alt=""><br>
+$\prod$代表连乘, 就是将输入进该单元的元素进行连乘.<br>
+$\sigma$代表激活函数, 一开始使用sigmoid, 后来大部分改用tanh<br>
+虚线箭头代表由上一个时间点得到的输出.其中$o_c^{(t)}$称为输出门, 用来控制输出.$i_c^{(t)}$ 称为输入门, 用于控制输入是否进入memory cell. $g_c^{(t)}$称为Input node, 就是上一个时间节点的输出.$s_c^{(t)}$自连的这条边，权重恒为1，用来传送上一个时间步的误差，称为Constant error carousel，简称CEC.</p>
+<p>由于早期信息不断累加造成梯度越来越大, 会大大影响后面的结点效果, 下面介绍带遗忘门的LSTM<br>
+<img src="4.png" alt=""><br>
+$f_c^{(t)}$称为遗忘门,   如果遗忘门值为0, 那么通过连乘单元, 前期的所有记忆均被重置为0, 且$s_c^{(t)}$ 自循环的边的权值也不再为1, 而是可以通过学习得到的可变值.遗忘门的作用在于刷新CEC传送的信息, 即时遗忘掉前期冗余的记忆.</p>
+<p>在时间线上展开的LSTM<br>
+<img src="6.png" alt=""></p>
 <p>另外一种RNN称为BRNN, 双向循环神经网络，它同时收集序列当前时间点前面和后面的信息，这和人类阅读时根据上下文来理解文章类似。</p>
-<p><img src="5.png" alt=""><br>有两个隐藏层，一个顺向收集前面信息，一个逆向收集后面信息, 通过循环来了解t-1时刻和t+1时刻的状态.</p>
+<p><img src="5.png" alt=""><br>
+有两个隐藏层，一个顺向收集前面信息，一个逆向收集后面信息, 通过循环来了解t-1时刻和t+1时刻的状态.</p>
 
                 
 
@@ -448,7 +458,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,9 +216,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>本文是由北卡罗来纳大学教堂山分校,密歇根大学安娜堡分校和谷歌公司的Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy,<br>Scott Reed, Cheng-Yang Fu, Alexander C. Berg所作的<a href="https://arxiv.org/pdf/1512.02325.pdf" target="_blank" rel="noopener">SSD - Single Shot MultiBox Detector</a>,发表在2016年ECCV上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p> 目标检测主要分为两种方法, 第一是以R-CNN, Fast-RCNN为主的two stage方法,先生成候选区域(region proposals),再对每个候选区域进行筛选和分类并做精细修整. 由于会产生大量的无用候选区,计算量非常大,效率较低,但是准确率比较高. 第二种是以YOLO为主的one stage方法, 它无需生成候选区域, 仅仅需要扫描一次图片即可生成物体的bounding box和类别信息. 由于模型比较简单,因此准确率比较低,特别是小物体的检测, 准确率远低于two stage方法.</p>
-<p> 本篇论文是目标检测领域的经典文章之一.属于one stage的方法之一.针对YOLO方法中的缺陷,作者提出了改进. 一是使用多尺度特征图进行检测,增加对小物体识别. SSD是以VGG16为骨架,把最后的全连接层去掉并添加卷积层,输入为$300\times300$,有6个不同的特征图,大小分别为$38\times38$,$19\times19$,$10\times10$,$5\times5$,$3\times3$,$1\times1$.在two stage中,由于产生大量的region proposals造成的计算量太大,SSD使用Default boxes来代替,对于每个特征图中的$1\times1$方格中设置4个或者6个不同的aspect ratios,对于每一个类一共设置了$4\times38\times48+6\times(19\times19+10\times10+5\times5)+4\times3\times4+4\times1\times1=8732$个default boxes. 针对YOLO中使用全连接层来分类, SSD使用了$3\times3$的卷积层来进行进行分类.一共使用$k\times C + 4)$个$3\times3$的卷积核. k代表default boxes的个数,C 代表分辨的类别个数, 4代表default boxes的中点x, y, 宽w和高h.</p>
+                <p>本文是由北卡罗来纳大学教堂山分校,密歇根大学安娜堡分校和谷歌公司的Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy,<br>
+Scott Reed, Cheng-Yang Fu, Alexander C. Berg所作的<a href="https://arxiv.org/pdf/1512.02325.pdf" target="_blank" rel="noopener">SSD - Single Shot MultiBox Detector</a>,发表在2016年ECCV上.</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>目标检测主要分为两种方法, 第一是以R-CNN, Fast-RCNN为主的two stage方法,先生成候选区域(region proposals),再对每个候选区域进行筛选和分类并做精细修整. 由于会产生大量的无用候选区,计算量非常大,效率较低,但是准确率比较高. 第二种是以YOLO为主的one stage方法, 它无需生成候选区域, 仅仅需要扫描一次图片即可生成物体的bounding box和类别信息. 由于模型比较简单,因此准确率比较低,特别是小物体的检测, 准确率远低于two stage方法.</p>
+<p>本篇论文是目标检测领域的经典文章之一.属于one stage的方法之一.针对YOLO方法中的缺陷,作者提出了改进. 一是使用多尺度特征图进行检测,增加对小物体识别. SSD是以VGG16为骨架,把最后的全连接层去掉并添加卷积层,输入为$300\times300$,有6个不同的特征图,大小分别为$38\times38$,$19\times19$,$10\times10$,$5\times5$,$3\times3$,$1\times1$.在two stage中,由于产生大量的region proposals造成的计算量太大,SSD使用Default boxes来代替,对于每个特征图中的$1\times1$方格中设置4个或者6个不同的aspect ratios,对于每一个类一共设置了$4\times38\times48+6\times(19\times19+10\times10+5\times5)+4\times3\times4+4\times1\times1=8732$个default boxes. 针对YOLO中使用全连接层来分类, SSD使用了$3\times3$的卷积层来进行进行分类.一共使用$k\times C + 4)$个$3\times3$的卷积核. k代表default boxes的个数,C 代表分辨的类别个数, 4代表default boxes的中点x, y, 宽w和高h.</p>
 
                 
 
@@ -431,7 +433,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

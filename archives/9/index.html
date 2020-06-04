@@ -136,13 +136,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -151,6 +144,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,6 +213,38 @@
 
 <div class="post-preview">
 
+    <a href="/2018/06/21/aimdetect/">
+        <h2 class="post-title">
+            吴恩达深度学习Part 3,Week 4
+        </h2>
+        <h3 class="post-subtitle">
+            Aim detection
+        </h3>
+        <div class="post-content-preview">
+            Object localization
+
+Classification with localization which means not only do you have to label this,but the algorithm also is responsible for putting a bounding box or drawing a red rectangle arou......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Kwong on
+            2018-06-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+              <a href="/tags/#Python" title="Python">Python</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2018/06/19/deepConv/">
         <h2 class="post-title">
             吴恩达深度学习Part 4,Week 2
@@ -222,23 +254,26 @@
         </h3>
         <div class="post-content-preview">
             Classic network
+
 LeNet-5
+
 LeNet-5 was trained on grayscale images
 
 
 AlexNet
 
 
+
 VGG - 16
 
 
+
 Residual Networks(ResNets)
+
 ResNets are built out of something called a residual block
 
 
-Inception network
-
-Cos......
+Inception network......
         </div>
     </a>
     
@@ -270,10 +305,11 @@ Cos......
         <div class="post-content-preview">
             Convolution operation
 
+
 From the top left，Take the inner product by useing the same matrix as the filter.And do the same thing.And so on, from left to right, from top to bottom.
 
 
-More edge detectio......
+More edge detecti......
         </div>
     </a>
     
@@ -304,12 +340,13 @@ More edge detectio......
         </h3>
         <div class="post-content-preview">
             Carrying out error analysis
+
 Error analysis:
 
 Get 100 mislabeled dev set example
 Count up how many are the same things
 
-You should find a set of mislabeled examples,either in your dev set,or in your......
+You should find a set of mislabeled examples,either in your dev set,or in you......
         </div>
     </a>
     
@@ -340,15 +377,20 @@ You should find a set of mislabeled examples,either in your dev set,or in your..
         </h3>
         <div class="post-content-preview">
             Orthogonalization
+
 Chain of assumptions in Machine Learning
+
 
 Fit training set well on cost function
 
+
 Fit dev set well on cost function
+
 
 Fit test set well on cost function
 
-Performs well on cost func......
+
+Performs well on cost......
         </div>
     </a>
     
@@ -379,7 +421,8 @@ Performs well on cost func......
         </h3>
         <div class="post-content-preview">
             Using an appropriate scale to pick hyperparameters
-Let’s say that you suspect 0.0001 might be on the low end,or maybe it could be as high as 1.It seems more reasonable to search for hyperparameters......
+
+Let’s say that you suspect 0.0001 might be on the low end,or maybe it could be as high as 1.It seems more reasonable to search for hyperparameter......
         </div>
     </a>
     
@@ -410,7 +453,9 @@ Let’s say that you suspect 0.0001 might be on the low end,or maybe it could be
         </h3>
         <div class="post-content-preview">
             Mini-batch
-Let’s say that you split up your training set into smaller,little baby training sets and these baby training sets are called mini-batches.Batch gradient descent,refers to the gradient de......
+
+Let’s say that you split up your training set into smaller,little baby training sets and these baby training sets are called mini-batches.
+Batch gradient descent,refers to the gradient ......
         </div>
     </a>
     
@@ -441,7 +486,9 @@ Let’s say that you split up your training set into smaller,little baby trainin
         </h3>
         <div class="post-content-preview">
             Train/dev/test Sets
-How to make your neural network work well by setting your data?It’t almost impossible to correctly guess the right values for all parameters,so in practice applied machine learn......
+
+How to make your neural network work well by setting your data?
+It’t almost impossible to correctly guess the right values for all parameters,so in practice applied machine lea......
         </div>
     </a>
     
@@ -471,11 +518,15 @@ How to make your neural network work well by setting your data?It’t almost imp
             ID3、C4.5&CART for Decision Tree
         </h3>
         <div class="post-content-preview">
-            本文大部分内容来自大牛决策树算法原理抄也是学习的过程，嘻嘻~~~
+            本文大部分内容来自大牛
+决策树算法原理
+抄也是学习的过程，嘻嘻~~~
 
 开始今天的学习，首先科普一下基本知识
-过拟合&amp;欠拟合过拟合：所谓过拟合（over-fitting）其实就是所建模型在训练样本中表现得过于优越，导致在验证数据集以及测试数据集中表现不佳。
-举个栗子：做人的识别的时候，我们的训练集都是短发男生，因此建立的模型会将短发男生身上所有的特点都包含进去，可以很完美的识别出他是人。......
+过拟合&amp;欠拟合
+过拟合：所谓过拟合（over-fitting）其实就是所建模型在训练样本中表现得过于优越，导致在验证数据集以及测试数据集中表现不佳。
+举个栗子：
+做人的识别的时候，我们的训练集都是短发男生，因此建立的模型会将短发男生身上所有的特点都包含进去，可以很完美的识别出......
         </div>
     </a>
     
@@ -485,11 +536,11 @@ How to make your neural network work well by setting your data?It’t almost imp
         </p>
         <div class="tags">
             
-              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+              <a href="/tags/#DataMining" title="DataMining">DataMining</a>
             
               <a href="/tags/#Python" title="Python">Python</a>
             
-              <a href="/tags/#DataMining" title="DataMining">DataMining</a>
+              <a href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
             
         </div>
     
@@ -508,7 +559,8 @@ How to make your neural network work well by setting your data?It’t almost imp
         </h3>
         <div class="post-content-preview">
             Deep neural network
-You are able to implement your own deep neural network by combining the preivous knowledge,such as one layer neural network and logistic regression and so on. 
+
+You are able to implement your own deep neural network by combining the preivous knowledge,such as one layer neural network and logistic regression and so on.
 Look at the pictu......
         </div>
     </a>
@@ -516,43 +568,6 @@ Look at the pictu......
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Kwong on
             2018-06-03
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
-            
-              <a href="/tags/#Python" title="Python">Python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/06/01/onelayerNN/">
-        <h2 class="post-title">
-            吴恩达深度学习Part 1,Week 3
-        </h2>
-        <h3 class="post-subtitle">
-            One hidden layer Neural Network
-        </h3>
-        <div class="post-content-preview">
-            
-
-
-
-
-One hidden layer Neural Network
-What is a Neural Network
-Neural Network is an operational model and it’s made up of neurons that they also call activation function.A ordinary neuron is shown h......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Kwong on
-            2018-06-01
         </p>
         <div class="tags">
             
@@ -606,7 +621,19 @@ Neural Network is an operational model and it’s made up of neurons that they a
     <div class="tags">
         
             
-            <a href="/tags/#DeepLearning" title="DeepLearning" rel="80">DeepLearning</a>
+            <a href="/tags/#DeepLearning" title="DeepLearning" rel="81">DeepLearning</a>
+            
+        
+            
+            <a href="/tags/#Paper" title="Paper" rel="63">Paper</a>
+            
+        
+            
+            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            
+        
+            
+            <a href="/tags/#Python" title="Python" rel="21">Python</a>
             
         
             
@@ -630,18 +657,6 @@ Neural Network is an operational model and it’s made up of neurons that they a
             
         
             
-            <a href="/tags/#Python" title="Python" rel="21">Python</a>
-            
-        
-            
-            <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
-            
-        
-            
-            <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
-            
-        
-            
             <a href="/tags/#CriticalPath" title="CriticalPath" rel="1">CriticalPath</a>
             
         
@@ -650,7 +665,11 @@ Neural Network is an operational model and it’s made up of neurons that they a
             
         
             
-            <a href="/tags/#DataMining" title="DataMining" rel="3">DataMining</a>
+            <a href="/tags/#Crawl" title="Crawl" rel="1">Crawl</a>
+            
+        
+            
+            <a href="/tags/#Urllib" title="Urllib" rel="1">Urllib</a>
             
         
             
@@ -666,22 +685,6 @@ Neural Network is an operational model and it’s made up of neurons that they a
             
         
             
-            <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
-            
-        
-            
-            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
-            
-        
-            
-            <a href="/tags/#Note" title="Note" rel="2">Note</a>
-            
-        
-            
-            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
-            
-        
-            
             <a href="/tags/#Mathjax" title="Mathjax" rel="1">Mathjax</a>
             
         
@@ -690,11 +693,23 @@ Neural Network is an operational model and it’s made up of neurons that they a
             
         
             
-            <a href="/tags/#Paper" title="Paper" rel="62">Paper</a>
+            <a href="/tags/#Note" title="Note" rel="2">Note</a>
+            
+        
+            
+            <a href="/tags/#MarkDown" title="MarkDown" rel="1">MarkDown</a>
+            
+        
+            
+            <a href="/tags/#Floyd" title="Floyd" rel="1">Floyd</a>
             
         
             
             <a href="/tags/#SemanticSegmentation" title="SemanticSegmentation" rel="13">SemanticSegmentation</a>
+            
+        
+            
+            <a href="/tags/#HashTable" title="HashTable" rel="1">HashTable</a>
             
         
             
@@ -710,10 +725,6 @@ Neural Network is an operational model and it’s made up of neurons that they a
             
         
             
-            <a href="/tags/#Database" title="Database" rel="2">Database</a>
-            
-        
-            
             <a href="/tags/#MST" title="MST" rel="1">MST</a>
             
         
@@ -723,6 +734,10 @@ Neural Network is an operational model and it’s made up of neurons that they a
         
             
             <a href="/tags/#Kruskal" title="Kruskal" rel="2">Kruskal</a>
+            
+        
+            
+            <a href="/tags/#Database" title="Database" rel="2">Database</a>
             
         
             
@@ -808,6 +823,10 @@ Neural Network is an operational model and it’s made up of neurons that they a
     <ul>
       
         <li>
+          <a href="/2020/06/04/LearningDynamicRouting/">Learning Dynamic Routing for Semantic Segmentation</a>
+        </li>
+      
+        <li>
           <a href="/2020/01/10/paper-PathAggregationNet/">Path Aggregation Network for Instance Segmentation</a>
         </li>
       
@@ -821,10 +840,6 @@ Neural Network is an operational model and it’s made up of neurons that they a
       
         <li>
           <a href="/2019/12/28/paper-rcf/">Richer Convolutional Features for Edge Detection</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/25/paper-FickleNet/">FickleNet - Weakly and Semi-supervised Semantic Image Segmentation using Stochastic Inference</a>
         </li>
       
     </ul>
@@ -907,7 +922,7 @@ Neural Network is an operational model and it’s made up of neurons that they a
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

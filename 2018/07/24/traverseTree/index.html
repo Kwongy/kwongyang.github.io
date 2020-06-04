@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,7 +216,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="二叉树的遍历">二叉树的遍历</span></h2><ul>
+                <h2><span id="二叉树的遍历">二叉树的遍历</span></h2>
+<ul>
 <li>先序(先根)遍历：即先访问根节点，再访问左子树和右子树</li>
 <li>中序遍历：先访问左子树，再访问根节点，再访问右子树</li>
 <li>后序遍历：先访问左子树和右子树，再访问根节点</li>
@@ -228,9 +229,12 @@
 <p>那么它的先序遍历伪代码为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;%d&quot;,root-&gt;value);</span><br><span class="line">pre_order(root-&gt;left);</span><br><span class="line">pre_order(root-&gt;right);</span><br></pre></td></tr></table></figure>
 <hr>
-<h2><span id="二叉树的前序中序转后序遍历">二叉树的前序中序转后序遍历</span></h2><hr>
+<h2><span id="二叉树的前序中序转后序遍历">二叉树的前序中序转后序遍历</span></h2>
+<hr>
 <p>首先需要了解的是，<strong>由中序和另外任一种遍历可以唯一确定一颗二叉树，而仅有前序遍历和后序遍历无法确定一颗唯一的二叉树。</strong></p>
-<p>例如我们已知二叉树<br>前序遍历为：1 2 3 4 5 6 7<br>中序遍历为：2 3 1 5 4 7 6</p>
+<p>例如我们已知二叉树<br>
+前序遍历为：1 2 3 4 5 6 7<br>
+中序遍历为：2 3 1 5 4 7 6</p>
 <p>要想推出后序遍历可以先由已知的遍历顺序还原二叉树，再运用后序遍历算法得到后序序列。</p>
 <p>那么如何还原二叉树呢？</p>
 <p>由先序遍历的性质我们可以知道对于每一颗二叉树，先序遍历的第一结点为根结点。因此，从先序遍历找到根结点后，在中序遍历中找到它的位置，以根结点为分界线，左边的为左子树，右边的是右子树。这样递归下去就可以得到原二叉树了。</p>
@@ -246,11 +250,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">vector&lt;int&gt; pre_order,mid_order;</span><br><span class="line">typedef struct node&#123;</span><br><span class="line">	struct node *left,*right;</span><br><span class="line">	int value;</span><br><span class="line">&#125;Tree;</span><br><span class="line">Tree* convert(int pre_l, int pre_r, int mid_l, int mid_r)&#123;</span><br><span class="line">	Tree *root = new Tree;</span><br><span class="line">	if(pre_l &gt; pre_r) return NULL;</span><br><span class="line">	root-&gt;value = pre_order[pre_l];			//先序遍历的第一个结点为根节点 </span><br><span class="line">	if(pre_l == pre_r)&#123;</span><br><span class="line">		root-&gt;left = NULL;</span><br><span class="line">		root-&gt;right = NULL;</span><br><span class="line">		return root;</span><br><span class="line">	&#125;</span><br><span class="line">	int index = mid_l;</span><br><span class="line">	for(; index &lt;= mid_r; index++)&#123;				//在中序遍历中找这一轮的根节点 </span><br><span class="line">		if(mid_order[index] == pre_order[pre_l]) break;</span><br><span class="line">	&#125;</span><br><span class="line">	root-&gt;left = convert(pre_l + 1, pre_l + (index - mid_l), mid_l, index - 1);		//递归建立左子树 </span><br><span class="line">	root-&gt;right = convert(pre_l + (index - mid_l) + 1, pre_r, index + 1, mid_r); 		//递归建立右子树 </span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br><span class="line">void post(Tree *root)&#123;		//后序遍历 </span><br><span class="line">	if(root != NULL)&#123;</span><br><span class="line">		post(root-&gt;left);</span><br><span class="line">		post(root-&gt;right);</span><br><span class="line">		cout &lt;&lt; root-&gt;value &lt;&lt; &quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void level(Tree *root,int n)&#123;		//层次遍历 </span><br><span class="line">	Tree *s[n];</span><br><span class="line">	int index = 0, point = 1;</span><br><span class="line">	s[0] = root;</span><br><span class="line">	while(index != n)&#123;</span><br><span class="line">		if(s[index]-&gt;left != NULL)&#123;</span><br><span class="line">			s[point] = s[index]-&gt;left;</span><br><span class="line">			point++;</span><br><span class="line">		&#125;</span><br><span class="line">		if(s[index]-&gt;right != NULL)&#123;</span><br><span class="line">			s[point] = s[index]-&gt;right;</span><br><span class="line">			point++;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; s[index]-&gt;value &lt;&lt; &quot; &quot;;</span><br><span class="line">		index++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cout &lt;&lt; &quot;输入结点个数&quot; &lt;&lt; endl; </span><br><span class="line">	int n; cin &gt;&gt; n;</span><br><span class="line">	pre_order.resize(n), mid_order.resize(n);</span><br><span class="line">	cout &lt;&lt; &quot;输入前序遍历序列&quot; &lt;&lt; endl; </span><br><span class="line">	for(int i = 0; i &lt; n; i++) cin &gt;&gt; pre_order[i];</span><br><span class="line">	cout &lt;&lt; &quot;输入中序遍历序列&quot; &lt;&lt; endl; </span><br><span class="line">	for(int i = 0; i &lt; n; i++) cin &gt;&gt; mid_order[i];</span><br><span class="line">	Tree *root = convert(0, n-1, 0, n-1);</span><br><span class="line">	cout &lt;&lt; &quot;后序遍历为：&quot; &lt;&lt; endl; </span><br><span class="line">	post(root);</span><br><span class="line">	cout &lt;&lt; endl &lt;&lt; &quot;后层次遍历为：&quot; &lt;&lt; endl; ;</span><br><span class="line">	level(root,n);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再看一下两行核心代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root-&gt;left = convert(pre_l + 1, pre_l + (index - mid_l), mid_l, index - 1);		//递归建立左子树 </span><br><span class="line">root-&gt;right = convert(pre_l + (index - mid_l) + 1, pre_r, index + 1, mid_r); 		//递归建立右子树</span><br></pre></td></tr></table></figure>
-<p>前序遍历中 (pre_r - (pre_l + (index - mid_l) + 1)) + (pre_l + (index - mid_l) - (pre_l + 1 )) = pre_r - pre_l - 1<br>即去掉了pre_l这个位置的值，即根结点</p>
-<p>中序遍历中 (index - 1 - mid_l) + (mid_r - (index + 1)) = mid_r - mid_l - 1<br>即去掉了index位置的值，即根结点。</p>
+<p>前序遍历中 (pre_r - (pre_l + (index - mid_l) + 1)) + (pre_l + (index - mid_l) - (pre_l + 1 )) = pre_r - pre_l - 1<br>
+即去掉了pre_l这个位置的值，即根结点</p>
+<p>中序遍历中 (index - 1 - mid_l) + (mid_r - (index + 1)) = mid_r - mid_l - 1<br>
+即去掉了index位置的值，即根结点。</p>
 <p>因此可以直接由前序和中序遍历得到后序遍历而无须建二叉树。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">vector&lt;int&gt; pre_order,mid_order;</span><br><span class="line">void convert(int pre_l, int pre_r, int mid_l, int mid_r)&#123;</span><br><span class="line">	if(pre_l &gt; pre_r) return ;</span><br><span class="line">	int index = mid_l;</span><br><span class="line">	for(; index &lt;= mid_r; index++)&#123;</span><br><span class="line">		if(mid_order[index] == pre_order[pre_l]) break;</span><br><span class="line">	&#125;</span><br><span class="line">	convert(pre_l+1, pre_l + (index - mid_l), mid_l, index - 1);</span><br><span class="line">	convert(pre_l + (index - mid_l) + 1, pre_r, index + 1, mid_r);</span><br><span class="line">	cout &lt;&lt; mid_order[index] &lt;&lt; &quot; &quot;;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cout &lt;&lt; &quot;输入结点个数&quot; &lt;&lt; endl; </span><br><span class="line">	int n; cin &gt;&gt; n;</span><br><span class="line">	pre_order.resize(n), mid_order.resize(n);</span><br><span class="line">	cout &lt;&lt; &quot;输入前序遍历序列&quot; &lt;&lt; endl; </span><br><span class="line">	for(int i = 0; i &lt; n; i++) cin &gt;&gt; pre_order[i];</span><br><span class="line">	cout &lt;&lt; &quot;输入中序遍历序列&quot; &lt;&lt; endl; </span><br><span class="line">	for(int i = 0; i &lt; n; i++) cin &gt;&gt; mid_order[i];</span><br><span class="line">	convert(0,n-1,0,n-1);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>后序中序转前序也是相同的方法，还有类似的已知完全二叉树的层次遍历求前中后序。<br>这类问题的关键都是找根节点。</p>
+<p>后序中序转前序也是相同的方法，还有类似的已知完全二叉树的层次遍历求前中后序。<br>
+这类问题的关键都是找根节点。</p>
 
                 
 
@@ -463,7 +470,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

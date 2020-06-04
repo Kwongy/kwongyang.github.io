@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,8 +217,10 @@
                 post-container">
 
                 <p>本篇论文是由香港中文大学和北京大学的Shu Liu, Lu Qi, Haifang Qin, Jianping Shi, Jiaya Jia所作的<a href="https://arxiv.org/abs/1803.01534" target="_blank" rel="noopener">Path Aggregation Network for Instance Segmentation</a>, 发表在2018年CVPR上.</p>
-<h2><span id="收获总结">收获总结</span></h2><p>本篇论文提出的PANet是针对Mask R-CNN的改进,在2017年COCO实例分割挑战赛上获得了第一名.作者在实验过程中发现Mask R-CNN中路径传导的过长导致位置信息的准确度降低, 其次, 目标检测中区域建议是启发性分配的, 这个过程中某些层级的某些信息会被丢弃, 但它可能对于其他的预测是有帮助的, 最后, 只在最后一层特征图上进行预测失去了收集更多信息的机会(言外之意就是使用多层特征图融合来进行预测效果会更好).</p>
-<p>网络的结构如下图所示<br><img src="1.png" alt=""></p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>本篇论文提出的PANet是针对Mask R-CNN的改进,在2017年COCO实例分割挑战赛上获得了第一名.作者在实验过程中发现Mask R-CNN中路径传导的过长导致位置信息的准确度降低, 其次, 目标检测中区域建议是启发性分配的, 这个过程中某些层级的某些信息会被丢弃, 但它可能对于其他的预测是有帮助的, 最后, 只在最后一层特征图上进行预测失去了收集更多信息的机会(言外之意就是使用多层特征图融合来进行预测效果会更好).</p>
+<p>网络的结构如下图所示<br>
+<img src="1.png" alt=""></p>
 <p>整个网络由四部分组成,  首先是FPN作为backbone. FPN是17年提出的一个目标检测模型, 利用多级特征图融合来提高结果. 其次, 使用Bottom-up path augmentation来增强信息通路(针对上面的问题一), 将底层的位置信息传导到更远的高层特征中. 接着,使用Adaptive feature pooling从所有不同层次的特征中获取区域建议, 而不是启发式的随机分配(针对上面的问题二). 最后的结果经过d的输出结果为目标检测, 经过e的输出结果为实例分割.</p>
 <p><img src="2.png" alt=""></p>
 <p>首先是Bottom-up path augmentation, 它属于比较常规的特征融合操作，比如Ni经过卷积核尺寸为3<em>3，stride=2的卷积层，特征图尺寸缩减为原来的一半，然后和Pi+1做element-wise add，得到的结果再经过一个卷积核尺寸为3</em>3，stride=1的卷积层得到Ni+1，特征图尺寸不变。</p>
@@ -232,6 +234,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/06/04/LearningDynamicRouting/" data-toggle="tooltip" data-placement="top" title="Learning Dynamic Routing for Semantic Segmentation">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -434,7 +440,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

@@ -93,14 +93,14 @@
     </url>
 
     <url>
-        <loc>http://kwongyang.com/tags/MarkDown/</loc>
+        <loc>http://kwongyang.com/tags/Note/</loc>
         <lastmod>2019-05-24T01:35:08.739Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://kwongyang.com/tags/Note/</loc>
+        <loc>http://kwongyang.com/tags/MarkDown/</loc>
         <lastmod>2019-05-24T01:35:08.739Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -213,21 +213,21 @@
 
     <url>
         <loc>http://kwongyang.com/tags/SemanticSegmentation/</loc>
-        <lastmod>2019-11-21T11:55:43.244Z</lastmod>
+        <lastmod>2020-01-06T14:41:26.175Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://kwongyang.com/tags/DeepLearning/</loc>
-        <lastmod>2019-12-28T02:47:35.464Z</lastmod>
+        <lastmod>2020-06-04T02:07:43.627Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://kwongyang.com/tags/Paper/</loc>
-        <lastmod>2019-12-28T02:47:35.464Z</lastmod>
+        <lastmod>2020-06-04T02:07:43.627Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

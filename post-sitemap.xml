@@ -7,6 +7,38 @@
     </url>
 
     <url>
+        <loc>http://kwongyang.com/2020/06/04/LearningDynamicRouting/</loc>
+        <lastmod>2020-06-04T02:07:43.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://kwongyang.com/2020/01/10/paper-PathAggregationNet/</loc>
+        <lastmod>2020-01-10T09:12:35.438Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://kwongyang.com/2020/01/06/paper-refinenet/</loc>
+        <lastmod>2020-01-06T14:41:26.175Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://kwongyang.com/2020/01/01/paper-moco/</loc>
+        <lastmod>2020-01-01T12:07:29.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://kwongyang.com/2019/12/28/paper-rcf/</loc>
         <lastmod>2019-12-28T02:47:35.464Z</lastmod>
         <changefreq>weekly</changefreq>

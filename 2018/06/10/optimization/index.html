@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,32 +216,59 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="mini-batch">Mini-batch</span></h2><hr>
-<p>Let’s say that you split up your training set into smaller,little baby training sets and these baby training sets are called mini-batches.<br>Batch gradient descent,refers to the gradient descent algorithm we have been talking about previously,where you process your entire trainging set all at the same time.the name comes from viewing that as processing your entire batch of training samples all at the same time.<br>Mini-batch means that you process is single mini-batch at the same time rather than processing your entire training set the same time.</p>
+                <h2><span id="mini-batch">Mini-batch</span></h2>
+<hr>
+<p>Let’s say that you split up your training set into smaller,little baby training sets and these baby training sets are called mini-batches.<br>
+Batch gradient descent,refers to the gradient descent algorithm we have been talking about previously,where you process your entire trainging set all at the same time.the name comes from viewing that as processing your entire batch of training samples all at the same time.<br>
+Mini-batch means that you process is single mini-batch at the same time rather than processing your entire training set the same time.</p>
 <p><img src="1.png" alt=""></p>
 <hr>
-<h2><span id="exponentially-weighted-averages">Exponentially weighted averages</span></h2><hr>
-<script type="math/tex; mode=display">v_t = \betav_{t-1} + (1 - \beta){\theta}_t</script><p><img src="2.png" alt=""></p>
+<h2><span id="exponentially-weighted-averages">Exponentially weighted averages</span></h2>
 <hr>
-<h2><span id="bias-correction-in-ewa">Bias correction in EWA</span></h2><hr>
-<p>There’s one technical detail called bias correction that can make your computation of these averages more accurately.<br>Bias correction which is that,instead of taking$\frac{v_t}{1 - {\beta}^t}$</p>
-<script type="math/tex; mode=display">\frac{v_t}{1 - {\beta}^t} =  \beta*v_{t-1} + (1 - \beta){\theta}_t</script><hr>
-<h2><span id="gradient-descent-with-momentum">Gradient descent with momentum</span></h2><hr>
+<p>$$v_t = \betav_{t-1} + (1 - \beta){\theta}_t$$</p>
+<p><img src="2.png" alt=""></p>
+<hr>
+<h2><span id="bias-correction-in-ewa">Bias correction in EWA</span></h2>
+<hr>
+<p>There’s one technical detail called bias correction that can make your computation of these averages more accurately.<br>
+Bias correction which is that,instead of taking$\frac{v_t}{1 - {\beta}^t}$<br>
+$$\frac{v_t}{1 - {\beta}^t} =  \beta*v_{t-1} + (1 - \beta){\theta}_t$$</p>
+<hr>
+<h2><span id="gradient-descent-with-momentum">Gradient descent with momentum</span></h2>
+<hr>
 <p>On gradient descent,you can see this up and down oscillations slows down gradient descent.</p>
 <p><img src="3.png" alt=""></p>
 <p>During iteration t,you would compute the usual derivatives dw,db.</p>
-<script type="math/tex; mode=display">V_{dw} = \beta*V_{dw} + (1 - \beta)dW</script><script type="math/tex; mode=display">V_{db} = \beta*V_{db} + (1 - \beta)db</script><script type="math/tex; mode=display">W = W - \alpha*V_{dw}、b = b - \alpha*V_{db}</script><hr>
-<h2><span id="rmsprop">RMSprop</span></h2><hr>
+<p>$$V_{dw} = \beta<em>V_{dw} + (1 - \beta)dW$$<br>
+$$V_{db} = \beta</em>V_{db} + (1 - \beta)db$$<br>
+$$W = W - \alpha<em>V_{dw}、b = b - \alpha</em>V_{db}$$</p>
+<hr>
+<h2><span id="rmsprop">RMSprop</span></h2>
+<hr>
 <p>RMSprop which stands for root mean square prop that can also speed up gradient descent</p>
 <p>During iteration t,you would compute the usual derivatives dw,db.</p>
-<script type="math/tex; mode=display">S_{dw} = \beta*S_{dw} + (1 - \beta)dW^2</script><script type="math/tex; mode=display">S_{db} = \beta*S_{db} + (1 - \beta)db^2</script><script type="math/tex; mode=display">W = W - \alpha\frac{d_w}{\sqrt{S_w}}、b = b - \alpha\frac{d_b}{\sqrt{S_b}}</script><p><img src="4.png" alt=""></p>
+<p>$$S_{dw} = \beta<em>S_{dw} + (1 - \beta)dW^2$$<br>
+$$S_{db} = \beta</em>S_{db} + (1 - \beta)db^2$$<br>
+$$W = W - \alpha\frac{d_w}{\sqrt{S_w}}、b = b - \alpha\frac{d_b}{\sqrt{S_b}}$$</p>
+<p><img src="4.png" alt=""></p>
 <hr>
-<h2><span id="adam-optimization-algorithm">Adam optimization algorithm</span></h2><hr>
+<h2><span id="adam-optimization-algorithm">Adam optimization algorithm</span></h2>
+<hr>
 <p>During iteration t,you would compute the usual derivatives dw,db using mini-batch gradient descent.</p>
-<script type="math/tex; mode=display">V_{dw} = {\beta}_1V_{dw} + (1 - {\beta}_1)dW、V_{db} = {\beta}_1V_{db} + (1 - {\beta}_1)db</script><script type="math/tex; mode=display">S_{dw} = {\beta}_2S_{dw} + (1 - {\beta}_2)dW^2、S_{db} = {\beta}_2S_{db} + (1 - {\beta}_2)db^2</script><script type="math/tex; mode=display">V_{dw}^{corrected} = \frac{V_{dw}}{1 - {\beta}_1^t}、V_{db}^{corrected} = \frac{V_{db}}{1 - {\beta}_1^t}</script><script type="math/tex; mode=display">S_{dw}^{corrected} = \frac{S_{dw}}{1 - {\beta}_2^t}、S_{db}^{corrected} = \frac{S_{db}}{1 - {\beta}_2^t}</script><script type="math/tex; mode=display">w = W - \alpha\frac{V_{dw}^{corrected}}{\sqrt{S_{dw}^{corrected}} + \delta}</script><script type="math/tex; mode=display">b = b - \alpha\frac{V_{db}^{corrected}}{\sqrt{S_{db}^{corrected}} + \delta}</script><hr>
-<h2><span id="learning-rate-decay">Learning rate decay</span></h2><hr>
-<p>Suppose you’re implementing mini-batch gradient descent with a reasonably small mini-batch.And it will tend towards this minimum.but it won’t exactly converge.But your algorithm might just end up wandering around and never really converge because you’re using some fixed value for learning rate.<br>But if you were to slowly reduce your learning rate.your steps you take will be slower and smaller so you end up oscillating in a tighter region around this minimum rather than wandering far away.<br>As learning approaches converges then having a slower learning rate allows you to take smaller steps </p>
-<script type="math/tex; mode=display">\alpha = \frac{1}{1 + decay-rate * epoch-num}</script>
+<p>$$V_{dw} = {\beta}<em>1V</em>{dw} + (1 - {\beta}<em>1)dW、V</em>{db} = {\beta}<em>1V</em>{db} + (1 - {\beta}<em>1)db$$<br>
+$$S</em>{dw} = {\beta}<em>2S</em>{dw} + (1 - {\beta}<em>2)dW^2、S</em>{db} = {\beta}<em>2S</em>{db} + (1 - {\beta}<em>2)db^2$$<br>
+$$V</em>{dw}^{corrected} = \frac{V_{dw}}{1 - {\beta}<em>1^t}、V</em>{db}^{corrected} = \frac{V_{db}}{1 - {\beta}<em>1^t}$$<br>
+$$S</em>{dw}^{corrected} = \frac{S_{dw}}{1 - {\beta}<em>2^t}、S</em>{db}^{corrected} = \frac{S_{db}}{1 - {\beta}<em>2^t}$$<br>
+$$w = W - \alpha\frac{V</em>{dw}^{corrected}}{\sqrt{S_{dw}^{corrected}} + \delta}$$<br>
+$$b = b - \alpha\frac{V_{db}^{corrected}}{\sqrt{S_{db}^{corrected}} + \delta}$$</p>
+<hr>
+<h2><span id="learning-rate-decay">Learning rate decay</span></h2>
+<hr>
+<p>Suppose you’re implementing mini-batch gradient descent with a reasonably small mini-batch.And it will tend towards this minimum.but it won’t exactly converge.But your algorithm might just end up wandering around and never really converge because you’re using some fixed value for learning rate.<br>
+But if you were to slowly reduce your learning rate.your steps you take will be slower and smaller so you end up oscillating in a tighter region around this minimum rather than wandering far away.<br>
+As learning approaches converges then having a slower learning rate allows you to take smaller steps</p>
+<p>$$\alpha = \frac{1}{1 + decay-rate * epoch-num}$$</p>
+
                 
 
                 <hr>
@@ -453,7 +480,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

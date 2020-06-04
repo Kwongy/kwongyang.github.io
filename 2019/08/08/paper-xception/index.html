@@ -146,13 +146,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -161,6 +154,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -217,7 +217,8 @@
                 post-container">
 
                 <p>本篇论文是由谷歌公司的 Francois Chollet 发表于2017年CVPR上的<a href="https://arxiv.org/pdf/1610.02357.pdf" target="_blank" rel="noopener">Xception - Deep Learning with Depthwise Separable Convolutions</a></p>
-<h2><span id="收获总结">收获总结</span></h2><p>文章首先分析了Inception模块和卷积层的不同，卷积层是从长宽(2D)和通道(1D)一共3D的层面分别取寻找图像的空间之间的关联和通道之间的关联。而Inception模块背后的思想是将上述目的，显示地分解成一系列操作独立地寻找图片中空间之间的关联和通道之间的关联。详细地说，Inception模块首先使用1x1的卷积来查看图像通道之间的关联，然后再使用常见的3x3或者5x5的卷积来查看图片空间之间的相关信息。同时，Inception结构是建立在图片中空间之间的关联和通道之间的关联已经相互分离。</p>
+<h2><span id="收获总结">收获总结</span></h2>
+<p>文章首先分析了Inception模块和卷积层的不同，卷积层是从长宽(2D)和通道(1D)一共3D的层面分别取寻找图像的空间之间的关联和通道之间的关联。而Inception模块背后的思想是将上述目的，显示地分解成一系列操作独立地寻找图片中空间之间的关联和通道之间的关联。详细地说，Inception模块首先使用1x1的卷积来查看图像通道之间的关联，然后再使用常见的3x3或者5x5的卷积来查看图片空间之间的相关信息。同时，Inception结构是建立在图片中空间之间的关联和通道之间的关联已经相互分离。</p>
 <p>其次分析了Inception模块与深度可分离卷积之间的不同，Inception是先1x1再进行3x3，而深度可分离卷积后进行1x1。同时，在初始阶段，第一个非线性层后Inception模块会使用ReLU非线性映射，而在初始阶段深度可分离卷积不使用非线性层。</p>
 <p>本文在深度可分离卷积结构的基础上提出了Xception结构。网络由一系列深度可分离卷积层和残差结构堆叠而成。</p>
 <p><img src="1.png" alt=""></p>
@@ -434,7 +435,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>

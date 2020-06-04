@@ -152,13 +152,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -167,6 +160,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -225,21 +225,30 @@
                 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=39436510&auto=1&height=66"></iframe>
 </div>
-
 <p>今天看了考研真题，感觉看了书跟没看一样。考的非常细，所以以后更加需要注重细节。要补充各种情况。</p>
 <hr>
-<h2><span id="floyd算法介绍">Floyd算法介绍</span></h2><hr>
-<p>Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决”负权回路”的图。比如下面这个图A-&gt;C就不存在最短路，因为产生了负权回路，最短路可以无限减小。</p>
-<h2><span id=""><img src="1.png" alt="图1"></span></h2><h2><span id="floyd算法思想">Floyd算法思想</span></h2><hr>
-<p>Floyd算法基于动态规划的思想。以u到v的最短路径为例，要么直达即u-&gt;v，要么需要经过其他若干个顶点即u-&gt;$\cdots$-&gt;v。<br>因此对于中间可能需要经过的顶点k只需要比较spend(u,k)+spend(k,v)与spend(u,v)的大小。如果前者小于后者那么就更新最短路。当我们遍历完所有顶点就可以得到u到v的最短路了。<br>Floyd算法的时间复杂度为O($N^3$)，空间复杂度为O($N^2$)</p>
+<h2><span id="floyd算法介绍">Floyd算法介绍</span></h2>
 <hr>
-<h2><span id="实例理解">实例理解</span></h2><hr>
+<p>Floyd算法（弗洛伊德算法）是解决任意两点间的最短路径的一种算法，可以正确处理有向（无向）图的最短路径问题，同时也被用于计算有向图的传递闭包。。要注意的时Floyd算法可以解决权为负的，但不能解决&quot;负权回路&quot;的图。比如下面这个图A-&gt;C就不存在最短路，因为产生了负权回路，最短路可以无限减小。</p>
+<h2><span id=""><img src="1.png" alt="图1"></span></h2>
+<h2><span id="floyd算法思想">Floyd算法思想</span></h2>
+<hr>
+<p>Floyd算法基于动态规划的思想。以u到v的最短路径为例，要么直达即u-&gt;v，要么需要经过其他若干个顶点即u-&gt;$\cdots$-&gt;v。<br>
+因此对于中间可能需要经过的顶点k只需要比较spend(u,k)+spend(k,v)与spend(u,v)的大小。如果前者小于后者那么就更新最短路。当我们遍历完所有顶点就可以得到u到v的最短路了。<br>
+Floyd算法的时间复杂度为O($N^3$)，空间复杂度为O($N^2$)</p>
+<hr>
+<h2><span id="实例理解">实例理解</span></h2>
+<hr>
 <p>有如下的一个有向图及其邻接矩阵</p>
 <p><img src="2.png" alt="图2"></p>
-<p>定义n个n阶方阵<br>$D^{(0)}$,$D^{(1)}$,$\cdots$,$D^{(n-1)}$<br>由Floyd算法可推出动态规划递推式<br>$D^{(k)}=\min\{D^{(k-1)}[i][j],D^{(k-1)}[i][k]+D^{(k-1)}[k][j]\}$</p>
+<p>定义n个n阶方阵<br>
+$D^{(0)}$,$D^{(1)}$,$\cdots$,$D^{(n-1)}$<br>
+由Floyd算法可推出动态规划递推式<br>
+$D^{(k)}=\min{D^{(k-1)}[i][j],D^{(k-1)}[i][k]+D^{(k-1)}[k][j]}$</p>
 <p>与Dijkstra算法一样path[i][j]=k代表从i到j最后一步为k-&gt;j</p>
 <hr>
-<h2><span id="代码实现">代码实现</span></h2><hr>
+<h2><span id="代码实现">代码实现</span></h2>
+<hr>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">#define INF 1&lt;&lt;29		//2倍的1&lt;&lt;30会越界，所以就用1&lt;&lt;29代表无穷大</span><br><span class="line">#define MAX 3			//图的顶点个数</span><br><span class="line"></span><br><span class="line">int path[MAX][MAX];			//储存到达顶点的路径</span><br><span class="line">int spend[MAX][MAX];			//到达每个顶点的花费</span><br><span class="line"></span><br><span class="line">void init(int border)&#123;</span><br><span class="line">	int i,j;</span><br><span class="line">	int a,b,c;						//a,b,c代表a点到b点所花费的代价c</span><br><span class="line">	for(i=0;i&lt;MAX;i++)&#123;	</span><br><span class="line">		for(j=0;j&lt;MAX;j++)&#123;</span><br><span class="line">			path[i][j] = -1;</span><br><span class="line">			if(i!=j)&#123;</span><br><span class="line">				spend[i][j] = INF;		//将邻接矩阵初始化为无穷大，代表都无法到达。 </span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				spend[i][j] = 0;		//自己到自己的距离为0 </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	for(i=0;i&lt;border;i++)&#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		spend[a][b]=c;				//读入边的信息 </span><br><span class="line">	&#125; 	</span><br><span class="line">&#125;</span><br><span class="line">void floyd()&#123;</span><br><span class="line">	int u,v,w;</span><br><span class="line">	for(w=0;w&lt;MAX;w++)&#123;</span><br><span class="line">		for(u=0;u&lt;MAX;u++)&#123;</span><br><span class="line">			for(v=0;v&lt;MAX;v++)&#123;</span><br><span class="line">				if(spend[u][v]&gt;spend[u][w]+spend[w][v])&#123;		//花费更少就更新 </span><br><span class="line">					spend[u][v]=spend[u][w]+spend[w][v];</span><br><span class="line">					path[u][v]=w;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">void print()&#123;</span><br><span class="line">	int i,j;</span><br><span class="line">	for(i = 0;i &lt; MAX;i++)&#123;</span><br><span class="line">		for(j = 0 ;j &lt; MAX;j++)&#123;</span><br><span class="line">			if(i==j) continue;</span><br><span class="line">			printf(&quot;%d到%d的花费为%d	路径为%d ——&gt;&quot;,i,j,spend[i][j],i);</span><br><span class="line">			printPath(i,j);</span><br><span class="line">			printf(&quot;%d&quot;,j);</span><br><span class="line">			if(spend[i][j]==INF)&#123;</span><br><span class="line">				printf(&quot;No path!&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			printf(&quot;\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void printPath(int i,int j)&#123;	//递归输出路径 </span><br><span class="line">	int k;</span><br><span class="line">	k=path[i][j];</span><br><span class="line">	if(k==-1)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	printPath(i,k);</span><br><span class="line">	printf(&quot;%d ——&gt;&quot;,k);</span><br><span class="line">	printPath(k,j);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">//	freopen(&quot;aa.txt&quot;,&quot;r&quot;,stdin); </span><br><span class="line">	int border;</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;border);		//读入边的个数 </span><br><span class="line">	init(border);</span><br><span class="line">	floyd();</span><br><span class="line">	print(); </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">0 1 10</span><br><span class="line">1 0 4</span><br><span class="line">0 2 5</span><br><span class="line">2 1 2</span><br></pre></td></tr></table></figure>
@@ -463,7 +472,7 @@
                     <!-- hitwebcounter Code START -->
                     <img src="http://hitwebcounter.com/counter/counter.php?page=7066902&style=0003&nbdigits=1&type=page&initCount=1156" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0" >
 					visitors since 2018/04/20,
-					<span class="post-count">177.9k words altogether</span>
+					<span class="post-count">180.0k words altogether</span>
 				</p>
             </div>
         </div>
